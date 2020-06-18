@@ -1,6 +1,27 @@
-# ConfigurableListableBeanFactory & bean创建
+# `ClassPathXmlApplicationContext` & Bean
 
-## 接口定义和类图
+## 测试代码 & Debug
+
+直接源码debug如下，需要弄懂这里面的流程
+
+![](../../imgs/testXmlApplication.png)
+
+见：`spring-framework-5.1.3.RELEASE/spring-context/src/test/java/test/com/mb/BeanTest.java`
+
+```java
+@Test
+public void testClassPathXmlApplicationContextBean() {
+	ClassPathXmlApplicationContext applicationContext =
+			new ClassPathXmlApplicationContext("spring.xml");
+	User user = (User) applicationContext.getBean("user");
+	Assert.assertTrue(user != null);
+	Assert.assertTrue(user.getTestStr().equals("testStr"));
+}
+```
+
+## ConfigurableListableBeanFactory接口 & bean创建
+
+`ConfigurableListableBeanFactory`接口定义和类图
 
 ```java
 /**
@@ -98,24 +119,14 @@ public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, Single
 
 ![](../../imgs/AutowireCapableBeanFactory.png)
 
-## 测试代码流程
+## 测试代码流程走读
 
-```java
-@Test
-public void testClassPathXmlApplicationContextBean() {
-	ClassPathXmlApplicationContext applicationContext =
-			new ClassPathXmlApplicationContext("spring.xml");
-	User user = (User) applicationContext.getBean("user");
-	Assert.assertTrue(user != null);
-	Assert.assertTrue(user.getTestStr().equals("testStr"));
-}
-```
+
+###  ClassPathXmlApplicationContext构造函数执行
 
 附`ClassPathXmlApplicationContext`类的UML
 
 ![](../../imgs/ClassPathXmlApplicationContext.png)
-
-* ClassPathXmlApplicationContext构造函数执行
 
 ```java
 public ClassPathXmlApplicationContext(
@@ -133,7 +144,7 @@ public ClassPathXmlApplicationContext(
 }
 ```
 
-* `AbstractApplicationContext`的`refresh`方法
+### `AbstractApplicationContext`的`refresh`方法
 
 ```java
 @Override
@@ -237,9 +248,9 @@ public void refresh() throws BeansException, IllegalStateException {
 	}
 ```
 
-* BeanFactory实例工厂完成解析xml文件中的Bean并封装成`BeanDefinition`加载到工厂中
+### 抽象类`AbstractXmlApplicationContext`的`loadBeanDefinitions`方法
 
-抽象类`AbstractXmlApplicationContext`的`loadBeanDefinitions`方法
+BeanFactory实例工厂完成解析xml文件中的Bean并封装成`BeanDefinition`加载到工厂中
 
 ![](../../imgs/loadBeanDefinitions.png)
 
@@ -260,7 +271,7 @@ public void refresh() throws BeansException, IllegalStateException {
 
 ![](../../imgs/beanRefresh.png)
 
-* prepareBeanFactory
+### prepareBeanFactory
 
 ```java
 /**
@@ -317,7 +328,7 @@ protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 }
 ```
 
-* postProcessBeanFactory(beanFactory初始化后的一些定制化处理)
+### postProcessBeanFactory(beanFactory初始化后的一些定制化处理)
 
 在所有的beanDenifition加载完成之后，bean实例化之前执行
 
@@ -357,7 +368,7 @@ protected void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory b
 }
 ```
 
-* registerBeanPostProcessors(beanFactory)
+### registerBeanPostProcessors(beanFactory)
 
 ```java
 /**
@@ -370,7 +381,7 @@ protected void registerBeanPostProcessors(ConfigurableListableBeanFactory beanFa
 }
 ```
 
-* initMessageSource & initApplicationEventMulticaster
+### initMessageSource & initApplicationEventMulticaster
 
 ```java
 // Initialize message source for this context.
@@ -397,7 +408,7 @@ protected void onRefresh() throws BeansException {
 }
 ```
 
-* Check for listener beans and register them. `registerListeners()`
+### Check for listener beans and register them. `registerListeners()`
 
 ```java
 /**
@@ -435,7 +446,7 @@ protected void registerListeners() {
 
 创建所有非懒加载的单例类（并invoke BeanPostProcessors）
 
-* publish corresponding event.`finishRefresh()`
+### publish corresponding event.`finishRefresh()`
 
 ```java
 /**
@@ -461,7 +472,7 @@ protected void finishRefresh() {
 }
 ```
 
-* `User user = (User) applicationContext.getBean("user");`
+### `User user = (User) applicationContext.getBean("user");`
 
 `AbstractBeanFactory`的`doGetBean`方法
 
