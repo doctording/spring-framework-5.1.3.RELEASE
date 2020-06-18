@@ -38,3 +38,9 @@ out
 test-output
 atlassian-ide-plugin.xml
 .gradletasknamecache
+
+# gitbook
+_book
+node_modules
+*/node_modules/
+*/_book

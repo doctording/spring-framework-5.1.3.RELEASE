@@ -3,6 +3,7 @@ package test.com.mb;
 import com.mb.User;
 import org.junit.Assert;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
@@ -12,11 +13,12 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 public class BeanTest {
 
 	@Test
-	public void testUserBean(){
-		ClassPathXmlApplicationContext applicationContext =
+	public void testClassPathXmlApplicationContextBean() {
+		ApplicationContext applicationContext =
 				new ClassPathXmlApplicationContext("spring.xml");
-		User user = (User)applicationContext.getBean("user");
+		User user = (User) applicationContext.getBean("user");
 		Assert.assertTrue(user != null);
 		Assert.assertTrue(user.getTestStr().equals("testStr"));
 	}
+
 }
