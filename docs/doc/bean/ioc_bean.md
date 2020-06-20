@@ -1,6 +1,6 @@
 # Ioc 容器 & Bean
 
-## Spring处理流程
+## Spring处理流程简图
 
 ![](../../imgs/spring_frame.png)
 

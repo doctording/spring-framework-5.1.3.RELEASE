@@ -3,6 +3,7 @@
   "description": "Spring源码学习笔记",
   "language": "zh-hans",
   "plugins": [
+    "prism",
     "-highlight",
     "-lunr",
     "-search",

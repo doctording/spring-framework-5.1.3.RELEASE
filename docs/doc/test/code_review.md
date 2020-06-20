@@ -1,132 +1,12 @@
-# `ClassPathXmlApplicationContext` & Bean
+# `ClassPathXmlApplicationContext` & `getBean`
 
-## 测试代码 & Debug
-
-直接源码debug如下，需要弄懂这里面的流程
-
-![](../../imgs/testXmlApplication.png)
-
-见：`spring-framework-5.1.3.RELEASE/spring-context/src/test/java/test/com/mb/BeanTest.java`
-
-```java
-@Test
-public void testClassPathXmlApplicationContextBean() {
-	ClassPathXmlApplicationContext applicationContext =
-			new ClassPathXmlApplicationContext("spring.xml");
-	User user = (User) applicationContext.getBean("user");
-	Assert.assertTrue(user != null);
-	Assert.assertTrue(user.getTestStr().equals("testStr"));
-}
-```
-
-## ConfigurableListableBeanFactory接口 & bean创建
-
-`ConfigurableListableBeanFactory`接口定义和类图
-
-```java
-/**
- * Configuration interface to be implemented by most listable bean factories.
- * In addition to {@link ConfigurableBeanFactory}, it provides facilities to
- * analyze and modify bean definitions, and to pre-instantiate singletons.
- *
- * <p>This subinterface of {@link org.springframework.beans.factory.BeanFactory}
- * is not meant to be used in normal application code: Stick to
- * {@link org.springframework.beans.factory.BeanFactory} or
- * {@link org.springframework.beans.factory.ListableBeanFactory} for typical
- * use cases. This interface is just meant to allow for framework-internal
- * plug'n'play even when needing access to bean factory configuration methods.
- *
- * @author Juergen Hoeller
- * @since 03.11.2003
- * @see org.springframework.context.support.AbstractApplicationContext#getBeanFactory()
- */
-public interface ConfigurableListableBeanFactory
-		extends ListableBeanFactory, AutowireCapableBeanFactory, ConfigurableBeanFactory {
-
-```
-
-![](../../imgs/ConfigurableListableBeanFactory.png)
-
-## ListableBeanFactory
-
-```java
-public interface ListableBeanFactory extends BeanFactory
-```
-
-Extension of the BeanFactory interface to be implemented by bean factories that can enumerate（v. 列举; 枚举;）all their bean instances, rather than attempting bean lookup by name one by one as requested by clients. BeanFactory implementations that preload all their bean definitions (such as XML-based factories) may implement this interface.
-
-ListableBeanFactory 比 BeanFactory 多了一些方法
-
-* containsBeanDefinition(String beanName)
-
-Check if this bean factory contains a bean definition with the given name.
-
-* findAnnotationOnBean(String beanName, Class<A> annotationType)
-
-Find an Annotation of annotationType on the specified bean, traversing its interfaces and super classes if no annotation can be found on the given class itself, as well as checking the bean's factory method (if any).
-
-* getBeanDefinitionCount()
-
-Return the number of beans defined in the factory.
-
-* getBeanDefinitionNames()
-
-Return the names of all beans defined in this factory.
-
-* getBeanNamesForAnnotation(Class<? extends Annotation> annotationType)
-
-Find all names of beans which are annotated with the supplied Annotation type, without creating corresponding bean instances yet.
-
-* getBeanNamesForType(Class<?> type)
-
-Return the names of beans matching the given type (including subclasses), judging from either bean definitions or the value of getObjectType in the case of FactoryBeans.
-
-* getBeanNamesForType(Class<?> type, boolean includeNonSingletons, boolean allowEagerInit)
-
-Return the names of beans matching the given type (including subclasses), judging from either bean definitions or the value of getObjectType in the case of FactoryBeans.
-
-* getBeanNamesForType(ResolvableType type)
-
-Return the names of beans matching the given type (including subclasses), judging from either bean definitions or the value of getObjectType in the case of FactoryBeans.
-
-* getBeanNamesForType(ResolvableType type, boolean includeNonSingletons, boolean allowEagerInit)
-
-Return the names of beans matching the given type (including subclasses), judging from either bean definitions or the value of getObjectType in the case of FactoryBeans.
-
-* getBeansOfType(Class<T> type)
-
-Return the bean instances that match the given object type (including subclasses), judging from either bean definitions or the value of getObjectType in the case of FactoryBeans.
-
-* getBeansOfType(Class<T> type, boolean includeNonSingletons, boolean allowEagerInit)
-
-Return the bean instances that match the given object type (including subclasses), judging from either bean definitions or the value of getObjectType in the case of FactoryBeans.
-
-* getBeansWithAnnotation(Class<? extends Annotation> annotationType)
-
-Find all beans which are annotated with the supplied Annotation type, returning a Map of bean names with corresponding bean instances.
-
-## ConfigurableBeanFactory
-
-```java
-public interface ConfigurableBeanFactory extends HierarchicalBeanFactory, SingletonBeanRegistry
-```
-
-同时继承了HierarchicalBeanFactory 和 SingletonBeanRegistry 这两个接口，即同时继承了分层和单例类注册的功能
-
-![](../../imgs/ConfigurableBeanFactory.png)
-
-## AutowireCapableBeanFactory
-
-![](../../imgs/AutowireCapableBeanFactory.png)
-
-## 测试代码流程走读
-
-
-###  ClassPathXmlApplicationContext构造函数执行
+##  ClassPathXmlApplicationContext构造函数执行
 
 附`ClassPathXmlApplicationContext`类的UML
 
 ![](../../imgs/ClassPathXmlApplicationContext.png)
+
+* 测试例子使用的构造函数
 
 ```java
 public ClassPathXmlApplicationContext(
@@ -144,7 +24,13 @@ public ClassPathXmlApplicationContext(
 }
 ```
 
+### 设置`Environment`环境变量和`configLocations`
+
+![](../../imgs/environment.png)
+
 ### `AbstractApplicationContext`的`refresh`方法
+
+* refresh方法概述了Ioc容器的处理流程
 
 ```java
 @Override
@@ -215,40 +101,44 @@ public void refresh() throws BeansException, IllegalStateException {
 }
 ```
 
-* 构造生成`ConfigurableListableBeanFactory`类型的`BeanFactory`(具体是`DefaultListableBeanFactory`)
+#### prepareRefresh()先跳过
 
-调用了抽象类`AbstractRefreshableApplicationContext`的`refreshBeanFactory`方法
+#### BeanFactory构造
+
+构造生成`ConfigurableListableBeanFactory`类型的`BeanFactory`
+
+refresh方法中构造beanFactory具体是`DefaultListableBeanFactory`，调用了抽象类`AbstractRefreshableApplicationContext`的`refreshBeanFactory`方法
 
 ```java
 @Override
-	protected final void refreshBeanFactory() throws BeansException {
-		// 如果BeanFactory不为空，则清除BeanFactory里面的实例，并销毁BeanFactory
-		if (hasBeanFactory()) {
-			destroyBeans();
-			closeBeanFactory();
-		}
-		try {
-			// BeanFactory的实例工厂：DefaultListableBeanFactory
-			DefaultListableBeanFactory beanFactory = createBeanFactory();
-			beanFactory.setSerializationId(getId());
+protected final void refreshBeanFactory() throws BeansException {
+    // 如果BeanFactory不为空，则清除BeanFactory里面的实例，并销毁BeanFactory
+    if (hasBeanFactory()) {
+        destroyBeans();
+        closeBeanFactory();
+    }
+    try {
+        // BeanFactory的实例工厂：DefaultListableBeanFactory
+        DefaultListableBeanFactory beanFactory = createBeanFactory();
+        beanFactory.setSerializationId(getId());
 
-			// 设置是否可以同名覆盖，循环依赖
-			customizeBeanFactory(beanFactory);
+        // 设置是否可以同名覆盖，循环依赖
+        customizeBeanFactory(beanFactory);
 
-			// 解析比如xml文件，并把xml文件中的标签封装成BeanDefinition对象，加载到工厂中, 通常是通过代理读取器实现
-			// 比如 通过 XmlBeanDefinitionReader 读取 ClassPathXmlApplicationContext中传入的 configResources xml【模板设计】
-			loadBeanDefinitions(beanFactory);
-			synchronized (this.beanFactoryMonitor) {
-				this.beanFactory = beanFactory;
-			}
-		}
-		catch (IOException ex) {
-			throw new ApplicationContextException("I/O error parsing bean definition source for " + getDisplayName(), ex);
-		}
-	}
+        // 解析比如xml文件，并把xml文件中的标签封装成BeanDefinition对象，加载到工厂中, 通常是通过代理读取器实现
+        // 比如 通过 XmlBeanDefinitionReader 读取 ClassPathXmlApplicationContext中传入的 configResources xml【模板设计】
+        loadBeanDefinitions(beanFactory);
+        synchronized (this.beanFactoryMonitor) {
+            this.beanFactory = beanFactory;
+        }
+    }
+    catch (IOException ex) {
+        throw new ApplicationContextException("I/O error parsing bean definition source for " + getDisplayName(), ex);
+    }
+}
 ```
 
-### 抽象类`AbstractXmlApplicationContext`的`loadBeanDefinitions`方法
+##### 抽象类`AbstractXmlApplicationContext`的`loadBeanDefinitions`方法
 
 BeanFactory实例工厂完成解析xml文件中的Bean并封装成`BeanDefinition`加载到工厂中
 
@@ -271,7 +161,7 @@ BeanFactory实例工厂完成解析xml文件中的Bean并封装成`BeanDefinitio
 
 ![](../../imgs/beanRefresh.png)
 
-### prepareBeanFactory
+##### prepareBeanFactory(beanFactory)
 
 ```java
 /**
@@ -328,9 +218,9 @@ protected void prepareBeanFactory(ConfigurableListableBeanFactory beanFactory) {
 }
 ```
 
-### postProcessBeanFactory(beanFactory初始化后的一些定制化处理)
+##### postProcessBeanFactory(beanFactory的postProcessor)
 
-在所有的beanDenifition加载完成之后，bean实例化之前执行
+在所有的BeanDefinition加载完成之后，bean实例化之前执行
 
 ```java
 /**
@@ -368,7 +258,7 @@ protected void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory b
 }
 ```
 
-### registerBeanPostProcessors(beanFactory)
+#### registerBeanPostProcessors((bean的postProcessor))
 
 ```java
 /**
@@ -381,7 +271,7 @@ protected void registerBeanPostProcessors(ConfigurableListableBeanFactory beanFa
 }
 ```
 
-### initMessageSource & initApplicationEventMulticaster
+#### initMessageSource & initApplicationEventMulticaster(消息和广播初始化)
 
 ```java
 // Initialize message source for this context.
@@ -408,7 +298,7 @@ protected void onRefresh() throws BeansException {
 }
 ```
 
-### Check for listener beans and register them. `registerListeners()`
+#### `registerListeners()`（注册监听器）
 
 ```java
 /**
@@ -442,11 +332,128 @@ protected void registerListeners() {
 }
 ```
 
-* Instantiate all remaining (non-lazy-init) singletons. `finishBeanFactoryInitialization(beanFactory)`
+#### `finishBeanFactoryInitialization(beanFactory)`（实例化操作）
 
 创建所有非懒加载的单例类（并invoke BeanPostProcessors）
 
-### publish corresponding event.`finishRefresh()`
+
+##### 抽象类`AbstractAutowireCapableBeanFactory`的`doCreateBean`方法
+
+```java
+/**
+ * Actually create the specified bean. Pre-creation processing has already happened
+ * at this point, e.g. checking {@code postProcessBeforeInstantiation} callbacks.
+ * <p>Differentiates between default bean instantiation, use of a
+ * factory method, and autowiring a constructor.
+ * @param beanName the name of the bean
+ * @param mbd the merged bean definition for the bean
+ * @param args explicit arguments to use for constructor or factory method invocation
+ * @return a new instance of the bean
+ * @throws BeanCreationException if the bean could not be created
+ * @see #instantiateBean
+ * @see #instantiateUsingFactoryMethod
+ * @see #autowireConstructor
+ */
+protected Object doCreateBean(final String beanName, final RootBeanDefinition mbd, final @Nullable Object[] args)
+        throws BeanCreationException {
+```
+
+![](../../imgs/doGetBean.png)
+
+##### 抽象类`AbstractAutowireCapableBeanFactory`的`createBeanInstance`方法
+
+```java
+/**
+ * Create a new instance for the specified bean, using an appropriate instantiation strategy:
+ * factory method, constructor autowiring, or simple instantiation.
+ * @param beanName the name of the bean
+ * @param mbd the bean definition for the bean
+ * @param args explicit arguments to use for constructor or factory method invocation
+ * @return a BeanWrapper for the new instance
+ * @see #obtainFromSupplier
+ * @see #instantiateUsingFactoryMethod
+ * @see #autowireConstructor
+ * @see #instantiateBean
+ */
+protected BeanWrapper createBeanInstance(String beanName, RootBeanDefinition mbd, @Nullable Object[] args) {
+```
+
+###### 本例使用了无参的构造器`return instantiateBean(beanName, mbd);`
+
+![](../../imgs/instantiateBean.png)
+
+```java
+/**
+ * Instantiate the given bean using its default constructor.
+ * @param beanName the name of the bean
+ * @param mbd the bean definition for the bean
+ * @return a BeanWrapper for the new instance
+ */
+protected BeanWrapper instantiateBean(final String beanName, final RootBeanDefinition mbd) {
+    try {
+        Object beanInstance;
+        final BeanFactory parent = this;
+        if (System.getSecurityManager() != null) {
+            beanInstance = AccessController.doPrivileged((PrivilegedAction<Object>) () ->
+                    getInstantiationStrategy().instantiate(mbd, beanName, parent),
+                    getAccessControlContext());
+        }
+        else {
+            beanInstance = getInstantiationStrategy().instantiate(mbd, beanName, parent);
+        }
+        BeanWrapper bw = new BeanWrapperImpl(beanInstance);
+        initBeanWrapper(bw);
+        return bw;
+    }
+    catch (Throwable ex) {
+        throw new BeanCreationException(
+                mbd.getResourceDescription(), beanName, "Instantiation of bean failed", ex);
+    }
+}
+```
+
+###### BeanUtils的`instantiateClass(Constructor<T> ctor, Object... args)`方法
+
+```java
+/**
+ * Convenience method to instantiate a class using the given constructor.
+ * <p>Note that this method tries to set the constructor accessible if given a
+ * non-accessible (that is, non-public) constructor, and supports Kotlin classes
+ * with optional parameters and default values.
+ * @param ctor the constructor to instantiate
+ * @param args the constructor arguments to apply (use {@code null} for an unspecified
+ * parameter if needed for Kotlin classes with optional parameters and default values)
+ * @return the new instance
+ * @throws BeanInstantiationException if the bean cannot be instantiated
+ * @see Constructor#newInstance
+ */
+public static <T> T instantiateClass(Constructor<T> ctor, Object... args) throws BeanInstantiationException {
+    Assert.notNull(ctor, "Constructor must not be null");
+    try {
+        ReflectionUtils.makeAccessible(ctor);
+        return (KotlinDetector.isKotlinReflectPresent() && KotlinDetector.isKotlinType(ctor.getDeclaringClass()) ?
+                KotlinDelegate.instantiateClass(ctor, args) : ctor.newInstance(args));
+    }
+    catch (InstantiationException ex) {
+        throw new BeanInstantiationException(ctor, "Is it an abstract class?", ex);
+    }
+    catch (IllegalAccessException ex) {
+        throw new BeanInstantiationException(ctor, "Is the constructor accessible?", ex);
+    }
+    catch (IllegalArgumentException ex) {
+        throw new BeanInstantiationException(ctor, "Illegal arguments for constructor", ex);
+    }
+    catch (InvocationTargetException ex) {
+        throw new BeanInstantiationException(ctor, "Constructor threw exception", ex.getTargetException());
+    }
+}
+```
+
+###### 反射:`ctor.newInstance(args)`
+
+实例通过反射new出来了；反射相关知识参考：<a href="https://doctording.github.io/sword_at_offer/java_utils/reflect.html">Java反射机制</a>
+
+#### `finishRefresh()`
 
 ```java
 /**
@@ -472,6 +479,8 @@ protected void finishRefresh() {
 }
 ```
 
+![](../../imgs/alreadyBean.png)
+
 ### `User user = (User) applicationContext.getBean("user");`
 
 `AbstractBeanFactory`的`doGetBean`方法
@@ -480,3 +489,5 @@ protected void finishRefresh() {
 protected <T> T doGetBean(final String name, @Nullable final Class<T> requiredType,
 			@Nullable final Object[] args, boolean typeCheckOnly) throws BeansException {
 ```
+
+![](../../imgs/applicationContext.png)
