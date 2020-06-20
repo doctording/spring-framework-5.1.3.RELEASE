@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>2.3 常见面试题 · spring-note</title>
+        <title>4.2 BeanFactory Vs FactoryBean · spring-note</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="../../gitbook/style.css">
 
     
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
+                
             
                 
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-ace/ace.css">
@@ -86,7 +90,7 @@
 
     
     
-    <link rel="prev" href="test.html" />
+    <link rel="prev" href="bean_life.html" />
     
 
     </head>
@@ -141,12 +145,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="./">
+        <li class="chapter " data-level="1.3" data-path="../bean/">
             
-                <a href="./">
+                <a href="../bean/">
             
                     
-                    2 Ioc&Bean
+                    2 Ioc&Bean基础
             
                 </a>
             
@@ -155,9 +159,9 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="ioc_bean.html">
+        <li class="chapter " data-level="1.3.1" data-path="../bean/ioc_bean.html">
             
-                <a href="ioc_bean.html">
+                <a href="../bean/ioc_bean.html">
             
                     
                     2.1 Ioc & Bean概念
@@ -168,12 +172,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="BeanFactory.html">
+        <li class="chapter " data-level="1.3.2" data-path="../bean/BeanFactory.html">
             
-                <a href="BeanFactory.html">
+                <a href="../bean/BeanFactory.html">
             
                     
-                    2.1 BeanFactory接口
+                    2.2 BeanFactory接口
             
                 </a>
             
@@ -181,25 +185,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="test.html">
+        <li class="chapter " data-level="1.3.3" data-path="../bean/dependency.html">
             
-                <a href="test.html">
-            
-                    
-                    2.2 testClassPathXmlApplicationContextBean源码走读
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.3.4" data-path="questions.html">
-            
-                <a href="questions.html">
+                <a href="../bean/dependency.html">
             
                     
-                    2.3 常见面试题
+                    2.3 Spring循环依赖
             
                 </a>
             
@@ -217,7 +208,7 @@
                 <span>
             
                     
-                    3 其它
+                    [3 testClassPathXmlApplicationContextBean源码走读]
             
                 </span>
             
@@ -226,7 +217,110 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="../other/words.html">
+        <li class="chapter " data-level="1.4.1" data-path="../test/flow_path.html">
+            
+                <a href="../test/flow_path.html">
+            
+                    
+                    3.1 执行流程图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../test/code_review.html">
+            
+                <a href="../test/code_review.html">
+            
+                    
+                    3.2 代码debug & review
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../test/bean_constructor.html">
+            
+                <a href="../test/bean_constructor.html">
+            
+                    
+                    3.3 bean & constructor-arg
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    [4 常见面试题]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="bean_life.html">
+            
+                <a href="bean_life.html">
+            
+                    
+                    4.1 Bean生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5.2" data-path="bean_fatory_bean.html">
+            
+                <a href="bean_fatory_bean.html">
+            
+                    
+                    4.2 BeanFactory Vs FactoryBean
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    [5 其它]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../other/words.html">
             
                 <a href="../other/words.html">
             
@@ -274,7 +368,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >2.3 常见面试题</a>
+        <a href="../.." >4.2 BeanFactory Vs FactoryBean</a>
     </h1>
 </div>
 
@@ -289,18 +383,9 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div class="treeview__container"><div class="treeview__container-title"><span class="treeview__main-title">Treeview</span><span class="treeview__copyright">Copyright @doctording all right reserved, powered by <a href="https://github.com/aleen42" target="_blank">aleen42</a></span></div><ul>
-<li><div><a href="#&#x5E38;&#x89C1;&#x9762;&#x8BD5;&#x9898;">&#x5E38;&#x89C1;&#x9762;&#x8BD5;&#x9898;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
-<ul>
-<li><div><a href="#bean&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF1F;">bean&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF1F;</a><i></i></div></li>
-</ul></li>
-</ul>
-</div>
-
-<h1 id="&#x5E38;&#x89C1;&#x9762;&#x8BD5;&#x9898;">&#x5E38;&#x89C1;&#x9762;&#x8BD5;&#x9898;</h1>
-<h2 id="bean&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF1F;">bean&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF1F;</h2>
+                                <h1 id="beanfactory--factorybean-&#x7684;&#x533A;&#x522B;">BeanFactory &amp; FactoryBean &#x7684;&#x533A;&#x522B;</h1>
 <footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
-2020-06-18 09:52:42
+2020-06-19 13:21:48
 </span></footer>
                                 
                                 </section>
@@ -328,7 +413,7 @@
 
             
                 
-                <a href="test.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 2.2 testClassPathXmlApplicationContextBean源码走读">
+                <a href="bean_life.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 4.1 Bean生命周期">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -340,7 +425,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2.3 常见面试题","level":"1.3.4","depth":2,"next":{"title":"3 其它","level":"1.4","depth":1,"ref":"","articles":[{"title":"3.1 单词","level":"1.4.1","depth":2,"path":"doc/other/words.md","ref":"./doc/other/words.md","articles":[]}]},"previous":{"title":"2.2 testClassPathXmlApplicationContextBean源码走读","level":"1.3.3","depth":2,"path":"doc/bean/test.md","ref":"doc/bean/test.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/questions.md","mtime":"2020-06-18T01:52:42.414Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-18T02:24:55.996Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"4.2 BeanFactory Vs FactoryBean","level":"1.5.2","depth":2,"next":{"title":"[5 其它]","level":"1.6","depth":1,"ref":"","articles":[{"title":"3.1 单词","level":"1.6.1","depth":2,"path":"doc/other/words.md","ref":"./doc/other/words.md","articles":[]}]},"previous":{"title":"4.1 Bean生命周期","level":"1.5.1","depth":2,"path":"doc/question/bean_life.md","ref":"doc/question/bean_life.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/question/bean_fatory_bean.md","mtime":"2020-06-19T05:21:48.559Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-20T04:59:23.719Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

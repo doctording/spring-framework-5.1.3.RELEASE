@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>2.1 BeanFactory接口 · spring-note</title>
+        <title>2.2 BeanFactory接口 · spring-note</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -15,6 +15,10 @@
     <link rel="stylesheet" href="../../gitbook/style.css">
 
     
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
+                
             
                 
                 <link rel="stylesheet" href="../../gitbook/gitbook-plugin-ace/ace.css">
@@ -85,7 +89,7 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="test.html" />
+    <link rel="next" href="dependency.html" />
     
     
     <link rel="prev" href="ioc_bean.html" />
@@ -148,7 +152,7 @@
                 <a href="./">
             
                     
-                    2 Ioc&Bean
+                    2 Ioc&Bean基础
             
                 </a>
             
@@ -175,7 +179,7 @@
                 <a href="BeanFactory.html">
             
                     
-                    2.1 BeanFactory接口
+                    2.2 BeanFactory接口
             
                 </a>
             
@@ -183,25 +187,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="test.html">
+        <li class="chapter " data-level="1.3.3" data-path="dependency.html">
             
-                <a href="test.html">
-            
-                    
-                    2.2 testClassPathXmlApplicationContextBean源码走读
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.4" data-path="questions.html">
-            
-                <a href="questions.html">
+                <a href="dependency.html">
             
                     
-                    2.3 常见面试题
+                    2.3 Spring循环依赖
             
                 </a>
             
@@ -219,7 +210,7 @@
                 <span>
             
                     
-                    3 其它
+                    [3 testClassPathXmlApplicationContextBean源码走读]
             
                 </span>
             
@@ -228,7 +219,110 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="../other/words.html">
+        <li class="chapter " data-level="1.4.1" data-path="../test/flow_path.html">
+            
+                <a href="../test/flow_path.html">
+            
+                    
+                    3.1 执行流程图
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="../test/code_review.html">
+            
+                <a href="../test/code_review.html">
+            
+                    
+                    3.2 代码debug & review
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="../test/bean_constructor.html">
+            
+                <a href="../test/bean_constructor.html">
+            
+                    
+                    3.3 bean & constructor-arg
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" >
+            
+                <span>
+            
+                    
+                    [4 常见面试题]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="../question/bean_life.html">
+            
+                <a href="../question/bean_life.html">
+            
+                    
+                    4.1 Bean生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.2" data-path="../question/bean_fatory_bean.html">
+            
+                <a href="../question/bean_fatory_bean.html">
+            
+                    
+                    4.2 BeanFactory Vs FactoryBean
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    [5 其它]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../other/words.html">
             
                 <a href="../other/words.html">
             
@@ -276,7 +370,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >2.1 BeanFactory接口</a>
+        <a href="../.." >2.2 BeanFactory接口</a>
     </h1>
 </div>
 
@@ -357,7 +451,7 @@
                 </a>
                 
                 
-                <a href="test.html" class="navigation navigation-next " aria-label="Next page: 2.2 testClassPathXmlApplicationContextBean源码走读">
+                <a href="dependency.html" class="navigation navigation-next " aria-label="Next page: 2.3 Spring循环依赖">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -368,7 +462,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2.1 BeanFactory接口","level":"1.3.2","depth":2,"next":{"title":"2.2 testClassPathXmlApplicationContextBean源码走读","level":"1.3.3","depth":2,"path":"doc/bean/test.md","ref":"doc/bean/test.md","articles":[]},"previous":{"title":"2.1 Ioc & Bean概念","level":"1.3.1","depth":2,"path":"doc/bean/ioc_bean.md","ref":"doc/bean/ioc_bean.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/BeanFactory.md","mtime":"2020-06-18T01:52:42.411Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-18T02:24:55.996Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"2.2 BeanFactory接口","level":"1.3.2","depth":2,"next":{"title":"2.3 Spring循环依赖","level":"1.3.3","depth":2,"path":"doc/bean/dependency.md","ref":"doc/bean/dependency.md","articles":[]},"previous":{"title":"2.1 Ioc & Bean概念","level":"1.3.1","depth":2,"path":"doc/bean/ioc_bean.md","ref":"doc/bean/ioc_bean.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/BeanFactory.md","mtime":"2020-06-18T01:52:42.411Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-20T04:59:23.719Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
