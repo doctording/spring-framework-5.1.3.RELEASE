@@ -208,7 +208,7 @@
                 <span>
             
                     
-                    [3 testClassPathXmlApplicationContextBean源码走读]
+                    [3 ClassPathXmlApplicationContextBean源码走读]
             
                 </span>
             
@@ -222,7 +222,7 @@
                 <a href="doc/test/flow_path.html">
             
                     
-                    3.1 执行流程图
+                    3.1 ApplicationContext执行流程
             
                 </a>
             
@@ -266,7 +266,7 @@
                 <span>
             
                     
-                    [4 常见面试题]
+                    [4 常见问题]
             
                 </span>
             
@@ -275,12 +275,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="doc/question/bean_life.html">
+        <li class="chapter " data-level="1.5.1" data-path="doc/question/aop.html">
             
-                <a href="doc/question/bean_life.html">
+                <a href="doc/question/aop.html">
             
                     
-                    4.1 Bean生命周期
+                    4.1 AOP的理解
             
                 </a>
             
@@ -288,12 +288,38 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="doc/question/bean_fatory_bean.html">
+        <li class="chapter " data-level="1.5.2" data-path="doc/question/bean_life.html">
+            
+                <a href="doc/question/bean_life.html">
+            
+                    
+                    4.2 Bean生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="doc/question/bean_fatory_bean.html">
             
                 <a href="doc/question/bean_fatory_bean.html">
             
                     
-                    4.2 BeanFactory Vs FactoryBean
+                    4.3 BeanFactory Vs FactoryBean
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="doc/question/design.html">
+            
+                <a href="doc/question/design.html">
+            
+                    
+                    4.4 Spring中的设计模式
             
                 </a>
             
@@ -384,9 +410,9 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="spring">spring</h1>
-<p>&#x6E90;&#x7801;<strong>&#x5B9E;&#x6218;</strong>&#x7B14;&#x8BB0; </p>
+<p>&#x6E90;&#x7801;<strong>&#x5B9E;&#x6218;</strong>&#x9605;&#x8BFB;&#x7B14;&#x8BB0; </p>
 <footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
-2020-06-18 10:25:40
+2020-07-01 23:59:10
 </span></footer>
                                 
                                 </section>
@@ -426,7 +452,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"1 前言","level":"1.2","depth":1,"path":"doc/preface/index.md","ref":"./doc/preface/index.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"README.md","mtime":"2020-06-18T02:25:40.464Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-20T04:59:23.719Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"1 前言","level":"1.2","depth":1,"path":"doc/preface/index.md","ref":"./doc/preface/index.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"README.md","mtime":"2020-07-01T15:59:10.368Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-01T16:01:38.391Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

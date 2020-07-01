@@ -208,7 +208,7 @@
                 <span>
             
                     
-                    [3 testClassPathXmlApplicationContextBean源码走读]
+                    [3 ClassPathXmlApplicationContextBean源码走读]
             
                 </span>
             
@@ -222,7 +222,7 @@
                 <a href="../test/flow_path.html">
             
                     
-                    3.1 执行流程图
+                    3.1 ApplicationContext执行流程
             
                 </a>
             
@@ -266,7 +266,7 @@
                 <span>
             
                     
-                    [4 常见面试题]
+                    [4 常见问题]
             
                 </span>
             
@@ -275,12 +275,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="../question/bean_life.html">
+        <li class="chapter " data-level="1.5.1" data-path="../question/aop.html">
             
-                <a href="../question/bean_life.html">
+                <a href="../question/aop.html">
             
                     
-                    4.1 Bean生命周期
+                    4.1 AOP的理解
             
                 </a>
             
@@ -288,12 +288,38 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.2" data-path="../question/bean_fatory_bean.html">
+        <li class="chapter " data-level="1.5.2" data-path="../question/bean_life.html">
+            
+                <a href="../question/bean_life.html">
+            
+                    
+                    4.2 Bean生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.3" data-path="../question/bean_fatory_bean.html">
             
                 <a href="../question/bean_fatory_bean.html">
             
                     
-                    4.2 BeanFactory Vs FactoryBean
+                    4.3 BeanFactory Vs FactoryBean
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5.4" data-path="../question/design.html">
+            
+                <a href="../question/design.html">
+            
+                    
+                    4.4 Spring中的设计模式
             
                 </a>
             
@@ -387,14 +413,477 @@
 <li><div><a href="#&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;">&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
 <ul>
 <li><div><a href="#&#x4EC0;&#x4E48;&#x662F;&#x4F9D;&#x8D56;&#xFF1F;">&#x4EC0;&#x4E48;&#x662F;&#x4F9D;&#x8D56;&#xFF1F;</a><i></i></div></li>
+<li><div><a href="#spring&#x4E2D;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x573A;&#x666F;">Spring&#x4E2D;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x573A;&#x666F;</a><i></i></div></li>
+<li><div><a href="#singleton-bean-&#x5C5E;&#x6027;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x65E0;&#x95EE;&#x9898;">singleton bean &#x5C5E;&#x6027;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x65E0;&#x95EE;&#x9898;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#&#x5355;&#x4F8B;bean&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7406;&#x89E3;&#x56FE;">&#x5355;&#x4F8B;Bean&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7406;&#x89E3;&#x56FE;</a><i></i></div></li>
+<li><div><a href="#&#x5355;&#x4F8B;&#x7684;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x83B7;&#x53D6;getsingleton&#x65B9;&#x6CD5;">&#x5355;&#x4F8B;&#x7684;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x83B7;&#x53D6;:getSingleton&#x65B9;&#x6CD5;</a><i></i></div></li>
+<li><div><a href="#&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x6D89;&#x53CA;&#x8981;&#x70B9;&#x8BF4;&#x660E;">&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x6D89;&#x53CA;&#x8981;&#x70B9;&#x8BF4;&#x660E;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#singletonobjectsmap&#x7ED3;&#x6784;&#xFF08;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;&#xFF09;">singletonObjectsmap&#x7ED3;&#x6784;&#xFF08;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;&#xFF09;</a><i></i></div></li>
+<li><div><a href="#earlysingletonobjectsmap&#x7ED3;&#x6784;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;">earlySingletonObjectsmap&#x7ED3;&#x6784;(&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;)</a><i></i></div></li>
+<li><div><a href="#singletonscurrentlyincreationset&#x96C6;&#x5408;&#x521B;&#x5EFA;&#x4E2D;bean&#x96C6;&#x5408;">singletonsCurrentlyInCreationSet&#x96C6;&#x5408;(&#x521B;&#x5EFA;&#x4E2D;Bean&#x96C6;&#x5408;)</a><i></i></div></li>
+<li><div><a href="#singletonfactoriesmap&#x7ED3;&#x6784;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;">singletonFactoriesmap&#x7ED3;&#x6784;(&#x4E09;&#x7EA7;&#x7F13;&#x5B58;)</a><i></i></div></li>
+</ul></li>
+<li><div><a href="#abstractbeanfactory&#x7C7B;&#x7684;dogetbean&#x65B9;&#x6CD5;">AbstractBeanFactory&#x7C7B;&#x7684;doGetBean&#x65B9;&#x6CD5;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#defaultsingletonbeanregistry&#x7C7B;&#x7684;getsingleton&#x65B9;&#x6CD5;&#x903B;&#x8F91;">DefaultSingletonBeanRegistry&#x7C7B;&#x7684;getSingleton&#x65B9;&#x6CD5;&#x903B;&#x8F91;</a><i></i></div></li>
+<li><div><a href="#abstractautowirecapablebeanfactory&#x7C7B;&#x7684;docreatebean&#x65B9;&#x6CD5;">AbstractAutowireCapableBeanFactory&#x7C7B;&#x7684;doCreateBean&#x65B9;&#x6CD5;</a><i></i></div></li>
+<li><div><a href="#debug&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;&#x8981;&#x70B9;&#x4E0E;&#x622A;&#x56FE;">Debug&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;&#x8981;&#x70B9;&#x4E0E;&#x622A;&#x56FE;</a><i></i></div></li>
+</ul></li>
+<li><div><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x662F;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;">&#x4E3A;&#x4EC0;&#x4E48;&#x662F;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;</a><i></i></div></li>
+</ul></li>
+<li><div><a href="#scope-bean-&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x6709;&#x95EE;&#x9898;&#xFF1F;">scope bean &#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x6709;&#x95EE;&#x9898;&#xFF1F;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;">&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#&#x5F02;&#x5E38;&#x6808;">&#x5F02;&#x5E38;&#x6808;</a><i></i></div></li>
+</ul></li>
+</ul></li>
 </ul></li>
 </ul>
 </div>
 
 <h1 id="&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;">&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;</h1>
 <h2 id="&#x4EC0;&#x4E48;&#x662F;&#x4F9D;&#x8D56;&#xFF1F;">&#x4EC0;&#x4E48;&#x662F;&#x4F9D;&#x8D56;&#xFF1F;</h2>
+<ul>
+<li>eg1</li>
+</ul>
+<pre class="language-"><code class="lang-java"><span class="token class-name">A</span> <span class="token operator">-&gt;</span> <span class="token class-name">B</span>
+<span class="token class-name">B</span> <span class="token operator">-&gt;</span> <span class="token class-name">A</span>
+</code></pre>
+<ul>
+<li>eg2</li>
+</ul>
+<pre class="language-"><code class="lang-java"><span class="token class-name">A</span> <span class="token operator">-&gt;</span> <span class="token class-name">B</span> <span class="token operator">-&gt;</span> <span class="token class-name">C</span> <span class="token operator">-&gt;</span> <span class="token class-name">A</span>
+</code></pre>
+<h2 id="spring&#x4E2D;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x573A;&#x666F;">Spring&#x4E2D;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x573A;&#x666F;</h2>
+<ol>
+<li>&#x6784;&#x9020;&#x5668;&#x7684;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;(spring&#x65E0;&#x6CD5;&#x89E3;&#x51B3;)</li>
+<li>field&#x5C5E;&#x6027;&#x7684;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;(spring&#x80FD;&#x89E3;&#x51B3;&#x5355;&#x4F8B;bean&#x7684;&#x5C5E;&#x6027;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;)</li>
+</ol>
+<h2 id="singleton-bean-&#x5C5E;&#x6027;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x65E0;&#x95EE;&#x9898;">singleton bean &#x5C5E;&#x6027;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x65E0;&#x95EE;&#x9898;</h2>
+<h3 id="&#x5355;&#x4F8B;bean&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7406;&#x89E3;&#x56FE;">&#x5355;&#x4F8B;Bean&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7406;&#x89E3;&#x56FE;</h3>
+<p><img src="http://assets.processon.com/chart_image/5dda12fde4b09e8b0b71679f.png" alt=""></p>
+<h3 id="&#x5355;&#x4F8B;&#x7684;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x83B7;&#x53D6;getsingleton&#x65B9;&#x6CD5;">&#x5355;&#x4F8B;&#x7684;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x83B7;&#x53D6;:<code>getSingleton</code>&#x65B9;&#x6CD5;</h3>
+<pre class="language-"><code class="lang-java"><span class="token comment">/**
+ * Return the (raw) singleton object registered under the given name.
+ * &lt;p&gt;Checks already instantiated singletons and also allows for an early
+ * reference to a currently created singleton (resolving a circular reference).
+ * @param beanName the name of the bean to look for
+ * @param allowEarlyReference whether early references should be created or not
+ * @return the registered singleton object, or {@code null} if none found
+ */</span>
+<span class="token annotation punctuation">@Nullable</span>
+<span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">getSingleton</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">,</span> <span class="token keyword">boolean</span> allowEarlyReference<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Object</span> singletonObject <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>singletonObject <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> <span class="token function">isSingletonCurrentlyInCreation</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            singletonObject <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>earlySingletonObjects<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>singletonObject <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> allowEarlyReference<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token class-name">ObjectFactory</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> singletonFactory <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>singletonFactories<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>singletonFactory <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    singletonObject <span class="token operator">=</span> singletonFactory<span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span>earlySingletonObjects<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> singletonObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span>singletonFactories<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> singletonObject<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x6D89;&#x53CA;&#x8981;&#x70B9;&#x8BF4;&#x660E;">&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x6D89;&#x53CA;&#x8981;&#x70B9;&#x8BF4;&#x660E;</h3>
+<h4 id="singletonobjectsmap&#x7ED3;&#x6784;&#xFF08;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;&#xFF09;"><code>singletonObjects</code>map&#x7ED3;&#x6784;&#xFF08;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;&#xFF09;</h4>
+<pre class="language-"><code class="lang-java"><span class="token comment">/** Cache of singleton objects: bean name to bean instance. */</span>
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> singletonObjects <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ConcurrentHashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token number">256</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><code>singletonObjects</code>&#x5B58;&#x50A8;&#x7684;&#x5B9E;&#x4F8B;&#x662F;&#x5DF2;&#x7ECF;&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x5355;&#x4F8B;&#xFF0C;&#x5E76;&#x4E14;&#x521D;&#x59CB;&#x5316;&#x5B8C;&#x6210;&#x7684;(&#x4E00;&#x822C;&#x79F0;&#x4E3A;&#xFF1A;&#x5355;&#x4F8B;&#x7F13;&#x5B58;&#x6C60;)</p>
+<h4 id="earlysingletonobjectsmap&#x7ED3;&#x6784;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;"><code>earlySingletonObjects</code>map&#x7ED3;&#x6784;(&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;)</h4>
+<pre class="language-"><code class="lang-java"><span class="token comment">/** Cache of early singleton objects: bean name to bean instance. */</span>
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">Object</span><span class="token punctuation">&gt;</span></span> earlySingletonObjects <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x4ECE;<code>singletonObjects</code>&#x53D6;&#x4E0D;&#x5230;&#xFF0C;&#x4E14;&#x8BE5;<code>Bean</code>&#x5728;&#x521B;&#x5EFA;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x5219;&#x4ECE;<code>earlySingletonObjects</code>&#x83B7;&#x53D6;</p>
+<h4 id="singletonscurrentlyincreationset&#x96C6;&#x5408;&#x521B;&#x5EFA;&#x4E2D;bean&#x96C6;&#x5408;"><code>singletonsCurrentlyInCreation</code>Set&#x96C6;&#x5408;(&#x521B;&#x5EFA;&#x4E2D;Bean&#x96C6;&#x5408;)</h4>
+<p><code>isSingletonCurrentlyInCreation()</code>&#x65B9;&#x6CD5;&#x5224;&#x65AD;&#x5F53;&#x524D;&#x5355;&#x4F8B;Bean&#x662F;&#x5426;&#x6B63;&#x5728;&#x521B;&#x5EFA;&#x4E2D;&#xFF08;&#x5728;&#x521B;&#x5EFA;&#x4E2D;&#x7684;Bean&#x662F;&#x6CA1;&#x6709;&#x521D;&#x59CB;&#x5316;&#x5B8C;&#x5168;&#x7684;&#xFF09;</p>
+<pre class="language-"><code class="lang-java"><span class="token comment">/**
+ * Return whether the specified singleton bean is currently in creation
+ * (within the entire factory).
+ * @param beanName the name of the bean
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">isSingletonCurrentlyInCreation</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">return</span> <span class="token keyword">this</span><span class="token punctuation">.</span>singletonsCurrentlyInCreation<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x5C06;&#x521B;&#x5EFA;&#x4E2D;&#x7684;bean&#x52A0;&#x5165;&#x5230;<code>singletonsCurrentlyInCreation</code>&#x96C6;&#x5408;&#x4E2D;</p>
+<h4 id="singletonfactoriesmap&#x7ED3;&#x6784;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;"><code>singletonFactories</code>map&#x7ED3;&#x6784;(&#x4E09;&#x7EA7;&#x7F13;&#x5B58;)</h4>
+<pre class="language-"><code class="lang-java"><span class="token comment">/** Cache of singleton factories: bean name to ObjectFactory. */</span>
+<span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Map</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">,</span> <span class="token class-name">ObjectFactory</span><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span><span class="token punctuation">&gt;</span></span> singletonFactories <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">HashMap</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token number">16</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p>&#x4ECE;<code>earlySingletonObjects</code>&#x53D6;&#x4E0D;&#x5230;&#x5219;&#x4ECE;<code>singletonFactories</code>&#x53D6;&#xFF0C;&#x5B58;&#x50A8;&#x7684;&#x662F;<code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>bean,</span> <span class="token attr-name">lambda(bean)</span><span class="token punctuation">&gt;</span></span></code></p>
+<h3 id="abstractbeanfactory&#x7C7B;&#x7684;dogetbean&#x65B9;&#x6CD5;"><code>AbstractBeanFactory</code>&#x7C7B;&#x7684;<code>doGetBean</code>&#x65B9;&#x6CD5;</h3>
+<pre class="language-"><code class="lang-java"><span class="token comment">// Create bean instance.</span>
+<span class="token keyword">if</span> <span class="token punctuation">(</span>mbd<span class="token punctuation">.</span><span class="token function">isSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    sharedInstance <span class="token operator">=</span> <span class="token function">getSingleton</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">createBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">BeansException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// Explicitly remove instance from singleton cache: It might have been put there</span>
+            <span class="token comment">// eagerly by the creation process, to allow for circular reference resolution.</span>
+            <span class="token comment">// Also remove any beans that received a temporary reference to the bean.</span>
+            <span class="token function">destroySingleton</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">throw</span> ex<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    bean <span class="token operator">=</span> <span class="token function">getObjectForBeanInstance</span><span class="token punctuation">(</span>sharedInstance<span class="token punctuation">,</span> name<span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x4E5F;&#x662F;<code>getSingleton</code>&#x65B9;&#x6CD5;&#xFF0C;&#x6709;&#x4E2A;lambda&#x8868;&#x8FBE;&#x5F0F;&#x7684;<code>createBean</code>&#x65B9;&#x6CD5;</p>
+<h4 id="defaultsingletonbeanregistry&#x7C7B;&#x7684;getsingleton&#x65B9;&#x6CD5;&#x903B;&#x8F91;"><code>DefaultSingletonBeanRegistry</code>&#x7C7B;&#x7684;<code>getSingleton</code>&#x65B9;&#x6CD5;&#x903B;&#x8F91;</h4>
+<pre class="language-"><code class="lang-java"><span class="token comment">/**
+ * Return the (raw) singleton object registered under the given name,
+ * creating and registering a new one if none registered yet.
+ * @param beanName the name of the bean
+ * @param singletonFactory the ObjectFactory to lazily create the singleton
+ * with, if necessary
+ * @return the registered singleton object
+ */</span>
+<span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">getSingleton</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">,</span> <span class="token class-name">ObjectFactory</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> singletonFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">notNull</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> <span class="token string">&quot;Bean name must not be null&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">synchronized</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 1. &#x4ECD;&#x7136;&#x662F;&#x5148;&#x5224;&#x65AD;&#x662F;&#x5426;&#x5728;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;</span>
+        <span class="token class-name">Object</span> singletonObject <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>singletonObject <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>singletonsCurrentlyInDestruction<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BeanCreationNotAllowedException</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span>
+                        <span class="token string">&quot;Singleton bean creation not allowed while singletons of this factory are in destruction &quot;</span> <span class="token operator">+</span>
+                        <span class="token string">&quot;(Do not request a bean from a BeanFactory in a destroy method implementation!)&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isDebugEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                logger<span class="token punctuation">.</span><span class="token function">debug</span><span class="token punctuation">(</span><span class="token string">&quot;Creating shared instance of singleton bean &apos;&quot;</span> <span class="token operator">+</span> beanName <span class="token operator">+</span> <span class="token string">&quot;&apos;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment">// 2. &#x521B;&#x5EFA;&#x524D;&#x52A0;&#x5165;&#x5230;`singletonsCurrentlyInCreation`&#x96C6;&#x5408;&#x4E2D;, &#x8868;&#x793A;&#x6B63;&#x5728;&#x521B;&#x5EFA;</span>
+            <span class="token function">beforeSingletonCreation</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">boolean</span> newSingleton <span class="token operator">=</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+            <span class="token keyword">boolean</span> recordSuppressedExceptions <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>suppressedExceptions <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>recordSuppressedExceptions<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">this</span><span class="token punctuation">.</span>suppressedExceptions <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 3. &#x6267;&#x884C;lambda&#x8868;&#x8FBE;&#x5F0F;&#x7684;&#x521B;&#x5EFA;&#x903B;&#x8F91;&#x83B7;&#x53D6;&#x5230;&#x5355;&#x4F8B;bean&#xFF0C;&#x5373;&#x6267;&#x884C;`doCreateBean` </span>
+                singletonObject <span class="token operator">=</span> singletonFactory<span class="token punctuation">.</span><span class="token function">getObject</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                newSingleton <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">IllegalStateException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// Has the singleton object implicitly appeared in the meantime -&gt;</span>
+                <span class="token comment">// if yes, proceed with it since the exception indicates that state.</span>
+                singletonObject <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>singletonObjects<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>singletonObject <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">throw</span> ex<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">BeanCreationException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>recordSuppressedExceptions<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> suppressedException <span class="token operator">:</span> <span class="token keyword">this</span><span class="token punctuation">.</span>suppressedExceptions<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        ex<span class="token punctuation">.</span><span class="token function">addRelatedCause</span><span class="token punctuation">(</span>suppressedException<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">throw</span> ex<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>recordSuppressedExceptions<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">this</span><span class="token punctuation">.</span>suppressedExceptions <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token comment">// 4. &#x521B;&#x5EFA;&#x5B8C;&#x6210;&#x540E;&#x4ECE;`singletonsCurrentlyInCreation`&#x96C6;&#x5408;&#x4E2D;&#x79FB;&#x9664;, &#x975E;&#x521B;&#x5EFA;&#x72B6;&#x6001;</span>
+                <span class="token function">afterSingletonCreation</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>newSingleton<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 5. &#x52A0;&#x5165;&#x5230;&#x4E00;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#xFF0C;&#x4E14;&#x4ECE;&#x4E8C;&#x7EA7;&#xFF0C;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x79FB;&#x9664;</span>
+                <span class="token function">addSingleton</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> singletonObject<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// 6. &#x8FD4;&#x56DE;&#x6700;&#x7EC8;&#x5B8C;&#x6574;&#x5B9E;&#x4F8B;&#x5316;&#x7684;bean</span>
+        <span class="token keyword">return</span> singletonObject<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="abstractautowirecapablebeanfactory&#x7C7B;&#x7684;docreatebean&#x65B9;&#x6CD5;"><code>AbstractAutowireCapableBeanFactory</code>&#x7C7B;&#x7684;<code>doCreateBean</code>&#x65B9;&#x6CD5;</h4>
+<pre class="language-"><code class="lang-java"><span class="token comment">/**
+ * Actually create the specified bean. Pre-creation processing has already happened
+ * at this point, e.g. checking {@code postProcessBeforeInstantiation} callbacks.
+ * &lt;p&gt;Differentiates between default bean instantiation, use of a
+ * factory method, and autowiring a constructor.
+ * @param beanName the name of the bean
+ * @param mbd the merged bean definition for the bean
+ * @param args explicit arguments to use for constructor or factory method invocation
+ * @return a new instance of the bean
+ * @throws BeanCreationException if the bean could not be created
+ * @see #instantiateBean
+ * @see #instantiateUsingFactoryMethod
+ * @see #autowireConstructor
+ */</span>
+<span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">doCreateBean</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">String</span> beanName<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token class-name">RootBeanDefinition</span> mbd<span class="token punctuation">,</span> <span class="token keyword">final</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> args<span class="token punctuation">)</span>
+        <span class="token keyword">throws</span> <span class="token class-name">BeanCreationException</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// Instantiate the bean.</span>
+    <span class="token class-name">BeanWrapper</span> instanceWrapper <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>mbd<span class="token punctuation">.</span><span class="token function">isSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        instanceWrapper <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>factoryBeanInstanceCache<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>instanceWrapper <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 1. factoryBeanInstanceCache &#x6CA1;&#x6709;&#x5219;&#x9700;&#x8981;&#x4E3B;&#x52A8;&#x521B;&#x5EFA;</span>
+        instanceWrapper <span class="token operator">=</span> <span class="token function">createBeanInstance</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">final</span> <span class="token class-name">Object</span> bean <span class="token operator">=</span> instanceWrapper<span class="token punctuation">.</span><span class="token function">getWrappedInstance</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> beanType <span class="token operator">=</span> instanceWrapper<span class="token punctuation">.</span><span class="token function">getWrappedClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>beanType <span class="token operator">!=</span> <span class="token class-name">NullBean</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        mbd<span class="token punctuation">.</span>resolvedTargetType <span class="token operator">=</span> beanType<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Allow post-processors to modify the merged bean definition.</span>
+    <span class="token keyword">synchronized</span> <span class="token punctuation">(</span>mbd<span class="token punctuation">.</span>postProcessingLock<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>mbd<span class="token punctuation">.</span>postProcessed<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                <span class="token function">applyMergedBeanDefinitionPostProcessors</span><span class="token punctuation">(</span>mbd<span class="token punctuation">,</span> beanType<span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BeanCreationException</span><span class="token punctuation">(</span>mbd<span class="token punctuation">.</span><span class="token function">getResourceDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> beanName<span class="token punctuation">,</span>
+                        <span class="token string">&quot;Post-processing of merged bean definition failed&quot;</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            mbd<span class="token punctuation">.</span>postProcessed <span class="token operator">=</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// &#x52A0;&#x5165;&#x5230;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;:&#x5373;&#x6DFB;&#x52A0;&lt;bean&#xFF0C;lambda(bean)&gt;,&#x6B64;&#x4E3A;&#x63D0;&#x524D;&#x66B4;&#x9732;&#x65E9;&#x671F;&#x5BF9;&#x8C61;</span>
+    <span class="token comment">// Eagerly cache singletons to be able to resolve circular references</span>
+    <span class="token comment">// even when triggered by lifecycle interfaces like BeanFactoryAware.</span>
+    <span class="token keyword">boolean</span> earlySingletonExposure <span class="token operator">=</span> <span class="token punctuation">(</span>mbd<span class="token punctuation">.</span><span class="token function">isSingleton</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token keyword">this</span><span class="token punctuation">.</span>allowCircularReferences <span class="token operator">&amp;&amp;</span>
+            <span class="token function">isSingletonCurrentlyInCreation</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>earlySingletonExposure<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span><span class="token string">&quot;Eagerly caching bean &apos;&quot;</span> <span class="token operator">+</span> beanName <span class="token operator">+</span>
+                    <span class="token string">&quot;&apos; to allow for resolving potential circular references&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">addSingletonFactory</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token function">getEarlyBeanReference</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> bean<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Initialize the bean instance.</span>
+    <span class="token class-name">Object</span> exposedObject <span class="token operator">=</span> bean<span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token comment">// 2. &#x586B;&#x5145;bean&#x7684;&#x5C5E;&#x6027;:&#x5373;&#x8FD9;&#x91CC;&#x8981;&#x5B8C;&#x6210;bean&#x4F9D;&#x8D56;&#x5904;&#x7406;</span>
+        <span class="token function">populateBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> instanceWrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// 3. bean&#x7684;initialize,beanPostProcessor&#x7B49;</span>
+        exposedObject <span class="token operator">=</span> <span class="token function">initializeBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> exposedObject<span class="token punctuation">,</span> mbd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>ex <span class="token keyword">instanceof</span> <span class="token class-name">BeanCreationException</span> <span class="token operator">&amp;&amp;</span> beanName<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">BeanCreationException</span><span class="token punctuation">)</span> ex<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBeanName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token punctuation">(</span><span class="token class-name">BeanCreationException</span><span class="token punctuation">)</span> ex<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BeanCreationException</span><span class="token punctuation">(</span>
+                    mbd<span class="token punctuation">.</span><span class="token function">getResourceDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> <span class="token string">&quot;Initialization of bean failed&quot;</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>earlySingletonExposure<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// &#x83B7;&#x53D6;&#x5230;AOP&#x4E4B;&#x540E;&#x7684;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;</span>
+        <span class="token class-name">Object</span> earlySingletonReference <span class="token operator">=</span> <span class="token function">getSingleton</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>earlySingletonReference <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// &#x5982;&#x679C;&#x63D0;&#x524D;&#x66B4;&#x9732;&#x7684;&#x5BF9;&#x8C61;&#x548C;&#x7ECF;&#x8FC7;&#x4E86;&#x5B8C;&#x6574;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x540E;&#x7684;&#x5BF9;&#x8C61;&#x76F8;&#x7B49;&#xFF0C;&#x90A3;&#x4E48;&#x628A;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x8D4B;&#x503C;&#x7ED9;`exposedObject`</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>exposedObject <span class="token operator">==</span> bean<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                exposedObject <span class="token operator">=</span> earlySingletonReference<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token comment">// &#x5982;&#x679C;&#x63D0;&#x524D;&#x66B4;&#x9732;&#x7684;&#x5BF9;&#x8C61;&#x548C;&#x7ECF;&#x8FC7;&#x4E86;&#x5B8C;&#x6574;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x540E;&#x7684;&#x5BF9;&#x8C61;&#x4E0D;&#x76F8;&#x7B49;</span>
+            <span class="token comment">// allowRawInjectionDespiteWrapping &#x8868;&#x793A;&#x5728;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x65F6;</span>
+            <span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>allowRawInjectionDespiteWrapping <span class="token operator">&amp;&amp;</span> <span class="token function">hasDependentBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> dependentBeans <span class="token operator">=</span> <span class="token function">getDependentBeans</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token class-name">Set</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">String</span><span class="token punctuation">&gt;</span></span> actualDependentBeans <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">LinkedHashSet</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span>dependentBeans<span class="token punctuation">.</span>length<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">String</span> dependentBean <span class="token operator">:</span> dependentBeans<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token function">removeSingletonIfCreatedForTypeCheckOnly</span><span class="token punctuation">(</span>dependentBean<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        actualDependentBeans<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>dependentBean<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>actualDependentBeans<span class="token punctuation">.</span><span class="token function">isEmpty</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BeanCurrentlyInCreationException</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span>
+                            <span class="token string">&quot;Bean with name &apos;&quot;</span> <span class="token operator">+</span> beanName <span class="token operator">+</span> <span class="token string">&quot;&apos; has been injected into other beans [&quot;</span> <span class="token operator">+</span>
+                            <span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">collectionToCommaDelimitedString</span><span class="token punctuation">(</span>actualDependentBeans<span class="token punctuation">)</span> <span class="token operator">+</span>
+                            <span class="token string">&quot;] in its raw version as part of a circular reference, but has eventually been &quot;</span> <span class="token operator">+</span>
+                            <span class="token string">&quot;wrapped. This means that said other beans do not use the final version of the &quot;</span> <span class="token operator">+</span>
+                            <span class="token string">&quot;bean. This is often the result of over-eager type matching - consider using &quot;</span> <span class="token operator">+</span>
+                            <span class="token string">&quot;&apos;getBeanNamesOfType&apos; with the &apos;allowEagerInit&apos; flag turned off, for example.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Register bean as disposable.</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token function">registerDisposableBeanIfNecessary</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> bean<span class="token punctuation">,</span> mbd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">BeanDefinitionValidationException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BeanCreationException</span><span class="token punctuation">(</span>
+                mbd<span class="token punctuation">.</span><span class="token function">getResourceDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> <span class="token string">&quot;Invalid destruction signature&quot;</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> exposedObject<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="debug&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;&#x8981;&#x70B9;&#x4E0E;&#x622A;&#x56FE;">Debug&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;&#x8981;&#x70B9;&#x4E0E;&#x622A;&#x56FE;</h4>
+<ul>
+<li>populateBean(&quot;b&quot;, mbd, instanceWrapper)&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x53D1;&#x73B0;&#x4F9D;&#x8D56;&#x4E86;A&#xFF0C;&#x8981;&#x53BB;getBean(&quot;a&quot;),&#x6267;&#x884C;&#x5230;<code>getSingleton</code>&#x65B9;&#x6CD5;&#xFF0C;&#x6B64;&#x65F6;&#x4ECE;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#x53D6;&#x5230;</li>
+</ul>
+<p><img src="../../imgs/bean_three_cache.png" alt=""></p>
+<ul>
+<li>&#x4ECE;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x53D6;&#x5230;A&#x4E4B;&#x540E;,&#x6267;&#x884C;&#x4E86;<code>lambda(bean A)</code>&#x7684;&#x903B;&#x8F91;&#xFF0C;&#x5E76;&#x5C06;<code>bean A</code>&#x52A0;&#x5165;&#x4E8C;&#x7EA7;&#x7F13;&#x5B58;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;</li>
+</ul>
+<p><img src="../../imgs/bean_three_cache_2.png" alt=""></p>
+<ul>
+<li>&#x7531;&#x4E8E;&#x4ECE;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x62FF;&#x5230;&#x4E86;&#x63D0;&#x4EA4;&#x66DD;&#x5149;&#x7684;A&#xFF0C;B&#x5C31;&#x6B63;&#x5E38;&#x7684;&#x5B8C;&#x6210;A&#x4F9D;&#x8D56;&#x7684;&#x8BBE;&#x7F6E;&#xFF0C;&#x987A;&#x5229;&#x5B8C;&#x6210;<code>populateBean</code>&#x65B9;&#x6CD5;</li>
+</ul>
+<p><img src="../../imgs/bean_three_cache_3.png" alt=""></p>
+<ul>
+<li>B&#x5B9E;&#x4F8B;&#x5316;&#x5168;&#x90E8;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x52A0;&#x5165;&#x5230;&#x5355;&#x4F8B;&#x7F13;&#x5B58;&#x6C60;(&#x4E00;&#x7EA7;&#x7F13;&#x5B58;)&#x4E2D;</li>
+</ul>
+<p><img src="../../imgs/bean_three_cache_4.png" alt=""></p>
+<ul>
+<li>&#x7531;&#x4E8E;B&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x5B8C;&#x6210;&#xFF0C;A&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x4E5F;&#x5C31;&#x80FD;&#x6B63;&#x5E38;&#x5B8C;&#x6210;&#xFF0C;&#x5E76;&#x5728;&#x6700;&#x540E;&#x4E5F;&#x52A0;&#x5165;&#x5230;&#x5355;&#x4F8B;&#x7F13;&#x5B58;&#x6C60;(&#x4E00;&#x7EA7;&#x7F13;&#x5B58;)&#x4E2D;</li>
+</ul>
+<p><img src="../../imgs/bean_three_cache_5.png" alt=""></p>
+<h3 id="&#x4E3A;&#x4EC0;&#x4E48;&#x662F;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;">&#x4E3A;&#x4EC0;&#x4E48;&#x662F;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#xFF1F;</h3>
+<ul>
+<li><p>Bean&#x751F;&#x547D;&#x5468;&#x671F; A</p>
+<ol>
+<li>class --- BeanDefinition</li>
+<li>new A(); // &#x539F;&#x59CB;&#x5BF9;&#x8C61;</li>
+<li>populateBean&#xFF08;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#xFF09;--&gt; &#x5355;&#x4F8B;&#x6C60;&#x4E2D;&#x627E;B --&gt; &#x627E;&#x4E0D;&#x5230; --&gt; &#x521B;&#x5EFA;B</li>
+<li>initializeBean<ul>
+<li>BeanPostProcessor</li>
+</ul>
+</li>
+<li>&#x5B8C;&#x6210;&#x5E76;&#x6DFB;&#x52A0;&#x5230;&#x5355;&#x4F8B;&#x6C60;&#x4E2D;</li>
+</ol>
+</li>
+<li><p>Bean&#x751F;&#x547D;&#x5468;&#x671F; B</p>
+<ol>
+<li>class --- BeanDefinition</li>
+<li>new B(); // &#x539F;&#x59CB;&#x5BF9;&#x8C61;</li>
+<li>populateBean&#xFF08;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#xFF09;--&gt; &#x5355;&#x4F8B;&#x6C60;&#x4E2D;&#x627E;A --&gt; &#x627E;&#x4E0D;&#x5230; --&gt; &#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#x80FD;&#x627E;&#x5230; --&gt; lambda(A) --&gt; &#x63D0;&#x524D;&#x5F97;&#x5230;&#x4EE3;&#x7406;A</li>
+<li>initializeBean<ul>
+<li>BeanPostProcessor</li>
+</ul>
+</li>
+<li>&#x5B8C;&#x6210;&#x5E76;&#x6DFB;&#x52A0;&#x5230;&#x5355;&#x4F8B;&#x6C60;&#x4E2D;</li>
+</ol>
+</li>
+</ul>
+<p>&#x6309;&#x7167;&#x5982;&#x4E0A;&#xFF0C;&#x5982;&#x679C;&#x53EA;&#x6709; &#x4E00;&#x7EA7;&#x7F13;&#x5B58; &#x548C; &#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#xFF0C;&#x80FD;&#x591F;&#x89E3;&#x51B3;A,B&#x4F9D;&#x8D56;&#x95EE;&#x9898;&#xFF0C;&#x63A5;&#x7740;&#x53C8;&#x6765;&#x4E86;&#x4E2A;C(&#x4E14;&#x4F9D;&#x8D56;A)&#xFF1B;&#x5982;&#x679C;&#x6309;&#x7167;&#x4E0A;&#x9762;B&#x7684;&#x903B;&#x8F91;&#xFF0C;&#x90A3;&#x4E48;&#x53EF;&#x4EE5;&#x53D1;&#x73B0;<code>lambda(A)</code>&#x4F1A;&#x518D;&#x6B21;&#x88AB;&#x6267;&#x884C;&#xFF0C;&#x8FD9;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;B&#xFF0C;C&#x6267;&#x884C;&#x540E;&#x83B7;&#x53D6;&#x7684;&#x4EE3;&#x7406;A<strong>&#x4E0D;&#x4E00;&#x81F4;</strong></p>
+<ul>
+<li>Bean&#x751F;&#x547D;&#x5468;&#x671F; C<ol>
+<li>class --- BeanDefinition</li>
+<li>new C(); // &#x539F;&#x59CB;&#x5BF9;&#x8C61;</li>
+<li>populateBean&#xFF08;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#xFF09;--&gt; &#x5355;&#x4F8B;&#x6C60;&#x4E2D;&#x627E;A --&gt; &#x627E;&#x4E0D;&#x5230; --&gt; &#x4E09;&#x7EA7;&#x7F13;&#x5B58;&#x4E2D;&#x80FD;&#x627E;&#x5230; --&gt; lambda(A) --&gt; &#x63D0;&#x524D;&#x5F97;&#x5230;&#x4EE3;&#x7406;A</li>
+<li>initializeBean<ul>
+<li>BeanPostProcessor</li>
+</ul>
+</li>
+<li>&#x5B8C;&#x6210;&#x5E76;&#x6DFB;&#x52A0;&#x5230;&#x5355;&#x4F8B;&#x6C60;&#x4E2D;</li>
+</ol>
+</li>
+</ul>
+<p>&#x6240;&#x4EE5;&#x518D;&#x6765;&#x4E00;&#x4E2A;&#x7F13;&#x5B58;, &#x5C06;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;&#x4E5F;&#x7F13;&#x5B58;&#x8D77;&#x6765;&#xFF0C;&#x6240;&#x4EE5;&#x6700;&#x540E;&#x662F;&#x4E09;&#x7EA7;&#x7F13;&#x5B58;</p>
+<ol>
+<li><code>&#x5355;&#x4F8B;&#x6C60;</code></li>
+<li><code>map<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>beanName,</span> <span class="token attr-name">&#x4EE3;&#x7406;bean</span><span class="token punctuation">&gt;</span></span></code></li>
+<li><code>map<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>beanName,</span> <span class="token attr-name">lambda(&#x539F;&#x59CB;&#x5BF9;&#x8C61;)</span><span class="token punctuation">&gt;</span></span></code></li>
+</ol>
+<p>&#x53C2;&#x8003;&#xFF1A;bilibili &#x5B50;&#x8DEF;&#x8001;&#x5E08;</p>
+<h2 id="scope-bean-&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x6709;&#x95EE;&#x9898;&#xFF1F;">scope bean &#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x6709;&#x95EE;&#x9898;&#xFF1F;</h2>
+<h3 id="&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;">&#x6D4B;&#x8BD5;&#x4EE3;&#x7801;</h3>
+<pre class="language-"><code class="lang-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testDependencySpringPrototype</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">ApplicationContext</span> applicationContext <span class="token operator">=</span>
+            <span class="token keyword">new</span> <span class="token class-name">ClassPathXmlApplicationContext</span><span class="token punctuation">(</span><span class="token string">&quot;spring-dependency-prototype.xml&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">A</span> a <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">A</span><span class="token punctuation">)</span> applicationContext<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">&quot;a&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">B</span> b <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">B</span><span class="token punctuation">)</span> applicationContext<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">&quot;b&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">assertTrue</span><span class="token punctuation">(</span>a <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">assertTrue</span><span class="token punctuation">(</span>b <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li>spring-dependency-prototype.xml</li>
+</ul>
+<pre class="language-"><code class="lang-java"><span class="token operator">&lt;</span><span class="token operator">?</span>xml version<span class="token operator">=</span><span class="token string">&quot;1.0&quot;</span> encoding<span class="token operator">=</span><span class="token string">&quot;UTF-8&quot;</span><span class="token operator">?</span><span class="token operator">&gt;</span>
+<span class="token operator">&lt;</span>beans xmlns<span class="token operator">=</span><span class="token string">&quot;http://www.springframework.org/schema/beans&quot;</span>
+       xmlns<span class="token operator">:</span>xsi<span class="token operator">=</span><span class="token string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span>
+       xsi<span class="token operator">:</span>schemaLocation<span class="token operator">=</span><span class="token string">&quot;http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-3.0.xsd&quot;</span><span class="token operator">&gt;</span>
+
+    <span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">&quot;a&quot;</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;com.mb.A&quot;</span> scope<span class="token operator">=</span><span class="token string">&quot;singleton&quot;</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">&quot;b&quot;</span> ref<span class="token operator">=</span><span class="token string">&quot;b&quot;</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">&quot;b&quot;</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;com.mb.B&quot;</span> scope<span class="token operator">=</span><span class="token string">&quot;singleton&quot;</span><span class="token operator">&gt;</span>
+        <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">&quot;a&quot;</span> ref<span class="token operator">=</span><span class="token string">&quot;a&quot;</span><span class="token operator">/</span><span class="token operator">&gt;</span>
+    <span class="token operator">&lt;</span><span class="token operator">/</span>bean<span class="token operator">&gt;</span>
+
+<span class="token operator">&lt;</span><span class="token operator">/</span>beans<span class="token operator">&gt;</span>
+</code></pre>
+<h4 id="&#x5F02;&#x5E38;&#x6808;">&#x5F02;&#x5E38;&#x6808;</h4>
+<pre class="language-"><code class="lang-java">constructor <span class="token class-name">A</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+constructor <span class="token class-name">B</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span><span class="token class-name">BeanCreationException</span><span class="token operator">:</span> <span class="token class-name">Error</span> creating bean <span class="token keyword">with</span> name <span class="token string">&apos;a&apos;</span> defined in <span class="token keyword">class</span> path resource <span class="token punctuation">[</span>spring<span class="token operator">-</span>dependency<span class="token operator">-</span>prototype<span class="token punctuation">.</span>xml<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token class-name">Cannot</span> resolve reference <span class="token keyword">to</span> bean <span class="token string">&apos;b&apos;</span> <span class="token keyword">while</span> setting bean property <span class="token string">&apos;b&apos;</span><span class="token punctuation">;</span> nested exception is org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span><span class="token class-name">BeanCreationException</span><span class="token operator">:</span> <span class="token class-name">Error</span> creating bean <span class="token keyword">with</span> name <span class="token string">&apos;b&apos;</span> defined in <span class="token keyword">class</span> path resource <span class="token punctuation">[</span>spring<span class="token operator">-</span>dependency<span class="token operator">-</span>prototype<span class="token punctuation">.</span>xml<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token class-name">Cannot</span> resolve reference <span class="token keyword">to</span> bean <span class="token string">&apos;a&apos;</span> <span class="token keyword">while</span> setting bean property <span class="token string">&apos;a&apos;</span><span class="token punctuation">;</span> nested exception is org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span><span class="token class-name">BeanCurrentlyInCreationException</span><span class="token operator">:</span> <span class="token class-name">Error</span> creating bean <span class="token keyword">with</span> name <span class="token string">&apos;a&apos;</span><span class="token operator">:</span> <span class="token class-name">Requested</span> bean is currently in creation<span class="token operator">:</span> <span class="token class-name">Is</span> there an unresolvable circular reference<span class="token operator">?</span>
+
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">BeanDefinitionValueResolver</span><span class="token punctuation">.</span><span class="token function">resolveReference</span><span class="token punctuation">(</span><span class="token class-name">BeanDefinitionValueResolver</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">378</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">BeanDefinitionValueResolver</span><span class="token punctuation">.</span><span class="token function">resolveValueIfNecessary</span><span class="token punctuation">(</span><span class="token class-name">BeanDefinitionValueResolver</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">110</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span><span class="token function">applyPropertyValues</span><span class="token punctuation">(</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1648</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span><span class="token function">populateBean</span><span class="token punctuation">(</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1400</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span><span class="token function">doCreateBean</span><span class="token punctuation">(</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">575</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span><span class="token function">createBean</span><span class="token punctuation">(</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">498</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractBeanFactory</span><span class="token punctuation">.</span><span class="token function">doGetBean</span><span class="token punctuation">(</span><span class="token class-name">AbstractBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">338</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractBeanFactory</span><span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token class-name">AbstractBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">199</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>context<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractApplicationContext</span><span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token class-name">AbstractApplicationContext</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1094</span><span class="token punctuation">)</span>
+    at test<span class="token punctuation">.</span>com<span class="token punctuation">.</span>mb<span class="token punctuation">.</span><span class="token class-name">DependencyTest</span><span class="token punctuation">.</span><span class="token function">testDependencySpringPrototype</span><span class="token punctuation">(</span><span class="token class-name">DependencyTest</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">44</span><span class="token punctuation">)</span>
+    at sun<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span><span class="token class-name">NativeMethodAccessorImpl</span><span class="token punctuation">.</span><span class="token function">invoke0</span><span class="token punctuation">(</span><span class="token class-name">Native</span> <span class="token class-name">Method</span><span class="token punctuation">)</span>
+    at sun<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span><span class="token class-name">NativeMethodAccessorImpl</span><span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span><span class="token class-name">NativeMethodAccessorImpl</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">62</span><span class="token punctuation">)</span>
+    at sun<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span><span class="token class-name">DelegatingMethodAccessorImpl</span><span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span><span class="token class-name">DelegatingMethodAccessorImpl</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">43</span><span class="token punctuation">)</span>
+    at java<span class="token punctuation">.</span>lang<span class="token punctuation">.</span>reflect<span class="token punctuation">.</span><span class="token class-name">Method</span><span class="token punctuation">.</span><span class="token function">invoke</span><span class="token punctuation">(</span><span class="token class-name">Method</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">498</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>runners<span class="token punctuation">.</span>model<span class="token punctuation">.</span><span class="token class-name">FrameworkMethod</span>$<span class="token number">1.</span><span class="token function">runReflectiveCall</span><span class="token punctuation">(</span><span class="token class-name">FrameworkMethod</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">50</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>runners<span class="token punctuation">.</span>model<span class="token punctuation">.</span><span class="token class-name">ReflectiveCallable</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">ReflectiveCallable</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">12</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>runners<span class="token punctuation">.</span>model<span class="token punctuation">.</span><span class="token class-name">FrameworkMethod</span><span class="token punctuation">.</span><span class="token function">invokeExplosively</span><span class="token punctuation">(</span><span class="token class-name">FrameworkMethod</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">47</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>internal<span class="token punctuation">.</span>runners<span class="token punctuation">.</span>statements<span class="token punctuation">.</span><span class="token class-name">InvokeMethod</span><span class="token punctuation">.</span><span class="token function">evaluate</span><span class="token punctuation">(</span><span class="token class-name">InvokeMethod</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">17</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>runners<span class="token punctuation">.</span><span class="token class-name">ParentRunner</span><span class="token punctuation">.</span><span class="token function">runLeaf</span><span class="token punctuation">(</span><span class="token class-name">ParentRunner</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">325</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>runners<span class="token punctuation">.</span><span class="token class-name">BlockJUnit4ClassRunner</span><span class="token punctuation">.</span><span class="token function">runChild</span><span class="token punctuation">(</span><span class="token class-name">BlockJUnit4ClassRunner</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">78</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>runners<span class="token punctuation">.</span><span class="token class-name">BlockJUnit4ClassRunner</span><span class="token punctuation">.</span><span class="token function">runChild</span><span class="token punctuation">(</span><span class="token class-name">BlockJUnit4ClassRunner</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">57</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>runners<span class="token punctuation">.</span><span class="token class-name">ParentRunner</span>$<span class="token number">3.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">ParentRunner</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">290</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>runners<span class="token punctuation">.</span><span class="token class-name">ParentRunner</span>$<span class="token number">1.</span><span class="token function">schedule</span><span class="token punctuation">(</span><span class="token class-name">ParentRunner</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">71</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>runners<span class="token punctuation">.</span><span class="token class-name">ParentRunner</span><span class="token punctuation">.</span><span class="token function">runChildren</span><span class="token punctuation">(</span><span class="token class-name">ParentRunner</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">288</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>runners<span class="token punctuation">.</span><span class="token class-name">ParentRunner</span><span class="token punctuation">.</span>access$<span class="token function">000</span><span class="token punctuation">(</span><span class="token class-name">ParentRunner</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">58</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>runners<span class="token punctuation">.</span><span class="token class-name">ParentRunner</span>$<span class="token number">2.</span><span class="token function">evaluate</span><span class="token punctuation">(</span><span class="token class-name">ParentRunner</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">268</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>runners<span class="token punctuation">.</span><span class="token class-name">ParentRunner</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">ParentRunner</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">363</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>junit<span class="token punctuation">.</span>runner<span class="token punctuation">.</span><span class="token class-name">JUnitCore</span><span class="token punctuation">.</span><span class="token function">run</span><span class="token punctuation">(</span><span class="token class-name">JUnitCore</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">137</span><span class="token punctuation">)</span>
+    at com<span class="token punctuation">.</span>intellij<span class="token punctuation">.</span>junit4<span class="token punctuation">.</span><span class="token class-name">JUnit4IdeaTestRunner</span><span class="token punctuation">.</span><span class="token function">startRunnerWithArgs</span><span class="token punctuation">(</span><span class="token class-name">JUnit4IdeaTestRunner</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">68</span><span class="token punctuation">)</span>
+    at com<span class="token punctuation">.</span>intellij<span class="token punctuation">.</span>rt<span class="token punctuation">.</span>execution<span class="token punctuation">.</span>junit<span class="token punctuation">.</span><span class="token class-name">IdeaTestRunner</span>$<span class="token class-name">Repeater</span><span class="token punctuation">.</span><span class="token function">startRunnerWithArgs</span><span class="token punctuation">(</span><span class="token class-name">IdeaTestRunner</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">47</span><span class="token punctuation">)</span>
+    at com<span class="token punctuation">.</span>intellij<span class="token punctuation">.</span>rt<span class="token punctuation">.</span>execution<span class="token punctuation">.</span>junit<span class="token punctuation">.</span><span class="token class-name">JUnitStarter</span><span class="token punctuation">.</span><span class="token function">prepareStreamsAndStart</span><span class="token punctuation">(</span><span class="token class-name">JUnitStarter</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">242</span><span class="token punctuation">)</span>
+    at com<span class="token punctuation">.</span>intellij<span class="token punctuation">.</span>rt<span class="token punctuation">.</span>execution<span class="token punctuation">.</span>junit<span class="token punctuation">.</span><span class="token class-name">JUnitStarter</span><span class="token punctuation">.</span><span class="token function">main</span><span class="token punctuation">(</span><span class="token class-name">JUnitStarter</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">70</span><span class="token punctuation">)</span>
+<span class="token class-name">Caused</span> by<span class="token operator">:</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span><span class="token class-name">BeanCreationException</span><span class="token operator">:</span> <span class="token class-name">Error</span> creating bean <span class="token keyword">with</span> name <span class="token string">&apos;b&apos;</span> defined in <span class="token keyword">class</span> path resource <span class="token punctuation">[</span>spring<span class="token operator">-</span>dependency<span class="token operator">-</span>prototype<span class="token punctuation">.</span>xml<span class="token punctuation">]</span><span class="token operator">:</span> <span class="token class-name">Cannot</span> resolve reference <span class="token keyword">to</span> bean <span class="token string">&apos;a&apos;</span> <span class="token keyword">while</span> setting bean property <span class="token string">&apos;a&apos;</span><span class="token punctuation">;</span> nested exception is org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span><span class="token class-name">BeanCurrentlyInCreationException</span><span class="token operator">:</span> <span class="token class-name">Error</span> creating bean <span class="token keyword">with</span> name <span class="token string">&apos;a&apos;</span><span class="token operator">:</span> <span class="token class-name">Requested</span> bean is currently in creation<span class="token operator">:</span> <span class="token class-name">Is</span> there an unresolvable circular reference<span class="token operator">?</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">BeanDefinitionValueResolver</span><span class="token punctuation">.</span><span class="token function">resolveReference</span><span class="token punctuation">(</span><span class="token class-name">BeanDefinitionValueResolver</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">378</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">BeanDefinitionValueResolver</span><span class="token punctuation">.</span><span class="token function">resolveValueIfNecessary</span><span class="token punctuation">(</span><span class="token class-name">BeanDefinitionValueResolver</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">110</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span><span class="token function">applyPropertyValues</span><span class="token punctuation">(</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1648</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span><span class="token function">populateBean</span><span class="token punctuation">(</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">1400</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span><span class="token function">doCreateBean</span><span class="token punctuation">(</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">575</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span><span class="token function">createBean</span><span class="token punctuation">(</span><span class="token class-name">AbstractAutowireCapableBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">498</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractBeanFactory</span><span class="token punctuation">.</span><span class="token function">doGetBean</span><span class="token punctuation">(</span><span class="token class-name">AbstractBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">338</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractBeanFactory</span><span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token class-name">AbstractBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">199</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">BeanDefinitionValueResolver</span><span class="token punctuation">.</span><span class="token function">resolveReference</span><span class="token punctuation">(</span><span class="token class-name">BeanDefinitionValueResolver</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">367</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token number">31</span> more
+<span class="token class-name">Caused</span> by<span class="token operator">:</span> org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span><span class="token class-name">BeanCurrentlyInCreationException</span><span class="token operator">:</span> <span class="token class-name">Error</span> creating bean <span class="token keyword">with</span> name <span class="token string">&apos;a&apos;</span><span class="token operator">:</span> <span class="token class-name">Requested</span> bean is currently in creation<span class="token operator">:</span> <span class="token class-name">Is</span> there an unresolvable circular reference<span class="token operator">?</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractBeanFactory</span><span class="token punctuation">.</span><span class="token function">doGetBean</span><span class="token punctuation">(</span><span class="token class-name">AbstractBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">264</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">AbstractBeanFactory</span><span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token class-name">AbstractBeanFactory</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">199</span><span class="token punctuation">)</span>
+    at org<span class="token punctuation">.</span>springframework<span class="token punctuation">.</span>beans<span class="token punctuation">.</span>factory<span class="token punctuation">.</span>support<span class="token punctuation">.</span><span class="token class-name">BeanDefinitionValueResolver</span><span class="token punctuation">.</span><span class="token function">resolveReference</span><span class="token punctuation">(</span><span class="token class-name">BeanDefinitionValueResolver</span><span class="token punctuation">.</span>java<span class="token operator">:</span><span class="token number">367</span><span class="token punctuation">)</span>
+    <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token number">39</span> more
+</code></pre>
 <footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
-2020-06-20 11:12:16
+2020-07-01 23:50:19
 </span></footer>
                                 
                                 </section>
@@ -434,7 +923,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"2.3 Spring循环依赖","level":"1.3.3","depth":2,"next":{"title":"[3 testClassPathXmlApplicationContextBean源码走读]","level":"1.4","depth":1,"ref":"","articles":[{"title":"3.1 执行流程图","level":"1.4.1","depth":2,"path":"doc/test/flow_path.md","ref":"doc/test/flow_path.md","articles":[]},{"title":"3.2 代码debug & review","level":"1.4.2","depth":2,"path":"doc/test/code_review.md","ref":"doc/test/code_review.md","articles":[]},{"title":"3.3 bean & constructor-arg","level":"1.4.3","depth":2,"path":"doc/test/bean_constructor.md","ref":"doc/test/bean_constructor.md","articles":[]}]},"previous":{"title":"2.2 BeanFactory接口","level":"1.3.2","depth":2,"path":"doc/bean/BeanFactory.md","ref":"doc/bean/BeanFactory.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/dependency.md","mtime":"2020-06-20T03:12:16.424Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-06-20T04:59:23.719Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"2.3 Spring循环依赖","level":"1.3.3","depth":2,"next":{"title":"[3 ClassPathXmlApplicationContextBean源码走读]","level":"1.4","depth":1,"ref":"","articles":[{"title":"3.1 ApplicationContext执行流程","level":"1.4.1","depth":2,"path":"doc/test/flow_path.md","ref":"doc/test/flow_path.md","articles":[]},{"title":"3.2 代码debug & review","level":"1.4.2","depth":2,"path":"doc/test/code_review.md","ref":"doc/test/code_review.md","articles":[]},{"title":"3.3 bean & constructor-arg","level":"1.4.3","depth":2,"path":"doc/test/bean_constructor.md","ref":"doc/test/bean_constructor.md","articles":[]}]},"previous":{"title":"2.2 BeanFactory接口","level":"1.3.2","depth":2,"path":"doc/bean/BeanFactory.md","ref":"doc/bean/BeanFactory.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/dependency.md","mtime":"2020-07-01T15:50:19.231Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-01T16:01:38.391Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
