@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>4.1 AOP的理解 · spring-note</title>
+        <title>4.1 BeanFactory & FactoryBean · spring-note</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -89,7 +89,7 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="bean_life.html" />
+    <link rel="next" href="design.html" />
     
     
 
@@ -132,9 +132,9 @@
             
         </li>
     
-        <li class="chapter " data-level="1.2" data-path="../preface/">
+        <li class="chapter " data-level="1.2" data-path="../target.html">
             
-                <a href="../preface/">
+                <a href="../target.html">
             
                     
                     1 前言
@@ -145,26 +145,26 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3" data-path="../bean/">
+        <li class="chapter " data-level="1.3" >
             
-                <a href="../bean/">
+                <span>
             
                     
-                    2 Ioc&Bean基础
+                    [2 ClassPathXmlApplicationContext demo]
             
-                </a>
+                </span>
             
 
             
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.3.1" data-path="../bean/ioc_bean.html">
+        <li class="chapter " data-level="1.3.1" data-path="../test/flow_path.html">
             
-                <a href="../bean/ioc_bean.html">
+                <a href="../test/flow_path.html">
             
                     
-                    2.1 Ioc & Bean概念
+                    2.1 ApplicationContext执行流程
             
                 </a>
             
@@ -172,12 +172,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.2" data-path="../bean/BeanFactory.html">
+        <li class="chapter " data-level="1.3.2" data-path="../test/code_review.html">
             
-                <a href="../bean/BeanFactory.html">
+                <a href="../test/code_review.html">
             
                     
-                    2.2 BeanFactory接口
+                    2.2 执行流程源码走读
             
                 </a>
             
@@ -185,12 +185,38 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="../bean/dependency.html">
+        <li class="chapter " data-level="1.3.3" data-path="../test/bean_constructor.html">
             
-                <a href="../bean/dependency.html">
+                <a href="../test/bean_constructor.html">
             
                     
-                    2.3 Spring循环依赖
+                    2.3 bean & constructor-arg
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.4" data-path="ioc_bean.html">
+            
+                <a href="ioc_bean.html">
+            
+                    
+                    2.4 附:Ioc & Bean概念
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.5" data-path="BeanFactory.html">
+            
+                <a href="BeanFactory.html">
+            
+                    
+                    2.5 附:BeanFactory接口
             
                 </a>
             
@@ -208,7 +234,7 @@
                 <span>
             
                     
-                    [3 ClassPathXmlApplicationContextBean源码走读]
+                    [3 Bean生命周期 & 循环依赖等]
             
                 </span>
             
@@ -217,12 +243,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="../test/flow_path.html">
+        <li class="chapter " data-level="1.4.1" data-path="aop.html">
             
-                <a href="../test/flow_path.html">
+                <a href="aop.html">
             
                     
-                    3.1 ApplicationContext执行流程
+                    3.1 AOP的理解
             
                 </a>
             
@@ -230,12 +256,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="../test/code_review.html">
+        <li class="chapter " data-level="1.4.2" data-path="dependency.html">
             
-                <a href="../test/code_review.html">
+                <a href="dependency.html">
             
                     
-                    3.2 代码debug & review
+                    3.2 Spring循环依赖具体执行流程
             
                 </a>
             
@@ -243,12 +269,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="../test/bean_constructor.html">
+        <li class="chapter " data-level="1.4.3" data-path="bean_life.html">
             
-                <a href="../test/bean_constructor.html">
+                <a href="bean_life.html">
             
                     
-                    3.3 bean & constructor-arg
+                    3.3 Bean生命周期
             
                 </a>
             
@@ -275,38 +301,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.5.1" data-path="aop.html">
-            
-                <a href="aop.html">
-            
-                    
-                    4.1 AOP的理解
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.2" data-path="bean_life.html">
-            
-                <a href="bean_life.html">
-            
-                    
-                    4.2 Bean生命周期
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.3" data-path="bean_fatory_bean.html">
+        <li class="chapter active" data-level="1.5.1" data-path="bean_fatory_bean.html">
             
                 <a href="bean_fatory_bean.html">
             
                     
-                    4.3 BeanFactory Vs FactoryBean
+                    4.1 BeanFactory & FactoryBean
             
                 </a>
             
@@ -314,12 +314,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.5.4" data-path="design.html">
+        <li class="chapter " data-level="1.5.2" data-path="design.html">
             
                 <a href="design.html">
             
                     
-                    4.4 Spring中的设计模式
+                    4.2 Spring中的设计模式
             
                 </a>
             
@@ -351,7 +351,7 @@
                 <a href="../other/words.html">
             
                     
-                    3.1 单词
+                    5.1 单词
             
                 </a>
             
@@ -394,7 +394,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >4.1 AOP的理解</a>
+        <a href="../.." >4.1 BeanFactory & FactoryBean</a>
     </h1>
 </div>
 
@@ -409,9 +409,32 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="aop">AOP</h1>
+                                <div class="treeview__container"><div class="treeview__container-title"><span class="treeview__main-title">Treeview</span><span class="treeview__copyright">Copyright @doctording all right reserved, powered by <a href="https://github.com/aleen42" target="_blank">aleen42</a></span></div><ul>
+<li><div><a href="#beanfactory--factorybean-&#x7684;&#x533A;&#x522B;">BeanFactory &amp; FactoryBean &#x7684;&#x533A;&#x522B;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#factorybean-&#x5B98;&#x65B9;&#x6587;&#x6863;&#x9605;&#x8BFB;">FactoryBean &#x5B98;&#x65B9;&#x6587;&#x6863;&#x9605;&#x8BFB;</a><i></i></div></li>
+<li><div><a href="#factorybean-&#x5B9E;&#x8DF5;">FactoryBean &#x5B9E;&#x8DF5;</a><i></i></div></li>
+</ul></li>
+</ul>
+</div>
+
+<h1 id="beanfactory--factorybean-&#x7684;&#x533A;&#x522B;">BeanFactory &amp; FactoryBean &#x7684;&#x533A;&#x522B;</h1>
+<p><a href="https://docs.spring.io/spring/docs/5.1.3.RELEASE/spring-framework-reference/core.html#beans-factory-extension-factorybean" target="_blank">Customizing Instantiation Logic with a FactoryBean</a></p>
+<h2 id="factorybean-&#x5B98;&#x65B9;&#x6587;&#x6863;&#x9605;&#x8BFB;">FactoryBean &#x5B98;&#x65B9;&#x6587;&#x6863;&#x9605;&#x8BFB;</h2>
+<p>&#x529F;&#x80FD;&#xFF1A;&#x4F7F;&#x7528;<code>FactoryBean</code>&#x5B9A;&#x5236;bean&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x903B;&#x8F91;</p>
+<p>The FactoryBean interface is a point of pluggability into the Spring IoC container&#x2019;s instantiation logic. If you have complex initialization code that is better expressed in Java as opposed to a (potentially) verbose amount of XML, you can create your own FactoryBean, write the complex initialization inside that class, and then plug your custom FactoryBean into the container.</p>
+<p>The FactoryBean interface provides three methods:</p>
+<ol>
+<li><p>Object getObject(): Returns an instance of the object this factory creates. The instance can possibly be shared, depending on whether this factory returns singletons or prototypes.</p>
+</li>
+<li><p>boolean isSingleton(): Returns true if this FactoryBean returns singletons or false otherwise.</p>
+</li>
+<li><p>Class getObjectType(): Returns the object type returned by the getObject() method or null if the type is not known in advance.</p>
+</li>
+</ol>
+<h2 id="factorybean-&#x5B9E;&#x8DF5;">FactoryBean &#x5B9E;&#x8DF5;</h2>
 <footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
-2020-07-01 23:56:50
+2020-07-04 12:50:08
 </span></footer>
                                 
                                 </section>
@@ -440,7 +463,7 @@
             
                 
                 
-                <a href="bean_life.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 4.2 Bean生命周期">
+                <a href="design.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 4.2 Spring中的设计模式">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -451,7 +474,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"4.1 AOP的理解","level":"1.5.1","depth":2,"next":{"title":"4.2 Bean生命周期","level":"1.5.2","depth":2,"path":"doc/question/bean_life.md","ref":"doc/question/bean_life.md","articles":[]},"previous":{"title":"[4 常见问题]","level":"1.5","depth":1,"ref":"","articles":[{"title":"4.1 AOP的理解","level":"1.5.1","depth":2,"path":"doc/question/aop.md","ref":"doc/question/aop.md","articles":[]},{"title":"4.2 Bean生命周期","level":"1.5.2","depth":2,"path":"doc/question/bean_life.md","ref":"doc/question/bean_life.md","articles":[]},{"title":"4.3 BeanFactory Vs FactoryBean","level":"1.5.3","depth":2,"path":"doc/question/bean_fatory_bean.md","ref":"doc/question/bean_fatory_bean.md","articles":[]},{"title":"4.4 Spring中的设计模式","level":"1.5.4","depth":2,"path":"doc/question/design.md","ref":"doc/question/design.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/question/aop.md","mtime":"2020-07-01T15:56:50.956Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-01T16:01:38.391Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"4.1 BeanFactory & FactoryBean","level":"1.5.1","depth":2,"next":{"title":"4.2 Spring中的设计模式","level":"1.5.2","depth":2,"path":"doc/bean/design.md","ref":"doc/bean/design.md","articles":[]},"previous":{"title":"[4 常见问题]","level":"1.5","depth":1,"ref":"","articles":[{"title":"4.1 BeanFactory & FactoryBean","level":"1.5.1","depth":2,"path":"doc/bean/bean_fatory_bean.md","ref":"doc/bean/bean_fatory_bean.md","articles":[]},{"title":"4.2 Spring中的设计模式","level":"1.5.2","depth":2,"path":"doc/bean/design.md","ref":"doc/bean/design.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/bean_fatory_bean.md","mtime":"2020-07-04T04:50:08.948Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-04T04:51:51.582Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
