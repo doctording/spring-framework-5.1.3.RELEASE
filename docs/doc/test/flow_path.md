@@ -22,13 +22,16 @@ public void testClassPathXmlApplicationContextBeanCosr() {
 * spring-constructor.xml
 
 ```xml
-
+<bean id="user" class="com.mb.User">
+    <constructor-arg index="0" value="1"/>
+    <constructor-arg index="1" value="tom"/>
+</bean>
 ```
 
-## 简要流程图
+## 运行流程图
 
 ![](../../imgs/spring_frame2.png)
 
-## 具体代码执行的流程图
+## 整个代码执行的流程图
 
 ![](http://assets.processon.com/chart_image/5b6bcdcce4b0f8477daa4c49.png)
