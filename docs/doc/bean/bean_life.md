@@ -47,7 +47,7 @@ ClassPathXmlApplicationContext
     doGetBean(BeanPostProcessor
     doGetBean(fullBean
         dependsOn
-            createBean
+        createBean
             resolveBeforeInstantiation
                 applyBeanPostProcessorsBeforeInstantiation（应用所有的InstantiationAwareBeanPostProcessor）
                     postProcessBeforeInstantiation
@@ -78,3 +78,7 @@ fullBean.getName ( bean的使用)
 		this.active.set(false);
 	Runtime.getRuntime().removeShutdownHook(this.shutdownHook);
 ```
+
+* 单例Bean生命周期
+
+![](../../imgs/bean_life.png)
