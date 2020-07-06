@@ -1,4 +1,4 @@
-# BeanFactory & FactoryBean 的区别
+# FactoryBean
 
 <a href="https://docs.spring.io/spring/docs/5.1.3.RELEASE/spring-framework-reference/core.html#beans-factory-extension-factorybean" target="_blank">Customizing Instantiation Logic with a FactoryBean</a>
 

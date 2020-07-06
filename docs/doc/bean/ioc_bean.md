@@ -6,7 +6,7 @@
 
 附：<a href="https://docs.spring.io/spring/docs/5.1.3.RELEASE/spring-framework-reference/core.html#spring-core" target="_blank">spring docs</a>
 
-## Ioc Container
+## Ioc(Inversion of Control) Container
 
 The org.springframework.context.ApplicationContext interface represents the Spring IoC container and is responsible for instantiating, configuring, and assembling the beans. The container gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata. The configuration metadata is represented in XML, Java annotations, or Java code. It lets you express the objects that compose your application and the rich interdependencies between those objects.
 
@@ -24,7 +24,7 @@ among them, are reflected in the configuration metadata used by a container.
 
 Within the container itself, these bean definitions are represented as BeanDefinition objects, which contain (among other information) the following metadata:
 
-在容器内部，这些bean定义表示为BeanDefinition对象，包含着以下元数据：
+在容器内部，这些bean定义表示为`BeanDefinition`对象，包含着以下元数据：
 
 1. A package-qualified class name: typically, the actual implementation class of the bean being defined.（全限定类名）
 
@@ -33,3 +33,53 @@ Within the container itself, these bean definitions are represented as BeanDefin
 3. References to other beans that are needed for the bean to do its work. These references are also called collaborators or dependencies.（对该bean执行其工作所需的其它bean的引用。）
 
 4. Other configuration settings to set in the newly created object — for example, the size limit of the pool or the number of connections to use in a bean that manages a connection pool.（在创建bean对象时的其他配置，如连接池的最大数量）
+
+### BeanDefinition
+
+* Class
+* Name
+* Scope
+* Constructor arguments
+* Properties
+* Autowiring mode
+* Lazy initialization mode
+* Initialization method
+* Destruction method
+
+## Dependency Injection
+
+* Constructor-based Dependency Injection
+
+```java
+<?xml version = "1.0" encoding = "UTF-8"?>
+ 
+<beans xmlns = "http://www.springframework.org/schema/beans" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ 
+   <!-- Definition for textEditor bean -->
+   <bean id = "textEditor" class = "com.tutorialspoint.TextEditor">
+      <constructor-arg ref = "spellChecker"/>
+   </bean>
+ 
+   <!-- Definition for spellChecker bean -->
+   <bean id = "spellChecker" class = "com.tutorialspoint.SpellChecker"></bean>
+ 
+</beans>
+```
+
+* Setter-based Dependency Injection
+
+```java
+<?xml version = "1.0" encoding = "UTF-8"?>
+ 
+<beans xmlns = "http://www.springframework.org/schema/beans" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+ 
+   <!-- Definition for textEditor bean -->
+   <bean id = "textEditor" class = "com.breakyizhan.TextEditor">
+      <property name = "spellChecker" ref = "spellChecker"/>
+   </bean>
+ 
+   <!-- Definition for spellChecker bean -->
+   <bean id = "spellChecker" class = "com.breakyizhan.SpellChecker"></bean>
+ 
+</beans>
+```
