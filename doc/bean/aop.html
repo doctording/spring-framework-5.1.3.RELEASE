@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>3.1 AOP的理解 · spring-note</title>
+        <title>3.6 AOP · spring-note</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -89,8 +89,8 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="dependency.html" />
     
+    <link rel="prev" href="fatory_bean.html" />
     
 
     </head>
@@ -150,7 +150,7 @@
                 <span>
             
                     
-                    [2 ClassPathXmlApplicationContext demo]
+                    [2 ClassPathXmlApplicationContext Demo 引入]
             
                 </span>
             
@@ -190,33 +190,7 @@
                 <a href="../test/bean_constructor.html">
             
                     
-                    2.3 bean & constructor-arg
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.4" data-path="ioc_bean.html">
-            
-                <a href="ioc_bean.html">
-            
-                    
-                    2.4 附:Ioc & Bean概念
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.3.5" data-path="BeanFactory.html">
-            
-                <a href="BeanFactory.html">
-            
-                    
-                    2.5 附:BeanFactory接口
+                    2.3 bean & constructor-arg测试
             
                 </a>
             
@@ -234,7 +208,7 @@
                 <span>
             
                     
-                    [3 Bean生命周期 & 循环依赖等]
+                    [3 Ioc & Aop]
             
                 </span>
             
@@ -243,12 +217,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.4.1" data-path="aop.html">
+        <li class="chapter " data-level="1.4.1" data-path="ioc_bean.html">
             
-                <a href="aop.html">
+                <a href="ioc_bean.html">
             
                     
-                    3.1 AOP的理解
+                    3.1 Ioc & Bean概念
             
                 </a>
             
@@ -256,12 +230,25 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.2" data-path="dependency.html">
+        <li class="chapter " data-level="1.4.2" data-path="BeanFactory.html">
+            
+                <a href="BeanFactory.html">
+            
+                    
+                    3.2 BeanFactory接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="dependency.html">
             
                 <a href="dependency.html">
             
                     
-                    3.2 Spring循环依赖具体执行流程
+                    3.3 Spring循环依赖具体执行流程
             
                 </a>
             
@@ -269,12 +256,38 @@
             
         </li>
     
-        <li class="chapter " data-level="1.4.3" data-path="bean_life.html">
+        <li class="chapter " data-level="1.4.4" data-path="bean_life.html">
             
                 <a href="bean_life.html">
             
                     
-                    3.3 Bean生命周期
+                    3.4 Bean生命周期
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="fatory_bean.html">
+            
+                <a href="fatory_bean.html">
+            
+                    
+                    3.5 FactoryBean接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.6" data-path="aop.html">
+            
+                <a href="aop.html">
+            
+                    
+                    3.6 AOP
             
                 </a>
             
@@ -292,7 +305,7 @@
                 <span>
             
                     
-                    [4 常见问题]
+                    [4 其它问题总结]
             
                 </span>
             
@@ -301,25 +314,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.5.1" data-path="bean_fatory_bean.html">
-            
-                <a href="bean_fatory_bean.html">
-            
-                    
-                    4.1 BeanFactory & FactoryBean
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.5.2" data-path="design.html">
+        <li class="chapter " data-level="1.5.1" data-path="design.html">
             
                 <a href="design.html">
             
                     
-                    4.2 Spring中的设计模式
+                    4.1 Spring中的设计模式
             
                 </a>
             
@@ -394,7 +394,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >3.1 AOP的理解</a>
+        <a href="../.." >3.6 AOP</a>
     </h1>
 </div>
 
@@ -413,6 +413,8 @@
 <li><div><a href="#aop">AOP</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
 <ul>
 <li><div><a href="#spring-aop-&#x5404;&#x79CD;&#x6982;&#x5FF5;">Spring AOP &#x5404;&#x79CD;&#x6982;&#x5FF5;</a><i></i></div></li>
+<li><div><a href="#&#x65AD;&#x70B9;&#x8C03;&#x8BD5;&#x6280;&#x5DE7;">&#x65AD;&#x70B9;&#x8C03;&#x8BD5;&#x6280;&#x5DE7;</a><i></i></div></li>
+<li><div><a href="#&#x76EE;&#x6807;&#x5BF9;&#x8C61;-&#x300B;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;">&#x76EE;&#x6807;&#x5BF9;&#x8C61; =&#x300B;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;</a><i></i></div></li>
 </ul></li>
 </ul>
 </div>
@@ -461,8 +463,89 @@
 <li>Weaving</li>
 </ul>
 <p>linking aspects with other application types or objects to create an advised object. This can be done at compile time (using the AspectJ compiler, for example), load time, or at runtime. Spring AOP, like other pure Java AOP frameworks, performs weaving at runtime.</p>
+<h2 id="&#x65AD;&#x70B9;&#x8C03;&#x8BD5;&#x6280;&#x5DE7;">&#x65AD;&#x70B9;&#x8C03;&#x8BD5;&#x6280;&#x5DE7;</h2>
+<ul>
+<li>&#x65AD;&#x70B9;&#x52A0;&#x6761;&#x4EF6;</li>
+</ul>
+<p><img src="../../imgs/debug_01.png" alt=""></p>
+<ul>
+<li>Evaluate&#xFF0C;&#x65AD;&#x70B9;&#x8BC4;&#x4F30;&#x8FD0;&#x884C;</li>
+</ul>
+<p><img src="../../imgs/debug_02.png" alt=""></p>
+<h2 id="&#x76EE;&#x6807;&#x5BF9;&#x8C61;-&#x300B;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;">&#x76EE;&#x6807;&#x5BF9;&#x8C61; =&#x300B;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;</h2>
+<p><img src="../../imgs/aop_proxy_jdk.png" alt=""></p>
+<ul>
+<li>debug &#x53EF;&#x4EE5;&#x5B9A;&#x4F4D;&#x5230;<code>initializeBean</code>&#x65B9;&#x6CD5;&#x540E;&#xFF0C;&#x8FD4;&#x56DE;&#x4E86;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;</li>
+</ul>
+<pre class="language-"><code class="lang-java"><span class="token comment">// Initialize the bean instance.</span>
+<span class="token class-name">Object</span> exposedObject <span class="token operator">=</span> bean<span class="token punctuation">;</span>
+<span class="token keyword">try</span> <span class="token punctuation">{</span>
+    <span class="token comment">// 2. &#x586B;&#x5145;bean&#x7684;&#x5C5E;&#x6027;:&#x5373;&#x8FD9;&#x91CC;&#x8981;&#x5B8C;&#x6210;bean&#x4F9D;&#x8D56;&#x5904;&#x7406;</span>
+    <span class="token function">populateBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> instanceWrapper<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// 3. bean&#x7684;initialize,beanPostProcessor&#x7B49;</span>
+    <span class="token comment">// &#x6267;&#x884C;&#x5B8C;&#x5982;&#x4E0B;&#x4E00;&#x53E5;&#xFF0C;exposedObject &#x662F;JdkDynamicAopProxy&#x5BF9;&#x8C61;</span>
+    exposedObject <span class="token operator">=</span> <span class="token function">initializeBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> exposedObject<span class="token punctuation">,</span> mbd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>ex <span class="token keyword">instanceof</span> <span class="token class-name">BeanCreationException</span> <span class="token operator">&amp;&amp;</span> beanName<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">BeanCreationException</span><span class="token punctuation">)</span> ex<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getBeanName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token punctuation">(</span><span class="token class-name">BeanCreationException</span><span class="token punctuation">)</span> ex<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">BeanCreationException</span><span class="token punctuation">(</span>
+                mbd<span class="token punctuation">.</span><span class="token function">getResourceDescription</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> <span class="token string">&quot;Initialization of bean failed&quot;</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li>&#x7EE7;&#x7EED;debug&#x5728;<code>applyBeanPostProcessorsAfterInitialization</code>&#x65B9;&#x6CD5;&#x8FD4;&#x56DE;&#x4E86;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;</li>
+</ul>
+<p><img src="../../imgs/aop_postProcessors.png" alt=""></p>
+<ul>
+<li>&#x5728;&#x67D0;&#x4E2A;<code>PostProcessor</code>&#x4F5C;&#x7528;&#x540E;&#x80AF;&#x5B9A;&#x4F1A;&#x53D8;&#x6210;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;</li>
+</ul>
+<p><img src="../../imgs/aop_postProcessor.png" alt=""></p>
+<pre class="language-"><code class="lang-java"><span class="token comment">/**
+ * Create a proxy with the configured interceptors if the bean is
+ * identified as one to proxy by the subclass.
+ * @see #getAdvicesAndAdvisorsForBean
+ */</span>
+<span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">postProcessAfterInitialization</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Nullable</span> <span class="token class-name">Object</span> bean<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>bean <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Object</span> cacheKey <span class="token operator">=</span> <span class="token function">getCacheKey</span><span class="token punctuation">(</span>bean<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>earlyProxyReferences<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token function">wrapIfNecessary</span><span class="token punctuation">(</span>bean<span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> cacheKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> bean<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class="language-"><code class="lang-java"><span class="token class-name">Object</span> proxy <span class="token operator">=</span> <span class="token function">createProxy</span><span class="token punctuation">(</span>bean<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> specificInterceptors<span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">SingletonTargetSource</span><span class="token punctuation">(</span>bean<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre>
+<p><img src="../../imgs/aop_proxy.png" alt=""></p>
+<p>&#x9644;&#xFF1A;<code>@EnableAspectJAutoProxy(proxyTargetClass=true)</code> &#x4F7F;&#x7528;<code>CGLib</code>&#x4EE3;&#x7406;, &#x521B;&#x5EFA;AopProxy</p>
+<pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DefaultAopProxyFactory</span> <span class="token keyword">implements</span> <span class="token class-name">AopProxyFactory</span><span class="token punctuation">,</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">AopProxy</span> <span class="token function">createAopProxy</span><span class="token punctuation">(</span><span class="token class-name">AdvisedSupport</span> config<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">AopConfigException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">isOptimize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> config<span class="token punctuation">.</span><span class="token function">isProxyTargetClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token function">hasNoUserSuppliedProxyInterfaces</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> targetClass <span class="token operator">=</span> config<span class="token punctuation">.</span><span class="token function">getTargetClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>targetClass <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">AopConfigException</span><span class="token punctuation">(</span><span class="token string">&quot;TargetSource cannot determine target class: &quot;</span> <span class="token operator">+</span>
+                        <span class="token string">&quot;Either an interface or a target is required for proxy creation.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>targetClass<span class="token punctuation">.</span><span class="token function">isInterface</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token class-name">Proxy</span><span class="token punctuation">.</span><span class="token function">isProxyClass</span><span class="token punctuation">(</span>targetClass<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JdkDynamicAopProxy</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ObjenesisCglibAopProxy</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JdkDynamicAopProxy</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre>
 <footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
-2020-07-04 12:29:45
+2020-07-07 20:52:56
 </span></footer>
                                 
                                 </section>
@@ -490,10 +573,10 @@
 
             
                 
-                
-                <a href="dependency.html" class="navigation navigation-next navigation-unique" aria-label="Next page: 3.2 Spring循环依赖具体执行流程">
-                    <i class="fa fa-angle-right"></i>
+                <a href="fatory_bean.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: 3.5 FactoryBean接口">
+                    <i class="fa fa-angle-left"></i>
                 </a>
+                
                 
             
         
@@ -502,7 +585,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3.1 AOP的理解","level":"1.4.1","depth":2,"next":{"title":"3.2 Spring循环依赖具体执行流程","level":"1.4.2","depth":2,"path":"doc/bean/dependency.md","ref":"doc/bean/dependency.md","articles":[]},"previous":{"title":"[3 Bean生命周期 & 循环依赖等]","level":"1.4","depth":1,"ref":"","articles":[{"title":"3.1 AOP的理解","level":"1.4.1","depth":2,"path":"doc/bean/aop.md","ref":"doc/bean/aop.md","articles":[]},{"title":"3.2 Spring循环依赖具体执行流程","level":"1.4.2","depth":2,"path":"doc/bean/dependency.md","ref":"doc/bean/dependency.md","articles":[]},{"title":"3.3 Bean生命周期","level":"1.4.3","depth":2,"path":"doc/bean/bean_life.md","ref":"doc/bean/bean_life.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/aop.md","mtime":"2020-07-04T04:29:45.730Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-06T01:56:07.569Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"3.6 AOP","level":"1.4.6","depth":2,"next":{"title":"[4 其它问题总结]","level":"1.5","depth":1,"ref":"","articles":[{"title":"4.1 Spring中的设计模式","level":"1.5.1","depth":2,"path":"doc/bean/design.md","ref":"doc/bean/design.md","articles":[]}]},"previous":{"title":"3.5 FactoryBean接口","level":"1.4.5","depth":2,"path":"doc/bean/fatory_bean.md","ref":"doc/bean/fatory_bean.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/aop.md","mtime":"2020-07-07T12:52:56.600Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-07T12:55:09.316Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
