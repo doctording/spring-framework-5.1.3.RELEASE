@@ -8,11 +8,11 @@
 * [3 Ioc & Aop]
     * [3.1 Ioc & Bean概念](doc/bean/ioc_bean.md)
     * [3.2 BeanFactory接口](doc/bean/BeanFactory.md)
-    * [3.3 AOP的理解](doc/bean/aop.md)
-    * [3.4 Spring循环依赖具体执行流程](doc/bean/dependency.md)
-    * [3.5 Bean生命周期](doc/bean/bean_life.md)
-    * [3.6 FactoryBean接口](doc/bean/fatory_bean.md) 
-* [4 其它常见问题]
+    * [3.3 Spring循环依赖具体执行流程](doc/bean/dependency.md)
+    * [3.4 Bean生命周期](doc/bean/bean_life.md)
+    * [3.5 FactoryBean接口](doc/bean/fatory_bean.md)
+    * [3.6 AOP](doc/bean/aop.md) 
+* [4 其它问题总结]
     * [4.1 Spring中的设计模式](doc/bean/design.md)        
 * [5 其它]
     * [5.1 单词](./doc/other/words.md)

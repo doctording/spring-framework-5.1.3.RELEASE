@@ -49,3 +49,99 @@ An object created by the AOP framework in order to implement the aspect contract
 * Weaving
 
 linking aspects with other application types or objects to create an advised object. This can be done at compile time (using the AspectJ compiler, for example), load time, or at runtime. Spring AOP, like other pure Java AOP frameworks, performs weaving at runtime.
+
+## 断点调试技巧
+
+* 断点加条件
+
+![](../../imgs/debug_01.png)
+
+* Evaluate，断点评估运行
+
+![](../../imgs/debug_02.png)
+
+
+## 目标对象 =》代理对象
+
+![](../../imgs/aop_proxy_jdk.png)
+
+* debug 可以定位到`initializeBean`方法后，返回了代理对象
+
+```java
+// Initialize the bean instance.
+Object exposedObject = bean;
+try {
+    // 2. 填充bean的属性:即这里要完成bean依赖处理
+    populateBean(beanName, mbd, instanceWrapper);
+    // 3. bean的initialize,beanPostProcessor等
+    // 执行完如下一句，exposedObject 是JdkDynamicAopProxy对象
+    exposedObject = initializeBean(beanName, exposedObject, mbd);
+}
+catch (Throwable ex) {
+    if (ex instanceof BeanCreationException && beanName.equals(((BeanCreationException) ex).getBeanName())) {
+        throw (BeanCreationException) ex;
+    }
+    else {
+        throw new BeanCreationException(
+                mbd.getResourceDescription(), beanName, "Initialization of bean failed", ex);
+    }
+}
+```
+
+* 继续debug在`applyBeanPostProcessorsAfterInitialization`方法返回了代理对象
+
+![](../../imgs/aop_postProcessors.png)
+
+* 在某个`PostProcessor`作用后肯定会变成代理对象
+
+![](../../imgs/aop_postProcessor.png)
+
+
+```java
+/**
+ * Create a proxy with the configured interceptors if the bean is
+ * identified as one to proxy by the subclass.
+ * @see #getAdvicesAndAdvisorsForBean
+ */
+@Override
+public Object postProcessAfterInitialization(@Nullable Object bean, String beanName) {
+    if (bean != null) {
+        Object cacheKey = getCacheKey(bean.getClass(), beanName);
+        if (!this.earlyProxyReferences.contains(cacheKey)) {
+            return wrapIfNecessary(bean, beanName, cacheKey);
+        }
+    }
+    return bean;
+}
+```
+
+
+```java
+Object proxy = createProxy(bean.getClass(), beanName, specificInterceptors, new SingletonTargetSource(bean));
+```
+
+![](../../imgs/aop_proxy.png)
+
+附：`@EnableAspectJAutoProxy(proxyTargetClass=true)` 使用`CGLib`代理, 创建AopProxy
+
+```java
+public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
+
+	@Override
+	public AopProxy createAopProxy(AdvisedSupport config) throws AopConfigException {
+		if (config.isOptimize() || config.isProxyTargetClass() || hasNoUserSuppliedProxyInterfaces(config)) {
+			Class<?> targetClass = config.getTargetClass();
+			if (targetClass == null) {
+				throw new AopConfigException("TargetSource cannot determine target class: " +
+						"Either an interface or a target is required for proxy creation.");
+			}
+			if (targetClass.isInterface() || Proxy.isProxyClass(targetClass)) {
+				return new JdkDynamicAopProxy(config);
+			}
+			return new ObjenesisCglibAopProxy(config);
+		}
+		else {
+			return new JdkDynamicAopProxy(config);
+		}
+	}
+```
