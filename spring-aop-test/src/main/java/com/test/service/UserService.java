@@ -1,5 +1,6 @@
 package com.test.service;
 
+import com.test.entity.TbUser;
 import com.test.entity.User;
 
 /**
@@ -9,4 +10,8 @@ import com.test.entity.User;
 public interface UserService {
 
 	User getUserById(Integer id);
+
+	TbUser getTbUserById(Integer id);
+
+	Boolean insertAUser(TbUser tbUser);
 }

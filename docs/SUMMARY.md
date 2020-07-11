@@ -7,12 +7,16 @@
     * [2.3 bean & constructor-arg测试](doc/test/bean_constructor.md)
 * [3 Ioc & Aop]
     * [3.1 Ioc & Bean概念](doc/bean/ioc_bean.md)
-    * [3.2 BeanFactory接口](doc/bean/BeanFactory.md)
-    * [3.3 Spring循环依赖具体执行流程](doc/bean/dependency.md)
-    * [3.4 Bean生命周期](doc/bean/bean_life.md)
-    * [3.5 FactoryBean接口](doc/bean/fatory_bean.md)
-    * [3.6 AOP](doc/bean/aop.md) 
-* [4 其它问题总结]
-    * [4.1 Spring中的设计模式](doc/bean/design.md)        
-* [5 其它]
+        * [3.1.1 BeanFactory接口](doc/bean/BeanFactory.md)
+    * [3.2 Spring循环依赖具体执行流程](doc/bean/dependency.md)
+    * [3.3 Bean生命周期](doc/bean/bean_life.md)
+        * [3.3.1 Bean的作用域](doc/bean/bean_scope.md)
+    * [3.4 FactoryBean接口](doc/bean/fatory_bean.md)
+    * [3.5 AOP](doc/bean/aop.md)
+        * [3.6.1  AOP 和 AspectJ AOP ](doc/bean/aspectj.md)
+* [4 Spring 事务](doc/bean/transaction.md)  
+    * [4.1 @Transactional](doc/bean/transaction_annotation.md)       
+* [5 其它问题总结]
+    * [5.1 Spring中的设计模式](doc/bean/design.md)        
+* [6 其它]
     * [5.1 单词](./doc/other/words.md)
