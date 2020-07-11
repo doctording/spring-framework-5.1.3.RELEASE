@@ -4,7 +4,6 @@ package com.test.entity;
  * @Author mubi
  * @Date 2020/7/2 09:24
  */
-
 public class TbUser {
 	private Integer id;
 	private String sno;

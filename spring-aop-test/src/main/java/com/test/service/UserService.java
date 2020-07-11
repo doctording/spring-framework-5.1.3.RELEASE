@@ -14,4 +14,6 @@ public interface UserService {
 	TbUser getTbUserById(Integer id);
 
 	Boolean insertAUser(TbUser tbUser);
+
+	TbUser selectTbUserById(Integer id);
 }

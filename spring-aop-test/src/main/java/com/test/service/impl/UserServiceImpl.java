@@ -3,6 +3,7 @@ package com.test.service.impl;
 import com.test.dao.UserRepo;
 import com.test.entity.TbUser;
 import com.test.entity.User;
+import com.test.mapper.UserMapper;
 import com.test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -39,5 +40,20 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public Boolean insertAUser(TbUser tbUser) {
 		return userRepo.insertAUser(tbUser);
+	}
+
+
+	/**
+	 * `UserMapper`接口 如何被实例化？
+	 * Jdk动态代理产生的代理对象
+	 * mybatis 调用产生
+	 * jdk: Proxy.newProxyInstance
+	 */
+	@Autowired
+	private UserMapper userMapper;
+
+	@Override
+	public TbUser selectTbUserById(Integer id) {
+		return userMapper.selectUserById(id);
 	}
 }
