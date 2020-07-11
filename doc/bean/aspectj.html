@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>5.1 Spring中的设计模式 · spring-note</title>
+        <title>3.6.1  AOP 和 AspectJ AOP  · spring-note</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -89,6 +89,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
+    <link rel="next" href="transaction.html" />
+    
+    
+    <link rel="prev" href="aop.html" />
     
 
     </head>
@@ -319,7 +323,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.5.1" data-path="aspectj.html">
+        <li class="chapter active" data-level="1.4.5.1" data-path="aspectj.html">
             
                 <a href="aspectj.html">
             
@@ -388,7 +392,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.6.1" data-path="design.html">
+        <li class="chapter " data-level="1.6.1" data-path="design.html">
             
                 <a href="design.html">
             
@@ -468,7 +472,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >5.1 Spring中的设计模式</a>
+        <a href="../.." >3.6.1  AOP 和 AspectJ AOP </a>
     </h1>
 </div>
 
@@ -483,9 +487,72 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="spring&#x4E2D;&#x7528;&#x5230;&#x4E86;&#x54EA;&#x4E9B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1F;">Spring&#x4E2D;&#x7528;&#x5230;&#x4E86;&#x54EA;&#x4E9B;&#x8BBE;&#x8BA1;&#x6A21;&#x5F0F;&#xFF1F;</h1>
+                                <h1 id="aop-&#x4EE3;&#x7406;">Aop &#x4EE3;&#x7406;</h1>
+<ul>
+<li>Spring AOP &#x5C5E;&#x4E8E;&#x8FD0;&#x884C;&#x65F6;&#x589E;&#x5F3A;&#xFF0C;&#x800C; AspectJ &#x662F;&#x7F16;&#x8BD1;&#x65F6;&#x589E;&#x5F3A;</li>
+<li>Spring AOP &#x57FA;&#x4E8E;&#x4EE3;&#x7406;(Proxying)&#xFF0C;&#x800C; AspectJ &#x57FA;&#x4E8E;&#x5B57;&#x8282;&#x7801;&#x64CD;&#x4F5C;(Bytecode Manipulation)</li>
+</ul>
+<p>&#x9644;&#xFF1A;&#x52A8;&#x6001;&#x5B57;&#x8282;&#x7801;&#x751F;&#x6210;&#x4EE3;&#x7406;</p>
+<pre class="language-"><code class="lang-java">       &#x7F16;&#x8BD1;                     <span class="token class-name">ClassLoader</span>&#x52A0;&#x8F7D;                 &#x5B9E;&#x4F8B;
+
+<span class="token punctuation">.</span>java <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">&gt;</span> <span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">(</span>&#x5B57;&#x8282;&#x7801;<span class="token punctuation">)</span>  <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">-&gt;</span> <span class="token class-name">Class</span> <span class="token class-name">Obj</span> <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">&gt;</span> <span class="token class-name">Class</span> <span class="token class-name">Instance</span>
+</code></pre>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">&#x7C7B;&#x522B;</th>
+<th style="text-align:center">&#x673A;&#x5236;</th>
+<th style="text-align:center">&#x539F;&#x7406;</th>
+<th style="text-align:center">&#x4F18;&#x70B9;</th>
+<th style="text-align:center">&#x7F3A;&#x70B9;</th>
+<th style="text-align:center">&#x6280;&#x672F;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">&#x9759;&#x6001;AOP</td>
+<td style="text-align:center">&#x9759;&#x6001;&#x7EC7;&#x5165;</td>
+<td style="text-align:center">&#x5728;&#x7F16;&#x8BD1;&#x671F;,&#x5207;&#x9762;&#x76F4;&#x63A5;&#x4EE5;&#x5B57;&#x8282;&#x7801;&#x7684;&#x5F62;&#x5F0F;&#x7F16;&#x8BD1;&#x5230;&#x76EE;&#x6807;&#x5B57;&#x8282;&#x7801;&#x6587;&#x4EF6;&#x4E2D;</td>
+<td style="text-align:center">&#x5BF9;&#x7CFB;&#x7EDF;&#x65E0;&#x6027;&#x80FD;&#x5F71;&#x54CD;</td>
+<td style="text-align:center">&#x7075;&#x6D3B;&#x6027;&#x4E0D;&#x591F;</td>
+<td style="text-align:center">AspectJ</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x52A8;&#x6001;AOP</td>
+<td style="text-align:center">&#x52A8;&#x6001;&#x4EE3;&#x7406;</td>
+<td style="text-align:center">&#x5728;&#x8FD0;&#x884C;&#x671F;,&#x76EE;&#x6807;&#x7C7B;&#x52A0;&#x8F7D;&#x540E;&#xFF0C;&#x4E3A;&#x63A5;&#x53E3;&#x52A8;&#x6001;&#x751F;&#x6210;&#x4EE3;&#x7406;&#x7C7B;&#xFF0C;&#x5C06;&#x5207;&#x9762;&#x690D;&#x5165;&#x5230;&#x4EE3;&#x7406;&#x7C7B;&#x4E2D;</td>
+<td style="text-align:center">&#x76F8;&#x5BF9;&#x4E8E;&#x9759;&#x6001;AOP&#x66F4;&#x52A0;&#x7075;&#x6D3B;</td>
+<td style="text-align:center">&#x5207;&#x5165;&#x7684;&#x5173;&#x6CE8;&#x70B9;&#x9700;&#x8981;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;&#x3002;&#x5BF9;&#x7CFB;&#x7EDF;&#x6709;&#x4E00;&#x70B9;&#x6027;&#x80FD;&#x5F71;&#x54CD;</td>
+<td style="text-align:center">JDK dynamic proxy</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x52A8;&#x6001;&#x5B57;&#x8282;&#x7801;&#x751F;&#x6210;</td>
+<td style="text-align:center">&#x5728;&#x8FD0;&#x884C;&#x671F;</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">&#x76EE;&#x6807;&#x7C7B;&#x52A0;&#x8F7D;&#x540E;&#xFF0C;&#x52A8;&#x6001;&#x6784;&#x5EFA;&#x5B57;&#x8282;&#x7801;&#x6587;&#x4EF6;&#x751F;&#x6210;&#x76EE;&#x6807;&#x7C7B;&#x7684;&#x5B50;&#x7C7B;&#xFF0C;&#x5C06;&#x5207;&#x9762;&#x903B;&#x8F91;&#x52A0;&#x5165;&#x5230;&#x5B50;&#x7C7B;&#x4E2D;    &#x6CA1;&#x6709;&#x63A5;&#x53E3;&#x4E5F;&#x53EF;&#x4EE5;&#x7EC7;&#x5165;</td>
+<td style="text-align:center">&#x6269;&#x5C55;&#x7C7B;&#x7684;&#x5B9E;&#x4F8B;&#x65B9;&#x6CD5;&#x4E3A;final&#x65F6;&#xFF0C;&#x5219;&#x65E0;&#x6CD5;&#x8FDB;&#x884C;&#x7EC7;&#x5165;</td>
+<td style="text-align:center">cglib</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x81EA;&#x5B9A;&#x4E49;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;</td>
+<td style="text-align:center">&#x5728;&#x8FD0;&#x884C;&#x671F;</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">&#x76EE;&#x6807;&#x52A0;&#x8F7D;&#x524D;&#xFF0C;&#x5C06;&#x5207;&#x9762;&#x903B;&#x8F91;&#x52A0;&#x5230;&#x76EE;&#x6807;&#x5B57;&#x8282;&#x7801;&#x91CC;</td>
+<td style="text-align:center">&#x53EF;&#x4EE5;&#x5BF9;&#x7EDD;&#x5927;&#x90E8;&#x5206;&#x7C7B;&#x8FDB;&#x884C;&#x7EC7;&#x5165;    &#x4EE3;&#x7801;&#x4E2D;&#x5982;&#x679C;&#x4F7F;&#x7528;&#x4E86;&#x5176;&#x4ED6;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#xFF0C;&#x5219;&#x8FD9;&#x4E9B;&#x7C7B;&#x5C06;&#x4E0D;&#x4F1A;&#x88AB;&#x7EC7;&#x5165;</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center">&#x5B57;&#x8282;&#x7801;&#x8F6C;&#x6362;</td>
+<td style="text-align:center">&#x5728;&#x8FD0;&#x884C;&#x671F;</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">&#x6240;&#x6709;&#x7C7B;&#x52A0;&#x8F7D;&#x5668;&#x52A0;&#x8F7D;&#x5B57;&#x8282;&#x7801;&#x524D;&#xFF0C;&#x524D;&#x8FDB;&#x884C;&#x62E6;&#x622A;</td>
+<td style="text-align:center">&#x53EF;&#x4EE5;&#x5BF9;&#x6240;&#x6709;&#x7C7B;&#x8FDB;&#x884C;&#x7EC7;&#x5165;</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
 <footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
-2020-06-22 10:03:58
+2020-07-08 13:57:53
 </span></footer>
                                 
                                 </section>
@@ -513,6 +580,14 @@
 
             
                 
+                <a href="aop.html" class="navigation navigation-prev " aria-label="Previous page: 3.5 AOP">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="transaction.html" class="navigation navigation-next " aria-label="Next page: 4 Spring 事务">
+                    <i class="fa fa-angle-right"></i>
+                </a>
                 
             
         
@@ -521,7 +596,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"5.1 Spring中的设计模式","level":"1.6.1","depth":2,"next":{"title":"[6 其它]","level":"1.7","depth":1,"ref":"","articles":[{"title":"5.1 单词","level":"1.7.1","depth":2,"path":"doc/other/words.md","ref":"./doc/other/words.md","articles":[]}]},"previous":{"title":"[5 其它问题总结]","level":"1.6","depth":1,"ref":"","articles":[{"title":"5.1 Spring中的设计模式","level":"1.6.1","depth":2,"path":"doc/bean/design.md","ref":"doc/bean/design.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/design.md","mtime":"2020-06-22T02:03:58.282Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-11T01:30:27.840Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"3.6.1  AOP 和 AspectJ AOP ","level":"1.4.5.1","depth":3,"next":{"title":"4 Spring 事务","level":"1.5","depth":1,"path":"doc/bean/transaction.md","ref":"doc/bean/transaction.md","articles":[{"title":"4.1 @Transactional","level":"1.5.1","depth":2,"path":"doc/bean/transaction_annotation.md","ref":"doc/bean/transaction_annotation.md","articles":[]}]},"previous":{"title":"3.5 AOP","level":"1.4.5","depth":2,"path":"doc/bean/aop.md","ref":"doc/bean/aop.md","articles":[{"title":"3.6.1  AOP 和 AspectJ AOP ","level":"1.4.5.1","depth":3,"path":"doc/bean/aspectj.md","ref":"doc/bean/aspectj.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/aspectj.md","mtime":"2020-07-08T05:57:53.702Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-11T01:30:27.840Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

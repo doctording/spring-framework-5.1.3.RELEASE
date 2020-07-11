@@ -1,0 +1,1076 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>4 Spring 事务 · spring-note</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="doctording">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-ace/ace.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-codeblock-filename/block.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-sectionx/sectionx.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-treeview/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="transaction_annotation.html" />
+    
+    
+    <link rel="prev" href="aspectj.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../target.html">
+            
+                <a href="../target.html">
+            
+                    
+                    1 前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    [2 ClassPathXmlApplicationContext Demo 引入]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../test/flow_path.html">
+            
+                <a href="../test/flow_path.html">
+            
+                    
+                    2.1 ApplicationContext执行流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../test/code_review.html">
+            
+                <a href="../test/code_review.html">
+            
+                    
+                    2.2 执行流程源码走读
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.3" data-path="../test/bean_constructor.html">
+            
+                <a href="../test/bean_constructor.html">
+            
+                    
+                    2.3 bean & constructor-arg测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    [3 Ioc & Aop]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" data-path="ioc_bean.html">
+            
+                <a href="ioc_bean.html">
+            
+                    
+                    3.1 Ioc & Bean概念
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="BeanFactory.html">
+            
+                <a href="BeanFactory.html">
+            
+                    
+                    3.1.1 BeanFactory接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" data-path="dependency.html">
+            
+                <a href="dependency.html">
+            
+                    
+                    3.2 Spring循环依赖具体执行流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.3" data-path="bean_life.html">
+            
+                <a href="bean_life.html">
+            
+                    
+                    3.3 Bean生命周期
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.3.1" data-path="bean_scope.html">
+            
+                <a href="bean_scope.html">
+            
+                    
+                    3.3.1 Bean的作用域
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.4" data-path="fatory_bean.html">
+            
+                <a href="fatory_bean.html">
+            
+                    
+                    3.4 FactoryBean接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.5" data-path="aop.html">
+            
+                <a href="aop.html">
+            
+                    
+                    3.5 AOP
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.5.1" data-path="aspectj.html">
+            
+                <a href="aspectj.html">
+            
+                    
+                    3.6.1  AOP 和 AspectJ AOP 
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.5" data-path="transaction.html">
+            
+                <a href="transaction.html">
+            
+                    
+                    4 Spring 事务
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="transaction_annotation.html">
+            
+                <a href="transaction_annotation.html">
+            
+                    
+                    4.1 @Transactional
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" >
+            
+                <span>
+            
+                    
+                    [5 其它问题总结]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="design.html">
+            
+                <a href="design.html">
+            
+                    
+                    5.1 Spring中的设计模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" >
+            
+                <span>
+            
+                    
+                    [6 其它]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../other/words.html">
+            
+                <a href="../other/words.html">
+            
+                    
+                    5.1 单词
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >4 Spring 事务</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div class="treeview__container"><div class="treeview__container-title"><span class="treeview__main-title">Treeview</span><span class="treeview__copyright">Copyright @doctording all right reserved, powered by <a href="https://github.com/aleen42" target="_blank">aleen42</a></span></div><ul>
+<li><div><a href="#spring&#x4E8B;&#x52A1;">Spring&#x4E8B;&#x52A1;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#&#x6570;&#x636E;&#x5E93;&#x4E8B;&#x52A1;">&#x6570;&#x636E;&#x5E93;&#x4E8B;&#x52A1;</a><i></i></div></li>
+<li><div><a href="#spring-transaction-management">Spring Transaction Management</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#jdbc&#x4E8B;&#x52A1;&#x914D;&#x7F6E;&#x548C;&#x4F7F;&#x7528;">jdbc&#x4E8B;&#x52A1;&#x914D;&#x7F6E;&#x548C;&#x4F7F;&#x7528;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#spring&#x4E8B;&#x52A1;&#x62BD;&#x8C61;&#x63A5;&#x53E3;">Spring&#x4E8B;&#x52A1;&#x62BD;&#x8C61;&#x63A5;&#x53E3; </a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#platformtransactionmanager&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668;&#x63A5;&#x53E3;">PlatformTransactionManager(&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668;&#x63A5;&#x53E3;)</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#datasourcetransactionmanager">DataSourceTransactionManager</a><i></i></div></li>
+</ul></li>
+<li><div><a href="#transactiondefinition&#x4E8B;&#x52A1;&#x5B9A;&#x4E49;&#x4FE1;&#x606F;&#x63A5;&#x53E3;">TransactionDefinition(&#x4E8B;&#x52A1;&#x5B9A;&#x4E49;&#x4FE1;&#x606F;&#x63A5;&#x53E3;)</a><i></i></div></li>
+<li><div><a href="#transactionstatus&#x4E8B;&#x52A1;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x63A5;&#x53E3;">TransactionStatus(&#x4E8B;&#x52A1;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x63A5;&#x53E3;)</a><i></i></div></li>
+</ul></li>
+</ul></li>
+<li><div><a href="#enabletransactionmanagement">@EnableTransactionManagement</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#autoproxyregistrar-&#x6CE8;&#x518C;&#x4E00;&#x4E2A;infrastructureadvisorautoproxycreator&#x7EC4;&#x4EF6;">AutoProxyRegistrar &#x6CE8;&#x518C;&#x4E00;&#x4E2A;InfrastructureAdvisorAutoProxyCreator&#x7EC4;&#x4EF6;</a><i></i></div></li>
+<li><div><a href="#proxytransactionmanagementconfiguration&#x6CE8;&#x518C;&#x4E8B;&#x52A1;&#x589E;&#x5F3A;&#x5668;">ProxyTransactionManagementConfiguration(&#x6CE8;&#x518C;&#x4E8B;&#x52A1;&#x589E;&#x5F3A;&#x5668;)</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#transactioninterceptor">TransactionInterceptor</a><i></i></div></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+
+<h1 id="spring&#x4E8B;&#x52A1;">Spring&#x4E8B;&#x52A1;</h1>
+<h2 id="&#x6570;&#x636E;&#x5E93;&#x4E8B;&#x52A1;">&#x6570;&#x636E;&#x5E93;&#x4E8B;&#x52A1;</h2>
+<ol>
+<li>A, Atomicity &#x4E8B;&#x52A1;&#x4E2D;&#x7684;&#x5168;&#x90E8;&#x64CD;&#x4F5C;&#x5728;&#x6570;&#x636E;&#x5E93;&#x4E2D;&#x662F;&#x4E0D;&#x53EF;&#x5206;&#x5272;&#x7684;&#xFF0C;&#x8981;&#x4E48;&#x5168;&#x90E8;&#x5B8C;&#x6210;&#xFF0C;&#x8981;&#x4E48;&#x5168;&#x90E8;&#x4E0D;&#x6267;&#x884C;</li>
+<li>C, Consistency &#x51E0;&#x4E2A;&#x5E76;&#x884C;&#x6267;&#x884C;&#x7684;&#x4E8B;&#x52A1;&#xFF0C;&#x5176;&#x6267;&#x884C;&#x7ED3;&#x679C;&#x5FC5;&#x987B;&#x4E0E;&#x6309;&#x67D0;&#x4E00;&#x987A;&#x5E8F; &#x4E32;&#x884C;&#x6267;&#x884C;&#x7684;&#x7ED3;&#x679C;&#x76F8;&#x4E00;&#x81F4;</li>
+<li>I, Isolation &#x4E8B;&#x52A1;&#x7684;&#x6267;&#x884C;&#x4E0D;&#x53D7;&#x5176;&#x4ED6;&#x4E8B;&#x52A1;&#x7684;&#x5E72;&#x6270;&#xFF0C;&#x4E8B;&#x52A1;&#x6267;&#x884C;&#x7684;&#x4E2D;&#x95F4;&#x7ED3;&#x679C;&#x5BF9;&#x5176;&#x4ED6;&#x4E8B;&#x52A1;&#x5FC5;&#x987B;&#x662F;&#x900F;&#x660E;&#x7684;</li>
+<li>D, Durability &#x5BF9;&#x4E8E;&#x4EFB;&#x610F;&#x5DF2;&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;&#xFF0C;&#x7CFB;&#x7EDF;&#x5FC5;&#x987B;&#x4FDD;&#x8BC1;&#x8BE5;&#x4E8B;&#x52A1;&#x5BF9;&#x6570;&#x636E;&#x5E93;&#x7684;&#x6539;&#x53D8;&#x4E0D;&#x88AB;&#x4E22;&#x5931;&#xFF0C;&#x5373;&#x4F7F;&#x6570;&#x636E;&#x5E93;&#x51FA;&#x73B0;&#x6545;&#x969C;&#x3002;</li>
+</ol>
+<p><a href="https://blog.csdn.net/qq_26437925/article/details/80270741" target="_blank">MySQL &#x56DB;&#x79CD;&#x9694;&#x79BB;&#x7EA7;&#x522B;&#x53CA;&#x6D4B;&#x8BD5;</a></p>
+<p>3&#x4E2A;&#x4E8B;&#x52A1;&#x95EE;&#x9898;</p>
+<ol>
+<li><p>&#x810F;&#x8BFB;&#xFF1A;&#x8BFB;&#x53D6;&#x5230;&#x4E86;&#x672A;&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;&#x7684;&#x6570;&#x636E;&#xFF0C;&#x6BD4;&#x5982;&#x672A;&#x63D0;&#x4EA4;&#x8BFB;&#x5C31;&#x53EF;&#x80FD;&#x4F1A;&#x4EA7;&#x751F;&#x8FD9;&#x79CD;&#x6570;&#x636E;</p>
+</li>
+<li><p>&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x8BFB;&#xFF1A;&#x5728;&#x540C;&#x4E00;&#x4E2A;&#x4E8B;&#x52A1;&#x91CC;&#x4E24;&#x6B21;&#x8BFB;&#x53D6;&#x7684;&#x6570;&#x636E;&#x4E0D;&#x4E00;&#x6837;&#xFF0C;&#x56E0;&#x4E3A;&#x5728;&#x4E24;&#x6B21;&#x8BFB;&#x53D6;&#x7684;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x53E6;&#x4E00;&#x4E2A;&#x4E8B;&#x52A1;&#x63D0;&#x4EA4;&#x6539;&#x53D8;&#x4E86;&#x8BE5;&#x503C;(update&#x64CD;&#x4F5C;)&#x3002;&#x672A;&#x63D0;&#x4EA4;&#x8BFB;&#xFF0C;&#x5DF2;&#x63D0;&#x4EA4;&#x8BFB;&#x53C8;&#x79F0;&#x4E3A;&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x8BFB;&#xFF0C;&#x4F1A;&#x4EA7;&#x751F;&#x8FD9;&#x79CD;&#x60C5;&#x51B5;&#x3002;</p>
+</li>
+<li><p>&#x5E7B;&#x8BFB;&#xFF1A;&#x4E0E;&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x8BFB;&#x7C7B;&#x4F3C;&#xFF0C;&#x5E7B;&#x8BFB;&#x662F;&#x4E24;&#x6B21;&#x67E5;&#x8BE2;&#x7684;&#x884C;&#x4E2A;&#x6570;&#x4E0D;&#x4E00;&#x6837;(&#x9488;&#x5BF9;&#x7684;&#x662F;insert&#x64CD;&#x4F5C;)&#x3002;&#x5E7B;&#x8BFB;&#x9488;&#x5BF9;&#x7684;&#x662F;&#x591A;&#x884C;&#xFF0C;&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x8BFB;&#x9488;&#x5BF9;&#x7684;&#x662F;&#x4E00;&#x884C;&#x6216;&#x8005;&#x4E00;&#x4E2A;&#x6570;&#x636E;&#x3002;</p>
+</li>
+</ol>
+<p>4&#x79CD;&#x9694;&#x79BB;&#x7EA7;&#x522B;</p>
+<ul>
+<li>Read uncommitted (&#x8BFB;&#x672A;&#x63D0;&#x4EA4;)&#xFF1A;&#x6700;&#x4F4E;&#x7EA7;&#x522B;&#xFF0C;&#x4EFB;&#x4F55;&#x60C5;&#x51B5;&#x90FD;&#x65E0;&#x6CD5;&#x4FDD;&#x8BC1;&#x3002;</li>
+</ul>
+<p>&#x5728;&#x8BE5;&#x9694;&#x79BB;&#x7EA7;&#x522B;&#xFF0C;&#x6240;&#x6709;&#x4E8B;&#x52A1;&#x90FD;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x5176;&#x4ED6;&#x672A;&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;&#x7684;&#x6267;&#x884C;&#x7ED3;&#x679C;&#x3002;</p>
+<ul>
+<li>Read committed (&#x8BFB;&#x53D6;&#x5DF2;&#x63D0;&#x4EA4;&#x7684;)&#xFF1A;&#x53EF;&#x907F;&#x514D;&#x810F;&#x8BFB;&#x7684;&#x53D1;&#x751F;&#x3002;</li>
+</ul>
+<p>&#x8FD9;&#x662F;&#x5927;&#x591A;&#x6570;&#x6570;&#x636E;&#x5E93;&#x7CFB;&#x7EDF;&#x7684;&#x9ED8;&#x8BA4;&#x9694;&#x79BB;&#x7EA7;&#x522B;&#xFF08;&#x4F46;&#x4E0D;&#x662F;MySQL&#x9ED8;&#x8BA4;&#x7684;&#xFF09;&#x3002;&#x5B83;&#x6EE1;&#x8DB3;&#x4E86;&#x9694;&#x79BB;&#x7684;&#x7B80;&#x5355;&#x5B9A;&#x4E49;&#xFF1A;<strong>&#x4E00;&#x4E2A;&#x4E8B;&#x52A1;&#x53EA;&#x80FD;&#x770B;&#x89C1;&#x5DF2;&#x7ECF;&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;&#x6240;&#x505A;&#x7684;&#x6539;&#x53D8;</strong>&#x3002;</p>
+<ul>
+<li>Repeatable read (&#x53EF;&#x91CD;&#x590D;&#x8BFB;)&#xFF1A;&#x53EF;&#x907F;&#x514D;&#x810F;&#x8BFB;&#x3001;&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x8BFB;&#x7684;&#x53D1;&#x751F;&#x3002;</li>
+</ul>
+<p>&#x8FD9;&#x662F;MySQL&#x7684;&#x9ED8;&#x8BA4;&#x4E8B;&#x52A1;&#x9694;&#x79BB;&#x7EA7;&#x522B;&#xFF0C;&#x5B83;&#x786E;&#x4FDD;&#x540C;&#x4E00;&#x4E8B;&#x52A1;&#x7684;&#x591A;&#x4E2A;&#x5B9E;&#x4F8B;&#x5728;&#x5E76;&#x53D1;&#x8BFB;&#x53D6;&#x6570;&#x636E;&#x65F6;&#xFF0C;&#x4F1A;&#x770B;&#x5230;&#x540C;&#x6837;&#x7684;&#x6570;&#x636E;&#x884C;&#x3002;</p>
+<ul>
+<li>Serializable (&#x4E32;&#x884C;&#x5316;)&#xFF1A;&#x53EF;&#x907F;&#x514D;&#x810F;&#x8BFB;&#x3001;&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x8BFB;&#x3001;&#x5E7B;&#x8BFB;&#x7684;&#x53D1;&#x751F;&#x3002;</li>
+</ul>
+<p>&#x8FD9;&#x662F;&#x6700;&#x9AD8;&#x7684;&#x9694;&#x79BB;&#x7EA7;&#x522B;&#xFF0C;&#x5B83;&#x901A;&#x8FC7;&#x5F3A;&#x5236;&#x4E8B;&#x52A1;&#x6392;&#x5E8F;&#xFF0C;&#x4F7F;&#x4E4B;&#x4E0D;&#x53EF;&#x80FD;&#x76F8;&#x4E92;&#x51B2;&#x7A81;&#xFF0C;&#x4ECE;&#x800C;&#x89E3;&#x51B3;&#x5E7B;&#x8BFB;&#x95EE;&#x9898;&#x3002;&#x7B80;&#x8A00;&#x4E4B;&#xFF0C;&#x5B83;&#x662F;&#x5728;&#x6BCF;&#x4E2A;&#x8BFB;&#x7684;&#x6570;&#x636E;&#x884C;&#x4E0A;&#x52A0;&#x4E0A;&#x5171;&#x4EAB;&#x9501;&#x3002;&#x5728;&#x8FD9;&#x4E2A;&#x7EA7;&#x522B;&#xFF0C;&#x53EF;&#x80FD;&#x5BFC;&#x81F4;&#x5927;&#x91CF;&#x7684;&#x8D85;&#x65F6;&#x73B0;&#x8C61;&#x548C;&#x9501;&#x7ADE;&#x4E89;&#x3002; </p>
+<table>
+<thead>
+<tr>
+<th>&#x9694;&#x79BB;&#x7EA7;&#x522B;</th>
+<th>&#x810F;&#x8BFB;</th>
+<th>&#x4E0D;&#x53EF;&#x91CD;&#x590D;&#x8BFB;</th>
+<th>&#x5E7B;&#x8BFB;</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Read uncommitted</td>
+<td>&#x221A;</td>
+<td>&#x221A;</td>
+<td>&#x221A;</td>
+</tr>
+<tr>
+<td>Read committed</td>
+<td>&#xD7;</td>
+<td>&#x221A;</td>
+<td>&#x221A;</td>
+</tr>
+<tr>
+<td>Repeatable read(MySQL&#x9ED8;&#x8BA4;)</td>
+<td>&#xD7;</td>
+<td>&#xD7;</td>
+<td>&#x221A;</td>
+</tr>
+<tr>
+<td>Serializable</td>
+<td>&#xD7;</td>
+<td>&#xD7;</td>
+<td>&#xD7;</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>&#x221A;: &#x53EF;&#x80FD;&#x51FA;&#x73B0;    &#xD7;: &#x4E0D;&#x4F1A;&#x51FA;&#x73B0;</li>
+</ul>
+<h2 id="spring-transaction-management">Spring Transaction Management</h2>
+<p><a href="https://docs.spring.io/spring/docs/5.1.3.RELEASE/spring-framework-reference/data-access.html#transaction" target="_blank">Transaction Management Doc</a></p>
+<p>The most important concepts to grasp with regard to the Spring Framework&#x2019;s declarative transaction support are that this support is enabled via AOP proxies and that the transactional advice is driven by metadata (currently XML- or annotation-based). The combination of AOP with transactional metadata yields an AOP proxy that uses a TransactionInterceptor in conjunction with an appropriate PlatformTransactionManager implementation to drive transactions around method invocations.</p>
+<p>&#xFF08;Spring&#x7684;&#x58F0;&#x660E;&#x5F0F;&#x4E8B;&#x52A1;&#x7684;&#x652F;&#x6301;&#x4F9D;&#x9760;&#xFF1A;<code>AOP</code>&#x4EE3;&#x7406;&#x548C;<code>transactional</code>&#x589E;&#x5F3A;&#x5668;(&#x901A;&#x8FC7;xml&#x6216;&#x8005;annotation&#x914D;&#x7F6E;&#x7684;&#x589E;&#x5F3A;&#x5668;)&#xFF09;</p>
+<h3 id="jdbc&#x4E8B;&#x52A1;&#x914D;&#x7F6E;&#x548C;&#x4F7F;&#x7528;">jdbc&#x4E8B;&#x52A1;&#x914D;&#x7F6E;&#x548C;&#x4F7F;&#x7528;</h3>
+<pre class="language-"><code class="lang-java"><span class="token annotation punctuation">@EnableTransactionManagement</span>
+<span class="token annotation punctuation">@ComponentScan</span><span class="token punctuation">(</span><span class="token string">&quot;com.test&quot;</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Configuration</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TxConfig</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">DataSource</span> <span class="token function">dataSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">DriverManagerDataSource</span> ds <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DriverManagerDataSource</span> <span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ds<span class="token punctuation">.</span><span class="token function">setDriverClassName</span><span class="token punctuation">(</span><span class="token string">&quot;com.mysql.jdbc.Driver&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ds<span class="token punctuation">.</span><span class="token function">setUrl</span><span class="token punctuation">(</span><span class="token string">&quot;jdbc:mysql://localhost:3306/test&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ds<span class="token punctuation">.</span><span class="token function">setUsername</span><span class="token punctuation">(</span><span class="token string">&quot;root&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        ds<span class="token punctuation">.</span><span class="token function">setPassword</span><span class="token punctuation">(</span><span class="token string">&quot;&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> ds<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">JdbcTemplate</span> <span class="token function">jdbcTemplate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">JdbcTemplate</span> jdbcTemplate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">JdbcTemplate</span><span class="token punctuation">(</span><span class="token function">dataSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> jdbcTemplate<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * &#x6CE8;&#x518C;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668;&#x5230;&#x5BB9;&#x5668;&#x4E2D;
+      */</span>
+    <span class="token annotation punctuation">@Bean</span>
+    <span class="token keyword">public</span> <span class="token class-name">PlatformTransactionManager</span> <span class="token function">transactionManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">DataSourceTransactionManager</span><span class="token punctuation">(</span><span class="token function">dataSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li>&#x6D4B;&#x8BD5;&#x4F7F;&#x7528;,&#x65B9;&#x6CD5;&#x4E0A;&#x52A0;&#x4E0A;<code>@Transactional</code></li>
+</ul>
+<pre class="language-"><code class="lang-java"><span class="token annotation punctuation">@Transactional</span><span class="token punctuation">(</span>rollbackFor <span class="token operator">=</span> <span class="token class-name">Exception</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token class-name">Boolean</span> <span class="token function">insertAUser</span><span class="token punctuation">(</span><span class="token class-name">TbUser</span> tbUser<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token class-name">String</span> sql <span class="token operator">=</span> <span class="token string">&quot;insert into t_user(sno, name, password) values(?,?,?)&quot;</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> cnt <span class="token operator">=</span> jdbcTemplate<span class="token punctuation">.</span><span class="token function">update</span><span class="token punctuation">(</span>sql<span class="token punctuation">,</span> tbUser<span class="token punctuation">.</span><span class="token function">getSno</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tbUser<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> tbUser<span class="token punctuation">.</span><span class="token function">getPassword</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> arr<span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword">int</span> c <span class="token operator">=</span> arr<span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword">return</span> cnt <span class="token operator">&gt;</span> <span class="token number">0</span> <span class="token operator">?</span> <span class="token boolean">true</span> <span class="token operator">:</span> <span class="token boolean">false</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="spring&#x4E8B;&#x52A1;&#x62BD;&#x8C61;&#x63A5;&#x53E3;">Spring&#x4E8B;&#x52A1;&#x62BD;&#x8C61;&#x63A5;&#x53E3;</h4>
+<h5 id="platformtransactionmanager&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668;&#x63A5;&#x53E3;"><code>PlatformTransactionManager</code>(&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668;&#x63A5;&#x53E3;)</h5>
+<p>&#x4E09;&#x4E2A;&#x62BD;&#x8C61;&#x65B9;&#x6CD5;&#xFF1A;1. &#x83B7;&#x53D6;&#x4E8B;&#x52A1;&#x72B6;&#x6001;&#xFF0C;2. &#x63D0;&#x4EA4;&#x4E8B;&#x52A1;&#xFF0C;3. &#x56DE;&#x6EDA;&#x4E8B;&#x52A1;</p>
+<pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">PlatformTransactionManager</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * Return a currently active transaction or create a new one, according to
+     * the specified propagation behavior.
+     * &lt;p&gt;Note that parameters like isolation level or timeout will only be applied
+     * to new transactions, and thus be ignored when participating in active ones.
+     * &lt;p&gt;Furthermore, not all transaction definition settings will be supported
+     * by every transaction manager: A proper transaction manager implementation
+     * should throw an exception when unsupported settings are encountered.
+     * &lt;p&gt;An exception to the above rule is the read-only flag, which should be
+     * ignored if no explicit read-only mode is supported. Essentially, the
+     * read-only flag is just a hint for potential optimization.
+     * @param definition the TransactionDefinition instance (can be {@code null} for defaults),
+     * describing propagation behavior, isolation level, timeout etc.
+     * @return transaction status object representing the new or current transaction
+     * @throws TransactionException in case of lookup, creation, or system errors
+     * @throws IllegalTransactionStateException if the given transaction definition
+     * cannot be executed (for example, if a currently active transaction is in
+     * conflict with the specified propagation behavior)
+     * @see TransactionDefinition#getPropagationBehavior
+     * @see TransactionDefinition#getIsolationLevel
+     * @see TransactionDefinition#getTimeout
+     * @see TransactionDefinition#isReadOnly
+     */</span>
+    <span class="token class-name">TransactionStatus</span> <span class="token function">getTransaction</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Nullable</span> <span class="token class-name">TransactionDefinition</span> definition<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">TransactionException</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * Commit the given transaction, with regard to its status. If the transaction
+     * has been marked rollback-only programmatically, perform a rollback.
+     * &lt;p&gt;If the transaction wasn&apos;t a new one, omit the commit for proper
+     * participation in the surrounding transaction. If a previous transaction
+     * has been suspended to be able to create a new one, resume the previous
+     * transaction after committing the new one.
+     * &lt;p&gt;Note that when the commit call completes, no matter if normally or
+     * throwing an exception, the transaction must be fully completed and
+     * cleaned up. No rollback call should be expected in such a case.
+     * &lt;p&gt;If this method throws an exception other than a TransactionException,
+     * then some before-commit error caused the commit attempt to fail. For
+     * example, an O/R Mapping tool might have tried to flush changes to the
+     * database right before commit, with the resulting DataAccessException
+     * causing the transaction to fail. The original exception will be
+     * propagated to the caller of this commit method in such a case.
+     * @param status object returned by the {@code getTransaction} method
+     * @throws UnexpectedRollbackException in case of an unexpected rollback
+     * that the transaction coordinator initiated
+     * @throws HeuristicCompletionException in case of a transaction failure
+     * caused by a heuristic decision on the side of the transaction coordinator
+     * @throws TransactionSystemException in case of commit or system errors
+     * (typically caused by fundamental resource failures)
+     * @throws IllegalTransactionStateException if the given transaction
+     * is already completed (that is, committed or rolled back)
+     * @see TransactionStatus#setRollbackOnly
+     */</span>
+    <span class="token keyword">void</span> <span class="token function">commit</span><span class="token punctuation">(</span><span class="token class-name">TransactionStatus</span> status<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">TransactionException</span><span class="token punctuation">;</span>
+
+    <span class="token comment">/**
+     * Perform a rollback of the given transaction.
+     * &lt;p&gt;If the transaction wasn&apos;t a new one, just set it rollback-only for proper
+     * participation in the surrounding transaction. If a previous transaction
+     * has been suspended to be able to create a new one, resume the previous
+     * transaction after rolling back the new one.
+     * &lt;p&gt;&lt;b&gt;Do not call rollback on a transaction if commit threw an exception.&lt;/b&gt;
+     * The transaction will already have been completed and cleaned up when commit
+     * returns, even in case of a commit exception. Consequently, a rollback call
+     * after commit failure will lead to an IllegalTransactionStateException.
+     * @param status object returned by the {@code getTransaction} method
+     * @throws TransactionSystemException in case of rollback or system errors
+     * (typically caused by fundamental resource failures)
+     * @throws IllegalTransactionStateException if the given transaction
+     * is already completed (that is, committed or rolled back)
+     */</span>
+    <span class="token keyword">void</span> <span class="token function">rollback</span><span class="token punctuation">(</span><span class="token class-name">TransactionStatus</span> status<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">TransactionException</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h6 id="datasourcetransactionmanager">DataSourceTransactionManager</h6>
+<p>DataSourceTransactionManager &#x9488;&#x5BF9; JdbcTemplate,Mybatis &#x4E8B;&#x52A1;&#x7A7A;&#x5BC2;&#xFF0C;&#x4F7F;&#x7528;Connection&#x8FDB;&#x884C;&#x4E8B;&#x52A1;&#x63A7;&#x5236;</p>
+<ul>
+<li>&#x5F00;&#x542F;&#x4E8B;&#x52A1;&#xFF1A;connection.setAutoCommit(false)</li>
+<li>&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;&#xFF1A;connection.commit</li>
+<li>&#x56DE;&#x6EDA;&#x4E8B;&#x52A1;&#xFF1A;connection.rollback()</li>
+</ul>
+<h5 id="transactiondefinition&#x4E8B;&#x52A1;&#x5B9A;&#x4E49;&#x4FE1;&#x606F;&#x63A5;&#x53E3;"><code>TransactionDefinition</code>(&#x4E8B;&#x52A1;&#x5B9A;&#x4E49;&#x4FE1;&#x606F;&#x63A5;&#x53E3;)</h5>
+<p>&#x4E8B;&#x52A1;&#x7684;&#x5B9A;&#x4E49;&#x4FE1;&#x606F;&#xFF08;&#x9694;&#x79BB;&#xFF0C;&#x4F20;&#x64AD;&#xFF0C;&#x8D85;&#x65F6;&#xFF0C;&#x53EA;&#x8BFB;&#xFF09;</p>
+<pre class="language-"><code class="lang-java"><span class="token comment">/**
+ * Interface that defines Spring-compliant transaction properties.
+ * Based on the propagation behavior definitions analogous to EJB CMT attributes.
+ *
+ * &lt;p&gt;Note that isolation level and timeout settings will not get applied unless
+ * an actual new transaction gets started. As only {@link #PROPAGATION_REQUIRED},
+ * {@link #PROPAGATION_REQUIRES_NEW} and {@link #PROPAGATION_NESTED} can cause
+ * that, it usually doesn&apos;t make sense to specify those settings in other cases.
+ * Furthermore, be aware that not all transaction managers will support those
+ * advanced features and thus might throw corresponding exceptions when given
+ * non-default values.
+ *
+ * &lt;p&gt;The {@link #isReadOnly() read-only flag} applies to any transaction context,
+ * whether backed by an actual resource transaction or operating non-transactionally
+ * at the resource level. In the latter case, the flag will only apply to managed
+ * resources within the application, such as a Hibernate {@code Session}.
+ *
+ * @author Juergen Hoeller
+ * @since 08.05.2003
+ * @see PlatformTransactionManager#getTransaction(TransactionDefinition)
+ * @see org.springframework.transaction.support.DefaultTransactionDefinition
+ * @see org.springframework.transaction.interceptor.TransactionAttribute
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">TransactionDefinition</span> <span class="token punctuation">{</span>
+</code></pre>
+<h5 id="transactionstatus&#x4E8B;&#x52A1;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x63A5;&#x53E3;"><code>TransactionStatus</code>(&#x4E8B;&#x52A1;&#x8FD0;&#x884C;&#x72B6;&#x6001;&#x63A5;&#x53E3;)</h5>
+<h3 id="enabletransactionmanagement">@EnableTransactionManagement</h3>
+<pre class="language-"><code class="lang-java"><span class="token annotation punctuation">@Target</span><span class="token punctuation">(</span><span class="token class-name">ElementType</span><span class="token punctuation">.</span>TYPE<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Retention</span><span class="token punctuation">(</span><span class="token class-name">RetentionPolicy</span><span class="token punctuation">.</span>RUNTIME<span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Documented</span>
+<span class="token annotation punctuation">@Import</span><span class="token punctuation">(</span><span class="token class-name">TransactionManagementConfigurationSelector</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token annotation punctuation">@interface</span> <span class="token class-name">EnableTransactionManagement</span> <span class="token punctuation">{</span>
+</code></pre>
+<p>&#x5229;&#x7528;<code>TransactionManagementConfigurationSelector&#x5BFC;&#x5165;&#x7EC4;&#x4EF6;&#xFF0C;&#x9ED8;&#x8BA4;&#x589E;&#x5F3A;&#x5668;&#x6A21;&#x5F0F;&#x662F;</code>PROXY<code>&#xFF0C;&#x5BFC;&#x5165;&#x4E86;</code>AutoProxyRegistrar<code>&#x548C;</code>ProxyTransactionManagementConfiguration` &#x4E24;&#x4E2A;&#x7EC4;&#x4EF6;</p>
+<pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">TransactionManagementConfigurationSelector</span> <span class="token keyword">extends</span> <span class="token class-name">AdviceModeImportSelector</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">EnableTransactionManagement</span><span class="token punctuation">&gt;</span></span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * Returns {@link ProxyTransactionManagementConfiguration} or
+     * {@code AspectJ(Jta)TransactionManagementConfiguration} for {@code PROXY}
+     * and {@code ASPECTJ} values of {@link EnableTransactionManagement#mode()},
+     * respectively.
+     */</span>
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">protected</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">selectImports</span><span class="token punctuation">(</span><span class="token class-name">AdviceMode</span> adviceMode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">switch</span> <span class="token punctuation">(</span>adviceMode<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">case</span> PROXY<span class="token operator">:</span>
+                <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span><span class="token class-name">AutoProxyRegistrar</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+                        <span class="token class-name">ProxyTransactionManagementConfiguration</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token keyword">case</span> ASPECTJ<span class="token operator">:</span>
+                <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">String</span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">{</span><span class="token function">determineTransactionAspectClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token keyword">default</span><span class="token operator">:</span>
+                <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token class-name">String</span> <span class="token function">determineTransactionAspectClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token class-name">ClassUtils</span><span class="token punctuation">.</span><span class="token function">isPresent</span><span class="token punctuation">(</span><span class="token string">&quot;javax.transaction.Transactional&quot;</span><span class="token punctuation">,</span> <span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">?</span>
+                <span class="token class-name">TransactionManagementConfigUtils</span><span class="token punctuation">.</span>JTA_TRANSACTION_ASPECT_CONFIGURATION_CLASS_NAME <span class="token operator">:</span>
+                <span class="token class-name">TransactionManagementConfigUtils</span><span class="token punctuation">.</span>TRANSACTION_ASPECT_CONFIGURATION_CLASS_NAME<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h4 id="autoproxyregistrar-&#x6CE8;&#x518C;&#x4E00;&#x4E2A;infrastructureadvisorautoproxycreator&#x7EC4;&#x4EF6;">AutoProxyRegistrar &#x6CE8;&#x518C;&#x4E00;&#x4E2A;<code>InfrastructureAdvisorAutoProxyCreator</code>&#x7EC4;&#x4EF6;</h4>
+<pre class="language-"><code class="lang-java"><span class="token annotation punctuation">@Nullable</span>
+<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">BeanDefinition</span> <span class="token function">registerAutoProxyCreatorIfNecessary</span><span class="token punctuation">(</span>
+        <span class="token class-name">BeanDefinitionRegistry</span> registry<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">Object</span> source<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">return</span> <span class="token function">registerOrEscalateApcAsRequired</span><span class="token punctuation">(</span><span class="token class-name">InfrastructureAdvisorAutoProxyCreator</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">,</span> registry<span class="token punctuation">,</span> source<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x67E5;&#x770B;<code>InfrastructureAdvisorAutoProxyCreator</code>&#x7C7B;&#x56FE;&#xFF0C;&#x5176;&#x662F;&#x4E00;&#x4E2A;<code>BeanPostProcessor</code></p>
+<h4 id="proxytransactionmanagementconfiguration&#x6CE8;&#x518C;&#x4E8B;&#x52A1;&#x589E;&#x5F3A;&#x5668;"><code>ProxyTransactionManagementConfiguration</code>(&#x6CE8;&#x518C;&#x4E8B;&#x52A1;&#x589E;&#x5F3A;&#x5668;)</h4>
+<pre class="language-"><code class="lang-java">&#x5728;&#x5BB9;&#x5668;&#x4E2D;&#x6CE8;&#x518C;&#x4E8B;&#x52A1;&#x589E;&#x5F3A;&#x5668;
+    <span class="token number">1.</span> &#x4E8B;&#x52A1;&#x6CE8;&#x89E3;&#x548C;&#x89E3;&#x6790;
+    <span class="token number">2.</span> &#x6CE8;&#x518C;&#x4E86;&#x4E8B;&#x52A1;&#x62E6;&#x622A;&#x5668;`<span class="token class-name">TransactionInterceptor</span>`
+        &#x4FDD;&#x5B58;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668;&#xFF0C;&#x4E8B;&#x52A1;&#x5C5E;&#x6027;&#x4FE1;&#x606F;<span class="token punctuation">,</span>&#x662F;&#x4E00;&#x4E2A;`<span class="token class-name">MethodInterceptor</span>`&#x5728;&#x76EE;&#x6807;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x7684;&#x65F6;&#x5019;
+            &#x6267;&#x884C;&#x62E6;&#x622A;&#x5668;&#x94FE;<span class="token punctuation">,</span> &#x5176;&#x4E2D;&#x4E8B;&#x52A1;&#x62E6;&#x622A;&#x5668;&#x64CD;&#x4F5C;&#x5982;&#x4E0B;
+                <span class="token number">1.</span> &#x83B7;&#x53D6;&#x4E8B;&#x52A1;&#x76F8;&#x5173;&#x7684;&#x5C5E;&#x6027;
+                <span class="token number">2.</span> &#x83B7;&#x53D6;<span class="token class-name">PlatformTransactionManager</span>
+                <span class="token number">3.</span> &#x6267;&#x884C;&#x76EE;&#x6807;&#x65B9;&#x6CD5;
+                    a<span class="token punctuation">.</span> &#x5982;&#x679C;&#x5F02;&#x5E38;&#xFF0C;&#x83B7;&#x53D6;&#x5230;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668;&#xFF0C;&#x5229;&#x7528;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x56DE;&#x6EDA;&#x64CD;&#x4F5C;
+                    b<span class="token punctuation">.</span> &#x5982;&#x679C;&#x6B63;&#x5E38;&#xFF0C;&#x5229;&#x7528;&#x4E8B;&#x52A1;&#x7BA1;&#x7406;&#x5668;&#xFF0C;&#x6B63;&#x5E38;&#x63D0;&#x4EA4;&#x4E8B;&#x52A1;
+</code></pre>
+<h5 id="transactioninterceptor">TransactionInterceptor</h5>
+<pre class="language-"><code class="lang-java"><span class="token annotation punctuation">@Override</span>
+<span class="token annotation punctuation">@Nullable</span>
+<span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">invoke</span><span class="token punctuation">(</span><span class="token class-name">MethodInvocation</span> invocation<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Throwable</span> <span class="token punctuation">{</span>
+    <span class="token comment">// Work out the target class: may be {@code null}.</span>
+    <span class="token comment">// The TransactionAttributeSource should be passed the target class</span>
+    <span class="token comment">// as well as the method, which may be from an interface.</span>
+    <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> targetClass <span class="token operator">=</span> <span class="token punctuation">(</span>invocation<span class="token punctuation">.</span><span class="token function">getThis</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">?</span> <span class="token class-name">AopUtils</span><span class="token punctuation">.</span><span class="token function">getTargetClass</span><span class="token punctuation">(</span>invocation<span class="token punctuation">.</span><span class="token function">getThis</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Adapt to TransactionAspectSupport&apos;s invokeWithinTransaction...</span>
+    <span class="token keyword">return</span> <span class="token function">invokeWithinTransaction</span><span class="token punctuation">(</span>invocation<span class="token punctuation">.</span><span class="token function">getMethod</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> targetClass<span class="token punctuation">,</span> invocation<span class="token operator">::</span><span class="token function">proceed</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li><code>invokeWithinTransaction</code>&#x65B9;&#x6CD5;&#x5BF9;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#x65B9;&#x6CD5;&#x8FDB;&#x884C;&#x62E6;&#x622A;</li>
+</ul>
+<pre class="language-"><code class="lang-java"><span class="token comment">/**
+ * General delegate for around-advice-based subclasses, delegating to several other template
+ * methods on this class. Able to handle {@link CallbackPreferringPlatformTransactionManager}
+ * as well as regular {@link PlatformTransactionManager} implementations.
+ * @param method the Method being invoked
+ * @param targetClass the target class that we&apos;re invoking the method on
+ * @param invocation the callback to use for proceeding with the target invocation
+ * @return the return value of the method, if any
+ * @throws Throwable propagated from the target invocation
+ */</span>
+<span class="token annotation punctuation">@Nullable</span>
+<span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">invokeWithinTransaction</span><span class="token punctuation">(</span><span class="token class-name">Method</span> method<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> targetClass<span class="token punctuation">,</span>
+        <span class="token keyword">final</span> <span class="token class-name">InvocationCallback</span> invocation<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">Throwable</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// If the transaction attribute is null, the method is non-transactional.</span>
+    <span class="token class-name">TransactionAttributeSource</span> tas <span class="token operator">=</span> <span class="token function">getTransactionAttributeSource</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">final</span> <span class="token class-name">TransactionAttribute</span> txAttr <span class="token operator">=</span> <span class="token punctuation">(</span>tas <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">?</span> tas<span class="token punctuation">.</span><span class="token function">getTransactionAttribute</span><span class="token punctuation">(</span>method<span class="token punctuation">,</span> targetClass<span class="token punctuation">)</span> <span class="token operator">:</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">final</span> <span class="token class-name">PlatformTransactionManager</span> tm <span class="token operator">=</span> <span class="token function">determineTransactionManager</span><span class="token punctuation">(</span>txAttr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">final</span> <span class="token class-name">String</span> joinpointIdentification <span class="token operator">=</span> <span class="token function">methodIdentification</span><span class="token punctuation">(</span>method<span class="token punctuation">,</span> targetClass<span class="token punctuation">,</span> txAttr<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>txAttr <span class="token operator">==</span> <span class="token keyword">null</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token punctuation">(</span>tm <span class="token keyword">instanceof</span> <span class="token class-name">CallbackPreferringPlatformTransactionManager</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Standard transaction demarcation with getTransaction and commit/rollback calls.</span>
+        <span class="token class-name">TransactionInfo</span> txInfo <span class="token operator">=</span> <span class="token function">createTransactionIfNecessary</span><span class="token punctuation">(</span>tm<span class="token punctuation">,</span> txAttr<span class="token punctuation">,</span> joinpointIdentification<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Object</span> retVal <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token comment">// This is an around advice: Invoke the next interceptor in the chain.</span>
+            <span class="token comment">// This will normally result in a target object being invoked.</span>
+            retVal <span class="token operator">=</span> invocation<span class="token punctuation">.</span><span class="token function">proceedWithInvocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// target invocation exception</span>
+            <span class="token function">completeTransactionAfterThrowing</span><span class="token punctuation">(</span>txInfo<span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">throw</span> ex<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+            <span class="token function">cleanupTransactionInfo</span><span class="token punctuation">(</span>txInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token function">commitTransactionAfterReturning</span><span class="token punctuation">(</span>txInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> retVal<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token keyword">final</span> <span class="token class-name">ThrowableHolder</span> throwableHolder <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ThrowableHolder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// It&apos;s a CallbackPreferringPlatformTransactionManager: pass a TransactionCallback in.</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Object</span> result <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">CallbackPreferringPlatformTransactionManager</span><span class="token punctuation">)</span> tm<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">execute</span><span class="token punctuation">(</span>txAttr<span class="token punctuation">,</span> status <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+                <span class="token class-name">TransactionInfo</span> txInfo <span class="token operator">=</span> <span class="token function">prepareTransactionInfo</span><span class="token punctuation">(</span>tm<span class="token punctuation">,</span> txAttr<span class="token punctuation">,</span> joinpointIdentification<span class="token punctuation">,</span> status<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> invocation<span class="token punctuation">.</span><span class="token function">proceedWithInvocation</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">if</span> <span class="token punctuation">(</span>txAttr<span class="token punctuation">.</span><span class="token function">rollbackOn</span><span class="token punctuation">(</span>ex<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token comment">// A RuntimeException: will lead to a rollback.</span>
+                        <span class="token keyword">if</span> <span class="token punctuation">(</span>ex <span class="token keyword">instanceof</span> <span class="token class-name">RuntimeException</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            <span class="token keyword">throw</span> <span class="token punctuation">(</span><span class="token class-name">RuntimeException</span><span class="token punctuation">)</span> ex<span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span>
+                        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                            <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">ThrowableHolderException</span><span class="token punctuation">(</span>ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span>
+                    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                        <span class="token comment">// A normal return value: will lead to a commit.</span>
+                        throwableHolder<span class="token punctuation">.</span>throwable <span class="token operator">=</span> ex<span class="token punctuation">;</span>
+                        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+                    <span class="token punctuation">}</span>
+                <span class="token punctuation">}</span>
+                <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+                    <span class="token function">cleanupTransactionInfo</span><span class="token punctuation">(</span>txInfo<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token comment">// Check result state: It might indicate a Throwable to rethrow.</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>throwableHolder<span class="token punctuation">.</span>throwable <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> throwableHolder<span class="token punctuation">.</span>throwable<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">ThrowableHolderException</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">throw</span> ex<span class="token punctuation">.</span><span class="token function">getCause</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">TransactionSystemException</span> ex2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>throwableHolder<span class="token punctuation">.</span>throwable <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;Application exception overridden by commit exception&quot;</span><span class="token punctuation">,</span> throwableHolder<span class="token punctuation">.</span>throwable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                ex2<span class="token punctuation">.</span><span class="token function">initApplicationException</span><span class="token punctuation">(</span>throwableHolder<span class="token punctuation">.</span>throwable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">throw</span> ex2<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Throwable</span> ex2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>throwableHolder<span class="token punctuation">.</span>throwable <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;Application exception overridden by commit exception&quot;</span><span class="token punctuation">,</span> throwableHolder<span class="token punctuation">.</span>throwable<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">throw</span> ex2<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li>&#x5904;&#x7406;&#x5F02;&#x5E38;&#xFF1A;commit or roll back</li>
+</ul>
+<pre class="language-"><code class="lang-java"><span class="token comment">/**
+ * Handle a throwable, completing the transaction.
+ * We may commit or roll back, depending on the configuration.
+ * @param txInfo information about the current transaction
+ * @param ex throwable encountered
+ */</span>
+<span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">completeTransactionAfterThrowing</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Nullable</span> <span class="token class-name">TransactionInfo</span> txInfo<span class="token punctuation">,</span> <span class="token class-name">Throwable</span> ex<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>txInfo <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> txInfo<span class="token punctuation">.</span><span class="token function">getTransactionStatus</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span><span class="token string">&quot;Completing transaction for [&quot;</span> <span class="token operator">+</span> txInfo<span class="token punctuation">.</span><span class="token function">getJoinpointIdentification</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span>
+                    <span class="token string">&quot;] after exception: &quot;</span> <span class="token operator">+</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>txInfo<span class="token punctuation">.</span>transactionAttribute <span class="token operator">!=</span> <span class="token keyword">null</span> <span class="token operator">&amp;&amp;</span> txInfo<span class="token punctuation">.</span>transactionAttribute<span class="token punctuation">.</span><span class="token function">rollbackOn</span><span class="token punctuation">(</span>ex<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                txInfo<span class="token punctuation">.</span><span class="token function">getTransactionManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">rollback</span><span class="token punctuation">(</span>txInfo<span class="token punctuation">.</span><span class="token function">getTransactionStatus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">TransactionSystemException</span> ex2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;Application exception overridden by rollback exception&quot;</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                ex2<span class="token punctuation">.</span><span class="token function">initApplicationException</span><span class="token punctuation">(</span>ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">throw</span> ex2<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">RuntimeException</span> <span class="token operator">|</span> <span class="token class-name">Error</span> ex2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;Application exception overridden by rollback exception&quot;</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">throw</span> ex2<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token comment">// We don&apos;t roll back on this exception.</span>
+            <span class="token comment">// Will still roll back if TransactionStatus.isRollbackOnly() is true.</span>
+            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                txInfo<span class="token punctuation">.</span><span class="token function">getTransactionManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">commit</span><span class="token punctuation">(</span>txInfo<span class="token punctuation">.</span><span class="token function">getTransactionStatus</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">TransactionSystemException</span> ex2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;Application exception overridden by commit exception&quot;</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                ex2<span class="token punctuation">.</span><span class="token function">initApplicationException</span><span class="token punctuation">(</span>ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">throw</span> ex2<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">RuntimeException</span> <span class="token operator">|</span> <span class="token class-name">Error</span> ex2<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                logger<span class="token punctuation">.</span><span class="token function">error</span><span class="token punctuation">(</span><span class="token string">&quot;Application exception overridden by commit exception&quot;</span><span class="token punctuation">,</span> ex<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">throw</span> ex2<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
+2020-07-11 09:24:20
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="aspectj.html" class="navigation navigation-prev " aria-label="Previous page: 3.6.1  AOP 和 AspectJ AOP ">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="transaction_annotation.html" class="navigation navigation-next " aria-label="Next page: 4.1 @Transactional">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"4 Spring 事务","level":"1.5","depth":1,"next":{"title":"4.1 @Transactional","level":"1.5.1","depth":2,"path":"doc/bean/transaction_annotation.md","ref":"doc/bean/transaction_annotation.md","articles":[]},"previous":{"title":"3.6.1  AOP 和 AspectJ AOP ","level":"1.4.5.1","depth":3,"path":"doc/bean/aspectj.md","ref":"doc/bean/aspectj.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/transaction.md","mtime":"2020-07-11T01:24:20.005Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-11T01:30:27.840Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-ace/ace/ace.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-ace/ace.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sectionx/sectionx.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>3.1.1 BeanFactory接口 · spring-note</title>
+        <title>3.3.1 Bean的作用域 · spring-note</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -89,10 +89,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="dependency.html" />
+    <link rel="next" href="fatory_bean.html" />
     
     
-    <link rel="prev" href="ioc_bean.html" />
+    <link rel="prev" href="bean_life.html" />
     
 
     </head>
@@ -233,7 +233,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter active" data-level="1.4.1.1" data-path="BeanFactory.html">
+        <li class="chapter " data-level="1.4.1.1" data-path="BeanFactory.html">
             
                 <a href="BeanFactory.html">
             
@@ -278,7 +278,7 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.3.1" data-path="bean_scope.html">
+        <li class="chapter active" data-level="1.4.3.1" data-path="bean_scope.html">
             
                 <a href="bean_scope.html">
             
@@ -472,7 +472,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >3.1.1 BeanFactory接口</a>
+        <a href="../.." >3.3.1 Bean的作用域</a>
     </h1>
 </div>
 
@@ -488,39 +488,106 @@
                                 <section class="normal markdown-section">
                                 
                                 <div class="treeview__container"><div class="treeview__container-title"><span class="treeview__main-title">Treeview</span><span class="treeview__copyright">Copyright @doctording all right reserved, powered by <a href="https://github.com/aleen42" target="_blank">aleen42</a></span></div><ul>
-<li><div><a href="#beanfactory">BeanFactory</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<li><div><a href="#bean-scope">Bean Scope</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
 <ul>
-<li><div><a href="#&#x5B9A;&#x4E49;&#x548C;&#x7C7B;&#x56FE;">&#x5B9A;&#x4E49;&#x548C;&#x7C7B;&#x56FE;</a><i></i></div></li>
+<li><div><a href="#spring-&#x4E2D;&#x7684;-singletion-bean-&#x7684;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;&#xFF1F;">Spring &#x4E2D;&#x7684; singletion bean &#x7684;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;&#xFF1F;</a><i></i></div></li>
+<li><div><a href="#prototype">prototype</a><i></i></div></li>
 </ul></li>
 </ul>
 </div>
 
-<h1 id="beanfactory">BeanFactory</h1>
-<h2 id="&#x5B9A;&#x4E49;&#x548C;&#x7C7B;&#x56FE;">&#x5B9A;&#x4E49;&#x548C;&#x7C7B;&#x56FE;</h2>
-<p><a href="https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/beans/factory/BeanFactory.html" target="_blank">spring docs of BeanFactory</a></p>
-<p><img src="../../imgs/BeanFactory.png" alt=""></p>
+<h1 id="bean-scope">Bean Scope</h1>
+<p><a href="https://docs.spring.io/spring/docs/5.0.7.BUILD-SNAPSHOT/spring-framework-reference/html5/core.html#beans-factory-scopes" target="_blank">bean scope doc</a></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">scope</th>
+<th style="text-align:center">description</th>
+<th style="text-align:center">-</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">singletion</td>
+<td style="text-align:center">(Default) Scopes a single bean definition to a single object instance per Spring IoC container.</td>
+<td style="text-align:center">&#x5355;&#x4F8B;bean</td>
+</tr>
+<tr>
+<td style="text-align:center">prototype</td>
+<td style="text-align:center">Scopes a single bean definition to any number of object instances.</td>
+<td style="text-align:center">&#x591A;&#x4F8B;bean,&#x6BCF;&#x6B21;&#x8BF7;&#x6C42;&#x90FD;&#x65B0;&#x4EA7;&#x751F;bean</td>
+</tr>
+<tr>
+<td style="text-align:center">request</td>
+<td style="text-align:center">Scopes a single bean definition to the lifecycle of a single HTTP request; that is, each HTTP request has its own instance of a bean created off the back of a single bean definition. Only valid in the context of a web-aware Spring ApplicationContext.</td>
+<td style="text-align:center">&#x6BCF;&#x4E00;&#x6B21;HTTP&#x8BF7;&#x6C42;&#x90FD;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x65B0;&#x7684;bean&#xFF0C;&#x8BE5;bean&#x4EC5;&#x5728;&#x5F53;&#x524D;HTTP request&#x5185;&#x6709;&#x6548;</td>
+</tr>
+<tr>
+<td style="text-align:center">session</td>
+<td style="text-align:center">Scopes a single bean definition to the lifecycle of an HTTP Session. Only valid in the context of a web-aware Spring ApplicationContext.</td>
+<td style="text-align:center">&#x6BCF;&#x4E00;&#x6B21;HTTP&#x8BF7;&#x6C42;&#x90FD;&#x4F1A;&#x4EA7;&#x751F;&#x4E00;&#x4E2A;&#x65B0;&#x7684; bean&#xFF0C;&#x8BE5;bean&#x4EC5;&#x5728;&#x5F53;&#x524D; HTTP session &#x5185;&#x6709;&#x6548;</td>
+</tr>
+<tr>
+<td style="text-align:center">application</td>
+<td style="text-align:center">Scopes a single bean definition to the lifecycle of a ServletContext. Only valid in the context of a web-aware Spring ApplicationContext.</td>
+<td style="text-align:center">-</td>
+</tr>
+<tr>
+<td style="text-align:center">websocket</td>
+<td style="text-align:center">Scopes a single bean definition to the lifecycle of a WebSocket. Only valid in the context of a web-aware Spring ApplicationContext.</td>
+<td style="text-align:center">-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="spring-&#x4E2D;&#x7684;-singletion-bean-&#x7684;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;&#xFF1F;">Spring &#x4E2D;&#x7684; singletion bean &#x7684;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x95EE;&#x9898;&#xFF1F;</h2>
+<p>&#x5B58;&#x5728;&#x7EBF;&#x7A0B;&#x95EE;&#x9898;;</p>
 <ul>
-<li>The root interface for accessing a Spring bean container.</li>
+<li><p>&#x5BF9;&#x4E8E;&#x4E00;&#x4E2A;&#x65E0;&#x72B6;&#x6001;Bean(&#x5373;&#x5BF9;bean&#x5C5E;&#xFF0C;&#x6027;&#x53EA;&#x6709;&#x8BFB;&#x64CD;&#x4F5C;&#xFF0C;&#x65E0;&#x5199;&#x64CD;&#x4F5C;)&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E2A;&#x5355;&#x4F8B;Bean&#x662F;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x3002;&#x6BD4;&#x5982;Spring mvc &#x7684; Controller&#x3001;Service&#x3001;Dao&#x7B49;&#xFF0C;&#x8FD9;&#x4E9B;Bean&#x5927;&#x591A;&#x662F;&#x65E0;&#x72B6;&#x6001;&#x7684;&#xFF0C;&#x53EA;&#x5173;&#x6CE8;&#x4E8E;&#x65B9;&#x6CD5;&#x672C;&#x8EAB;&#x3002;</p>
+</li>
+<li><p>&#x5BF9;&#x4E8E;&#x6709;&#x72B6;&#x6001;&#x7684;bean&#xFF0C;Spring&#x5B98;&#x65B9;&#x63D0;&#x4F9B;&#x7684;bean&#xFF0C;&#x4E00;&#x822C;&#x63D0;&#x4F9B;&#x4E86;&#x901A;&#x8FC7;<code>ThreadLocal</code>&#x53BB;&#x89E3;&#x51B3;&#x7EBF;&#x7A0B;&#x5B89;&#x5168;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;&#x6BD4;&#x5982;RequestContextHolder&#x3001;TransactionSynchronizationManager&#x3001;LocaleContextHolder&#x7B49;&#x3002;</p>
+</li>
 </ul>
-<p>&#x8BBF;&#x95EE;Spring&#x5BB9;&#x5668;&#x7684;&#x6700;&#x9876;&#x5C42;&#x7684;interface</p>
+<h2 id="prototype">prototype</h2>
 <ul>
-<li>This interface is implemented by objects that hold a number of bean definitions, each uniquely identified by a String name. Depending on the bean definition, the factory will return either an independent instance of a contained object (the Prototype design pattern), or a single shared instance (a superior alternative to the Singleton design pattern, in which the instance is a singleton in the scope of the factory). Which type of instance will be returned depends on the bean factory configuration: the API is the same. Since Spring 2.0, further scopes are available depending on the concrete application context (e.g. &quot;request&quot; and &quot;session&quot; scopes in a web environment).</li>
+<li>Spring does not manage the complete lifecycle of a prototype bean</li>
 </ul>
-<p>BeanFactory&#x7684;&#x5B9E;&#x73B0;&#x7C7B;&#x5373;&#x5177;&#x4F53;&#x7684;&#x5BB9;&#x5668;&#xFF0C;&#x62E5;&#x6709;&#x4E00;&#x7CFB;&#x5217;<code>bean</code>&#x7684;&#x5B9A;&#x4E49;&#xFF0C;&#x5E76;&#x5B9E;&#x73B0;&#x8FD9;&#x4E9B;&#x57FA;&#x7840;&#x65B9;&#x6CD5;&#xFF0C;&#x80FD;&#x8FD4;&#x56DE;<code>bean</code>&#x7684;&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;</p>
+<pre class="language-"><code class="lang-java"><span class="token annotation punctuation">@Component</span><span class="token punctuation">(</span><span class="token string">&quot;userService&quot;</span><span class="token punctuation">)</span>
+<span class="token annotation punctuation">@Scope</span><span class="token punctuation">(</span><span class="token string">&quot;prototype&quot;</span><span class="token punctuation">)</span>
+<span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">UserServiceImpl</span> <span class="token keyword">implements</span> <span class="token class-name">UserService</span> <span class="token punctuation">{</span>
+    <span class="token annotation punctuation">@Autowired</span>
+    <span class="token keyword">private</span> <span class="token class-name">UserRepo</span> userRepo<span class="token punctuation">;</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">User</span> <span class="token function">getUserById</span><span class="token punctuation">(</span><span class="token class-name">Integer</span> id<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token class-name">User</span> user <span class="token operator">=</span> userRepo<span class="token punctuation">.</span><span class="token function">getById</span><span class="token punctuation">(</span>id<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">try</span> <span class="token punctuation">{</span>
+            <span class="token class-name">TimeUnit</span><span class="token punctuation">.</span>SECONDS<span class="token punctuation">.</span><span class="token function">sleep</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> user<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <ul>
-<li>The point of this approach is that the BeanFactory is a central registry of application components, and centralizes configuration of application components (no more do individual objects need to read properties files, for example). See chapters 4 and 11 of &quot;Expert One-on-One J2EE Design and Development&quot; for a discussion of the benefits of this approach.</li>
+<li>AbstractBeanFactory&#x7C7B;&#x7684;<code>doGetBean</code>&#x65B9;&#x6CD5;</li>
 </ul>
-<p>BeanFactory&#x662F;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x7EC4;&#x4EF6;&#x7684;&#x6CE8;&#x518C;&#x5668;&#xFF0C;&#x7EDF;&#x4E00;&#x7BA1;&#x7406;</p>
-<ul>
-<li>Normally a BeanFactory will load bean definitions stored in a configuration source (such as an XML document), and use the org.springframework.beans package to configure the beans. However, an implementation could simply return Java objects it creates as necessary directly in Java code. There are no constraints on how the definitions could be stored: LDAP, RDBMS, XML, properties file, etc. Implementations are encouraged to support references amongst beans (Dependency Injection).</li>
-</ul>
-<p>BeanFactory&#x8D1F;&#x8D23;&#x52A0;&#x8F7D;bean,&#x5E76;&#x80FD;&#x8FD4;&#x56DE;Java&#x5BF9;&#x8C61;&#x5B9E;&#x4F8B;&#xFF0C;&#x5E76;&#x6700;&#x597D;&#x80FD;&#x652F;&#x6301;Bean&#x4E4B;&#x95F4;&#x7684;&#x5F15;&#x7528;&#x5173;&#x7CFB;</p>
-<ul>
-<li>Bean factory implementations should support the standard bean lifecycle interfaces as far as possible.</li>
-</ul>
-<p>BeanFactory&#x8981;&#x5C3D;&#x53EF;&#x80FD;&#x7684;&#x5B9E;&#x73B0;Bean&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x63A5;&#x53E3;</p>
+<pre class="language-"><code class="lang-java"><span class="token keyword">else</span> <span class="token keyword">if</span> <span class="token punctuation">(</span>mbd<span class="token punctuation">.</span><span class="token function">isPrototype</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token comment">// It&apos;s a prototype -&gt; create a new instance.</span>
+    <span class="token class-name">Object</span> prototypeInstance <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">try</span> <span class="token punctuation">{</span>
+        <span class="token function">beforePrototypeCreation</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        prototypeInstance <span class="token operator">=</span> <span class="token function">createBean</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> args<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">finally</span> <span class="token punctuation">{</span>
+        <span class="token function">afterPrototypeCreation</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    bean <span class="token operator">=</span> <span class="token function">getObjectForBeanInstance</span><span class="token punctuation">(</span>prototypeInstance<span class="token punctuation">,</span> name<span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x603B;&#x7ED3;&#xFF1A;&#x591A;&#x7EBF;&#x7A0B;, &#x751F;&#x6210;&#x591A;&#x4E2A;&#x5B9E;&#x4F8B;&#xFF0C;Ioc&#x5BB9;&#x5668;&#x4E0D;&#x8D1F;&#x8D23;&#x5B8C;&#x6574;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;</p>
 <footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
-2020-06-18 09:52:42
+2020-07-08 13:16:12
 </span></footer>
                                 
                                 </section>
@@ -548,12 +615,12 @@
 
             
                 
-                <a href="ioc_bean.html" class="navigation navigation-prev " aria-label="Previous page: 3.1 Ioc & Bean概念">
+                <a href="bean_life.html" class="navigation navigation-prev " aria-label="Previous page: 3.3 Bean生命周期">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="dependency.html" class="navigation navigation-next " aria-label="Next page: 3.2 Spring循环依赖具体执行流程">
+                <a href="fatory_bean.html" class="navigation navigation-next " aria-label="Next page: 3.4 FactoryBean接口">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -564,7 +631,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3.1.1 BeanFactory接口","level":"1.4.1.1","depth":3,"next":{"title":"3.2 Spring循环依赖具体执行流程","level":"1.4.2","depth":2,"path":"doc/bean/dependency.md","ref":"doc/bean/dependency.md","articles":[]},"previous":{"title":"3.1 Ioc & Bean概念","level":"1.4.1","depth":2,"path":"doc/bean/ioc_bean.md","ref":"doc/bean/ioc_bean.md","articles":[{"title":"3.1.1 BeanFactory接口","level":"1.4.1.1","depth":3,"path":"doc/bean/BeanFactory.md","ref":"doc/bean/BeanFactory.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/BeanFactory.md","mtime":"2020-06-18T01:52:42.411Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-11T01:30:27.840Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"3.3.1 Bean的作用域","level":"1.4.3.1","depth":3,"next":{"title":"3.4 FactoryBean接口","level":"1.4.4","depth":2,"path":"doc/bean/fatory_bean.md","ref":"doc/bean/fatory_bean.md","articles":[]},"previous":{"title":"3.3 Bean生命周期","level":"1.4.3","depth":2,"path":"doc/bean/bean_life.md","ref":"doc/bean/bean_life.md","articles":[{"title":"3.3.1 Bean的作用域","level":"1.4.3.1","depth":3,"path":"doc/bean/bean_scope.md","ref":"doc/bean/bean_scope.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/bean_scope.md","mtime":"2020-07-08T05:16:12.464Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-11T01:30:27.840Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
