@@ -18,7 +18,8 @@
     * [3.7 @Configuration](doc/bean/configuration.md)
 * [4 Spring 事务](doc/bean/transaction.md)  
     * [4.1 @Transactional](doc/bean/transaction_annotation.md)  
-* [5 MyBatis](doc/mybatis.md)  
+* [5 MyBatis](doc/mybatis.md)
+* [5 SpringBoot](doc/springboot.md)
 * [6 其它问题总结]
     * [5.1 Spring中的设计模式](doc/bean/design.md)        
 * [7 其它]
