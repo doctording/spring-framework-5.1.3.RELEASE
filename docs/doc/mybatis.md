@@ -50,16 +50,32 @@ public class DbSession {
 
 	public static Object getMapper(Class<?> clazz) {
 		Class<?>[] clazzs = new Class<?>[]{clazz};
+		// 类加载器，被代理类，InvocationHandler方法改变增强
 		Object object = Proxy.newProxyInstance(DbSession.class.getClassLoader(),
 				clazzs,
 				new DbInvocationHandler());
 		return object;
 	}
 }
-
 ```
 
 #### Mapper方法的执行利用反射(1.解析sql,2.jdbc执行)
+
+* Mapper类
+
+```java
+public interface UserMapper {
+	/**
+	 * select 映射
+	 * @param id
+	 * @return
+	 */
+	@Select("SELECT * FROM t_user WHERE id = #{id}")
+	TbUser selectUserById(int id);
+}
+```
+
+* Mapper类动态代理:方法(解析sql, 执行jdbc, 返回结果)
 
 ```java
 package com.test.mybatis;
@@ -206,5 +222,14 @@ import java.lang.annotation.RetentionPolicy;
 @Import(DbImportBeanDefinitionRegistrar.class)
 public @interface DbMapperScan{
 
+}
+```
+
+#### 测试
+
+```java
+static void testSelfMybatis(){
+    UserMapper userMapper = (UserMapper) DbSession.getMapper(UserMapper.class);
+    logger.info("selectTbUserById:" + userMapper.selectUserById(1));
 }
 ```
