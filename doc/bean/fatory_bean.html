@@ -328,7 +328,7 @@
                 <a href="aspectj.html">
             
                     
-                    3.5.1  AOP 和 AspectJ AOP 
+                    3.5.1 AOP 和 AspectJ AOP
             
                 </a>
             
@@ -360,6 +360,19 @@
             
                     
                     3.7 @Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="context.html">
+            
+                <a href="context.html">
+            
+                    
+                    3.8 ApplicationContext
             
                 </a>
             
@@ -449,7 +462,7 @@
                 <a href="design.html">
             
                     
-                    5.1 Spring中的设计模式
+                    7.1 Spring中的设计模式
             
                 </a>
             
@@ -481,7 +494,7 @@
                 <a href="../other/words.html">
             
                     
-                    5.1 单词
+                    8.1 单词
             
                 </a>
             
@@ -555,11 +568,11 @@
 <p>The FactoryBean interface is a point of pluggability into the Spring IoC container&#x2019;s instantiation logic. If you have complex initialization code that is better expressed in Java as opposed to a (potentially) verbose amount of XML, you can create your own FactoryBean, write the complex initialization inside that class, and then plug your custom FactoryBean into the container.</p>
 <p>The FactoryBean interface provides three methods:</p>
 <ol>
-<li><p>Object getObject(): Returns an instance of the object this factory creates. The instance can possibly be shared, depending on whether this factory returns singletons or prototypes.</p>
+<li><p><code>Object getObject()</code>: Returns an instance of the object this factory creates. The instance can possibly be shared, depending on whether this factory returns singletons or prototypes.</p>
 </li>
-<li><p>boolean isSingleton(): Returns true if this FactoryBean returns singletons or false otherwise.</p>
+<li><p><code>boolean isSingleton()</code>: Returns true if this FactoryBean returns singletons or false otherwise.</p>
 </li>
-<li><p>Class getObjectType(): Returns the object type returned by the getObject() method or null if the type is not known in advance.</p>
+<li><p><code>Class getObjectType()</code>: Returns the object type returned by the getObject() method or null if the type is not known in advance.</p>
 </li>
 </ol>
 <h2 id="factorybean-&#x5B9E;&#x8DF5;">FactoryBean &#x5B9E;&#x8DF5;</h2>
@@ -615,7 +628,25 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <ul>
-<li>xml</li>
+<li>GoEnum</li>
+</ul>
+<pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">enum</span> <span class="token class-name">GoEnum</span> <span class="token punctuation">{</span>
+    <span class="token function">BIKE</span><span class="token punctuation">(</span><span class="token string">&quot;bike&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+    <span class="token function">CAR</span><span class="token punctuation">(</span><span class="token string">&quot;car&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token class-name">String</span> type<span class="token punctuation">;</span>
+
+    <span class="token class-name">GoEnum</span><span class="token punctuation">(</span><span class="token class-name">String</span> type<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>type <span class="token operator">=</span> type<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">public</span> <span class="token class-name">String</span> <span class="token function">getType</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> type<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<ul>
+<li>xml&#x4E2D;&#x5B9A;&#x5236;bean</li>
 </ul>
 <pre class="language-"><code class="lang-java"><span class="token operator">&lt;</span>bean id<span class="token operator">=</span><span class="token string">&quot;go&quot;</span> <span class="token keyword">class</span><span class="token operator">=</span><span class="token string">&quot;com.mb.factory.MyGoFactoryBean&quot;</span><span class="token operator">&gt;</span>
     <span class="token operator">&lt;</span>property name<span class="token operator">=</span><span class="token string">&quot;type&quot;</span> value<span class="token operator">=</span><span class="token string">&quot;car&quot;</span><span class="token operator">&gt;</span><span class="token operator">&lt;</span><span class="token operator">/</span>property<span class="token operator">&gt;</span>
@@ -633,7 +664,7 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
-2020-07-06 11:58:31
+2020-08-12 13:44:50
 </span></footer>
                                 
                                 </section>
@@ -677,7 +708,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3.4 FactoryBean接口","level":"1.4.4","depth":2,"next":{"title":"3.5 AOP","level":"1.4.5","depth":2,"path":"doc/bean/aop.md","ref":"doc/bean/aop.md","articles":[{"title":"3.5.1  AOP 和 AspectJ AOP ","level":"1.4.5.1","depth":3,"path":"doc/bean/aspectj.md","ref":"doc/bean/aspectj.md","articles":[]}]},"previous":{"title":"3.3.1 Bean的作用域","level":"1.4.3.1","depth":3,"path":"doc/bean/bean_scope.md","ref":"doc/bean/bean_scope.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/fatory_bean.md","mtime":"2020-07-06T03:58:31.625Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-26T12:21:17.590Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"3.4 FactoryBean接口","level":"1.4.4","depth":2,"next":{"title":"3.5 AOP","level":"1.4.5","depth":2,"path":"doc/bean/aop.md","ref":"doc/bean/aop.md","articles":[{"title":"3.5.1 AOP 和 AspectJ AOP","level":"1.4.5.1","depth":3,"path":"doc/bean/aspectj.md","ref":"doc/bean/aspectj.md","articles":[]}]},"previous":{"title":"3.3.1 Bean的作用域","level":"1.4.3.1","depth":3,"path":"doc/bean/bean_scope.md","ref":"doc/bean/bean_scope.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/fatory_bean.md","mtime":"2020-08-12T05:44:50.479Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-12T15:49:18.611Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

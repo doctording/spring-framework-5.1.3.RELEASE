@@ -89,7 +89,7 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="transaction.html" />
+    <link rel="next" href="context.html" />
     
     
     <link rel="prev" href="bean_definition.html" />
@@ -328,7 +328,7 @@
                 <a href="aspectj.html">
             
                     
-                    3.5.1  AOP 和 AspectJ AOP 
+                    3.5.1 AOP 和 AspectJ AOP
             
                 </a>
             
@@ -360,6 +360,19 @@
             
                     
                     3.7 @Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.8" data-path="context.html">
+            
+                <a href="context.html">
+            
+                    
+                    3.8 ApplicationContext
             
                 </a>
             
@@ -449,7 +462,7 @@
                 <a href="design.html">
             
                     
-                    5.1 Spring中的设计模式
+                    7.1 Spring中的设计模式
             
                 </a>
             
@@ -481,7 +494,7 @@
                 <a href="../other/words.html">
             
                     
-                    5.1 单词
+                    8.1 单词
             
                 </a>
             
@@ -543,28 +556,37 @@
 <li><div><a href="#configuration">@Configuration</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
 <ul>
 <li><div><a href="#configuration&#x6CE8;&#x89E3;&#x4F7F;&#x7528;&#x4E0E;&#x4EE3;&#x7406;&#x73B0;&#x8C61;">@Configuration&#x6CE8;&#x89E3;&#x4F7F;&#x7528;&#x4E0E;&#x4EE3;&#x7406;&#x73B0;&#x8C61;</a><i></i></div></li>
-<li><div><a href="#configuration&#x5230;&#x5E95;&#x505A;&#x4E86;&#x4EC0;&#x4E48;&#x64CD;&#x4F5C;">@Configuration&#x5230;&#x5E95;&#x505A;&#x4E86;&#x4EC0;&#x4E48;&#x64CD;&#x4F5C;</a><i></i></div></li>
+<li><div><a href="#configuration&#x5230;&#x5E95;&#x505A;&#x4E86;&#x4EC0;&#x4E48;&#x64CD;&#x4F5C;">@Configuration&#x5230;&#x5E95;&#x505A;&#x4E86;&#x4EC0;&#x4E48;&#x64CD;&#x4F5C;?</a><i></i></div></li>
 <li><div><a href="#&#x3010;&#x3011;configuration&#x7684;bean&#x600E;&#x4E48;&#x52A0;&#x5165;&#x5230;beandefinitionmap&#x4E2D;">&#x3010;*&#x3011;@Configuration&#x7684;Bean&#x600E;&#x4E48;&#x52A0;&#x5165;&#x5230;beanDefinitionMap&#x4E2D;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
 <ul>
-<li><div><a href="#registerannotatedclasses">register(annotatedClasses);</a><i></i></div></li>
+<li><div><a href="#registerannotatedclasses">register(annotatedClasses);</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#&#x7ECF;&#x8FC7;registerannotatedclasses&#x65B9;&#x6CD5;&#x540E;xyzconfig&#x52A0;&#x5165;&#x5230;&#x4E86;beandefinitionmap">&#x7ECF;&#x8FC7;register(annotatedClasses);&#x65B9;&#x6CD5;&#x540E;:xyzConfig&#x52A0;&#x5165;&#x5230;&#x4E86;beanDefinitionMap</a><i></i></div></li>
+</ul></li>
 <li><div><a href="#refresh&#x65B9;&#x6CD5;&#x7684;invokebeanfactorypostprocessorsbeanfactory&#x53D1;&#x751F;&#x4E86;beandefinitionmap&#x7684;&#x6539;&#x53D8;">refresh()&#x65B9;&#x6CD5;&#x7684;invokeBeanFactoryPostProcessors(beanFactory);&#x53D1;&#x751F;&#x4E86;BeanDefinitionMap&#x7684;&#x6539;&#x53D8;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
 <ul>
-<li><div><a href="#invokebeanfactorypostprocessorsbeanfactory">invokeBeanFactoryPostProcessors(beanFactory);</a><i></i></div></li>
-<li><div><a href="#&#x8FDB;&#x5165;postprocessorregistrationdelegate&#x5230;invokebeanfactorypostprocessors&#x65B9;&#x6CD5;">&#x8FDB;&#x5165;PostProcessorRegistrationDelegate&#x5230;invokeBeanFactoryPostProcessors&#x65B9;&#x6CD5;</a><i></i></div></li>
-<li><div><a href="#&#x8FDB;&#x5165;&#x5230;configurationclasspostprocessor&#x7C7B;&#x7684;postprocessbeandefinitionregistryregistry&#x65B9;&#x6CD5;">&#x8FDB;&#x5165;&#x5230;ConfigurationClassPostProcessor&#x7C7B;&#x7684;postProcessBeanDefinitionRegistry(registry)&#x65B9;&#x6CD5;</a><i></i></div></li>
+<li><div><a href="#&#x91CD;&#x70B9;&#x5206;&#x6790;&#xFF1A;invokebeanfactorypostprocessorsbeanfactory">&#x91CD;&#x70B9;&#x5206;&#x6790;&#xFF1A;invokeBeanFactoryPostProcessors(beanFactory);</a><i></i></div></li>
+<li><div><a href="#&#x7EE7;&#x7EED;&#x8FDB;&#x5165;postprocessorregistrationdelegate&#x7684;invokebeanfactorypostprocessors&#x65B9;&#x6CD5;">&#x7EE7;&#x7EED;&#x8FDB;&#x5165;PostProcessorRegistrationDelegate&#x7684;invokeBeanFactoryPostProcessors&#x65B9;&#x6CD5;</a><i></i></div></li>
+<li><div><a href="#&#x7EE7;&#x7EED;&#x8FDB;&#x5165;&#x5230;configurationclasspostprocessor&#x7C7B;&#x7684;postprocessbeandefinitionregistryregistry&#x65B9;&#x6CD5;">&#x7EE7;&#x7EED;&#x8FDB;&#x5165;&#x5230;ConfigurationClassPostProcessor&#x7C7B;&#x7684;postProcessBeanDefinitionRegistry(registry)&#x65B9;&#x6CD5;</a><i></i></div></li>
 <li><div><a href="#configuration&#x7684;beandefinition&#x6DFB;&#x52A0;&#x5168;&#x6CE8;&#x89E3;&#x5C5E;&#x6027;">@Configuration&#x7684;beanDefinition&#x6DFB;&#x52A0;&#x5168;&#x6CE8;&#x89E3;&#x5C5E;&#x6027;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
 <ul>
-<li><div><a href="#configurationclassutilscheckconfigurationclasscandidatebeandef-thismetadatareaderfactory">ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)</a><i></i></div></li>
-<li><div><a href="#invokebeanfactorypostprocessorsregistryprocessors-beanfactory&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x4E86;&#x4EE3;&#x7406;">invokeBeanFactoryPostProcessors(registryProcessors, beanFactory);&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x4E86;&#x4EE3;&#x7406;</a><i></i></div></li>
-<li><div><a href="#&#x3010;&#x3011;enhanceconfigurationclassesbeanfactory&#x5B8C;&#x6210;&#x4E86;&#x5BF9;configuration&#x7C7B;&#x7684;cglib&#x4EE3;&#x7406;">&#x3010;*&#x3011;enhanceConfigurationClasses(beanFactory);&#x5B8C;&#x6210;&#x4E86;&#x5BF9;@Configuration&#x7C7B;&#x7684;Cglib&#x4EE3;&#x7406;</a><i></i></div></li>
+<li><div><a href="#&#x5206;&#x6790;&#xFF1A;configurationclassutilscheckconfigurationclasscandidatebeandef-thismetadatareaderfactory">&#x5206;&#x6790;&#xFF1A;ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)</a><i></i></div></li>
+<li><div><a href="#postprocessorregistrationdelegateinvokebeanfactorypostprocessorsregistryprocessors-beanfactory&#x65B9;&#x6CD5;&#x6700;&#x540E;&#x5B9E;&#x73B0;&#x4E86;&#x4EE3;&#x7406;">PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(registryProcessors, beanFactory);&#x65B9;&#x6CD5;&#x6700;&#x540E;&#x5B9E;&#x73B0;&#x4E86;&#x4EE3;&#x7406;</a><i></i></div></li>
+<li><div><a href="#&#x5728;&#x8FDB;&#x884C;enhanceconfigurationclassesbeanfactory&#x5B8C;&#x6210;&#x4E86;&#x5BF9;configuration&#x7C7B;&#x7684;cglib&#x4EE3;&#x7406;">&#x5728;&#x8FDB;&#x884C;enhanceConfigurationClasses(beanFactory);&#x5B8C;&#x6210;&#x4E86;&#x5BF9;@Configuration&#x7C7B;&#x7684;Cglib&#x4EE3;&#x7406;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#&#x76F4;&#x63A5;new&#x4E86;configurationclassenhancer&#xFF08;&#x8FDB;&#x884C;cglib&#x4EE3;&#x7406;&#x6539;&#x53D8;beanclass&#x5C5E;&#x6027;&#xFF09;">&#x76F4;&#x63A5;new&#x4E86;ConfigurationClassEnhancer&#xFF08;&#x8FDB;&#x884C;Cglib&#x4EE3;&#x7406;&#x6539;&#x53D8;beanClass&#x5C5E;&#x6027;&#xFF09;</a><i></i></div></li>
 </ul></li>
-<li><div><a href="#&#x3010;&#x3011;processconfigbeandefinitionsregistry&#x5185;&#x7EE7;&#x7EED;debug&#x770B;x&#x65B9;&#x6CD5;&#x7684;bean&#x52A0;&#x8F7D;&#x5230;beandefinitionmap">&#x3010;*&#x3011;processConfigBeanDefinitions(registry);&#x5185;&#x7EE7;&#x7EED;debug&#x770B;x()&#x65B9;&#x6CD5;&#x7684;@Bean`&#x52A0;&#x8F7D;&#x5230;beanDefinitionMap</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+</ul></li>
+<li><div><a href="#config&#x7C7B;&#x7684;beanmethod&#x7684;bean&#x8986;&#x76D6;xy&#x7684;beandefinition">Config&#x7C7B;&#x7684;BeanMethod&#x7684;@Bean&#x8986;&#x76D6;x,y&#x7684;BeanDefinition</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#processconfigbeandefinitionsregistry&#x5185;&#x7EE7;&#x7EED;debug&#x770B;x&#x65B9;&#x6CD5;&#x7684;bean&#x52A0;&#x8F7D;&#x5230;beandefinitionmap">processConfigBeanDefinitions(registry);&#x5185;&#x7EE7;&#x7EED;debug&#x770B;x()&#x65B9;&#x6CD5;&#x7684;@Bean`&#x52A0;&#x8F7D;&#x5230;beanDefinitionMap</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
 <ul>
 <li><div><a href="#&#x5728;&#x7C7B;defaultlistablebeanfactory&#x7684;registerbeandefinition&#x65B9;&#x6CD5;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;beandefinitionmapputx-beandefinition">&#x5728;&#x7C7B;DefaultListableBeanFactory&#x7684;registerBeanDefinition&#x65B9;&#x6CD5;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;beanDefinitionMap.put(&quot;x&quot;, beanDefinition)</a><i></i></div></li>
 </ul></li>
 </ul></li>
 </ul></li>
-<li><div><a href="#beandefinition&#x5168;&#x90E8;&#x5230;&#x4F4D;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x662F;&#x5355;&#x4F8B;bean&#x751F;&#x547D;&#x5468;&#x671F;&#x4E86;">BeanDefinition&#x5168;&#x90E8;&#x5230;&#x4F4D;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x662F;&#x5355;&#x4F8B;bean&#x751F;&#x547D;&#x5468;&#x671F;&#x4E86;</a><i></i></div></li>
+</ul></li>
+<li><div><a href="#&#x5F53;beandefinition&#x5168;&#x90E8;&#x5230;&#x4F4D;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x7EE7;&#x7EED;refresh&#x65B9;&#x6CD5;&#xFF0C;&#x4F1A;&#x8D70;&#x5230;&#x5355;&#x4F8B;bean&#x751F;&#x547D;&#x5468;&#x671F;">&#x5F53;BeanDefinition&#x5168;&#x90E8;&#x5230;&#x4F4D;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x7EE7;&#x7EED;refresh&#x65B9;&#x6CD5;&#xFF0C;&#x4F1A;&#x8D70;&#x5230;&#x5355;&#x4F8B;bean&#x751F;&#x547D;&#x5468;&#x671F;</a><i></i></div></li>
 </ul></li>
 </ul>
 </div>
@@ -600,14 +622,24 @@
 <ul>
 <li>&#x6D4B;&#x8BD5;&#x8F93;&#x51FA;&#x5982;&#x4E0B;(<code>X</code>,<code>Y</code>&#x4E24;&#x4E2A;&#x5BF9;&#x8C61;&#x90FD;&#x53EA;&#x521D;&#x59CB;&#x5316;&#x4E00;&#x6B21;)</li>
 </ul>
+<pre class="language-"><code class="lang-java"><span class="token annotation punctuation">@Test</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testXyzConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token class-name">AnnotationConfigApplicationContext</span> ac <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AnnotationConfigApplicationContext</span><span class="token punctuation">(</span><span class="token class-name">XyzConfig</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">X</span> x <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">X</span><span class="token punctuation">)</span>ac<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">&quot;x&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Y</span> y <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">Y</span><span class="token punctuation">)</span>ac<span class="token punctuation">.</span><span class="token function">getBean</span><span class="token punctuation">(</span><span class="token string">&quot;y&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">assertTrue</span><span class="token punctuation">(</span>x <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">assertTrue</span><span class="token punctuation">(</span>y <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x8F93;&#x51FA;&#x5982;&#x4E0B;</p>
 <pre class="language-"><code class="lang-java">init <span class="token class-name">X</span>
 init <span class="token class-name">Y</span>
 </code></pre>
 <ul>
-<li><code>@Configuration</code> &#x4F1A;&#x4EE3;&#x7406;<code>XyzConfig</code>&#x5BF9;&#x8C61;&#xFF0C;&#x786E;&#x5B9A;&#x91CC;&#x9762;&#x7684;<code>@Bean</code>&#x662F;&#x5355;&#x4F8B;&#x7684;</li>
-</ul>
-<ul>
-<li>debug &#x67E5;&#x770B;<code>XyzConfig</code>Bean&#x4F7F;&#x7528;&#x4E86;Cglib&#x4EE3;&#x7406;</li>
+<li><p><code>XyzConfig</code>&#x5BF9;&#x8C61;&#x7531;&#x4E8E;&#x52A0;&#x4E0A;<code>@Configuration</code>&#x540E;&#x88AB;&#x4EE3;&#x7406;&#x4E86;(&#x5426;&#x5219;&#x8F93;&#x51FA;&#x7EDD;&#x5BF9;&#x4E0D;&#x4F1A;&#x662F;&#x4E0A;&#x9762;&#x7684;&#x60C5;&#x51B5;)</p>
+</li>
+<li><p>debug &#x67E5;&#x770B;<code>XyzConfig</code>Bean<font color="red">&#x4F7F;&#x7528;&#x4E86;Cglib&#x4EE3;&#x7406;<font></font></font></p>
+</li>
 </ul>
 <pre class="language-"><code class="lang-java"><span class="token annotation punctuation">@Test</span>
 <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">testXyzConfig</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
@@ -620,7 +652,7 @@ init <span class="token class-name">Y</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <p><img src="../../imgs/configuration_01.png" alt=""></p>
-<h2 id="configuration&#x5230;&#x5E95;&#x505A;&#x4E86;&#x4EC0;&#x4E48;&#x64CD;&#x4F5C;"><code>@Configuration</code>&#x5230;&#x5E95;&#x505A;&#x4E86;&#x4EC0;&#x4E48;&#x64CD;&#x4F5C;</h2>
+<h2 id="configuration&#x5230;&#x5E95;&#x505A;&#x4E86;&#x4EC0;&#x4E48;&#x64CD;&#x4F5C;"><code>@Configuration</code>&#x5230;&#x5E95;&#x505A;&#x4E86;&#x4EC0;&#x4E48;&#x64CD;&#x4F5C;?</h2>
 <p>&#x5E38;&#x89C4;&#x601D;&#x8DEF;&#xFF1A;&#x4E00;&#x6B65;&#x4E00;&#x6B65;debug&#x6E90;&#x7801;&#xFF0C;&#x53EF;&#x80FD;&#x7684;&#x5730;&#x65B9;&#xFF0C;&#x65AD;&#x70B9;&#x53CD;&#x590D;&#x770B;&#xFF1B;&#x4E0D;&#x8FC7;&#x8FD8;&#x662F;&#x9700;&#x8981;&#x4E00;&#x5B9A;&#x57FA;&#x7840;&#x548C;&#x76EE;&#x6807;</p>
 <ul>
 <li><p>&#x9996;&#x5148;&#x8981;&#x77E5;&#x9053;&#xFF1A;bean&#x4E00;&#x5B9A;&#x6709;&#x4E2A;BeanDefinition&#xFF1B;&#x5176;&#x6B21;Spring&#x662F;&#x6709;<code>MapperScan</code>,<code>ComponentScan</code>&#x8FD9;&#x79CD;&#x626B;&#x63CF;&#x6CE8;&#x89E3;&#x529F;&#x80FD;&#x7684;</p>
@@ -702,23 +734,22 @@ init <span class="token class-name">Y</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>beanDefinitionNames<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">this</span><span class="token punctuation">.</span>manualSingletonNames<span class="token punctuation">.</span><span class="token function">remove</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
 </code></pre>
-<ul>
-<li><p>&#x7ECF;&#x8FC7;<code>register(annotatedClasses);</code>&#x65B9;&#x6CD5;&#x540E;&#xFF0C;&#x5165;&#x4E0B;&#x56FE;</p>
-</li>
-<li><p><code>xyzConfig</code>&#x7684;<code>BeanDefinition</code>&#x5DF2;&#x7ECF;&#x52A0;&#x5165;&#x5230;<code>BeanFactory</code>&#x7684;<code>beanDefinitionMap</code>&#x4E2D;&#x4E86;</p>
-</li>
+<h4 id="&#x7ECF;&#x8FC7;registerannotatedclasses&#x65B9;&#x6CD5;&#x540E;xyzconfig&#x52A0;&#x5165;&#x5230;&#x4E86;beandefinitionmap">&#x7ECF;&#x8FC7;<code>register(annotatedClasses);</code>&#x65B9;&#x6CD5;&#x540E;:<code>xyzConfig</code>&#x52A0;&#x5165;&#x5230;&#x4E86;<code>beanDefinitionMap</code></h4>
+<p>&#x5982;&#x4E0B;&#x56FE;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#xFF1A;</p>
+<ol>
+<li><code>xyzConfig</code>&#x7684;<code>BeanDefinition</code>&#x5DF2;&#x7ECF;&#x52A0;&#x5165;&#x5230;<code>BeanFactory</code>&#x7684;<code>beanDefinitionMap</code>&#x4E2D;&#x4E86;</li>
 <li><code>Bean x, y</code> &#x8FD8;&#x6CA1;&#x6709;&#x52A0;&#x5165;&#x5230;<code>beanDefinitionMap</code>&#x4E2D;</li>
 <li><code>xyzConfig</code>&#x7684;<code>BeanDefinition</code>&#x770B;&#x8D77;&#x6765;&#x662F;<code>XyzConfig</code>&#x7C7B;&#x81EA;&#x8EAB;&#xFF0C;&#x6CA1;&#x6709;&#x4EC0;&#x4E48;&#x4EE3;&#x7406;</li>
-</ul>
+</ol>
 <p><img src="../../imgs/configuration_04.png" alt=""></p>
 <h3 id="refresh&#x65B9;&#x6CD5;&#x7684;invokebeanfactorypostprocessorsbeanfactory&#x53D1;&#x751F;&#x4E86;beandefinitionmap&#x7684;&#x6539;&#x53D8;"><code>refresh()</code>&#x65B9;&#x6CD5;&#x7684;<code>invokeBeanFactoryPostProcessors(beanFactory);</code>&#x53D1;&#x751F;&#x4E86;<code>BeanDefinitionMap</code>&#x7684;&#x6539;&#x53D8;</h3>
 <p>&#x5F53;debug&#x6267;&#x884C;&#x5B8C;&#x8FD9;&#x4E00;&#x884C;&#x540E;&#xFF0C;&#x53D1;&#x73B0;<code>beanFactory</code>&#x7684;<code>beanDefinitionMap</code>&#x6709;&#x53D8;&#x5316;&#xFF0C;&#x5982;&#x4E0B;&#x56FE;</p>
 <ol>
-<li>bean x,y &#x52A0;&#x5165;&#x5230;<code>beanDefinitionMap</code>&#x4E2D;&#x4E86;</li>
-<li>&#x540C;&#x65F6;&#x53D1;&#x73B0;<code>xyzConfig</code>&#x88AB;Spring&#x589E;&#x5F3A;&#x4E86;&#xFF0C;&#x53EF;&#x80FD;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x4EE3;&#x7406;&#x884C;&#x4E3A;</li>
+<li>bean x,y &#x5DF2;&#x7ECF;&#x52A0;&#x5165;&#x5230;<code>beanDefinitionMap</code>&#x4E2D;&#x4E86;</li>
+<li>&#x540C;&#x65F6;&#x53D1;&#x73B0;<code>xyzConfig</code>&#x88AB;Spring&#x589E;&#x5F3A;&#x4E86;&#xFF0C;&#x8FD9;&#x91CC;&#x5C31;&#x53EF;&#x80FD;&#x53D1;&#x751F;&#x4E86;&#x4EC0;&#x4E48;&#x4EE3;&#x7406;&#x884C;&#x4E3A;&#xFF1F;</li>
 </ol>
 <p><img src="../../imgs/configuration_05.png" alt=""></p>
-<h4 id="invokebeanfactorypostprocessorsbeanfactory"><code>invokeBeanFactoryPostProcessors(beanFactory);</code></h4>
+<h4 id="&#x91CD;&#x70B9;&#x5206;&#x6790;&#xFF1A;invokebeanfactorypostprocessorsbeanfactory">&#x91CD;&#x70B9;&#x5206;&#x6790;&#xFF1A;<code>invokeBeanFactoryPostProcessors(beanFactory);</code></h4>
 <pre class="language-"><code class="lang-java"><span class="token comment">/**
  * Instantiate and invoke all registered BeanFactoryPostProcessor beans,
  * respecting explicit order if given.
@@ -735,7 +766,7 @@ init <span class="token class-name">Y</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="&#x8FDB;&#x5165;postprocessorregistrationdelegate&#x5230;invokebeanfactorypostprocessors&#x65B9;&#x6CD5;">&#x8FDB;&#x5165;<code>PostProcessorRegistrationDelegate</code>&#x5230;<code>invokeBeanFactoryPostProcessors</code>&#x65B9;&#x6CD5;</h4>
+<h4 id="&#x7EE7;&#x7EED;&#x8FDB;&#x5165;postprocessorregistrationdelegate&#x7684;invokebeanfactorypostprocessors&#x65B9;&#x6CD5;">&#x7EE7;&#x7EED;&#x8FDB;&#x5165;<code>PostProcessorRegistrationDelegate</code>&#x7684;<code>invokeBeanFactoryPostProcessors</code>&#x65B9;&#x6CD5;</h4>
 <p>&#x5176;&#x4E2D;<code>beanFactoryPostProcessors</code>&#x662F;&#x7A7A;&#x7684;</p>
 <pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token keyword">void</span> <span class="token function">invokeBeanFactoryPostProcessors</span><span class="token punctuation">(</span>
             <span class="token class-name">ConfigurableListableBeanFactory</span> beanFactory<span class="token punctuation">,</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">BeanFactoryPostProcessor</span><span class="token punctuation">&gt;</span></span> beanFactoryPostProcessors<span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -754,7 +785,7 @@ init <span class="token class-name">Y</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="&#x8FDB;&#x5165;&#x5230;configurationclasspostprocessor&#x7C7B;&#x7684;postprocessbeandefinitionregistryregistry&#x65B9;&#x6CD5;">&#x8FDB;&#x5165;&#x5230;<code>ConfigurationClassPostProcessor</code>&#x7C7B;&#x7684;<code>postProcessBeanDefinitionRegistry(registry)</code>&#x65B9;&#x6CD5;</h4>
+<h4 id="&#x7EE7;&#x7EED;&#x8FDB;&#x5165;&#x5230;configurationclasspostprocessor&#x7C7B;&#x7684;postprocessbeandefinitionregistryregistry&#x65B9;&#x6CD5;">&#x7EE7;&#x7EED;&#x8FDB;&#x5165;&#x5230;<code>ConfigurationClassPostProcessor</code>&#x7C7B;&#x7684;<code>postProcessBeanDefinitionRegistry(registry)</code>&#x65B9;&#x6CD5;</h4>
 <pre class="language-"><code class="lang-java"><span class="token comment">/**
  * Derive further bean definitions from the configuration classes in the registry.
  */</span>
@@ -777,7 +808,7 @@ init <span class="token class-name">Y</span>
 <p><code>processConfigBeanDefinitions(registry);</code>&#x5904;&#x7406;&#x5982;&#x4E0B;</p>
 <ul>
 <li>&#x4F1A;&#x5224;&#x65AD;&#x662F;&#x5426;&#x6709;<code>@Configuration classes</code>&#xFF08;&#x672C;&#x4F8B;&#x6709;&#x4E14;&#x53EA;&#x6709;&#x4E00;&#x4E2A;<code>xyzConfig</code>bean&#xFF09;</li>
-<li>&#x83B7;&#x53D6;<code>Configuration</code>&#x914D;&#x7F6E;&#x7684;bean&#x52A0;&#x5165;&#x5230;<code>Set<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>BeanDefinitionHolder</span><span class="token punctuation">&gt;</span></span> candidates</code></li>
+<li>&#x83B7;&#x53D6;<code>Configuration</code>&#x914D;&#x7F6E;&#x7684;bean&#xFF0C;&#x5E76;&#x52A0;&#x5165;&#x5230;<code>Set<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>BeanDefinitionHolder</span><span class="token punctuation">&gt;</span></span> candidates</code></li>
 <li>&#x5BF9;<code>candidates</code>&#x4E2D;&#x7684;<code>BeanDefinitionHolder</code>&#x8FDB;&#x884C;&#x6821;&#x9A8C;&#x548C;bean&#x626B;&#x63CF;&#x52A0;&#x8F7D;</li>
 </ul>
 <h4 id="configuration&#x7684;beandefinition&#x6DFB;&#x52A0;&#x5168;&#x6CE8;&#x89E3;&#x5C5E;&#x6027;"><code>@Configuration</code>&#x7684;beanDefinition&#x6DFB;&#x52A0;<code>&#x5168;&#x6CE8;&#x89E3;</code>&#x5C5E;&#x6027;</h4>
@@ -795,11 +826,11 @@ init <span class="token class-name">Y</span>
 <span class="token punctuation">}</span>
 </code></pre>
 <ul>
-<li>&#x5728;&#x904D;&#x5386;<code>beanDefinitionMap</code>&#x4E2D;&#x7684;&#x5DF2;&#x7ECF;&#x52A0;&#x5165;&#x7684;&#x6240;&#x6709;bean&#x4E2D;&#xFF0C;&#x9010;&#x4E00;&#x904D;&#x5386;&#x5224;&#x65AD;&#x662F;&#x5426;&#x662F;<code>&#x5168;&#x6CE8;&#x89E3;</code>&#x7C7B;</li>
+<li>&#x5728;&#x904D;&#x5386;<code>beanDefinitionMap</code>&#x4E2D;&#x7684;&#x5DF2;&#x7ECF;&#x52A0;&#x5165;&#x7684;&#x6240;&#x6709;bean&#x4E2D;&#xFF0C;&#x4F1A;&#x9010;&#x4E00;&#x904D;&#x5386;&#x5224;&#x65AD;&#x662F;&#x5426;&#x662F;<code>&#x5168;&#x6CE8;&#x89E3;</code>&#x7C7B;&#xFF08;&#x662F;&#x5426;&#x52A0;&#x4E86;@Configuration&#xFF09;</li>
 <li>&#x7B2C;&#x4E00;&#x6B21;&#x5224;&#x65AD;&#x80AF;&#x5B9A;&#x4E0D;&#x662F;&#xFF0C;&#x56E0;&#x4E3A;<code>xyzConfig</code>&#x867D;&#x7136;&#x6709;<code>@Configuration</code>&#xFF0C;&#x4F46;&#x662F;&#x5E76;&#x6CA1;&#x6709;&#x8FDB;&#x884C;&#x4EFB;&#x4F55;&#x89E3;&#x6790;&#x548C;&#x8BBE;&#x7F6E;&#x64CD;&#x4F5C;</li>
-<li>&#x5224;&#x65AD;&#x4E0D;&#x662F;&#xFF0C;&#x800C;&#x540E;&#x7684;<code>checkConfigurationClassCandidate</code>&#x505A;&#x4E86;&#x64CD;&#x4F5C;</li>
+<li>&#x5224;&#x65AD;&#x4E0D;&#x662F;&#xFF0C;&#x800C;&#x540E;&#x7684;<code>checkConfigurationClassCandidate</code>&#x505A;&#x4E86;&#x64CD;&#x4F5C;&#xFF1F;</li>
 </ul>
-<h5 id="configurationclassutilscheckconfigurationclasscandidatebeandef-thismetadatareaderfactory">ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)</h5>
+<h5 id="&#x5206;&#x6790;&#xFF1A;configurationclassutilscheckconfigurationclasscandidatebeandef-thismetadatareaderfactory">&#x5206;&#x6790;&#xFF1A;ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)</h5>
 <pre class="language-"><code class="lang-java"><span class="token comment">/**
  * Check whether the given bean definition is a candidate for a configuration class
  * (or a nested component class declared within a configuration/component class,
@@ -812,13 +843,13 @@ init <span class="token class-name">Y</span>
         <span class="token class-name">BeanDefinition</span> beanDef<span class="token punctuation">,</span> <span class="token class-name">MetadataReaderFactory</span> metadataReaderFactory<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment">// isFullConfigurationCandidate &#x5224;&#x65AD;&#x8BED;&#x53E5;&#xFF1A;metadata.isAnnotated(Configuration.class.getName());</span>
     <span class="token comment">// &#x5224;&#x65AD;&#x662F;&#x5426;&#x6709;@Configuration,&#x8FD9;&#x91CC;&#x4F1A;&#x5224;&#x65AD;xyzConfig&#x7C7B;&#x662F;&#x4E00;&#x4E2A;&#x5168;&#x6CE8;&#x89E3;&#x7C7B;</span>
-    <span class="token comment">// &#x91CD;&#x65B0;&#x8BBE;&#x7F6E;&#x5168;&#x6CE8;&#x89E3;&#x7C7B;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x4E0B;&#x6B21;&#x5C31;&#x9700;&#x8981;&#x518D;checkConfigurationClassCandidate&#x4E86;</span>
+    <span class="token comment">// &#x91CD;&#x65B0;&#x8BBE;&#x7F6E;&#x5168;&#x6CE8;&#x89E3;&#x7C7B;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x4E0B;&#x6B21;&#x5C31;&#x4E0D;&#x9700;&#x8981;&#x518D;checkConfigurationClassCandidate&#x4E86;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isFullConfigurationCandidate</span><span class="token punctuation">(</span>metadata<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         beanDef<span class="token punctuation">.</span><span class="token function">setAttribute</span><span class="token punctuation">(</span>CONFIGURATION_CLASS_ATTRIBUTE<span class="token punctuation">,</span> CONFIGURATION_CLASS_FULL<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 </code></pre>
 <p><img src="../../imgs/configuration_10.png" alt=""></p>
-<h5 id="invokebeanfactorypostprocessorsregistryprocessors-beanfactory&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x4E86;&#x4EE3;&#x7406;"><code>invokeBeanFactoryPostProcessors(registryProcessors, beanFactory);</code>&#x65B9;&#x6CD5;&#x5B9E;&#x73B0;&#x4E86;&#x4EE3;&#x7406;</h5>
+<h5 id="postprocessorregistrationdelegateinvokebeanfactorypostprocessorsregistryprocessors-beanfactory&#x65B9;&#x6CD5;&#x6700;&#x540E;&#x5B9E;&#x73B0;&#x4E86;&#x4EE3;&#x7406;"><code>PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(registryProcessors, beanFactory);</code>&#x65B9;&#x6CD5;&#x6700;&#x540E;&#x5B9E;&#x73B0;&#x4E86;&#x4EE3;&#x7406;</h5>
 <p><img src="../../imgs/configuration_11.png" alt=""></p>
 <p>&#x5728;<code>ConfigurationClassPostProcessor</code>&#x7C7B;&#x4E2D;&#x770B;&#x5230;&#x4E86;<code>enhanceConfigurationClasses(beanFactory);</code></p>
 <pre class="language-"><code class="lang-java"><span class="token annotation punctuation">@Override</span>
@@ -839,17 +870,15 @@ init <span class="token class-name">Y</span>
     beanFactory<span class="token punctuation">.</span><span class="token function">addBeanPostProcessor</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">ImportAwareBeanPostProcessor</span><span class="token punctuation">(</span>beanFactory<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h5 id="&#x3010;&#x3011;enhanceconfigurationclassesbeanfactory&#x5B8C;&#x6210;&#x4E86;&#x5BF9;configuration&#x7C7B;&#x7684;cglib&#x4EE3;&#x7406;">&#x3010;*&#x3011;<code>enhanceConfigurationClasses(beanFactory);</code>&#x5B8C;&#x6210;&#x4E86;&#x5BF9;<code>@Configuration</code>&#x7C7B;&#x7684;Cglib&#x4EE3;&#x7406;</h5>
+<h5 id="&#x5728;&#x8FDB;&#x884C;enhanceconfigurationclassesbeanfactory&#x5B8C;&#x6210;&#x4E86;&#x5BF9;configuration&#x7C7B;&#x7684;cglib&#x4EE3;&#x7406;">&#x5728;&#x8FDB;&#x884C;<code>enhanceConfigurationClasses(beanFactory);</code>&#x5B8C;&#x6210;&#x4E86;&#x5BF9;<code>@Configuration</code>&#x7C7B;&#x7684;Cglib&#x4EE3;&#x7406;</h5>
 <ul>
-<li>debug&#x8FDB;&#x5165;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F1A;&#x5BF9;beanFactory&#x4E2D;&#x6240;&#x6709;bean&#x5224;&#x65AD;&#x662F;&#x5426;&#x662F;&#x5168;&#x6CE8;&#x89E3;</li>
+<li>debug&#x8FDB;&#x5165;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x770B;&#x5230;&#x4F1A;&#x5BF9;beanFactory&#x4E2D;&#x7684;&#x6240;&#x6709;bean&#x5224;&#x65AD;&#x662F;&#x5426;&#x662F;&#x5168;&#x6CE8;&#x89E3;</li>
 <li>&#x56E0;&#x4E3A;&#x4E4B;&#x524D;<code>xyzConfig</code>&#x662F;&#x5DF2;&#x7ECF;&#x8BBE;&#x7F6E;&#x4E86;&#x5168;&#x6CE8;&#x89E3;&#x7684;&#xFF0C;&#x6240;&#x4EE5;&#x8FD9;&#x91CC;&#x80AF;&#x5B9A;&#x5224;&#x65AD;&#x662F;&#xFF0C;&#x5E76;&#x52A0;&#x5165;&#x5230;<code>configBeanDefs</code></li>
-<li>&#x53EA;&#x8981;<code>configBeanDefs</code>&#x4E0D;&#x662F;&#x7A7A;&#xFF0C;&#x7A0B;&#x5E8F;&#x7EE7;&#x7EED;&#x8D70;&#xFF0C;&#x5C31;&#x6709;&#x4E86;&#x4EE3;&#x7406;&#xFF1B;&#x5982;&#x4E0B;&#x56FE;&#x7684;debug&#xFF0C;&#x5B9E;&#x65F6;&#x4E5F;&#x786E;&#x5B9E;&#x5982;&#x6B64;</li>
+<li>&#x53EA;&#x8981;<code>configBeanDefs</code>&#x4E0D;&#x662F;&#x7A7A;&#xFF0C;&#x7A0B;&#x5E8F;&#x7EE7;&#x7EED;&#x8D70;&#xFF0C;&#x5C31;&#x6709;&#x4E86;&#x4EE3;&#x7406;&#xFF1B;&#x5982;&#x4E0B;&#x56FE;&#x7684;debug&#xFF0C;&#x4E8B;&#x5B9E;&#x4E5F;&#x786E;&#x5B9E;&#x5982;&#x6B64;</li>
 </ul>
 <p><img src="../../imgs/configuration_12.png" alt=""></p>
-<ul>
-<li>&#x76F4;&#x63A5;new&#x4E86;<code>ConfigurationClassEnhancer</code>&#xFF08;&#x5373;&#x4F7F;&#x7528;&#x7684;&#x662F;Cglib&#x4EE3;&#x7406;&#xFF09;</li>
-<li>&#x8FD9;&#x91CC;&#x4E5F;&#x770B;&#x5230;&#x4E86;<code>xyzConfig</code>&#x5168;&#x6CE8;&#x89E3;bean&#x7684;<code>beanDefinitiond</code>&#x7684;<code>beanClass</code>&#x5C5E;&#x6027;&#x53D8;&#x6210;&#x4E86;&#x4EE3;&#x7406;&#x7C7B;</li>
-</ul>
+<h6 id="&#x76F4;&#x63A5;new&#x4E86;configurationclassenhancer&#xFF08;&#x8FDB;&#x884C;cglib&#x4EE3;&#x7406;&#x6539;&#x53D8;beanclass&#x5C5E;&#x6027;&#xFF09;">&#x76F4;&#x63A5;new&#x4E86;<code>ConfigurationClassEnhancer</code>&#xFF08;&#x8FDB;&#x884C;Cglib&#x4EE3;&#x7406;&#x6539;&#x53D8;beanClass&#x5C5E;&#x6027;&#xFF09;</h6>
+<p>&#x8FD9;&#x91CC;&#x770B;&#x5230;&#x4E86;<code>xyzConfig</code>&#x5168;&#x6CE8;&#x89E3;bean&#x7684;<code>beanDefinitiond</code>&#x7684;<code>beanClass</code>&#x5C5E;&#x6027;&#x53D8;&#x6210;&#x4E86;&#x4EE3;&#x7406;&#x7C7B;</p>
 <p><img src="../../imgs/configuration_13.png" alt=""></p>
 <pre class="language-"><code class="lang-java"><span class="token comment">/**
  * Post-processes a BeanFactory in search of Configuration class BeanDefinitions;
@@ -905,7 +934,8 @@ init <span class="token class-name">Y</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h4 id="&#x3010;&#x3011;processconfigbeandefinitionsregistry&#x5185;&#x7EE7;&#x7EED;debug&#x770B;x&#x65B9;&#x6CD5;&#x7684;bean&#x52A0;&#x8F7D;&#x5230;beandefinitionmap">&#x3010;*&#x3011;processConfigBeanDefinitions(registry);<code>&#x5185;&#x7EE7;&#x7EED;debug&#x770B;</code>x()<code>&#x65B9;&#x6CD5;&#x7684;</code>@Bean`&#x52A0;&#x8F7D;&#x5230;beanDefinitionMap</h4>
+<h4 id="config&#x7C7B;&#x7684;beanmethod&#x7684;bean&#x8986;&#x76D6;xy&#x7684;beandefinition">Config&#x7C7B;&#x7684;BeanMethod&#x7684;@Bean&#x8986;&#x76D6;x,y&#x7684;BeanDefinition</h4>
+<h5 id="processconfigbeandefinitionsregistry&#x5185;&#x7EE7;&#x7EED;debug&#x770B;x&#x65B9;&#x6CD5;&#x7684;bean&#x52A0;&#x8F7D;&#x5230;beandefinitionmap">processConfigBeanDefinitions(registry);<code>&#x5185;&#x7EE7;&#x7EED;debug&#x770B;</code>x()<code>&#x65B9;&#x6CD5;&#x7684;</code>@Bean`&#x52A0;&#x8F7D;&#x5230;beanDefinitionMap</h5>
 <p><img src="../../imgs/configuration_07.png" alt=""></p>
 <p><code>ConfigurationClassBeanDefinitionReader</code>&#x7C7B;&#x7684;<code>loadBeanDefinitionsForBeanMethod</code>&#x65B9;&#x6CD5;</p>
 <ul>
@@ -925,12 +955,12 @@ init <span class="token class-name">Y</span>
 <li>&#x6784;&#x9020;&#x5E76;&#x6CE8;&#x518C;<code>bean</code> x</li>
 </ul>
 <p><img src="../../imgs/configuration_08.png" alt=""></p>
-<h5 id="&#x5728;&#x7C7B;defaultlistablebeanfactory&#x7684;registerbeandefinition&#x65B9;&#x6CD5;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;beandefinitionmapputx-beandefinition">&#x5728;&#x7C7B;<code>DefaultListableBeanFactory</code>&#x7684;<code>registerBeanDefinition</code>&#x65B9;&#x6CD5;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;<code>beanDefinitionMap.put(&quot;x&quot;, beanDefinition)</code></h5>
+<h6 id="&#x5728;&#x7C7B;defaultlistablebeanfactory&#x7684;registerbeandefinition&#x65B9;&#x6CD5;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;beandefinitionmapputx-beandefinition">&#x5728;&#x7C7B;<code>DefaultListableBeanFactory</code>&#x7684;<code>registerBeanDefinition</code>&#x65B9;&#x6CD5;&#x4E2D;&#x53EF;&#x4EE5;&#x770B;&#x5230;<code>beanDefinitionMap.put(&quot;x&quot;, beanDefinition)</code></h6>
 <p><img src="../../imgs/configuration_09.png" alt=""></p>
-<h2 id="beandefinition&#x5168;&#x90E8;&#x5230;&#x4F4D;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x662F;&#x5355;&#x4F8B;bean&#x751F;&#x547D;&#x5468;&#x671F;&#x4E86;"><code>BeanDefinition</code>&#x5168;&#x90E8;&#x5230;&#x4F4D;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x5C31;&#x662F;&#x5355;&#x4F8B;bean&#x751F;&#x547D;&#x5468;&#x671F;&#x4E86;</h2>
+<h2 id="&#x5F53;beandefinition&#x5168;&#x90E8;&#x5230;&#x4F4D;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x7EE7;&#x7EED;refresh&#x65B9;&#x6CD5;&#xFF0C;&#x4F1A;&#x8D70;&#x5230;&#x5355;&#x4F8B;bean&#x751F;&#x547D;&#x5468;&#x671F;">&#x5F53;<code>BeanDefinition</code>&#x5168;&#x90E8;&#x5230;&#x4F4D;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x7EE7;&#x7EED;refresh&#x65B9;&#x6CD5;&#xFF0C;&#x4F1A;&#x8D70;&#x5230;&#x5355;&#x4F8B;bean&#x751F;&#x547D;&#x5468;&#x671F;</h2>
 <p>&#x53C2;&#x8003;&#x590D;&#x4E60;&#xFF1A;<a href="bean_life.html">&#x5355;&#x4F8B;bean&#x751F;&#x547D;&#x5468;&#x671F;</a></p>
 <footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
-2020-07-18 10:36:13
+2020-08-12 23:48:20
 </span></footer>
                                 
                                 </section>
@@ -963,7 +993,7 @@ init <span class="token class-name">Y</span>
                 </a>
                 
                 
-                <a href="transaction.html" class="navigation navigation-next " aria-label="Next page: 4 Spring 事务">
+                <a href="context.html" class="navigation navigation-next " aria-label="Next page: 3.8 ApplicationContext">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -974,7 +1004,7 @@ init <span class="token class-name">Y</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3.7 @Configuration","level":"1.4.7","depth":2,"next":{"title":"4 Spring 事务","level":"1.5","depth":1,"path":"doc/bean/transaction.md","ref":"doc/bean/transaction.md","articles":[{"title":"4.1 @Transactional","level":"1.5.1","depth":2,"path":"doc/bean/transaction_annotation.md","ref":"doc/bean/transaction_annotation.md","articles":[]}]},"previous":{"title":"3.6 BeanDefinition","level":"1.4.6","depth":2,"path":"doc/bean/bean_definition.md","ref":"doc/bean/bean_definition.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/configuration.md","mtime":"2020-07-18T02:36:13.255Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-07-26T12:21:17.590Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"3.7 @Configuration","level":"1.4.7","depth":2,"next":{"title":"3.8 ApplicationContext","level":"1.4.8","depth":2,"path":"doc/bean/context.md","ref":"doc/bean/context.md","articles":[]},"previous":{"title":"3.6 BeanDefinition","level":"1.4.6","depth":2,"path":"doc/bean/bean_definition.md","ref":"doc/bean/bean_definition.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/configuration.md","mtime":"2020-08-12T15:48:20.171Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-08-12T15:49:18.611Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
