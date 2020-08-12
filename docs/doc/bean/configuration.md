@@ -34,14 +34,26 @@ public class XyzConfig {
 * 测试输出如下(`X`,`Y`两个对象都只初始化一次)
 
 ```java
+@Test
+public void testXyzConfig(){
+    AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(XyzConfig.class);
+    X x = (X)ac.getBean("x");
+    Y y = (Y)ac.getBean("y");
+    Assert.assertTrue(x != null);
+    Assert.assertTrue(y != null);
+}
+```
+
+输出如下
+
+```java
 init X
 init Y
 ```
 
-* `@Configuration` 会代理`XyzConfig`对象，确定里面的`@Bean`是单例的
+* `XyzConfig`对象由于加上`@Configuration`后被代理了(否则输出绝对不会是上面的情况)
 
-
-* debug 查看`XyzConfig`Bean使用了Cglib代理
+* debug 查看`XyzConfig`Bean<font color='red'>使用了Cglib代理<font>
 
 ```java
 @Test
@@ -57,7 +69,7 @@ public void testXyzConfig(){
 
 ![](../../imgs/configuration_01.png)
 
-## `@Configuration`到底做了什么操作
+## `@Configuration`到底做了什么操作?
 
 常规思路：一步一步debug源码，可能的地方，断点反复看；不过还是需要一定基础和目标
 
@@ -151,26 +163,26 @@ public void registerBeanDefinition(String beanName, BeanDefinition beanDefinitio
     this.manualSingletonNames.remove(beanName);
 ```
 
-* 经过`register(annotatedClasses);`方法后，入下图
+#### 经过`register(annotatedClasses);`方法后:`xyzConfig`加入到了`beanDefinitionMap`
+
+如下图可以看到：
 
 1. `xyzConfig`的`BeanDefinition`已经加入到`BeanFactory`的`beanDefinitionMap`中了
 2. `Bean x, y` 还没有加入到`beanDefinitionMap`中
 3. `xyzConfig`的`BeanDefinition`看起来是`XyzConfig`类自身，没有什么代理
 
-
 ![](../../imgs/configuration_04.png)
-
 
 ### `refresh()`方法的`invokeBeanFactoryPostProcessors(beanFactory);`发生了`BeanDefinitionMap`的改变
 
 当debug执行完这一行后，发现`beanFactory`的`beanDefinitionMap`有变化，如下图
 
-1. bean x,y 加入到`beanDefinitionMap`中了
-2. 同时发现`xyzConfig`被Spring增强了，可能发生了什么代理行为
+1. bean x,y 已经加入到`beanDefinitionMap`中了
+2. 同时发现`xyzConfig`被Spring增强了，这里就可能发生了什么代理行为？
 
 ![](../../imgs/configuration_05.png)
 
-#### `invokeBeanFactoryPostProcessors(beanFactory);`
+#### 重点分析：`invokeBeanFactoryPostProcessors(beanFactory);`
 
 ```java
 /**
@@ -190,7 +202,7 @@ protected void invokeBeanFactoryPostProcessors(ConfigurableListableBeanFactory b
 }
 ```
 
-#### 进入`PostProcessorRegistrationDelegate`到`invokeBeanFactoryPostProcessors`方法
+#### 继续进入`PostProcessorRegistrationDelegate`的`invokeBeanFactoryPostProcessors`方法
 
 其中`beanFactoryPostProcessors`是空的
 
@@ -216,7 +228,7 @@ private static void invokeBeanDefinitionRegistryPostProcessors(
 }
 ```
 
-#### 进入到`ConfigurationClassPostProcessor`类的`postProcessBeanDefinitionRegistry(registry)`方法
+#### 继续进入到`ConfigurationClassPostProcessor`类的`postProcessBeanDefinitionRegistry(registry)`方法
 
 ```java
 /**
@@ -242,7 +254,7 @@ public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry registry) {
 `processConfigBeanDefinitions(registry);`处理如下
 
 * 会判断是否有`@Configuration classes`（本例有且只有一个`xyzConfig`bean）
-* 获取`Configuration`配置的bean加入到`Set<BeanDefinitionHolder> candidates`
+* 获取`Configuration`配置的bean，并加入到`Set<BeanDefinitionHolder> candidates`
 * 对`candidates`中的`BeanDefinitionHolder`进行校验和bean扫描加载
 
 #### `@Configuration`的beanDefinition添加`全注解`属性
@@ -262,11 +274,11 @@ for (String beanName : candidateNames) {
 }
 ```
 
-* 在遍历`beanDefinitionMap`中的已经加入的所有bean中，逐一遍历判断是否是`全注解`类
+* 在遍历`beanDefinitionMap`中的已经加入的所有bean中，会逐一遍历判断是否是`全注解`类（是否加了@Configuration）
 * 第一次判断肯定不是，因为`xyzConfig`虽然有`@Configuration`，但是并没有进行任何解析和设置操作
-* 判断不是，而后的`checkConfigurationClassCandidate`做了操作
+* 判断不是，而后的`checkConfigurationClassCandidate`做了操作？
 
-##### ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)
+##### 分析：ConfigurationClassUtils.checkConfigurationClassCandidate(beanDef, this.metadataReaderFactory)
 
 ```java
 /**
@@ -281,7 +293,7 @@ public static boolean checkConfigurationClassCandidate(
         BeanDefinition beanDef, MetadataReaderFactory metadataReaderFactory) {
 	// isFullConfigurationCandidate 判断语句：metadata.isAnnotated(Configuration.class.getName());
 	// 判断是否有@Configuration,这里会判断xyzConfig类是一个全注解类
-	// 重新设置全注解类的属性，下次就需要再checkConfigurationClassCandidate了
+	// 重新设置全注解类的属性，下次就不需要再checkConfigurationClassCandidate了
 	if (isFullConfigurationCandidate(metadata)) {
         beanDef.setAttribute(CONFIGURATION_CLASS_ATTRIBUTE, CONFIGURATION_CLASS_FULL);
     }
@@ -289,7 +301,7 @@ public static boolean checkConfigurationClassCandidate(
 
 ![](../../imgs/configuration_10.png)
 
-##### `invokeBeanFactoryPostProcessors(registryProcessors, beanFactory);`方法实现了代理
+##### `PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(registryProcessors, beanFactory);`方法最后实现了代理
 
 ![](../../imgs/configuration_11.png)
 
@@ -315,16 +327,17 @@ public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) 
 }
 ```
 
-#####【*】`enhanceConfigurationClasses(beanFactory);`完成了对`@Configuration`类的Cglib代理
+##### 在进行`enhanceConfigurationClasses(beanFactory);`完成了对`@Configuration`类的Cglib代理
 
-* debug进入方法可以看到会对beanFactory中所有bean判断是否是全注解
+* debug进入方法可以看到会对beanFactory中的所有bean判断是否是全注解
 * 因为之前`xyzConfig`是已经设置了全注解的，所以这里肯定判断是，并加入到`configBeanDefs`
-* 只要`configBeanDefs`不是空，程序继续走，就有了代理；如下图的debug，实时也确实如此
+* 只要`configBeanDefs`不是空，程序继续走，就有了代理；如下图的debug，事实也确实如此
 
 ![](../../imgs/configuration_12.png)
 
-* 直接new了`ConfigurationClassEnhancer`（即使用的是Cglib代理）
-* 这里也看到了`xyzConfig`全注解bean的`beanDefinitiond`的`beanClass`属性变成了代理类
+###### 直接new了`ConfigurationClassEnhancer`（进行Cglib代理改变beanClass属性）
+
+这里看到了`xyzConfig`全注解bean的`beanDefinitiond`的`beanClass`属性变成了代理类
 
 ![](../../imgs/configuration_13.png)
 
@@ -384,7 +397,9 @@ public void enhanceConfigurationClasses(ConfigurableListableBeanFactory beanFact
 }
 ```
 
-####【*】processConfigBeanDefinitions(registry);`内继续debug看`x()`方法的`@Bean`加载到beanDefinitionMap
+#### Config类的BeanMethod的@Bean覆盖x,y的BeanDefinition
+
+##### processConfigBeanDefinitions(registry);`内继续debug看`x()`方法的`@Bean`加载到beanDefinitionMap
 
 ![](../../imgs/configuration_07.png)
 
@@ -408,10 +423,10 @@ if (isOverriddenByExistingDefinition(beanMethod, beanName)) {
 
 ![](../../imgs/configuration_08.png)
 
-##### 在类`DefaultListableBeanFactory`的`registerBeanDefinition`方法中可以看到`beanDefinitionMap.put("x", beanDefinition)`
+###### 在类`DefaultListableBeanFactory`的`registerBeanDefinition`方法中可以看到`beanDefinitionMap.put("x", beanDefinition)`
 
 ![](../../imgs/configuration_09.png)
 
-## `BeanDefinition`全部到位后，接下来就是单例bean生命周期了
+## 当`BeanDefinition`全部到位后，接下来继续refresh方法，会走到单例bean生命周期
 
 参考复习：[单例bean生命周期](./bean_life.md)

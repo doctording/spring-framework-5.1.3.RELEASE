@@ -13,14 +13,15 @@
         * [3.3.1 Bean的作用域](doc/bean/bean_scope.md)
     * [3.4 FactoryBean接口](doc/bean/fatory_bean.md)
     * [3.5 AOP](doc/bean/aop.md)
-        * [3.5.1  AOP 和 AspectJ AOP ](doc/bean/aspectj.md)
+        * [3.5.1 AOP 和 AspectJ AOP](doc/bean/aspectj.md)
     * [3.6 BeanDefinition](doc/bean/bean_definition.md)
     * [3.7 @Configuration](doc/bean/configuration.md)
+    * [3.8 ApplicationContext](doc/bean/context.md)
 * [4 Spring 事务](doc/bean/transaction.md)  
     * [4.1 @Transactional](doc/bean/transaction_annotation.md)  
 * [5 MyBatis](doc/mybatis.md)
 * [6 SpringBoot](doc/springboot.md)
 * [7 其它问题总结]
-    * [5.1 Spring中的设计模式](doc/bean/design.md)        
+    * [7.1 Spring中的设计模式](doc/bean/design.md)        
 * [8 其它]
-    * [5.1 单词](./doc/other/words.md)
+    * [8.1 单词](./doc/other/words.md)

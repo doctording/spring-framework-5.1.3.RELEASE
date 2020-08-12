@@ -10,16 +10,15 @@ The FactoryBean interface is a point of pluggability into the Spring IoC contain
 
 The FactoryBean interface provides three methods:
 
-1. Object getObject(): Returns an instance of the object this factory creates. The instance can possibly be shared, depending on whether this factory returns singletons or prototypes.
+1. `Object getObject()`: Returns an instance of the object this factory creates. The instance can possibly be shared, depending on whether this factory returns singletons or prototypes.
 
-2. boolean isSingleton(): Returns true if this FactoryBean returns singletons or false otherwise.
+2. `boolean isSingleton()`: Returns true if this FactoryBean returns singletons or false otherwise.
 
-3. Class getObjectType(): Returns the object type returned by the getObject() method or null if the type is not known in advance.
+3. `Class getObjectType()`: Returns the object type returned by the getObject() method or null if the type is not known in advance.
 
 ## FactoryBean 实践
 
 * 实现一个`FactoryBean`
-
 
 ```java
 import org.springframework.beans.factory.FactoryBean;
@@ -71,7 +70,26 @@ public class MyGoFactoryBean implements FactoryBean<Go> {
 }
 ```
 
-* xml
+* GoEnum
+
+```java
+public enum GoEnum {
+	BIKE("bike"),
+	CAR("car");
+
+	String type;
+
+	GoEnum(String type) {
+		this.type = type;
+	}
+
+	public String getType() {
+		return type;
+	}
+}
+```
+
+* xml中定制bean
 
 ```java
 <bean id="go" class="com.mb.factory.MyGoFactoryBean">
@@ -90,4 +108,3 @@ public void testDependencySpring() {
     go.out();
 }
 ```
-

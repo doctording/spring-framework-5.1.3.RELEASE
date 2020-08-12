@@ -2,6 +2,8 @@
 
 ## 数据库事务
 
+### 事务的ACID
+
 1. A, Atomicity 事务中的全部操作在数据库中是不可分割的，要么全部完成，要么全部不执行
 2. C, Consistency 几个并行执行的事务，其执行结果必须与按某一顺序 串行执行的结果相一致
 3. I, Isolation 事务的执行不受其他事务的干扰，事务执行的中间结果对其他事务必须是透明的
@@ -9,7 +11,7 @@
 
 <a href="https://blog.csdn.net/qq_26437925/article/details/80270741" target="_blank">MySQL 四种隔离级别及测试</a>
 
-3个事务问题
+### 事务的一些问题
 
 1. 脏读：读取到了未提交事务的数据，比如未提交读就可能会产生这种数据
 
@@ -17,8 +19,7 @@
 
 3. 幻读：与不可重复读类似，幻读是两次查询的行个数不一样(针对的是insert操作)。幻读针对的是多行，不可重复读针对的是一行或者一个数据。
 
-
-4种隔离级别
+### 4种隔离级别
 
 * Read uncommitted (读未提交)：最低级别，任何情况都无法保证。
 
@@ -189,7 +190,7 @@ public interface PlatformTransactionManager {
 
 ###### DataSourceTransactionManager
 
-DataSourceTransactionManager 针对 JdbcTemplate,Mybatis 事务空寂，使用Connection进行事务控制
+DataSourceTransactionManager 针对 JdbcTemplate,Mybatis 事务，使用Connection进行事务控制
 
 * 开启事务：connection.setAutoCommit(false)
 * 提交事务：connection.commit

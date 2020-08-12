@@ -11,7 +11,7 @@
 | application | Scopes a single bean definition to the lifecycle of a ServletContext. Only valid in the context of a web-aware Spring ApplicationContext. | - |
 | websocket | Scopes a single bean definition to the lifecycle of a WebSocket. Only valid in the context of a web-aware Spring ApplicationContext. | - |
 
-## Spring 中的 singletion bean 的线程安全问题？
+## Spring 中的 singleton bean 的线程安全问题？
 
 存在线程问题;
 
