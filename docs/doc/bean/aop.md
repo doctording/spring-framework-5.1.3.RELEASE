@@ -1,11 +1,42 @@
-# AOP
+# Spring AOP
 
-## Spring AOP 各种概念
+## AOP的各种概念
 
 <a href="https://docs.spring.io/spring/docs/5.1.3.RELEASE/spring-framework-reference/core.html#aop" target="_blank">spring aop reference</a>
 
 ![](../../imgs/aop.png)
 
+* aop（aspect-oriented programming）面向切面编程 
+* aop是oop的补充和晚上，是相互配合关系
+* aop把软件系统分为两个部分：核型关注点和横切关注点
+
+### 为什么需要aop？
+
+公共行为：权限安全，日志记录，事务等功能；这些公共行为与业务逻辑耦合的
+
+* aop可以纵向处理
+* 可以将公共行为与业务逻辑分离，解耦合
+
+### aop应用场合？
+
+AOP用来封装横切关注点，具体可以在下面的场景中使用
+
+* Authentication 权限
+* Caching 缓存
+* Context passing 内容传递
+* Error handling 错误处理
+* Lazy loading 懒加载
+* Debugging 调试
+* logging, tracing, profiling and monitoring 记录跟踪 优化 校准
+* Performance optimization 性能优化
+* Persistence 持久化
+* Resource pooling 资源池
+* Synchronization 同步
+* Transactions 事务
+
+## Spring aop
+
+![](../../imgs/aspect_spring.png)
 
 * Aspect
 
@@ -36,7 +67,7 @@ A predicate that matches join points. Advice is associated with a pointcut expre
 
  Declaring additional methods or fields on behalf of a type. Spring AOP lets you introduce new interfaces (and a corresponding implementation) to any advised object. For example, you could use an introduction to make a bean implement an IsModified interface, to simplify caching. (An introduction is known as an inter-type declaration in the AspectJ community.)
 
-* Target object
+* Target object（目标对象）
 
 An object being advised by one or more aspects. Also referred to as the “advised object”. Since Spring AOP is implemented by using runtime proxies, this object is always a proxied object.
 
@@ -115,6 +146,7 @@ public Object postProcessAfterInitialization(@Nullable Object bean, String beanN
 }
 ```
 
+## 默认jdk动态代理(可以配置使用cglib代理)
 
 ```java
 Object proxy = createProxy(bean.getClass(), beanName, specificInterceptors, new SingletonTargetSource(bean));
@@ -145,4 +177,9 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
 			return new JdkDynamicAopProxy(config);
 		}
 	}
+	
+}
 ```
+
+* 如果目标对象有实现接口，则使用 JDK 代理，反之使用 CGLIB 
+* 如果目标类没有实现接口，且 class 为 final 修饰的，则不能进行 Spring AOP

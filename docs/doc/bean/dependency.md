@@ -353,19 +353,19 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
     2. new A(); // 原始对象
     3. populateBean（依赖注入）--> 单例池中找B --> 找不到 --> 创建B
     4. initializeBean
-        *  BeanPostProcessor
+        * BeanPostProcessor
     5. 完成并添加到单例池中
-    
+
 * Bean生命周期 B
     1. class --- BeanDefinition
     2. new B(); // 原始对象
     3. populateBean（依赖注入）--> 单例池中找A --> 找不到 --> 三级缓存中能找到 --> lambda(A) --> 提前得到代理A
     4. initializeBean
-        *  BeanPostProcessor
+        * BeanPostProcessor
     5. 完成并添加到单例池中
-    
-    
-按照如上，如果只有 一级缓存 和 三级缓存，能够解决A,B依赖问题，接着又来了个C(且依赖A)；如果按照上面B的逻辑，那么可以发现`lambda(A)`会再次被执行，这可能导致B，C执行后获取的代理A**不一致**
+
+
+按照如上，如果只有 一级缓存 和 三级缓存，能够解决A,B依赖问题，接着又来了个C(且依赖A)；如果按照上面B的逻辑，那么可以发现`lambda(A)`会再次被执行，这可能导致B，C执行后获取的代理A**不一致**,如下(C也执行工厂方法得到代理A)
 
 * Bean生命周期 C
     1. class --- BeanDefinition
@@ -375,11 +375,14 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
         *  BeanPostProcessor
     5. 完成并添加到单例池中
 
-所以再来一个缓存, 将代理对象也缓存起来，所以最后是三级缓存
+所以再来一个缓存, 将工厂产生的代理对象A也缓存起来，所以最后是三个缓存(且备注了其用途)
 
-1. `单例池`
-2. `map<beanName, 代理bean>`
-3. `map<beanName, lambda(原始对象)>`
+1. singletonObjects: `单例池`：单例对象实例化一次，缓存最后的代理bean成品
+2. earlySingletonObjects: `map<beanName, 代理bean>`：解决性能问题？B,C,D都依赖A,工厂产生是开销的,且是重复的工厂创建，显然可以缓存好
+3. singletonFactories: `map<beanName, lambda(原始对象)>`：bean工厂能够任意操作bean，解决循环依赖(提前暴露工厂，产生代理bean，属性注入)
+
+完成populateBean之前，产生工厂，工厂能够产生bean。为什么是工厂？
+* 答: 因为populateBean拿到的依赖bean是原始的，显然依赖注入要是最后的代理品，而工厂能够让bean升华这个bean，变成最后的代理类（因为populateBean之后会有代理行为）
 
 参考：bilibili 子路老师
 

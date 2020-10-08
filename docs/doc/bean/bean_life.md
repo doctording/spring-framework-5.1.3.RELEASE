@@ -82,3 +82,4 @@ fullBean.getName ( bean的使用)
 * 单例Bean生命周期
 
 ![](../../imgs/bean_life.png)
+
