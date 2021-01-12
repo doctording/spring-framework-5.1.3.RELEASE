@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>3.5 AOP · spring-note</title>
+        <title>Spring AOP · spring-note</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -92,8 +92,6 @@
     <link rel="next" href="aspectj.html" />
     
     
-    <link rel="prev" href="fatory_bean.html" />
-    
 
     </head>
     <body>
@@ -139,7 +137,7 @@
                 <a href="../target.html">
             
                     
-                    1 前言
+                    前言
             
                 </a>
             
@@ -152,7 +150,7 @@
                 <span>
             
                     
-                    [2 ClassPathXmlApplicationContext Demo 引入]
+                    [ClassPathXmlApplicationContext Demo 引入]
             
                 </span>
             
@@ -172,14 +170,15 @@
             
 
             
-        </li>
+            <ul class="articles">
+                
     
-        <li class="chapter " data-level="1.3.2" data-path="../test/code_review.html">
+        <li class="chapter " data-level="1.3.1.1" data-path="../test/code_review.html">
             
                 <a href="../test/code_review.html">
             
                     
-                    2.2 执行流程源码走读
+                    2.2 执行流程:refresh的12个方法
             
                 </a>
             
@@ -187,7 +186,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="../test/bean_constructor.html">
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../test/bean_constructor.html">
             
                 <a href="../test/bean_constructor.html">
             
@@ -210,7 +214,7 @@
                 <span>
             
                     
-                    [3 Ioc & Aop]
+                    [Ioc & Aop]
             
                 </span>
             
@@ -219,12 +223,26 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="ioc_bean.html">
+        <li class="chapter " data-level="1.4.1" >
+            
+                <span>
+            
+                    
+                    [Ioc & Bean]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="ioc_bean.html">
             
                 <a href="ioc_bean.html">
             
                     
-                    3.1 Ioc & Bean概念
+                    Ioc & BeanDefinition
             
                 </a>
             
@@ -233,12 +251,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1.1" data-path="BeanFactory.html">
+        <li class="chapter " data-level="1.4.1.1.1" data-path="BeanFactory.html">
             
                 <a href="BeanFactory.html">
             
                     
-                    3.1.1 BeanFactory接口
+                    BeanFactory接口
             
                 </a>
             
@@ -246,137 +264,283 @@
             
         </li>
     
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.2" data-path="dependency.html">
-            
-                <a href="dependency.html">
-            
-                    
-                    3.2 Spring循环依赖具体执行流程
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.3" data-path="bean_life.html">
-            
-                <a href="bean_life.html">
-            
-                    
-                    3.3 Bean生命周期
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.4.3.1" data-path="bean_scope.html">
-            
-                <a href="bean_scope.html">
-            
-                    
-                    3.3.1 Bean的作用域
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.4" data-path="fatory_bean.html">
-            
-                <a href="fatory_bean.html">
-            
-                    
-                    3.4 FactoryBean接口
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.4.5" data-path="aop.html">
-            
-                <a href="aop.html">
-            
-                    
-                    3.5 AOP
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.4.5.1" data-path="aspectj.html">
-            
-                <a href="aspectj.html">
-            
-                    
-                    3.5.1 AOP 和 AspectJ AOP
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.6" data-path="bean_definition.html">
-            
-                <a href="bean_definition.html">
-            
-                    
-                    3.6 BeanDefinition
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.7" data-path="configuration.html">
-            
-                <a href="configuration.html">
-            
-                    
-                    3.7 @Configuration
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.8" data-path="context.html">
+        <li class="chapter " data-level="1.4.1.1.2" data-path="context.html">
             
                 <a href="context.html">
             
                     
-                    3.8 ApplicationContext
+                    ApplicationContext & BeanFactory
             
                 </a>
             
 
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.1.3" data-path="context_event.html">
+            
+                <a href="context_event.html">
+            
+                    
+                    事件发布和监听机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" >
+            
+                <span>
+            
+                    
+                    [Bean]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.1" data-path="bean_life.html">
+            
+                <a href="bean_life.html">
+            
+                    
+                    Bean生命周期&回调
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.1.1" data-path="bean_scope.html">
+            
+                <a href="bean_scope.html">
+            
+                    
+                    Bean的作用域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.1.2" data-path="fatory_bean.html">
+            
+                <a href="fatory_bean.html">
+            
+                    
+                    FactoryBean接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.1.3" data-path="lazy.html">
+            
+                <a href="lazy.html">
+            
+                    
+                    懒加载bean
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.2" data-path="ioc_bean_dependency.html">
+            
+                <a href="ioc_bean_dependency.html">
+            
+                    
+                    Bean 依赖
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.2.1" data-path="dependency.html">
+            
+                <a href="dependency.html">
+            
+                    
+                    Spring循环依赖具体执行流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.3" data-path="post_processor.html">
+            
+                <a href="post_processor.html">
+            
+                    
+                    BeanFactoryPostProcessor & BeanDefinitionRegistryPostProcessor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.3.1" data-path="configuration.html">
+            
+                <a href="configuration.html">
+            
+                    
+                    @Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.3.2" data-path="mapper_scan.html">
+            
+                <a href="mapper_scan.html">
+            
+                    
+                    @MapperScan 原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.4" data-path="bean_post_processor.html">
+            
+                <a href="bean_post_processor.html">
+            
+                    
+                    BeanPostProcessor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.4.1" data-path="bean_constructor.html">
+            
+                <a href="bean_constructor.html">
+            
+                    
+                    推断构造方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.5" data-path="ioc_bean_auto.html">
+            
+                <a href="ioc_bean_auto.html">
+            
+                    
+                    自动装配 & @Autowired
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    [AOP]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.4.2.1" data-path="aop.html">
+            
+                <a href="aop.html">
+            
+                    
+                    Spring AOP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="aspectj.html">
+            
+                <a href="aspectj.html">
+            
+                    
+                    CGLIB & AOP代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -390,7 +554,7 @@
                 <a href="transaction.html">
             
                     
-                    4 Spring 事务
+                    Spring 事务
             
                 </a>
             
@@ -404,7 +568,7 @@
                 <a href="transaction_annotation.html">
             
                     
-                    4.1 @Transactional
+                    @Transactional
             
                 </a>
             
@@ -422,11 +586,30 @@
                 <a href="../mybatis.html">
             
                     
-                    5 MyBatis
+                    MyBatis手写
             
                 </a>
             
 
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../mybatis_source.html">
+            
+                <a href="../mybatis_source.html">
+            
+                    
+                    MyBatis源码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -435,11 +618,30 @@
                 <a href="../springboot.html">
             
                     
-                    6 SpringBoot
+                    SpringMvc & SpringBoot
             
                 </a>
             
 
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../springboot_starter.html">
+            
+                <a href="../springboot_starter.html">
+            
+                    
+                    SpringBoot启动原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -448,7 +650,7 @@
                 <span>
             
                     
-                    [7 其它问题总结]
+                    [其它问题总结]
             
                 </span>
             
@@ -480,7 +682,7 @@
                 <span>
             
                     
-                    [8 其它]
+                    [其它]
             
                 </span>
             
@@ -537,7 +739,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >3.5 AOP</a>
+        <a href="../.." >Spring AOP</a>
     </h1>
 </div>
 
@@ -558,9 +760,13 @@
 <li><div><a href="#aop&#x7684;&#x5404;&#x79CD;&#x6982;&#x5FF5;">AOP&#x7684;&#x5404;&#x79CD;&#x6982;&#x5FF5;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
 <ul>
 <li><div><a href="#&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;aop&#xFF1F;">&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;aop&#xFF1F;</a><i></i></div></li>
-<li><div><a href="#aop&#x5E94;&#x7528;&#x573A;&#x5408;&#xFF1F;">aop&#x5E94;&#x7528;&#x573A;&#x5408;&#xFF1F;</a><i></i></div></li>
+<li><div><a href="#aop&#x5E94;&#x7528;&#x573A;&#x5408;&#xFF1F;&#x6A2A;&#x5207;&#x6027;&#x95EE;&#x9898;&#xFF1F;">aop&#x5E94;&#x7528;&#x573A;&#x5408;&#xFF1F;&#x6A2A;&#x5207;&#x6027;&#x95EE;&#x9898;&#xFF1F;</a><i></i></div></li>
 </ul></li>
-<li><div><a href="#spring-aop">Spring aop</a><i></i></div></li>
+<li><div><a href="#spring-aop">Spring aop</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#spring-aop-&#x672F;&#x8BED;">Spring aop &#x672F;&#x8BED;</a><i></i></div></li>
+<li><div><a href="#spring-aop-&#x901A;&#x77E5;&#x7C7B;&#x578B;">Spring aop &#x901A;&#x77E5;&#x7C7B;&#x578B;</a><i></i></div></li>
+</ul></li>
 <li><div><a href="#&#x65AD;&#x70B9;&#x8C03;&#x8BD5;&#x6280;&#x5DE7;">&#x65AD;&#x70B9;&#x8C03;&#x8BD5;&#x6280;&#x5DE7;</a><i></i></div></li>
 <li><div><a href="#&#x76EE;&#x6807;&#x5BF9;&#x8C61;-&#x300B;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;">&#x76EE;&#x6807;&#x5BF9;&#x8C61; =&#x300B;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;</a><i></i></div></li>
 <li><div><a href="#&#x9ED8;&#x8BA4;jdk&#x52A8;&#x6001;&#x4EE3;&#x7406;&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x4F7F;&#x7528;cglib&#x4EE3;&#x7406;">&#x9ED8;&#x8BA4;jdk&#x52A8;&#x6001;&#x4EE3;&#x7406;(&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x4F7F;&#x7528;cglib&#x4EE3;&#x7406;)</a><i></i></div></li>
@@ -573,8 +779,8 @@
 <p><a href="https://docs.spring.io/spring/docs/5.1.3.RELEASE/spring-framework-reference/core.html#aop" target="_blank">spring aop reference</a></p>
 <p><img src="../../imgs/aop.png" alt=""></p>
 <ul>
-<li>aop&#xFF08;aspect-oriented programming&#xFF09;&#x9762;&#x5411;&#x5207;&#x9762;&#x7F16;&#x7A0B; </li>
-<li>aop&#x662F;oop&#x7684;&#x8865;&#x5145;&#x548C;&#x665A;&#x4E0A;&#xFF0C;&#x662F;&#x76F8;&#x4E92;&#x914D;&#x5408;&#x5173;&#x7CFB;</li>
+<li>aop&#xFF08;aspect-oriented programming&#xFF09;&#x9762;&#x5411;&#x5207;&#x9762;&#x7F16;&#x7A0B;</li>
+<li>aop&#x662F;oop&#x7684;&#x8865;&#x5145;&#x548C;&#x5B8C;&#x5584;&#xFF0C;&#x662F;&#x76F8;&#x4E92;&#x914D;&#x5408;&#x5173;&#x7CFB;</li>
 <li>aop&#x628A;&#x8F6F;&#x4EF6;&#x7CFB;&#x7EDF;&#x5206;&#x4E3A;&#x4E24;&#x4E2A;&#x90E8;&#x5206;&#xFF1A;&#x6838;&#x578B;&#x5173;&#x6CE8;&#x70B9;&#x548C;&#x6A2A;&#x5207;&#x5173;&#x6CE8;&#x70B9;</li>
 </ul>
 <h3 id="&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;aop&#xFF1F;">&#x4E3A;&#x4EC0;&#x4E48;&#x9700;&#x8981;aop&#xFF1F;</h3>
@@ -583,8 +789,8 @@
 <li>aop&#x53EF;&#x4EE5;&#x7EB5;&#x5411;&#x5904;&#x7406;</li>
 <li>&#x53EF;&#x4EE5;&#x5C06;&#x516C;&#x5171;&#x884C;&#x4E3A;&#x4E0E;&#x4E1A;&#x52A1;&#x903B;&#x8F91;&#x5206;&#x79BB;&#xFF0C;&#x89E3;&#x8026;&#x5408;</li>
 </ul>
-<h3 id="aop&#x5E94;&#x7528;&#x573A;&#x5408;&#xFF1F;">aop&#x5E94;&#x7528;&#x573A;&#x5408;&#xFF1F;</h3>
-<p>AOP&#x7528;&#x6765;&#x5C01;&#x88C5;&#x6A2A;&#x5207;&#x5173;&#x6CE8;&#x70B9;&#xFF0C;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x5728;&#x4E0B;&#x9762;&#x7684;&#x573A;&#x666F;&#x4E2D;&#x4F7F;&#x7528;</p>
+<h3 id="aop&#x5E94;&#x7528;&#x573A;&#x5408;&#xFF1F;&#x6A2A;&#x5207;&#x6027;&#x95EE;&#x9898;&#xFF1F;">aop&#x5E94;&#x7528;&#x573A;&#x5408;&#xFF1F;&#x6A2A;&#x5207;&#x6027;&#x95EE;&#x9898;&#xFF1F;</h3>
+<p>AOP&#x7528;&#x6765;&#x5C01;&#x88C5;<strong>&#x6A2A;&#x5207;</strong>&#x5173;&#x6CE8;&#x70B9;&#xFF0C;&#x5177;&#x4F53;&#x53EF;&#x4EE5;&#x5728;&#x4E0B;&#x9762;&#x7684;&#x573A;&#x666F;&#x4E2D;&#x4F7F;&#x7528;</p>
 <ul>
 <li>Authentication &#x6743;&#x9650;</li>
 <li>Caching &#x7F13;&#x5B58;</li>
@@ -592,7 +798,7 @@
 <li>Error handling &#x9519;&#x8BEF;&#x5904;&#x7406;</li>
 <li>Lazy loading &#x61D2;&#x52A0;&#x8F7D;</li>
 <li>Debugging &#x8C03;&#x8BD5;</li>
-<li>logging, tracing, profiling and monitoring &#x8BB0;&#x5F55;&#x8DDF;&#x8E2A; &#x4F18;&#x5316; &#x6821;&#x51C6;</li>
+<li>logging, tracing, profiling and monitoring &#x65E5;&#x5FD7; &#x8BB0;&#x5F55;&#x8DDF;&#x8E2A; &#x4F18;&#x5316; &#x6821;&#x51C6;</li>
 <li>Performance optimization &#x6027;&#x80FD;&#x4F18;&#x5316;</li>
 <li>Persistence &#x6301;&#x4E45;&#x5316;</li>
 <li>Resource pooling &#x8D44;&#x6E90;&#x6C60;</li>
@@ -600,25 +806,27 @@
 <li>Transactions &#x4E8B;&#x52A1;</li>
 </ul>
 <h2 id="spring-aop">Spring aop</h2>
+<h3 id="spring-aop-&#x672F;&#x8BED;">Spring aop &#x672F;&#x8BED;</h3>
 <p><img src="../../imgs/aspect_spring.png" alt=""></p>
 <ul>
-<li><p>Aspect</p>
-</li>
-<li><p>Join point(&#x8FDE;&#x63A5;&#x70B9;)</p>
-</li>
+<li>Aspect</li>
+</ul>
+<p>&#x901A;&#x5E38;&#x4E00;&#x4E2A;&#x7C7B;<code>@Aspect</code></p>
+<ul>
+<li>Join point(&#x8FDE;&#x63A5;&#x70B9;)</li>
 </ul>
 <p>A point during the execution of a program, such as the execution of a method or the handling of an exception. In Spring AOP, a join point always represents a method execution.</p>
-<p>&#x901A;&#x5E38;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x6267;&#x884C;&#x7684;&#x65B9;&#x6CD5;</p>
+<p>&#x901A;&#x5E38;&#x5C31;&#x662F;&#x4E00;&#x4E2A;&#x6267;&#x884C;&#x7684;<strong>&#x65B9;&#x6CD5;</strong></p>
 <ul>
 <li>Advice(&#x589E;&#x5F3A;&#x5668;)</li>
 </ul>
 <p>Action taken by an aspect at a particular join point. Different types of advice include &#x201C;around&#x201D;, &#x201C;before&#x201D; and &#x201C;after&#x201D; advice. (Advice types are discussed later.) Many AOP frameworks, including Spring, model an advice as an interceptor and maintain a chain of interceptors around the join point.</p>
-<p>&#x5728;&#x7279;&#x5B9A;&#x7684;join point&#x589E;&#x5F3A;</p>
-<pre class="language-"><code>1. Before
-2. After
-3. AfterReturn
-4. AfterThrowing
-5. Around
+<p>&#x5728;&#x7279;&#x5B9A;&#x7684;Join point&#x589E;&#x5F3A;</p>
+<pre class="language-"><code>1. Before&#xFF1A;&#x524D;&#x7F6E;&#x901A;&#x77E5;&#xFF0C;&#x5728;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x524D;&#x88AB;&#x8C03;&#x7528;
+2. After&#xFF1A;&#x5728;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x4E4B;&#x540E;&#x8C03;&#x7528;&#x7684;&#x901A;&#x77E5;&#xFF0C;&#x65E0;&#x8BBA;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x662F;&#x5426;&#x6210;&#x529F;
+3. AfterReturn&#xFF1A;&#x4EC5;&#x5F53;&#x65B9;&#x6CD5;&#x6210;&#x529F;&#x5B8C;&#x6210;&#x540E;&#x6267;&#x884C;&#x7684;&#x901A;&#x77E5;
+4. AfterThrowing&#xFF1A;&#x5728;&#x65B9;&#x6CD5;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x9000;&#x51FA;&#x65F6;&#x6267;&#x884C;&#x7684;&#x901A;&#x77E5;
+5. Around&#xFF1A;&#x5728;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x4E4B;&#x524D;&#x548C;&#x4E4B;&#x540E;&#x8C03;&#x7528;&#x7684;&#x901A;&#x77E5;
 </code></pre><ul>
 <li>Pointcut(&#x5207;&#x70B9;)</li>
 </ul>
@@ -628,12 +836,14 @@
 <li><p>Introduction</p>
 <p>Declaring additional methods or fields on behalf of a type. Spring AOP lets you introduce new interfaces (and a corresponding implementation) to any advised object. For example, you could use an introduction to make a bean implement an IsModified interface, to simplify caching. (An introduction is known as an inter-type declaration in the AspectJ community.)</p>
 </li>
-<li><p>Target object&#xFF08;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#xFF09;</p>
+<li><p>Target object&#xFF08;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#xFF0C;&#x88AB;&#x4EE3;&#x7406;&#x7684;&#x5BF9;&#x8C61;&#xFF0C;&#x539F;&#x5BF9;&#x8C61;&#xFF09;</p>
 </li>
 </ul>
 <p>An object being advised by one or more aspects. Also referred to as the &#x201C;advised object&#x201D;. Since Spring AOP is implemented by using runtime proxies, this object is always a proxied object.</p>
-<p>&#x589E;&#x5F3A;&#x5BF9;&#x8C61;(&#x65B0;&#x5BF9;&#x8C61;&#xFF0C;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;)&#xFF0C;&#x88AB;&#x589E;&#x5F3A;&#x7684;&#x90A3;&#x4E2A;&#x539F;&#x59CB;&#x5BF9;&#x8C61;&#x5C31;&#x662F;<code>Target object</code></p>
-<ul>
+<p>&#x589E;&#x5F3A;&#x5BF9;&#x8C61;(&#x65B0;&#x5BF9;&#x8C61;&#xFF0C;&#x4EE3;&#x7406;&#x5BF9;&#x8C61;)&#x4E5F;&#x53EB;this&#xFF0C;&#x800C;&#x88AB;&#x589E;&#x5F3A;&#x7684;&#x90A3;&#x4E2A;&#x539F;&#x59CB;&#x5BF9;&#x8C61;&#x5C31;&#x662F;<code>Target object</code></p>
+<pre class="language-"><code>Jdk&#x52A8;&#x6001;&#x4EE3;&#x7406;&#xFF1A;this &#x548C; target&#x662F;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;&#x5173;&#x7CFB;&#xFF0C;this&#x548C;target&#x4E0D;&#x76F8;&#x540C;
+cglib&#x4EE3;&#x7406;&#xFF1A;this &#x662F; target&#x7684;&#x5B50;&#x7C7B;&#xFF0C;this&#x548C;target&#x76F8;&#x540C;
+</code></pre><ul>
 <li>AOP proxy</li>
 </ul>
 <p>An object created by the AOP framework in order to implement the aspect contracts (advise method executions and so on). In the Spring Framework, an AOP proxy is a JDK dynamic proxy or a CGLIB proxy.</p>
@@ -641,6 +851,17 @@
 <li>Weaving</li>
 </ul>
 <p>linking aspects with other application types or objects to create an advised object. This can be done at compile time (using the AspectJ compiler, for example), load time, or at runtime. Spring AOP, like other pure Java AOP frameworks, performs weaving at runtime.</p>
+<h3 id="spring-aop-&#x901A;&#x77E5;&#x7C7B;&#x578B;">Spring aop &#x901A;&#x77E5;&#x7C7B;&#x578B;</h3>
+<ul>
+<li>&#x524D;&#x7F6E;&#x901A;&#x77E5;&#xFF08;Before advice&#xFF09;&#xFF1A;&#x5728;&#x67D0;&#x8FDE;&#x63A5;&#x70B9;&#x4E4B;&#x524D;&#x6267;&#x884C;&#x7684;&#x901A;&#x77E5;&#xFF0C;&#x4F46;&#x8FD9;&#x4E2A;&#x901A;&#x77E5;&#x4E0D;&#x80FD;&#x963B;&#x6B62;&#x8FDE;&#x63A5;&#x70B9;&#x4E4B;&#x524D;&#x7684;&#x6267;&#x884C;&#x6D41;&#x7A0B;&#xFF08;&#x9664;&#x975E;&#x5B83;&#x629B;&#x51FA;&#x4E00;&#x4E2A;&#x5F02;&#x5E38;&#xFF09;&#x3002;</li>
+<li>&#x540E;&#x7F6E;&#x901A;&#x77E5;&#xFF08;After returning advice&#xFF09;&#xFF1A;&#x5728;&#x67D0;&#x8FDE;&#x63A5;&#x70B9;&#x6B63;&#x5E38;&#x5B8C;&#x6210;&#x540E;&#x6267;&#x884C;&#x7684;&#x901A;&#x77E5;&#xFF1A;&#x4F8B;&#x5982;&#xFF0C;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x6CA1;&#x6709;&#x629B;&#x51FA;&#x4EFB;&#x4F55;&#x5F02;&#x5E38;&#xFF0C;&#x6B63;&#x5E38;&#x8FD4;&#x56DE;&#x3002;</li>
+<li>&#x5F02;&#x5E38;&#x901A;&#x77E5;&#xFF08;After throwing advice&#xFF09;&#xFF1A;&#x5728;&#x65B9;&#x6CD5;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x9000;&#x51FA;&#x65F6;&#x6267;&#x884C;&#x7684;&#x901A;&#x77E5;&#x3002;</li>
+<li>&#x6700;&#x7EC8;&#x901A;&#x77E5;&#xFF08;After (finally) advice&#xFF09;&#xFF1A;&#x5F53;&#x67D0;&#x8FDE;&#x63A5;&#x70B9;&#x9000;&#x51FA;&#x7684;&#x65F6;&#x5019;&#x6267;&#x884C;&#x7684;&#x901A;&#x77E5;&#xFF08;&#x4E0D;&#x8BBA;&#x662F;&#x6B63;&#x5E38;&#x8FD4;&#x56DE;&#x8FD8;&#x662F;&#x5F02;&#x5E38;&#x9000;&#x51FA;&#xFF09;&#x3002;</li>
+<li>&#x73AF;&#x7ED5;&#x901A;&#x77E5;&#xFF08;Around Advice&#xFF09;&#xFF1A;&#x5305;&#x56F4;&#x4E00;&#x4E2A;&#x8FDE;&#x63A5;&#x70B9;&#x7684;&#x901A;&#x77E5;&#xFF0C;&#x5982;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x3002;&#x8FD9;&#x662F;&#x6700;&#x5F3A;&#x5927;&#x7684;&#x4E00;&#x79CD;&#x901A;&#x77E5;&#x7C7B;&#x578B;&#x3002;&#x73AF;&#x7ED5;&#x901A;&#x77E5;&#x53EF;&#x4EE5;&#x5728;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x524D;&#x540E;&#x5B8C;&#x6210;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x884C;&#x4E3A;&#x3002;&#x5B83;&#x4E5F;&#x4F1A;&#x9009;&#x62E9;&#x662F;&#x5426;&#x7EE7;&#x7EED;&#x6267;&#x884C;&#x8FDE;&#x63A5;&#x70B9;&#x6216;&#x76F4;&#x63A5;&#x8FD4;&#x56DE;&#x5B83;&#x81EA;&#x5DF1;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x6216;&#x629B;&#x51FA;&#x5F02;&#x5E38;&#x6765;&#x7ED3;&#x675F;&#x6267;&#x884C;&#x3002;</li>
+</ul>
+<p>&#x73AF;&#x7ED5;&#x901A;&#x77E5;&#x662F;&#x6700;&#x5E38;&#x7528;&#x7684;&#x901A;&#x77E5;&#x7C7B;&#x578B;&#x3002;&#x548C;AspectJ&#x4E00;&#x6837;&#xFF0C;Spring&#x63D0;&#x4F9B;&#x6240;&#x6709;&#x7C7B;&#x578B;&#x7684;&#x901A;&#x77E5;&#xFF0C;&#x6211;&#x4EEC;&#x63A8;&#x8350;&#x4F60;&#x4F7F;&#x7528;&#x5C3D;&#x53EF;&#x80FD;&#x7B80;&#x5355;&#x7684;&#x901A;&#x77E5;&#x7C7B;&#x578B;&#x6765;&#x5B9E;&#x73B0;&#x9700;&#x8981;&#x7684;&#x529F;&#x80FD;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x53EA;&#x662F;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x6765;&#x66F4;&#x65B0;&#x7F13;&#x5B58;&#xFF0C;&#x6700;&#x597D;&#x4F7F;&#x7528;&#x540E;&#x7F6E;&#x901A;&#x77E5;&#x800C;&#x4E0D;&#x662F;&#x73AF;&#x7ED5;&#x901A;&#x77E5;&#xFF0C;&#x5C3D;&#x7BA1;&#x73AF;&#x7ED5;&#x901A;&#x77E5;&#x4E5F;&#x80FD;&#x5B8C;&#x6210;&#x540C;&#x6837;&#x7684;&#x4E8B;&#x60C5;&#x3002;&#x7528;&#x6700;&#x5408;&#x9002;&#x7684;&#x901A;&#x77E5;&#x7C7B;&#x578B;&#x53EF;&#x4EE5;&#x4F7F;&#x5F97;&#x7F16;&#x7A0B;&#x6A21;&#x578B;&#x53D8;&#x5F97;&#x7B80;&#x5355;&#xFF0C;&#x5E76;&#x4E14;&#x80FD;&#x591F;&#x907F;&#x514D;&#x5F88;&#x591A;&#x6F5C;&#x5728;&#x7684;&#x9519;&#x8BEF;&#x3002;&#x6BD4;&#x5982;&#xFF0C;&#x4F60;&#x4E0D;&#x9700;&#x8981;&#x5728;JoinPoint&#x4E0A;&#x8C03;&#x7528;&#x7528;&#x4E8E;&#x73AF;&#x7ED5;&#x901A;&#x77E5;&#x7684;proceed()&#x65B9;&#x6CD5;&#xFF0C;&#x5C31;&#x4E0D;&#x4F1A;&#x6709;&#x8C03;&#x7528;&#x7684;&#x95EE;&#x9898;&#x3002;</p>
+<p>&#x5728;Spring 2.0&#x4E2D;&#xFF0C;&#x6240;&#x6709;&#x7684;&#x901A;&#x77E5;&#x53C2;&#x6570;&#x90FD;&#x662F;&#x9759;&#x6001;&#x7C7B;&#x578B;&#xFF0C;&#x56E0;&#x6B64;&#x4F60;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x5408;&#x9002;&#x7684;&#x7C7B;&#x578B;&#xFF08;&#x4F8B;&#x5982;&#x4E00;&#x4E2A;&#x65B9;&#x6CD5;&#x6267;&#x884C;&#x540E;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x7C7B;&#x578B;&#xFF09;&#x4F5C;&#x4E3A;&#x901A;&#x77E5;&#x7684;&#x53C2;&#x6570;&#x800C;&#x4E0D;&#x662F;&#x4F7F;&#x7528;Object&#x6570;&#x7EC4;&#x3002;</p>
+<p>&#x901A;&#x8FC7;&#x5207;&#x5165;&#x70B9;&#x5339;&#x914D;&#x8FDE;&#x63A5;&#x70B9;&#x7684;&#x6982;&#x5FF5;&#x662F;AOP&#x7684;&#x5173;&#x952E;&#xFF0C;&#x8FD9;&#x4F7F;&#x5F97;AOP&#x4E0D;&#x540C;&#x4E8E;&#x5176;&#x5B83;&#x4EC5;&#x4EC5;&#x63D0;&#x4F9B;&#x62E6;&#x622A;&#x529F;&#x80FD;&#x7684;&#x65E7;&#x6280;&#x672F;&#x3002; &#x5207;&#x5165;&#x70B9;&#x4F7F;&#x5F97;&#x901A;&#x77E5;&#x53EF;&#x4EE5;&#x72EC;&#x7ACB;&#x5BF9;&#x5E94;&#x5230;&#x9762;&#x5411;&#x5BF9;&#x8C61;&#x7684;&#x5C42;&#x6B21;&#x7ED3;&#x6784;&#x4E2D;&#x3002;&#x4F8B;&#x5982;&#xFF0C;&#x4E00;&#x4E2A;&#x63D0;&#x4F9B;&#x58F0;&#x660E;&#x5F0F;&#x4E8B;&#x52A1;&#x7BA1;&#x7406; &#x7684;&#x73AF;&#x7ED5;&#x901A;&#x77E5;&#x53EF;&#x4EE5;&#x88AB;&#x5E94;&#x7528;&#x5230;&#x4E00;&#x7EC4;&#x6A2A;&#x8DE8;&#x591A;&#x4E2A;&#x5BF9;&#x8C61;&#x7684;&#x65B9;&#x6CD5;&#x4E0A;&#xFF08;&#x4F8B;&#x5982;&#x670D;&#x52A1;&#x5C42;&#x7684;&#x6240;&#x6709;&#x4E1A;&#x52A1;&#x64CD;&#x4F5C;&#xFF09;&#x3002;</p>
 <h2 id="&#x65AD;&#x70B9;&#x8C03;&#x8BD5;&#x6280;&#x5DE7;">&#x65AD;&#x70B9;&#x8C03;&#x8BD5;&#x6280;&#x5DE7;</h2>
 <ul>
 <li>&#x65AD;&#x70B9;&#x52A0;&#x6761;&#x4EF6;</li>
@@ -727,11 +948,11 @@
 <span class="token punctuation">}</span>
 </code></pre>
 <ul>
-<li>&#x5982;&#x679C;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#x6709;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;&#xFF0C;&#x5219;&#x4F7F;&#x7528; JDK &#x4EE3;&#x7406;&#xFF0C;&#x53CD;&#x4E4B;&#x4F7F;&#x7528; CGLIB </li>
+<li>&#x5982;&#x679C;&#x76EE;&#x6807;&#x5BF9;&#x8C61;&#x6709;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;&#xFF0C;&#x5219;&#x4F7F;&#x7528; JDK &#x4EE3;&#x7406;&#xFF0C;&#x53CD;&#x4E4B;&#x4F7F;&#x7528; CGLIB (JDK &#x4EE3;&#x7406;&#x662F;&#x57FA;&#x4E8E;&#x63A5;&#x53E3;&#x7684;)</li>
 <li>&#x5982;&#x679C;&#x76EE;&#x6807;&#x7C7B;&#x6CA1;&#x6709;&#x5B9E;&#x73B0;&#x63A5;&#x53E3;&#xFF0C;&#x4E14; class &#x4E3A; final &#x4FEE;&#x9970;&#x7684;&#xFF0C;&#x5219;&#x4E0D;&#x80FD;&#x8FDB;&#x884C; Spring AOP</li>
 </ul>
 <footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
-2020-09-12 21:05:32
+2020-12-31 22:51:02
 </span></footer>
                                 
                                 </section>
@@ -759,12 +980,8 @@
 
             
                 
-                <a href="fatory_bean.html" class="navigation navigation-prev " aria-label="Previous page: 3.4 FactoryBean接口">
-                    <i class="fa fa-angle-left"></i>
-                </a>
                 
-                
-                <a href="aspectj.html" class="navigation navigation-next " aria-label="Next page: 3.5.1 AOP 和 AspectJ AOP">
+                <a href="aspectj.html" class="navigation navigation-next navigation-unique" aria-label="Next page: CGLIB & AOP代理">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -775,7 +992,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3.5 AOP","level":"1.4.5","depth":2,"next":{"title":"3.5.1 AOP 和 AspectJ AOP","level":"1.4.5.1","depth":3,"path":"doc/bean/aspectj.md","ref":"doc/bean/aspectj.md","articles":[]},"previous":{"title":"3.4 FactoryBean接口","level":"1.4.4","depth":2,"path":"doc/bean/fatory_bean.md","ref":"doc/bean/fatory_bean.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/aop.md","mtime":"2020-09-12T13:05:32.572Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-08T16:59:58.687Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Spring AOP","level":"1.4.2.1","depth":3,"next":{"title":"CGLIB & AOP代理","level":"1.4.2.2","depth":3,"path":"doc/bean/aspectj.md","ref":"doc/bean/aspectj.md","articles":[]},"previous":{"title":"[AOP]","level":"1.4.2","depth":2,"ref":"","articles":[{"title":"Spring AOP","level":"1.4.2.1","depth":3,"path":"doc/bean/aop.md","ref":"doc/bean/aop.md","articles":[]},{"title":"CGLIB & AOP代理","level":"1.4.2.2","depth":3,"path":"doc/bean/aspectj.md","ref":"doc/bean/aspectj.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/aop.md","mtime":"2020-12-31T14:51:02.338Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-12T14:00:24.472Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

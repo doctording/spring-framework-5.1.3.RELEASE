@@ -1,0 +1,885 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>MyBatis源码分析 · spring-note</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="doctording">
+        
+        
+    
+    <link rel="stylesheet" href="../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-ace/ace.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-codeblock-filename/block.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-sectionx/sectionx.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-page-treeview/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="springboot.html" />
+    
+    
+    <link rel="prev" href="mybatis.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../">
+            
+                <a href="../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="target.html">
+            
+                <a href="target.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    [ClassPathXmlApplicationContext Demo 引入]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="test/flow_path.html">
+            
+                <a href="test/flow_path.html">
+            
+                    
+                    2.1 ApplicationContext执行流程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="test/code_review.html">
+            
+                <a href="test/code_review.html">
+            
+                    
+                    2.2 执行流程:refresh的12个方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="test/bean_constructor.html">
+            
+                <a href="test/bean_constructor.html">
+            
+                    
+                    2.3 bean & constructor-arg测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    [Ioc & Aop]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" >
+            
+                <span>
+            
+                    
+                    [Ioc & Bean]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="bean/ioc_bean.html">
+            
+                <a href="bean/ioc_bean.html">
+            
+                    
+                    Ioc & BeanDefinition
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1.1" data-path="bean/BeanFactory.html">
+            
+                <a href="bean/BeanFactory.html">
+            
+                    
+                    BeanFactory接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.1.2" data-path="bean/context.html">
+            
+                <a href="bean/context.html">
+            
+                    
+                    ApplicationContext & BeanFactory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.1.3" data-path="bean/context_event.html">
+            
+                <a href="bean/context_event.html">
+            
+                    
+                    事件发布和监听机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" >
+            
+                <span>
+            
+                    
+                    [Bean]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.1" data-path="bean/bean_life.html">
+            
+                <a href="bean/bean_life.html">
+            
+                    
+                    Bean生命周期&回调
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.1.1" data-path="bean/bean_scope.html">
+            
+                <a href="bean/bean_scope.html">
+            
+                    
+                    Bean的作用域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.1.2" data-path="bean/fatory_bean.html">
+            
+                <a href="bean/fatory_bean.html">
+            
+                    
+                    FactoryBean接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.1.3" data-path="bean/lazy.html">
+            
+                <a href="bean/lazy.html">
+            
+                    
+                    懒加载bean
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.2" data-path="bean/ioc_bean_dependency.html">
+            
+                <a href="bean/ioc_bean_dependency.html">
+            
+                    
+                    Bean 依赖
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.2.1" data-path="bean/dependency.html">
+            
+                <a href="bean/dependency.html">
+            
+                    
+                    Spring循环依赖具体执行流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.3" data-path="bean/post_processor.html">
+            
+                <a href="bean/post_processor.html">
+            
+                    
+                    BeanFactoryPostProcessor & BeanDefinitionRegistryPostProcessor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.3.1" data-path="bean/configuration.html">
+            
+                <a href="bean/configuration.html">
+            
+                    
+                    @Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.3.2" data-path="bean/mapper_scan.html">
+            
+                <a href="bean/mapper_scan.html">
+            
+                    
+                    @MapperScan 原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.4" data-path="bean/bean_post_processor.html">
+            
+                <a href="bean/bean_post_processor.html">
+            
+                    
+                    BeanPostProcessor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.4.1" data-path="bean/bean_constructor.html">
+            
+                <a href="bean/bean_constructor.html">
+            
+                    
+                    推断构造方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.5" data-path="bean/ioc_bean_auto.html">
+            
+                <a href="bean/ioc_bean_auto.html">
+            
+                    
+                    自动装配 & @Autowired
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    [AOP]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="bean/aop.html">
+            
+                <a href="bean/aop.html">
+            
+                    
+                    Spring AOP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="bean/aspectj.html">
+            
+                <a href="bean/aspectj.html">
+            
+                    
+                    CGLIB & AOP代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="bean/transaction.html">
+            
+                <a href="bean/transaction.html">
+            
+                    
+                    Spring 事务
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="bean/transaction_annotation.html">
+            
+                <a href="bean/transaction_annotation.html">
+            
+                    
+                    @Transactional
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="mybatis.html">
+            
+                <a href="mybatis.html">
+            
+                    
+                    MyBatis手写
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.6.1" data-path="mybatis_source.html">
+            
+                <a href="mybatis_source.html">
+            
+                    
+                    MyBatis源码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="springboot.html">
+            
+                <a href="springboot.html">
+            
+                    
+                    SpringMvc & SpringBoot
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="springboot_starter.html">
+            
+                <a href="springboot_starter.html">
+            
+                    
+                    SpringBoot启动原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    [其它问题总结]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="bean/design.html">
+            
+                <a href="bean/design.html">
+            
+                    
+                    7.1 Spring中的设计模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    [其它]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="other/words.html">
+            
+                <a href="other/words.html">
+            
+                    
+                    8.1 单词
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href=".." >MyBatis源码分析</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="mybatis-&#x6E90;&#x7801;">MyBatis &#x6E90;&#x7801;</h1>
+<p><img src="../imgs/mybatis_frame.webp" alt=""></p>
+<ul>
+<li>SqlSession</li>
+</ul>
+<p>&#x901A;&#x8FC7;&#x4F1A;&#x8BDD;&#x5DE5;&#x5382;&#x521B;&#x5EFA;sqlSession&#x5373;&#x4F1A;&#x8BDD;&#xFF0C;&#x7A0B;&#x5E8F;&#x5458;&#x901A;&#x8FC7;sqlsession&#x4F1A;&#x8BDD;&#x63A5;&#x53E3;&#x5BF9;&#x6570;&#x636E;&#x5E93;&#x8FDB;&#x884C;&#x589E;&#x5220;&#x6539;&#x67E5;&#x64CD;&#x4F5C;&#x3002;</p>
+<ul>
+<li><p>MappedStatement</p>
+<ul>
+<li><p>&#x5B83;&#x662F;mybatis&#x4E00;&#x4E2A;&#x5E95;&#x5C42;&#x5C01;&#x88C5;&#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x5305;&#x88C5;&#x4E86;mybatis&#x914D;&#x7F6E;&#x4FE1;&#x606F;&#x53CA;sql&#x6620;&#x5C04;&#x4FE1;&#x606F;&#x7B49;&#x3002;mapper.xml&#x6587;&#x4EF6;&#x4E2D;&#x4E00;&#x4E2A;select\insert\update\delete&#x6807;&#x7B7E;&#x5BF9;&#x5E94;&#x4E00;&#x4E2A;Mapped Statement&#x5BF9;&#x8C61;&#xFF0C;select\insert\update\delete&#x6807;&#x7B7E;&#x7684;id&#x5373;&#x662F;Mapped statement&#x7684;id&#x3002;</p>
+</li>
+<li><p>Mapped Statement&#x5BF9;sql&#x6267;&#x884C;&#x8F93;&#x5165;&#x53C2;&#x6570;&#x8FDB;&#x884C;&#x5B9A;&#x4E49;&#xFF0C;&#x5305;&#x62EC;HashMap&#x3001;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x3001;pojo&#xFF0C;Executor&#x901A;&#x8FC7;MappedStatement&#x5728;&#x6267;&#x884C;sql&#x524D;&#x5C06;&#x8F93;&#x5165;&#x7684;java&#x5BF9;&#x8C61;&#x6620;&#x5C04;&#x81F3;sql&#x4E2D;&#xFF0C;&#x8F93;&#x5165;&#x53C2;&#x6570;&#x6620;&#x5C04;&#x5C31;&#x662F;jdbc&#x7F16;&#x7A0B;&#x4E2D;&#x5BF9;preparedStatement&#x8BBE;&#x7F6E;&#x53C2;&#x6570;&#x3002;</p>
+</li>
+<li><p>Mapped Statement&#x5BF9;sql&#x6267;&#x884C;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x8FDB;&#x884C;&#x5B9A;&#x4E49;&#xFF0C;&#x5305;&#x62EC;HashMap&#x3001;&#x57FA;&#x672C;&#x7C7B;&#x578B;&#x3001;pojo&#xFF0C;Executor&#x901A;&#x8FC7;MappedStatement&#x5728;&#x6267;&#x884C;sql&#x540E;&#x5C06;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x6620;&#x5C04;&#x81F3;java&#x5BF9;&#x8C61;&#x4E2D;&#xFF0C;&#x8F93;&#x51FA;&#x7ED3;&#x679C;&#x6620;&#x5C04;&#x8FC7;&#x7A0B;&#x76F8;&#x5F53;&#x4E8E;jdbc&#x7F16;&#x7A0B;&#x4E2D;&#x5BF9;&#x7ED3;&#x679C;&#x7684;&#x89E3;&#x6790;&#x5904;&#x7406;&#x8FC7;&#x7A0B;&#x3002;</p>
+</li>
+</ul>
+</li>
+<li><p>Executor</p>
+</li>
+</ul>
+<p>MyBatis&#x6267;&#x884C;&#x5668;&#xFF0C;&#x662F;MyBatis &#x8C03;&#x5EA6;&#x7684;&#x6838;&#x5FC3;&#xFF0C;&#x8D1F;&#x8D23;SQL&#x8BED;&#x53E5;&#x7684;&#x751F;&#x6210;&#x548C;&#x67E5;&#x8BE2;&#x7F13;&#x5B58;&#x7684;&#x7EF4;&#x62A4;</p>
+<ul>
+<li>StatementHandler</li>
+</ul>
+<p>&#x88C5;&#x4E86;JDBC Statement&#x64CD;&#x4F5C;&#xFF0C;&#x8D1F;&#x8D23;&#x5BF9;JDBC statement &#x7684;&#x64CD;&#x4F5C;&#xFF0C;&#x5982;&#x8BBE;&#x7F6E;&#x53C2;&#x6570;&#x3001;&#x5C06;Statement&#x7ED3;&#x679C;&#x96C6;&#x8F6C;&#x6362;&#x6210;List&#x96C6;&#x5408;&#x3002;</p>
+<footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
+2020-12-26 13:49:06
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="mybatis.html" class="navigation navigation-prev " aria-label="Previous page: MyBatis手写">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="springboot.html" class="navigation navigation-next " aria-label="Next page: SpringMvc & SpringBoot">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"MyBatis源码分析","level":"1.6.1","depth":2,"next":{"title":"SpringMvc & SpringBoot","level":"1.7","depth":1,"path":"doc/springboot.md","ref":"doc/springboot.md","articles":[{"title":"SpringBoot启动原理","level":"1.7.1","depth":2,"path":"doc/springboot_starter.md","ref":"doc/springboot_starter.md","articles":[]}]},"previous":{"title":"MyBatis手写","level":"1.6","depth":1,"path":"doc/mybatis.md","ref":"doc/mybatis.md","articles":[{"title":"MyBatis源码分析","level":"1.6.1","depth":2,"path":"doc/mybatis_source.md","ref":"doc/mybatis_source.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/mybatis_source.md","mtime":"2020-12-26T05:49:06.659Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-12T14:00:24.472Z"},"basePath":"..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../gitbook/gitbook.js"></script>
+    <script src="../gitbook/theme.js"></script>
+    
+        
+        <script src="../gitbook/gitbook-plugin-ace/ace/ace.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-ace/ace.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-sectionx/sectionx.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

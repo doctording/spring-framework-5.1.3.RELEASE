@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>3.6 BeanDefinition · spring-note</title>
+        <title>推断构造方法 · spring-note</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -89,10 +89,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="configuration.html" />
+    <link rel="next" href="ioc_bean_auto.html" />
     
     
-    <link rel="prev" href="aspectj.html" />
+    <link rel="prev" href="bean_post_processor.html" />
     
 
     </head>
@@ -139,7 +139,7 @@
                 <a href="../target.html">
             
                     
-                    1 前言
+                    前言
             
                 </a>
             
@@ -152,7 +152,7 @@
                 <span>
             
                     
-                    [2 ClassPathXmlApplicationContext Demo 引入]
+                    [ClassPathXmlApplicationContext Demo 引入]
             
                 </span>
             
@@ -172,14 +172,15 @@
             
 
             
-        </li>
+            <ul class="articles">
+                
     
-        <li class="chapter " data-level="1.3.2" data-path="../test/code_review.html">
+        <li class="chapter " data-level="1.3.1.1" data-path="../test/code_review.html">
             
                 <a href="../test/code_review.html">
             
                     
-                    2.2 执行流程源码走读
+                    2.2 执行流程:refresh的12个方法
             
                 </a>
             
@@ -187,7 +188,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="../test/bean_constructor.html">
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../test/bean_constructor.html">
             
                 <a href="../test/bean_constructor.html">
             
@@ -210,7 +216,7 @@
                 <span>
             
                     
-                    [3 Ioc & Aop]
+                    [Ioc & Aop]
             
                 </span>
             
@@ -219,12 +225,26 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="ioc_bean.html">
+        <li class="chapter " data-level="1.4.1" >
+            
+                <span>
+            
+                    
+                    [Ioc & Bean]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="ioc_bean.html">
             
                 <a href="ioc_bean.html">
             
                     
-                    3.1 Ioc & Bean概念
+                    Ioc & BeanDefinition
             
                 </a>
             
@@ -233,12 +253,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1.1" data-path="BeanFactory.html">
+        <li class="chapter " data-level="1.4.1.1.1" data-path="BeanFactory.html">
             
                 <a href="BeanFactory.html">
             
                     
-                    3.1.1 BeanFactory接口
+                    BeanFactory接口
             
                 </a>
             
@@ -246,137 +266,283 @@
             
         </li>
     
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.2" data-path="dependency.html">
-            
-                <a href="dependency.html">
-            
-                    
-                    3.2 Spring循环依赖具体执行流程
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.3" data-path="bean_life.html">
-            
-                <a href="bean_life.html">
-            
-                    
-                    3.3 Bean生命周期
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.4.3.1" data-path="bean_scope.html">
-            
-                <a href="bean_scope.html">
-            
-                    
-                    3.3.1 Bean的作用域
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.4" data-path="fatory_bean.html">
-            
-                <a href="fatory_bean.html">
-            
-                    
-                    3.4 FactoryBean接口
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.5" data-path="aop.html">
-            
-                <a href="aop.html">
-            
-                    
-                    3.5 AOP
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.4.5.1" data-path="aspectj.html">
-            
-                <a href="aspectj.html">
-            
-                    
-                    3.5.1 AOP 和 AspectJ AOP
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.4.6" data-path="bean_definition.html">
-            
-                <a href="bean_definition.html">
-            
-                    
-                    3.6 BeanDefinition
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.7" data-path="configuration.html">
-            
-                <a href="configuration.html">
-            
-                    
-                    3.7 @Configuration
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.8" data-path="context.html">
+        <li class="chapter " data-level="1.4.1.1.2" data-path="context.html">
             
                 <a href="context.html">
             
                     
-                    3.8 ApplicationContext
+                    ApplicationContext & BeanFactory
             
                 </a>
             
 
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.1.3" data-path="context_event.html">
+            
+                <a href="context_event.html">
+            
+                    
+                    事件发布和监听机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" >
+            
+                <span>
+            
+                    
+                    [Bean]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.1" data-path="bean_life.html">
+            
+                <a href="bean_life.html">
+            
+                    
+                    Bean生命周期&回调
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.1.1" data-path="bean_scope.html">
+            
+                <a href="bean_scope.html">
+            
+                    
+                    Bean的作用域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.1.2" data-path="fatory_bean.html">
+            
+                <a href="fatory_bean.html">
+            
+                    
+                    FactoryBean接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.1.3" data-path="lazy.html">
+            
+                <a href="lazy.html">
+            
+                    
+                    懒加载bean
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.2" data-path="ioc_bean_dependency.html">
+            
+                <a href="ioc_bean_dependency.html">
+            
+                    
+                    Bean 依赖
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.2.1" data-path="dependency.html">
+            
+                <a href="dependency.html">
+            
+                    
+                    Spring循环依赖具体执行流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.3" data-path="post_processor.html">
+            
+                <a href="post_processor.html">
+            
+                    
+                    BeanFactoryPostProcessor & BeanDefinitionRegistryPostProcessor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.3.1" data-path="configuration.html">
+            
+                <a href="configuration.html">
+            
+                    
+                    @Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.3.2" data-path="mapper_scan.html">
+            
+                <a href="mapper_scan.html">
+            
+                    
+                    @MapperScan 原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.4" data-path="bean_post_processor.html">
+            
+                <a href="bean_post_processor.html">
+            
+                    
+                    BeanPostProcessor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.4.1.2.4.1" data-path="bean_constructor.html">
+            
+                <a href="bean_constructor.html">
+            
+                    
+                    推断构造方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.5" data-path="ioc_bean_auto.html">
+            
+                <a href="ioc_bean_auto.html">
+            
+                    
+                    自动装配 & @Autowired
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    [AOP]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="aop.html">
+            
+                <a href="aop.html">
+            
+                    
+                    Spring AOP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="aspectj.html">
+            
+                <a href="aspectj.html">
+            
+                    
+                    CGLIB & AOP代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -390,7 +556,7 @@
                 <a href="transaction.html">
             
                     
-                    4 Spring 事务
+                    Spring 事务
             
                 </a>
             
@@ -404,7 +570,7 @@
                 <a href="transaction_annotation.html">
             
                     
-                    4.1 @Transactional
+                    @Transactional
             
                 </a>
             
@@ -422,11 +588,30 @@
                 <a href="../mybatis.html">
             
                     
-                    5 MyBatis
+                    MyBatis手写
             
                 </a>
             
 
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../mybatis_source.html">
+            
+                <a href="../mybatis_source.html">
+            
+                    
+                    MyBatis源码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -435,11 +620,30 @@
                 <a href="../springboot.html">
             
                     
-                    6 SpringBoot
+                    SpringMvc & SpringBoot
             
                 </a>
             
 
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../springboot_starter.html">
+            
+                <a href="../springboot_starter.html">
+            
+                    
+                    SpringBoot启动原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -448,7 +652,7 @@
                 <span>
             
                     
-                    [7 其它问题总结]
+                    [其它问题总结]
             
                 </span>
             
@@ -480,7 +684,7 @@
                 <span>
             
                     
-                    [8 其它]
+                    [其它]
             
                 </span>
             
@@ -537,7 +741,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >3.6 BeanDefinition</a>
+        <a href="../.." >推断构造方法</a>
     </h1>
 </div>
 
@@ -552,56 +756,10 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="beandefinition">BeanDefinition</h1>
-<p>BeanDefinition&#x5B9A;&#x4E49;&#x4E86;<code>Bean</code>&#x7684;&#x5404;&#x79CD;&#x5C5E;&#x6027;&#xFF0C;&#x4EE5;&#x53CA;&#x5982;&#x4F55;&#x53BB;&#x521B;&#x9020;&#x751F;&#x6210;&#x8BE5;bean&#x7684;&#x76F8;&#x5173;&#x4FE1;&#x606F;</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">&#x5C5E;&#x6027;</th>
-<th style="text-align:center">&#x8BF4;&#x660E;</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">Class</td>
-<td style="text-align:center">&#x7C7B;</td>
-</tr>
-<tr>
-<td style="text-align:center">Name</td>
-<td style="text-align:center">&#x540D;&#x79F0;</td>
-</tr>
-<tr>
-<td style="text-align:center">Scope</td>
-<td style="text-align:center">bean&#x4F5C;&#x7528;&#x57DF;</td>
-</tr>
-<tr>
-<td style="text-align:center">Constructor arguments</td>
-<td style="text-align:center">&#x6784;&#x9020;&#x5668;&#x53C2;&#x6570;</td>
-</tr>
-<tr>
-<td style="text-align:center">Properties</td>
-<td style="text-align:center">&#x6210;&#x5458;&#x5C5E;&#x6027;</td>
-</tr>
-<tr>
-<td style="text-align:center">Autowiring mode</td>
-<td style="text-align:center">&#x81EA;&#x52A8;&#x88C5;&#x914D;&#x6A21;&#x5F0F;</td>
-</tr>
-<tr>
-<td style="text-align:center">Lazy initialization mode</td>
-<td style="text-align:center">&#x61D2;&#x52A0;&#x8F7D;&#x6A21;&#x5F0F;</td>
-</tr>
-<tr>
-<td style="text-align:center">initialization method</td>
-<td style="text-align:center">&#x521D;&#x59CB;&#x5316;&#x65B9;&#x6CD5;</td>
-</tr>
-<tr>
-<td style="text-align:center">Destruction methods</td>
-<td style="text-align:center">&#x9500;&#x6BC1;&#x65B9;&#x6CD5;</td>
-</tr>
-</tbody>
-</table>
+                                <h1 id="&#x63A8;&#x65AD;&#x6784;&#x9020;&#x65B9;&#x6CD5;">&#x63A8;&#x65AD;&#x6784;&#x9020;&#x65B9;&#x6CD5;</h1>
+<p>&#xFF1F; </p>
 <footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
-2020-07-17 13:35:21
+2020-11-22 11:44:43
 </span></footer>
                                 
                                 </section>
@@ -629,12 +787,12 @@
 
             
                 
-                <a href="aspectj.html" class="navigation navigation-prev " aria-label="Previous page: 3.5.1 AOP 和 AspectJ AOP">
+                <a href="bean_post_processor.html" class="navigation navigation-prev " aria-label="Previous page: BeanPostProcessor">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="configuration.html" class="navigation navigation-next " aria-label="Next page: 3.7 @Configuration">
+                <a href="ioc_bean_auto.html" class="navigation navigation-next " aria-label="Next page: 自动装配 & @Autowired">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -645,7 +803,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3.6 BeanDefinition","level":"1.4.6","depth":2,"next":{"title":"3.7 @Configuration","level":"1.4.7","depth":2,"path":"doc/bean/configuration.md","ref":"doc/bean/configuration.md","articles":[]},"previous":{"title":"3.5.1 AOP 和 AspectJ AOP","level":"1.4.5.1","depth":3,"path":"doc/bean/aspectj.md","ref":"doc/bean/aspectj.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/bean_definition.md","mtime":"2020-07-17T05:35:21.205Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-08T16:59:58.687Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"推断构造方法","level":"1.4.1.2.4.1","depth":5,"next":{"title":"自动装配 & @Autowired","level":"1.4.1.2.5","depth":4,"path":"doc/bean/ioc_bean_auto.md","ref":"doc/bean/ioc_bean_auto.md","articles":[]},"previous":{"title":"BeanPostProcessor","level":"1.4.1.2.4","depth":4,"path":"doc/bean/bean_post_processor.md","ref":"doc/bean/bean_post_processor.md","articles":[{"title":"推断构造方法","level":"1.4.1.2.4.1","depth":5,"path":"doc/bean/bean_constructor.md","ref":"doc/bean/bean_constructor.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/bean_constructor.md","mtime":"2020-11-22T03:44:43.824Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-12T14:00:24.472Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>

@@ -1,0 +1,1247 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>BeanPostProcessor · spring-note</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="doctording">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-prism/prism.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-ace/ace.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-codeblock-filename/block.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-plus/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-sectionx/sectionx.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-back-to-top-button/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-code/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-page-treeview/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+        <link rel="stylesheet" href="../../styles/website.css">
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="bean_constructor.html" />
+    
+    
+    <link rel="prev" href="mapper_scan.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="../target.html">
+            
+                <a href="../target.html">
+            
+                    
+                    前言
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" >
+            
+                <span>
+            
+                    
+                    [ClassPathXmlApplicationContext Demo 引入]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1" data-path="../test/flow_path.html">
+            
+                <a href="../test/flow_path.html">
+            
+                    
+                    2.1 ApplicationContext执行流程
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.3.1.1" data-path="../test/code_review.html">
+            
+                <a href="../test/code_review.html">
+            
+                    
+                    2.2 执行流程:refresh的12个方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../test/bean_constructor.html">
+            
+                <a href="../test/bean_constructor.html">
+            
+                    
+                    2.3 bean & constructor-arg测试
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4" >
+            
+                <span>
+            
+                    
+                    [Ioc & Aop]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1" >
+            
+                <span>
+            
+                    
+                    [Ioc & Bean]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="ioc_bean.html">
+            
+                <a href="ioc_bean.html">
+            
+                    
+                    Ioc & BeanDefinition
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1.1" data-path="BeanFactory.html">
+            
+                <a href="BeanFactory.html">
+            
+                    
+                    BeanFactory接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.1.2" data-path="context.html">
+            
+                <a href="context.html">
+            
+                    
+                    ApplicationContext & BeanFactory
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.1.3" data-path="context_event.html">
+            
+                <a href="context_event.html">
+            
+                    
+                    事件发布和监听机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" >
+            
+                <span>
+            
+                    
+                    [Bean]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.1" data-path="bean_life.html">
+            
+                <a href="bean_life.html">
+            
+                    
+                    Bean生命周期&回调
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.1.1" data-path="bean_scope.html">
+            
+                <a href="bean_scope.html">
+            
+                    
+                    Bean的作用域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.1.2" data-path="fatory_bean.html">
+            
+                <a href="fatory_bean.html">
+            
+                    
+                    FactoryBean接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.1.3" data-path="lazy.html">
+            
+                <a href="lazy.html">
+            
+                    
+                    懒加载bean
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.2" data-path="ioc_bean_dependency.html">
+            
+                <a href="ioc_bean_dependency.html">
+            
+                    
+                    Bean 依赖
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.2.1" data-path="dependency.html">
+            
+                <a href="dependency.html">
+            
+                    
+                    Spring循环依赖具体执行流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.3" data-path="post_processor.html">
+            
+                <a href="post_processor.html">
+            
+                    
+                    BeanFactoryPostProcessor & BeanDefinitionRegistryPostProcessor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.3.1" data-path="configuration.html">
+            
+                <a href="configuration.html">
+            
+                    
+                    @Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.3.2" data-path="mapper_scan.html">
+            
+                <a href="mapper_scan.html">
+            
+                    
+                    @MapperScan 原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4.1.2.4" data-path="bean_post_processor.html">
+            
+                <a href="bean_post_processor.html">
+            
+                    
+                    BeanPostProcessor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.4.1" data-path="bean_constructor.html">
+            
+                <a href="bean_constructor.html">
+            
+                    
+                    推断构造方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.5" data-path="ioc_bean_auto.html">
+            
+                <a href="ioc_bean_auto.html">
+            
+                    
+                    自动装配 & @Autowired
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    [AOP]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="aop.html">
+            
+                <a href="aop.html">
+            
+                    
+                    Spring AOP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="aspectj.html">
+            
+                <a href="aspectj.html">
+            
+                    
+                    CGLIB & AOP代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="transaction.html">
+            
+                <a href="transaction.html">
+            
+                    
+                    Spring 事务
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.5.1" data-path="transaction_annotation.html">
+            
+                <a href="transaction_annotation.html">
+            
+                    
+                    @Transactional
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="../mybatis.html">
+            
+                <a href="../mybatis.html">
+            
+                    
+                    MyBatis手写
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../mybatis_source.html">
+            
+                <a href="../mybatis_source.html">
+            
+                    
+                    MyBatis源码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.7" data-path="../springboot.html">
+            
+                <a href="../springboot.html">
+            
+                    
+                    SpringMvc & SpringBoot
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../springboot_starter.html">
+            
+                <a href="../springboot_starter.html">
+            
+                    
+                    SpringBoot启动原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.8" >
+            
+                <span>
+            
+                    
+                    [其它问题总结]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.8.1" data-path="design.html">
+            
+                <a href="design.html">
+            
+                    
+                    7.1 Spring中的设计模式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.9" >
+            
+                <span>
+            
+                    
+                    [其它]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.9.1" data-path="../other/words.html">
+            
+                <a href="../other/words.html">
+            
+                    
+                    8.1 单词
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >BeanPostProcessor</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div class="search-plus" id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div class="treeview__container"><div class="treeview__container-title"><span class="treeview__main-title">Treeview</span><span class="treeview__copyright">Copyright @doctording all right reserved, powered by <a href="https://github.com/aleen42" target="_blank">aleen42</a></span></div><ul>
+<li><div><a href="#beanpostprocessor">BeanPostProcessor</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#applicationcontextawareprocessor-&#x7C7B;">ApplicationContextAwareProcessor &#x7C7B;</a><i></i></div></li>
+<li><div><a href="#instantiationawarebeanpostprocessor-&#x63A5;&#x53E3;">InstantiationAwareBeanPostProcessor &#x63A5;&#x53E3;</a><i></i></div></li>
+<li><div><a href="#smartinstantiationawarebeanpostprocessor-&#x63A5;&#x53E3;">SmartInstantiationAwareBeanPostProcessor &#x63A5;&#x53E3;</a><i></i></div></li>
+<li><div><a href="#destructionawarebeanpostprocessor-&#x63A5;&#x53E3;">DestructionAwareBeanPostProcessor &#x63A5;&#x53E3;</a><i></i></div></li>
+<li><div><a href="#mergedbeandefinitionpostprocessor-&#x63A5;&#x53E3;">MergedBeanDefinitionPostProcessor &#x63A5;&#x53E3;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;beanpostprocessor&#x5224;&#x65AD;&#x662F;&#x5426;&#x8981;&#x8FDB;&#x884C;aop">&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;BeanPostProcessor&#x5224;&#x65AD;&#x662F;&#x5426;&#x8981;&#x8FDB;&#x884C;AOP</a><i></i></div></li>
+<li><div><a href="#&#x56DE;&#x987E;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7684;lambda&#x8868;&#x8FBE;&#x5F0F;&#x63D0;&#x65E9;&#x5B9E;&#x73B0;aop">&#x56DE;&#x987E;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7684;lambda&#x8868;&#x8FBE;&#x5F0F;&#x63D0;&#x65E9;&#x5B9E;&#x73B0;AOP</a><i></i></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+
+<h1 id="beanpostprocessor">BeanPostProcessor</h1>
+<p><a href="https://docs.spring.io/spring-framework/docs/5.1.3.RELEASE/spring-framework-reference/core.html#beans-factory-extension-bpp" target="_blank">1.8.1. Customizing Beans by Using a BeanPostProcessor
+</a></p>
+<p>&#x5B98;&#x7F51;&#x4ECB;&#x7ECD;&#x5F52;&#x7EB3;</p>
+<ol>
+<li>BeanPostProcessor&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x4E86;&#x4E24;&#x4E2A;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#xFF0C;&#x901A;&#x8FC7;&#x5B9E;&#x73B0;&#x8FD9;&#x4E24;&#x4E2A;&#x65B9;&#x6CD5;&#x53EF;&#x4EE5;&#x63D0;&#x4F9B;&#x81EA;&#x5DF1;&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x4EE5;&#x53CA;&#x4F9D;&#x8D56;&#x6CE8;&#x5165;&#x7B49;&#x903B;&#x8F91;&#x3002;&#x5373;&#x5E72;&#x9884;Bean&#x5728;Spring&#x5BB9;&#x5668;&#x7684;&#x5B9E;&#x4F8B;&#x5316;&#x3001;&#x914D;&#x7F6E;&#x3001;&#x521D;&#x59CB;&#x5316;&#x903B;&#x8F91;</li>
+<li>&#x53EF;&#x4EE5;&#x914D;&#x7F6E;&#x591A;&#x4E2A;BeanPostProcessor&#xFF0C;&#x5982;&#x679C;&#x5B9E;&#x73B0;Ordered&#x63A5;&#x53E3;&#xFF0C;&#x8FD8;&#x53EF;&#x4EE5;&#x63A7;&#x5236;&#x8FD9;&#x4E9B;BeanPostProcessor&#x6267;&#x884C;&#x7684;&#x987A;&#x5E8F;</li>
+</ol>
+<p>&#x63A5;&#x53E3;&#x5B9A;&#x4E49;&#x5982;&#x4E0B;</p>
+<pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">BeanPostProcessor</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">/**
+     * Apply this BeanPostProcessor to the given new bean instance &lt;i&gt;before&lt;/i&gt; any bean
+     * initialization callbacks (like InitializingBean&apos;s {@code afterPropertiesSet}
+     * or a custom init-method). The bean will already be populated with property values.
+     * The returned bean instance may be a wrapper around the original.
+     * &lt;p&gt;The default implementation returns the given {@code bean} as-is.
+     * @param bean the new bean instance
+     * @param beanName the name of the bean
+     * @return the bean instance to use, either the original or a wrapped one;
+     * if {@code null}, no subsequent BeanPostProcessors will be invoked
+     * @throws org.springframework.beans.BeansException in case of errors
+     * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
+     */</span>
+    <span class="token annotation punctuation">@Nullable</span>
+    <span class="token keyword">default</span> <span class="token class-name">Object</span> <span class="token function">postProcessBeforeInitialization</span><span class="token punctuation">(</span><span class="token class-name">Object</span> bean<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> bean<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * Apply this BeanPostProcessor to the given new bean instance &lt;i&gt;after&lt;/i&gt; any bean
+     * initialization callbacks (like InitializingBean&apos;s {@code afterPropertiesSet}
+     * or a custom init-method). The bean will already be populated with property values.
+     * The returned bean instance may be a wrapper around the original.
+     * &lt;p&gt;In case of a FactoryBean, this callback will be invoked for both the FactoryBean
+     * instance and the objects created by the FactoryBean (as of Spring 2.0). The
+     * post-processor can decide whether to apply to either the FactoryBean or created
+     * objects or both through corresponding {@code bean instanceof FactoryBean} checks.
+     * &lt;p&gt;This callback will also be invoked after a short-circuiting triggered by a
+     * {@link InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation} method,
+     * in contrast to all other BeanPostProcessor callbacks.
+     * &lt;p&gt;The default implementation returns the given {@code bean} as-is.
+     * @param bean the new bean instance
+     * @param beanName the name of the bean
+     * @return the bean instance to use, either the original or a wrapped one;
+     * if {@code null}, no subsequent BeanPostProcessors will be invoked
+     * @throws org.springframework.beans.BeansException in case of errors
+     * @see org.springframework.beans.factory.InitializingBean#afterPropertiesSet
+     * @see org.springframework.beans.factory.FactoryBean
+     */</span>
+    <span class="token annotation punctuation">@Nullable</span>
+    <span class="token keyword">default</span> <span class="token class-name">Object</span> <span class="token function">postProcessAfterInitialization</span><span class="token punctuation">(</span><span class="token class-name">Object</span> bean<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> bean<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="applicationcontextawareprocessor-&#x7C7B;">ApplicationContextAwareProcessor &#x7C7B;</h2>
+<p>ApplicationContextAwareProcessor&#x662F;&#x4E00;&#x4E2A;Spring&#x5185;&#x90E8;&#x5DE5;&#x5177;&#xFF0C;&#x5B83;&#x5B9E;&#x73B0;&#x4E86;&#x63A5;&#x53E3;<code>BeanPostProcessor</code>&#xFF0C;&#x7528;&#x4E8E;&#x5411;&#x5B9E;&#x73B0;&#x4E86;&#x5982;&#x4E0B;&#x67D0;&#x79CD;<code>Aware&#x63A5;&#x53E3;</code>&#x7684;bean&#x8BBE;&#x7F6E;ApplicationContext&#x4E2D;&#x76F8;&#x5E94;&#x7684;&#x5C5E;&#x6027;:</p>
+<ul>
+<li>EnvironmentAware</li>
+<li>EmbeddedValueResolverAware</li>
+<li>ResourceLoaderAware</li>
+<li>ApplicationEventPublisherAware</li>
+<li>MessageSourceAware</li>
+<li>ApplicationContextAware</li>
+</ul>
+<p>&#x5982;&#x679C;bean&#x5B9E;&#x73B0;&#x4E86;&#x4EE5;&#x4E0A;&#x63A5;&#x53E3;&#x4E2D;&#x7684;&#x67D0;&#x51E0;&#x4E2A;&#xFF0C;&#x90A3;&#x4E48;&#x8FD9;&#x4E9B;&#x63A5;&#x53E3;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#x7684;&#x5148;&#x540E;&#x987A;&#x5E8F;&#x5C31;&#x662F;&#x4E0A;&#x9762;&#x63A5;&#x53E3;&#x6392;&#x5217;&#x7684;&#x5148;&#x540E;&#x987A;&#x5E8F;&#x3002;</p>
+<h2 id="instantiationawarebeanpostprocessor-&#x63A5;&#x53E3;">InstantiationAwareBeanPostProcessor &#x63A5;&#x53E3;</h2>
+<pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">InstantiationAwareBeanPostProcessor</span> <span class="token keyword">extends</span> <span class="token class-name">BeanPostProcessor</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// &#x5728;Bean&#x5B9E;&#x4F8B;&#x5316;&#x4E4B;&#x524D;&#x8C03;&#x7528;</span>
+    <span class="token annotation punctuation">@Nullable</span>
+    <span class="token keyword">default</span> <span class="token class-name">Object</span> <span class="token function">postProcessBeforeInstantiation</span><span class="token punctuation">(</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> beanClass<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// &#x5728;Bean&#x5B9E;&#x4F8B;&#x5316;&#x4E4B;&#x540E;&#x8C03;&#x7528;</span>
+    <span class="token keyword">default</span> <span class="token keyword">boolean</span> <span class="token function">postProcessAfterInstantiation</span><span class="token punctuation">(</span><span class="token class-name">Object</span> bean<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// &#x91C7;&#x7528;&#x6CE8;&#x89E3;&#x65F6;&#xFF0C;Spring&#x901A;&#x8FC7;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x5B8C;&#x6210;&#x4E86;&#x5C5E;&#x6027;&#x6CE8;&#x5165;</span>
+    <span class="token annotation punctuation">@Nullable</span>
+    <span class="token keyword">default</span> <span class="token class-name">PropertyValues</span> <span class="token function">postProcessProperties</span><span class="token punctuation">(</span><span class="token class-name">PropertyValues</span> pvs<span class="token punctuation">,</span> <span class="token class-name">Object</span> bean<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token annotation punctuation">@Deprecated</span>
+    <span class="token annotation punctuation">@Nullable</span>
+    <span class="token keyword">default</span> <span class="token class-name">PropertyValues</span> <span class="token function">postProcessPropertyValues</span><span class="token punctuation">(</span>
+            <span class="token class-name">PropertyValues</span> pvs<span class="token punctuation">,</span> <span class="token class-name">PropertyDescriptor</span><span class="token punctuation">[</span><span class="token punctuation">]</span> pds<span class="token punctuation">,</span> <span class="token class-name">Object</span> bean<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> pvs<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="smartinstantiationawarebeanpostprocessor-&#x63A5;&#x53E3;">SmartInstantiationAwareBeanPostProcessor &#x63A5;&#x53E3;</h2>
+<pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">SmartInstantiationAwareBeanPostProcessor</span> <span class="token keyword">extends</span> <span class="token class-name">InstantiationAwareBeanPostProcessor</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// &#x9884;&#x6D4B;Bean&#x7684;&#x7C7B;&#x578B;&#xFF0C;&#x4E3B;&#x8981;&#x662F;&#x5728;Bean&#x8FD8;&#x6CA1;&#x6709;&#x521B;&#x5EFA;&#x524D;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x9700;&#x8981;&#x83B7;&#x53D6;Bean&#x7684;&#x7C7B;&#x578B;</span>
+    <span class="token annotation punctuation">@Nullable</span>
+    <span class="token keyword">default</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> <span class="token function">predictBeanType</span><span class="token punctuation">(</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> beanClass<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// &#x5B8C;&#x6210;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x63A8;&#x65AD;</span>
+    <span class="token annotation punctuation">@Nullable</span>
+    <span class="token keyword">default</span> <span class="token class-name">Constructor</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token function">determineCandidateConstructors</span><span class="token punctuation">(</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> beanClass<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span>
+            <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// &#x4E3B;&#x8981;&#x4E3A;&#x4E86;&#x89E3;&#x51B3;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#xFF0C;Spring&#x5185;&#x90E8;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#xFF1A;&#x80FD;&#x8BA9;&#x65E9;&#x671F;&#x66DD;&#x5149;&#x7684;&quot;&#x534A;&#x6210;&#x54C1;&quot;&#x5BF9;&#x8C61;&#x6210;&#x4E3A;&#x4E00;&#x4E2A;&#x201C;&#x6210;&#x54C1;&#x201D;&#x5BF9;&#x8C61; </span>
+    <span class="token keyword">default</span> <span class="token class-name">Object</span> <span class="token function">getEarlyBeanReference</span><span class="token punctuation">(</span><span class="token class-name">Object</span> bean<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> bean<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="destructionawarebeanpostprocessor-&#x63A5;&#x53E3;">DestructionAwareBeanPostProcessor &#x63A5;&#x53E3;</h2>
+<pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">DestructionAwareBeanPostProcessor</span> <span class="token keyword">extends</span> <span class="token class-name">BeanPostProcessor</span> <span class="token punctuation">{</span>
+    <span class="token comment">// &#x5728;Bean&#x88AB;&#x9500;&#x6BC1;&#x524D;&#x8C03;&#x7528;</span>
+    <span class="token keyword">void</span> <span class="token function">postProcessBeforeDestruction</span><span class="token punctuation">(</span><span class="token class-name">Object</span> bean<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">BeansException</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// &#x5224;&#x65AD;&#x662F;&#x5426;&#x9700;&#x8981;&#x88AB;&#x9500;&#x6BC1;&#xFF0C;&#x9ED8;&#x8BA4;&#x90FD;&#x9700;&#x8981;</span>
+    <span class="token keyword">default</span> <span class="token keyword">boolean</span> <span class="token function">requiresDestruction</span><span class="token punctuation">(</span><span class="token class-name">Object</span> bean<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token boolean">true</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h2 id="mergedbeandefinitionpostprocessor-&#x63A5;&#x53E3;">MergedBeanDefinitionPostProcessor &#x63A5;&#x53E3;</h2>
+<pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">interface</span> <span class="token class-name">MergedBeanDefinitionPostProcessor</span> <span class="token keyword">extends</span> <span class="token class-name">BeanPostProcessor</span> <span class="token punctuation">{</span>
+
+    <span class="token comment">// Spring&#x5185;&#x90E8;&#x4E3B;&#x8981;&#x4F7F;&#x7528;&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x627E;&#x51FA;&#x4E86;&#x6240;&#x6709;&#x9700;&#x8981;&#x6CE8;&#x5165;&#x7684;&#x5B57;&#x6BB5;&#xFF0C;&#x540C;&#x65F6;&#x505A;&#x4E86;&#x7F13;&#x5B58;</span>
+    <span class="token keyword">void</span> <span class="token function">postProcessMergedBeanDefinition</span><span class="token punctuation">(</span><span class="token class-name">RootBeanDefinition</span> beanDefinition<span class="token punctuation">,</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> beanType<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// &#x4E3B;&#x8981;&#x7528;&#x4E8E;&#x5728;BeanDefinition&#x88AB;&#x4FEE;&#x6539;&#x540E;&#xFF0C;&#x6E05;&#x9664;&#x5BB9;&#x5668;&#x4E2D;&#x7684;&#x7F13;&#x5B58;</span>
+    <span class="token keyword">default</span> <span class="token keyword">void</span> <span class="token function">resetBeanDefinition</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;beanpostprocessor&#x5224;&#x65AD;&#x662F;&#x5426;&#x8981;&#x8FDB;&#x884C;aop">&#x7B2C;&#x4E00;&#x6B21;&#x8C03;&#x7528;BeanPostProcessor&#x5224;&#x65AD;&#x662F;&#x5426;&#x8981;&#x8FDB;&#x884C;AOP</h3>
+<p><code>org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#createBean</code></p>
+<p><code>org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#resolveBeforeInstantiation</code></p>
+<pre class="language-"><code class="lang-java"><span class="token comment">/**
+ * Apply before-instantiation post-processors, resolving whether there is a
+ * before-instantiation shortcut for the specified bean.
+ * @param beanName the name of the bean
+ * @param mbd the bean definition for the bean
+ * @return the shortcut-determined bean instance, or {@code null} if none
+ */</span>
+<span class="token annotation punctuation">@Nullable</span>
+<span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">resolveBeforeInstantiation</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">,</span> <span class="token class-name">RootBeanDefinition</span> mbd<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Object</span> bean <span class="token operator">=</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">Boolean</span><span class="token punctuation">.</span>FALSE<span class="token punctuation">.</span><span class="token function">equals</span><span class="token punctuation">(</span>mbd<span class="token punctuation">.</span>beforeInstantiationResolved<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token comment">// Make sure bean class is actually resolved at this point.</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>mbd<span class="token punctuation">.</span><span class="token function">isSynthetic</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token function">hasInstantiationAwareBeanPostProcessors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> targetType <span class="token operator">=</span> <span class="token function">determineTargetType</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>targetType <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                bean <span class="token operator">=</span> <span class="token function">applyBeanPostProcessorsBeforeInstantiation</span><span class="token punctuation">(</span>targetType<span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>bean <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    bean <span class="token operator">=</span> <span class="token function">applyBeanPostProcessorsAfterInitialization</span><span class="token punctuation">(</span>bean<span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+        mbd<span class="token punctuation">.</span>beforeInstantiationResolved <span class="token operator">=</span> <span class="token punctuation">(</span>bean <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> bean<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<pre class="language-"><code class="lang-java"><span class="token comment">/**
+ * Apply InstantiationAwareBeanPostProcessors to the specified bean definition
+ * (by class and name), invoking their {@code postProcessBeforeInstantiation} methods.
+ * &lt;p&gt;Any returned object will be used as the bean instead of actually instantiating
+ * the target bean. A {@code null} return value from the post-processor will
+ * result in the target bean being instantiated.
+ * @param beanClass the class of the bean to be instantiated
+ * @param beanName the name of the bean
+ * @return the bean object to use instead of a default instance of the target bean, or {@code null}
+ * @see InstantiationAwareBeanPostProcessor#postProcessBeforeInstantiation
+ */</span>
+<span class="token annotation punctuation">@Nullable</span>
+<span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">applyBeanPostProcessorsBeforeInstantiation</span><span class="token punctuation">(</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> beanClass<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">BeanPostProcessor</span> bp <span class="token operator">:</span> <span class="token function">getBeanPostProcessors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>bp <span class="token keyword">instanceof</span> <span class="token class-name">InstantiationAwareBeanPostProcessor</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">InstantiationAwareBeanPostProcessor</span> ibp <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">InstantiationAwareBeanPostProcessor</span><span class="token punctuation">)</span> bp<span class="token punctuation">;</span>
+            <span class="token class-name">Object</span> result <span class="token operator">=</span> ibp<span class="token punctuation">.</span><span class="token function">postProcessBeforeInstantiation</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>result <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> result<span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="../../imgs/beanpostprocessor1.png" alt=""></p>
+<p><code>org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator#postProcessBeforeInstantiation</code></p>
+<p>&#x5224;&#x65AD;&#x662F;&#x5426;&#x8981;&#x4EE3;&#x7406;&#xFF08;&#x5206;&#x9636;&#x6BB5;&#xFF09;&#xFF0C;&#x6B64;&#x9636;&#x6BB5;&#x4E0D;&#x4EE3;&#x7406;&#x7684;&#x7C7B;(&#x6216;&#x8005;&#x5DF2;&#x7ECF;&#x4EE3;&#x7406;&#x8FC7;&#x7684;&#x7C7B;)&#x5B58;&#x50A8;&#x8D77;&#x6765;&#x5230;advisedBeans&#x4E2D;&#xFF0C;&#x6BD4;&#x5982;<code>Config</code>&#x7C7B;</p>
+<pre class="language-"><code class="lang-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">postProcessBeforeInstantiation</span><span class="token punctuation">(</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> beanClass<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Object</span> cacheKey <span class="token operator">=</span> <span class="token function">getCacheKey</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">hasLength</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>targetSourcedBeans<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>advisedBeans<span class="token punctuation">.</span><span class="token function">containsKey</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token comment">// &#x5224;&#x65AD;&#x662F;&#x5426;&#x9700;&#x8981;&#x4EE3;&#x7406;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">isInfrastructureClass</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token function">shouldSkip</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>advisedBeans<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">,</span> <span class="token class-name">Boolean</span><span class="token punctuation">.</span>FALSE<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">// Create proxy here if we have a custom TargetSource.</span>
+    <span class="token comment">// Suppresses unnecessary default instantiation of the target bean:</span>
+    <span class="token comment">// The TargetSource will handle target instances in a custom fashion.</span>
+    <span class="token class-name">TargetSource</span> targetSource <span class="token operator">=</span> <span class="token function">getCustomTargetSource</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>targetSource <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token class-name">StringUtils</span><span class="token punctuation">.</span><span class="token function">hasLength</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>targetSourcedBeans<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> specificInterceptors <span class="token operator">=</span> <span class="token function">getAdvicesAndAdvisorsForBean</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> targetSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">Object</span> proxy <span class="token operator">=</span> <span class="token function">createProxy</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> specificInterceptors<span class="token punctuation">,</span> targetSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>proxyTypes<span class="token punctuation">.</span><span class="token function">put</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">,</span> proxy<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> proxy<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p>&#x4E24;&#x4E2A;&#x6761;&#x4EF6;&#xFF1A;<code>isInfrastructureClass(beanClass) || shouldSkip(beanClass, beanName)</code></p>
+<ul>
+<li><code>org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator#isInfrastructureClass</code></li>
+</ul>
+<p>aop&#x81EA;&#x8EAB;&#x7684;&#x4E00;&#x4E9B;&#x7C7B;&#xFF08;&#x5207;&#x9762;&#xFF0C;&#x5207;&#x70B9;&#x7B49;&#xFF09;&#x662F;&#x4E0D;&#x9700;&#x8981;&#x88AB;&#x4EE3;&#x7406;&#x7684;&#xFF0C;&#x56E0;&#x4E3A;&#x8FD9;&#x4E9B;&#x7C7B;&#x5C31;&#x662F;&#x4EE3;&#x7406;&#x903B;&#x8F91;&#xFF08;&#x518D;&#x4EE3;&#x7406;&#x5C31;&#x65E0;&#x9650;&#x4EE3;&#x7406;&#x5FAA;&#x73AF;&#x4E86;&#xFF09;</p>
+<pre class="language-"><code class="lang-java"><span class="token keyword">protected</span> <span class="token keyword">boolean</span> <span class="token function">isInfrastructureClass</span><span class="token punctuation">(</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> beanClass<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">boolean</span> retVal <span class="token operator">=</span> <span class="token class-name">Advice</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">isAssignableFrom</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">)</span> <span class="token operator">||</span>
+            <span class="token class-name">Pointcut</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">isAssignableFrom</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">)</span> <span class="token operator">||</span>
+            <span class="token class-name">Advisor</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">isAssignableFrom</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">)</span> <span class="token operator">||</span>
+            <span class="token class-name">AopInfrastructureBean</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">isAssignableFrom</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>retVal <span class="token operator">&amp;&amp;</span> logger<span class="token punctuation">.</span><span class="token function">isTraceEnabled</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        logger<span class="token punctuation">.</span><span class="token function">trace</span><span class="token punctuation">(</span><span class="token string">&quot;Did not attempt to auto-proxy infrastructure class [&quot;</span> <span class="token operator">+</span> beanClass<span class="token punctuation">.</span><span class="token function">getName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;]&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> retVal<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<h3 id="&#x56DE;&#x987E;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7684;lambda&#x8868;&#x8FBE;&#x5F0F;&#x63D0;&#x65E9;&#x5B9E;&#x73B0;aop">&#x56DE;&#x987E;&#x5FAA;&#x73AF;&#x4F9D;&#x8D56;&#x7684;lambda&#x8868;&#x8FBE;&#x5F0F;&#x63D0;&#x65E9;&#x5B9E;&#x73B0;AOP</h3>
+<pre class="language-"><code class="lang-java"><span class="token function">addSingletonFactory</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">-&gt;</span> <span class="token function">getEarlyBeanReference</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> mbd<span class="token punctuation">,</span> bean<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * Obtain a reference for early access to the specified bean,
+ * typically for the purpose of resolving a circular reference.
+ * @param beanName the name of the bean (for error handling purposes)
+ * @param mbd the merged bean definition for the bean
+ * @param bean the raw bean instance
+ * @return the object to expose as bean reference
+ */</span>
+<span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">getEarlyBeanReference</span><span class="token punctuation">(</span><span class="token class-name">String</span> beanName<span class="token punctuation">,</span> <span class="token class-name">RootBeanDefinition</span> mbd<span class="token punctuation">,</span> <span class="token class-name">Object</span> bean<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Object</span> exposedObject <span class="token operator">=</span> bean<span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>mbd<span class="token punctuation">.</span><span class="token function">isSynthetic</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;&amp;</span> <span class="token function">hasInstantiationAwareBeanPostProcessors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">BeanPostProcessor</span> bp <span class="token operator">:</span> <span class="token function">getBeanPostProcessors</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token comment">// bean&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#x4E2D;&#xFF0C;&#x53EA;&#x53D6;`SmartInstantiationAwareBeanPostProcessor`</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>bp <span class="token keyword">instanceof</span> <span class="token class-name">SmartInstantiationAwareBeanPostProcessor</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token class-name">SmartInstantiationAwareBeanPostProcessor</span> ibp <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token class-name">SmartInstantiationAwareBeanPostProcessor</span><span class="token punctuation">)</span> bp<span class="token punctuation">;</span>
+                exposedObject <span class="token operator">=</span> ibp<span class="token punctuation">.</span><span class="token function">getEarlyBeanReference</span><span class="token punctuation">(</span>exposedObject<span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> exposedObject<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="../../imgs/beanpostprocessor2.png" alt=""></p>
+<p>&#x63A5;&#x7740;&#x4F1A;&#x6267;&#x884C;<code>org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator#getEarlyBeanReference</code></p>
+<pre class="language-"><code class="lang-java"><span class="token annotation punctuation">@Override</span>
+<span class="token keyword">public</span> <span class="token class-name">Object</span> <span class="token function">getEarlyBeanReference</span><span class="token punctuation">(</span><span class="token class-name">Object</span> bean<span class="token punctuation">,</span> <span class="token class-name">String</span> beanName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Object</span> cacheKey <span class="token operator">=</span> <span class="token function">getCacheKey</span><span class="token punctuation">(</span>bean<span class="token punctuation">.</span><span class="token function">getClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span><span class="token keyword">this</span><span class="token punctuation">.</span>earlyProxyReferences<span class="token punctuation">.</span><span class="token function">contains</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">this</span><span class="token punctuation">.</span>earlyProxyReferences<span class="token punctuation">.</span><span class="token function">add</span><span class="token punctuation">(</span>cacheKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">return</span> <span class="token function">wrapIfNecessary</span><span class="token punctuation">(</span>bean<span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> cacheKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="../../imgs/beanpostprocessor3.png" alt=""></p>
+<p><code>org.springframework.aop.framework.autoproxy.AbstractAutoProxyCreator#createProxy</code></p>
+<pre class="language-"><code class="lang-java"><span class="token comment">/**
+ * Create an AOP proxy for the given bean.
+ * @param beanClass the class of the bean
+ * @param beanName the name of the bean
+ * @param specificInterceptors the set of interceptors that is
+ * specific to this bean (may be empty, but not null)
+ * @param targetSource the TargetSource for the proxy,
+ * already pre-configured to access the bean
+ * @return the AOP proxy for the bean
+ * @see #buildAdvisors
+ */</span>
+<span class="token keyword">protected</span> <span class="token class-name">Object</span> <span class="token function">createProxy</span><span class="token punctuation">(</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> beanClass<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">String</span> beanName<span class="token punctuation">,</span>
+        <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">Object</span><span class="token punctuation">[</span><span class="token punctuation">]</span> specificInterceptors<span class="token punctuation">,</span> <span class="token class-name">TargetSource</span> targetSource<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>beanFactory <span class="token keyword">instanceof</span> <span class="token class-name">ConfigurableListableBeanFactory</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">AutoProxyUtils</span><span class="token punctuation">.</span><span class="token function">exposeTargetClass</span><span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">ConfigurableListableBeanFactory</span><span class="token punctuation">)</span> <span class="token keyword">this</span><span class="token punctuation">.</span>beanFactory<span class="token punctuation">,</span> beanName<span class="token punctuation">,</span> beanClass<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token class-name">ProxyFactory</span> proxyFactory <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ProxyFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    proxyFactory<span class="token punctuation">.</span><span class="token function">copyFrom</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token operator">!</span>proxyFactory<span class="token punctuation">.</span><span class="token function">isProxyTargetClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">shouldProxyTargetClass</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">,</span> beanName<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            proxyFactory<span class="token punctuation">.</span><span class="token function">setProxyTargetClass</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token function">evaluateProxyInterfaces</span><span class="token punctuation">(</span>beanClass<span class="token punctuation">,</span> proxyFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token class-name">Advisor</span><span class="token punctuation">[</span><span class="token punctuation">]</span> advisors <span class="token operator">=</span> <span class="token function">buildAdvisors</span><span class="token punctuation">(</span>beanName<span class="token punctuation">,</span> specificInterceptors<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    proxyFactory<span class="token punctuation">.</span><span class="token function">addAdvisors</span><span class="token punctuation">(</span>advisors<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    proxyFactory<span class="token punctuation">.</span><span class="token function">setTargetSource</span><span class="token punctuation">(</span>targetSource<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">customizeProxyFactory</span><span class="token punctuation">(</span>proxyFactory<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    proxyFactory<span class="token punctuation">.</span><span class="token function">setFrozen</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>freezeProxy<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token function">advisorsPreFiltered</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        proxyFactory<span class="token punctuation">.</span><span class="token function">setPreFiltered</span><span class="token punctuation">(</span><span class="token boolean">true</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">return</span> proxyFactory<span class="token punctuation">.</span><span class="token function">getProxy</span><span class="token punctuation">(</span><span class="token function">getProxyClassLoader</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
+<p><img src="../../imgs/beanpostprocessor4.png" alt=""></p>
+<p>&#x6700;&#x540E;&#x5B8C;&#x6210;AOP&#x4EE3;&#x7406;</p>
+<p><img src="../../imgs/beanpostprocessor5.png" alt=""></p>
+<ul>
+<li>&#x5173;&#x4E8E;&#x4F7F;&#x7528;JDK&#x52A8;&#x6001;&#x8FD8;&#x662F;CGLIB&#x52A8;&#x6001;&#x4EE3;&#x7406;</li>
+</ul>
+<p><code>org.springframework.aop.framework.DefaultAopProxyFactory</code></p>
+<pre class="language-"><code class="lang-java"><span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DefaultAopProxyFactory</span> <span class="token keyword">implements</span> <span class="token class-name">AopProxyFactory</span><span class="token punctuation">,</span> <span class="token class-name">Serializable</span> <span class="token punctuation">{</span>
+
+    <span class="token annotation punctuation">@Override</span>
+    <span class="token keyword">public</span> <span class="token class-name">AopProxy</span> <span class="token function">createAopProxy</span><span class="token punctuation">(</span><span class="token class-name">AdvisedSupport</span> config<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">AopConfigException</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>config<span class="token punctuation">.</span><span class="token function">isOptimize</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> config<span class="token punctuation">.</span><span class="token function">isProxyTargetClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token function">hasNoUserSuppliedProxyInterfaces</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span> targetClass <span class="token operator">=</span> config<span class="token punctuation">.</span><span class="token function">getTargetClass</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>targetClass <span class="token operator">==</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">AopConfigException</span><span class="token punctuation">(</span><span class="token string">&quot;TargetSource cannot determine target class: &quot;</span> <span class="token operator">+</span>
+                        <span class="token string">&quot;Either an interface or a target is required for proxy creation.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token punctuation">(</span>targetClass<span class="token punctuation">.</span><span class="token function">isInterface</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">||</span> <span class="token class-name">Proxy</span><span class="token punctuation">.</span><span class="token function">isProxyClass</span><span class="token punctuation">(</span>targetClass<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JdkDynamicAopProxy</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ObjenesisCglibAopProxy</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">else</span> <span class="token punctuation">{</span>
+            <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">JdkDynamicAopProxy</span><span class="token punctuation">(</span>config<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">/**
+     * Determine whether the supplied {@link AdvisedSupport} has only the
+     * {@link org.springframework.aop.SpringProxy} interface specified
+     * (or no proxy interfaces specified at all).
+     */</span>
+    <span class="token keyword">private</span> <span class="token keyword">boolean</span> <span class="token function">hasNoUserSuppliedProxyInterfaces</span><span class="token punctuation">(</span><span class="token class-name">AdvisedSupport</span> config<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">[</span><span class="token punctuation">]</span> ifcs <span class="token operator">=</span> config<span class="token punctuation">.</span><span class="token function">getProxiedInterfaces</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span>ifcs<span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">0</span> <span class="token operator">||</span> <span class="token punctuation">(</span>ifcs<span class="token punctuation">.</span>length <span class="token operator">==</span> <span class="token number">1</span> <span class="token operator">&amp;&amp;</span> <span class="token class-name">SpringProxy</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">.</span><span class="token function">isAssignableFrom</span><span class="token punctuation">(</span>ifcs<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+
+<span class="token punctuation">}</span>
+</code></pre>
+<footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
+2020-12-10 18:47:05
+</span></footer>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="mapper_scan.html" class="navigation navigation-prev " aria-label="Previous page: @MapperScan 原理">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="bean_constructor.html" class="navigation navigation-next " aria-label="Next page: 推断构造方法">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"BeanPostProcessor","level":"1.4.1.2.4","depth":4,"next":{"title":"推断构造方法","level":"1.4.1.2.4.1","depth":5,"path":"doc/bean/bean_constructor.md","ref":"doc/bean/bean_constructor.md","articles":[]},"previous":{"title":"@MapperScan 原理","level":"1.4.1.2.3.2","depth":5,"path":"doc/bean/mapper_scan.md","ref":"doc/bean/mapper_scan.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/bean_post_processor.md","mtime":"2020-12-10T10:47:05.067Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-12T14:00:24.472Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-ace/ace/ace.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-ace/ace.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-plus/search.js"></script>
+        
+    
+        
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sectionx/sectionx.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters/expandable-chapters.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-back-to-top-button/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-code/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

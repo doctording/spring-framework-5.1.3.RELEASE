@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>3.7 @Configuration · spring-note</title>
+        <title>@Configuration · spring-note</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -89,10 +89,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="context.html" />
+    <link rel="next" href="mapper_scan.html" />
     
     
-    <link rel="prev" href="bean_definition.html" />
+    <link rel="prev" href="post_processor.html" />
     
 
     </head>
@@ -139,7 +139,7 @@
                 <a href="../target.html">
             
                     
-                    1 前言
+                    前言
             
                 </a>
             
@@ -152,7 +152,7 @@
                 <span>
             
                     
-                    [2 ClassPathXmlApplicationContext Demo 引入]
+                    [ClassPathXmlApplicationContext Demo 引入]
             
                 </span>
             
@@ -172,14 +172,15 @@
             
 
             
-        </li>
+            <ul class="articles">
+                
     
-        <li class="chapter " data-level="1.3.2" data-path="../test/code_review.html">
+        <li class="chapter " data-level="1.3.1.1" data-path="../test/code_review.html">
             
                 <a href="../test/code_review.html">
             
                     
-                    2.2 执行流程源码走读
+                    2.2 执行流程:refresh的12个方法
             
                 </a>
             
@@ -187,7 +188,12 @@
             
         </li>
     
-        <li class="chapter " data-level="1.3.3" data-path="../test/bean_constructor.html">
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3.2" data-path="../test/bean_constructor.html">
             
                 <a href="../test/bean_constructor.html">
             
@@ -210,7 +216,7 @@
                 <span>
             
                     
-                    [3 Ioc & Aop]
+                    [Ioc & Aop]
             
                 </span>
             
@@ -219,12 +225,26 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1" data-path="ioc_bean.html">
+        <li class="chapter " data-level="1.4.1" >
+            
+                <span>
+            
+                    
+                    [Ioc & Bean]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.1" data-path="ioc_bean.html">
             
                 <a href="ioc_bean.html">
             
                     
-                    3.1 Ioc & Bean概念
+                    Ioc & BeanDefinition
             
                 </a>
             
@@ -233,12 +253,12 @@
             <ul class="articles">
                 
     
-        <li class="chapter " data-level="1.4.1.1" data-path="BeanFactory.html">
+        <li class="chapter " data-level="1.4.1.1.1" data-path="BeanFactory.html">
             
                 <a href="BeanFactory.html">
             
                     
-                    3.1.1 BeanFactory接口
+                    BeanFactory接口
             
                 </a>
             
@@ -246,137 +266,283 @@
             
         </li>
     
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.2" data-path="dependency.html">
-            
-                <a href="dependency.html">
-            
-                    
-                    3.2 Spring循环依赖具体执行流程
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.3" data-path="bean_life.html">
-            
-                <a href="bean_life.html">
-            
-                    
-                    3.3 Bean生命周期
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.4.3.1" data-path="bean_scope.html">
-            
-                <a href="bean_scope.html">
-            
-                    
-                    3.3.1 Bean的作用域
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.4" data-path="fatory_bean.html">
-            
-                <a href="fatory_bean.html">
-            
-                    
-                    3.4 FactoryBean接口
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.5" data-path="aop.html">
-            
-                <a href="aop.html">
-            
-                    
-                    3.5 AOP
-            
-                </a>
-            
-
-            
-            <ul class="articles">
-                
-    
-        <li class="chapter " data-level="1.4.5.1" data-path="aspectj.html">
-            
-                <a href="aspectj.html">
-            
-                    
-                    3.5.1 AOP 和 AspectJ AOP
-            
-                </a>
-            
-
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.6" data-path="bean_definition.html">
-            
-                <a href="bean_definition.html">
-            
-                    
-                    3.6 BeanDefinition
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter active" data-level="1.4.7" data-path="configuration.html">
-            
-                <a href="configuration.html">
-            
-                    
-                    3.7 @Configuration
-            
-                </a>
-            
-
-            
-        </li>
-    
-        <li class="chapter " data-level="1.4.8" data-path="context.html">
+        <li class="chapter " data-level="1.4.1.1.2" data-path="context.html">
             
                 <a href="context.html">
             
                     
-                    3.8 ApplicationContext
+                    ApplicationContext & BeanFactory
             
                 </a>
             
 
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.1.3" data-path="context_event.html">
+            
+                <a href="context_event.html">
+            
+                    
+                    事件发布和监听机制
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2" >
+            
+                <span>
+            
+                    
+                    [Bean]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.1" data-path="bean_life.html">
+            
+                <a href="bean_life.html">
+            
+                    
+                    Bean生命周期&回调
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.1.1" data-path="bean_scope.html">
+            
+                <a href="bean_scope.html">
+            
+                    
+                    Bean的作用域
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.1.2" data-path="fatory_bean.html">
+            
+                <a href="fatory_bean.html">
+            
+                    
+                    FactoryBean接口
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.1.3" data-path="lazy.html">
+            
+                <a href="lazy.html">
+            
+                    
+                    懒加载bean
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.2" data-path="ioc_bean_dependency.html">
+            
+                <a href="ioc_bean_dependency.html">
+            
+                    
+                    Bean 依赖
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.2.1" data-path="dependency.html">
+            
+                <a href="dependency.html">
+            
+                    
+                    Spring循环依赖具体执行流程
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.3" data-path="post_processor.html">
+            
+                <a href="post_processor.html">
+            
+                    
+                    BeanFactoryPostProcessor & BeanDefinitionRegistryPostProcessor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter active" data-level="1.4.1.2.3.1" data-path="configuration.html">
+            
+                <a href="configuration.html">
+            
+                    
+                    @Configuration
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.3.2" data-path="mapper_scan.html">
+            
+                <a href="mapper_scan.html">
+            
+                    
+                    @MapperScan 原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.4" data-path="bean_post_processor.html">
+            
+                <a href="bean_post_processor.html">
+            
+                    
+                    BeanPostProcessor
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.1.2.4.1" data-path="bean_constructor.html">
+            
+                <a href="bean_constructor.html">
+            
+                    
+                    推断构造方法
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.1.2.5" data-path="ioc_bean_auto.html">
+            
+                <a href="ioc_bean_auto.html">
+            
+                    
+                    自动装配 & @Autowired
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2" >
+            
+                <span>
+            
+                    
+                    [AOP]
+            
+                </span>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.4.2.1" data-path="aop.html">
+            
+                <a href="aop.html">
+            
+                    
+                    Spring AOP
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.4.2.2" data-path="aspectj.html">
+            
+                <a href="aspectj.html">
+            
+                    
+                    CGLIB & AOP代理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -390,7 +556,7 @@
                 <a href="transaction.html">
             
                     
-                    4 Spring 事务
+                    Spring 事务
             
                 </a>
             
@@ -404,7 +570,7 @@
                 <a href="transaction_annotation.html">
             
                     
-                    4.1 @Transactional
+                    @Transactional
             
                 </a>
             
@@ -422,11 +588,30 @@
                 <a href="../mybatis.html">
             
                     
-                    5 MyBatis
+                    MyBatis手写
             
                 </a>
             
 
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.6.1" data-path="../mybatis_source.html">
+            
+                <a href="../mybatis_source.html">
+            
+                    
+                    MyBatis源码分析
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -435,11 +620,30 @@
                 <a href="../springboot.html">
             
                     
-                    6 SpringBoot
+                    SpringMvc & SpringBoot
             
                 </a>
             
 
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="1.7.1" data-path="../springboot_starter.html">
+            
+                <a href="../springboot_starter.html">
+            
+                    
+                    SpringBoot启动原理
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -448,7 +652,7 @@
                 <span>
             
                     
-                    [7 其它问题总结]
+                    [其它问题总结]
             
                 </span>
             
@@ -480,7 +684,7 @@
                 <span>
             
                     
-                    [8 其它]
+                    [其它]
             
                 </span>
             
@@ -537,7 +741,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >3.7 @Configuration</a>
+        <a href="../.." >@Configuration</a>
     </h1>
 </div>
 
@@ -659,7 +863,7 @@ init <span class="token class-name">Y</span>
 </li>
 <li><p>&#x6240;&#x4EE5;<code>@Configuration</code>&#x662F;&#x626B;&#x63CF;&#x51FA;&#x6765;&#x5E76;&#x52A0;&#x8F7D;&#x7684;&#x5417;&#xFF1F;</p>
 </li>
-<li><p>&#x663E;&#x7136;Spring&#x63D0;&#x4F9B;&#x626B;&#x63CF;Bean&#x529F;&#x80FD;&#xFF0C;&#x8FD9;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x81F3;&#x5C11;&#x4E00;&#x4E2A;<code>@Configuration</code>&#x7C7B;&#xFF0C;&#x6240;&#x4EE5;<code>@Configuration</code>&#x80AF;&#x5B9A;&#x4E0D;&#x662F;&#x626B;&#x63CF;&#x65B9;&#x5F0F;&#x7684;&#xFF1B;&#x4E8B;&#x5B9E;&#x4E0A;&#x5176;&#x5B9E;&#x624B;&#x52A8;<code>register</code>&#x7684;</p>
+<li><p>&#x663E;&#x7136;Spring&#x63D0;&#x4F9B;&#x626B;&#x63CF;Bean&#x529F;&#x80FD;&#xFF0C;&#x8FD9;&#x9700;&#x8981;&#x4E00;&#x4E2A;&#x3001;&#x81F3;&#x5C11;&#x4E00;&#x4E2A;<code>@Configuration</code>&#x7C7B;&#xFF0C;&#x6240;&#x4EE5;<code>@Configuration</code>&#x80AF;&#x5B9A;&#x4E0D;&#x662F;&#x626B;&#x63CF;&#x65B9;&#x5F0F;&#x7684;&#xFF1B;&#x4E8B;&#x5B9E;&#x4E0A;&#x5176;&#x662F;&#x624B;&#x52A8;<code>register</code>&#x7684;</p>
 </li>
 <li><p>&#x5E26;&#x7740;&#x95EE;&#x9898;&#x770B;&#x6E90;&#x7801;&#xFF0C;&#x540C;&#x65F6;&#x8FD8;&#x6709;&#x95EE;&#x9898;&#x662F;&#xFF1A;bean x,y &#x662F;&#x4EC0;&#x4E48;&#x65F6;&#x5019;&#x751F;&#x6210;<code>BeanDefinition</code>&#x5E76;&#x5199;&#x5165;&#x5230;<code>BeanDefinitionMap</code>&#x4E2D;&#x7684;</p>
 </li>
@@ -667,14 +871,35 @@ init <span class="token class-name">Y</span>
 <h2 id="&#x3010;&#x3011;configuration&#x7684;bean&#x600E;&#x4E48;&#x52A0;&#x5165;&#x5230;beandefinitionmap&#x4E2D;">&#x3010;*&#x3011;<code>@Configuration</code>&#x7684;Bean&#x600E;&#x4E48;&#x52A0;&#x5165;&#x5230;<code>beanDefinitionMap</code>&#x4E2D;</h2>
 <p>&#x5728;new<code>AnnotationConfigApplicationContext</code>&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x6267;&#x884C;<code>register(annotatedClasses);</code>&#x65B9;&#x6CD5;&#xFF0C;&#x7D27;&#x63A5;&#x7740;&#x662F;<code>refresh</code>&#x65B9;&#x6CD5;;</p>
 <pre class="language-"><code class="lang-java"><span class="token class-name">AnnotationConfigApplicationContext</span> ac <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AnnotationConfigApplicationContext</span><span class="token punctuation">(</span><span class="token class-name">XyzConfig</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword">public</span> <span class="token class-name">AnnotationConfigApplicationContext</span><span class="token punctuation">(</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> annotatedClasses<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword">this</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">register</span><span class="token punctuation">(</span>annotatedClasses<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token function">refresh</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
 </code></pre>
 <h3 id="registerannotatedclasses"><code>register(annotatedClasses);</code></h3>
+<pre class="language-"><code class="lang-java"><span class="token comment">/**
+ * Register one or more annotated classes to be processed.
+ * &lt;p&gt;Note that {@link #refresh()} must be called in order for the context
+ * to fully process the new classes.
+ * @param annotatedClasses one or more annotated classes,
+ * e.g. {@link Configuration @Configuration} classes
+ * @see #scan(String...)
+ * @see #refresh()
+ */</span>
+<span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">register</span><span class="token punctuation">(</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> annotatedClasses<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token class-name">Assert</span><span class="token punctuation">.</span><span class="token function">notEmpty</span><span class="token punctuation">(</span>annotatedClasses<span class="token punctuation">,</span> <span class="token string">&quot;At least one annotated class must be specified&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">this</span><span class="token punctuation">.</span>reader<span class="token punctuation">.</span><span class="token function">register</span><span class="token punctuation">(</span>annotatedClasses<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre>
 <p>&#x4F1A;&#x6267;&#x884C;<code>doRegisterBean</code>&#x65B9;&#x6CD5;&#x6CE8;&#x518C;<code>BeanDefinition</code>&#xFF1B;</p>
 <font color="blue">&#x56DE;&#x7B54;&#xFF1A;`@Configuration`&#x7684;Bean&#x662F;&#x76F4;&#x63A5;&#x624B;&#x52A8;&#x6CE8;&#x518C;&#x7684;&#xFF0C;&#x800C;&#x975E;scan&#x626B;&#x63CF;&#x65B9;&#x5F0F;</font>
 
 <pre class="language-"><code class="lang-java"><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> <span class="token keyword">void</span> <span class="token function">doRegisterBean</span><span class="token punctuation">(</span><span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> annotatedClass<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">Supplier</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">T</span><span class="token punctuation">&gt;</span></span> instanceSupplier<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">String</span> name<span class="token punctuation">,</span>
         <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">Class</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token operator">?</span> <span class="token keyword">extends</span> <span class="token class-name">Annotation</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">[</span><span class="token punctuation">]</span> qualifiers<span class="token punctuation">,</span> <span class="token class-name">BeanDefinitionCustomizer</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> definitionCustomizers<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-
+    <span class="token comment">// annotatedClass &#x76F4;&#x63A5; new &#x6210; AnnotatedGenericBeanDefinition</span>
+    <span class="token comment">// &#x7136;&#x540E;&#x52A0;&#x5165;&#x5230;beanDefinitionMap&#x4E2D;</span>
     <span class="token class-name">AnnotatedGenericBeanDefinition</span> abd <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">AnnotatedGenericBeanDefinition</span><span class="token punctuation">(</span>annotatedClass<span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token keyword">if</span> <span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span>conditionEvaluator<span class="token punctuation">.</span><span class="token function">shouldSkip</span><span class="token punctuation">(</span>abd<span class="token punctuation">.</span><span class="token function">getMetadata</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
         <span class="token keyword">return</span><span class="token punctuation">;</span>
@@ -960,7 +1185,7 @@ init <span class="token class-name">Y</span>
 <h2 id="&#x5F53;beandefinition&#x5168;&#x90E8;&#x5230;&#x4F4D;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x7EE7;&#x7EED;refresh&#x65B9;&#x6CD5;&#xFF0C;&#x4F1A;&#x8D70;&#x5230;&#x5355;&#x4F8B;bean&#x751F;&#x547D;&#x5468;&#x671F;">&#x5F53;<code>BeanDefinition</code>&#x5168;&#x90E8;&#x5230;&#x4F4D;&#x540E;&#xFF0C;&#x63A5;&#x4E0B;&#x6765;&#x7EE7;&#x7EED;refresh&#x65B9;&#x6CD5;&#xFF0C;&#x4F1A;&#x8D70;&#x5230;&#x5355;&#x4F8B;bean&#x751F;&#x547D;&#x5468;&#x671F;</h2>
 <p>&#x53C2;&#x8003;&#x590D;&#x4E60;&#xFF1A;<a href="bean_life.html">&#x5355;&#x4F8B;bean&#x751F;&#x547D;&#x5468;&#x671F;</a></p>
 <footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
-2020-08-12 23:48:20
+2020-11-19 09:14:32
 </span></footer>
                                 
                                 </section>
@@ -988,12 +1213,12 @@ init <span class="token class-name">Y</span>
 
             
                 
-                <a href="bean_definition.html" class="navigation navigation-prev " aria-label="Previous page: 3.6 BeanDefinition">
+                <a href="post_processor.html" class="navigation navigation-prev " aria-label="Previous page: BeanFactoryPostProcessor & BeanDefinitionRegistryPostProcessor">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
                 
-                <a href="context.html" class="navigation navigation-next " aria-label="Next page: 3.8 ApplicationContext">
+                <a href="mapper_scan.html" class="navigation navigation-next " aria-label="Next page: @MapperScan 原理">
                     <i class="fa fa-angle-right"></i>
                 </a>
                 
@@ -1004,7 +1229,7 @@ init <span class="token class-name">Y</span>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"3.7 @Configuration","level":"1.4.7","depth":2,"next":{"title":"3.8 ApplicationContext","level":"1.4.8","depth":2,"path":"doc/bean/context.md","ref":"doc/bean/context.md","articles":[]},"previous":{"title":"3.6 BeanDefinition","level":"1.4.6","depth":2,"path":"doc/bean/bean_definition.md","ref":"doc/bean/bean_definition.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/configuration.md","mtime":"2020-08-12T15:48:20.171Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-10-08T16:59:58.687Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"@Configuration","level":"1.4.1.2.3.1","depth":5,"next":{"title":"@MapperScan 原理","level":"1.4.1.2.3.2","depth":5,"path":"doc/bean/mapper_scan.md","ref":"doc/bean/mapper_scan.md","articles":[]},"previous":{"title":"BeanFactoryPostProcessor & BeanDefinitionRegistryPostProcessor","level":"1.4.1.2.3","depth":4,"path":"doc/bean/post_processor.md","ref":"doc/bean/post_processor.md","articles":[{"title":"@Configuration","level":"1.4.1.2.3.1","depth":5,"path":"doc/bean/configuration.md","ref":"doc/bean/configuration.md","articles":[]},{"title":"@MapperScan 原理","level":"1.4.1.2.3.2","depth":5,"path":"doc/bean/mapper_scan.md","ref":"doc/bean/mapper_scan.md","articles":[]}]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/configuration.md","mtime":"2020-11-19T01:14:32.413Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-01-12T14:00:24.472Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
