@@ -18,7 +18,7 @@ A -> B -> C -> A
 ## Spring中循环依赖场景
 
 1. 构造器的循环依赖(spring无法解决)
-2. field属性的循环依赖(spring能解决单例bean的属性循环依赖)
+2. field属性的循环依赖(spring能解决单例bean的属性循环依赖,且要是setter注入方式)
 
 ## singleton bean 属性循环依赖无问题
 
@@ -26,7 +26,47 @@ A -> B -> C -> A
 
 ![](http://assets.processon.com/chart_image/5dda12fde4b09e8b0b71679f.png)
 
-### 单例的三级缓存获取:`getSingleton`方法
+### 三级缓存涉及要点说明
+
+```java
+
+public class DefaultSingletonBeanRegistry extends SimpleAliasRegistry implements SingletonBeanRegistry {
+	...
+	// 从上至下 分表代表这“三级缓存”
+	//一级缓存，也就单例池
+	private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256); 
+	// 二级缓存，早起暴露对象，存放原始的 bean 对象（尚未填充属性）
+	private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
+	// 三级缓存，Map<bean,lambda(bean)>，存放 beanFactory 对象，用于解决循环依赖
+	private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
+	...
+
+	/** Names of beans that are currently in creation. */
+	// 这个缓存也十分重要：它表示bean创建过程中
+	// 它在Bean开始创建时存入，创建完成后会将其移出
+	private final Set<String> singletonsCurrentlyInCreation = Collections.newSetFromMap(new ConcurrentHashMap<>(16));
+
+	/** Names of beans that have already been created at least once. */
+	// 当这个Bean被创建完成后，会标记为这个 注意：这里是set集合 不会重复
+	// 至少被创建了一次的 都会放进这里
+	private final Set<String> alreadyCreated = Collections.newSetFromMap(new ConcurrentHashMap<>(256));
+
+```
+
+* 其中`isSingletonCurrentlyInCreation()`方法判断当前单例Bean是否正在创建中（在创建中的Bean是没有初始化完全的）
+
+```java
+/**
+ * Return whether the specified singleton bean is currently in creation
+ * (within the entire factory).
+ * @param beanName the name of the bean
+ */
+public boolean isSingletonCurrentlyInCreation(String beanName) {
+    return this.singletonsCurrentlyInCreation.contains(beanName);
+}
+```
+
+#### 单例的三级缓存`getSingleton`方法
 
 ```java
 /**
@@ -57,53 +97,9 @@ protected Object getSingleton(String beanName, boolean allowEarlyReference) {
 }
 ```
 
-### 三级缓存涉及要点说明
-
-#### `singletonObjects`map结构（一级缓存）
-
-```java
-/** Cache of singleton objects: bean name to bean instance. */
-private final Map<String, Object> singletonObjects = new ConcurrentHashMap<>(256);
-```
-
-`singletonObjects`存储的实例是已经实例化的单例，并且初始化完成的(一般称为：单例缓存池)
-
-#### `earlySingletonObjects`map结构(二级缓存)
-
-```java
-/** Cache of early singleton objects: bean name to bean instance. */
-private final Map<String, Object> earlySingletonObjects = new HashMap<>(16);
-```
-
-从`singletonObjects`取不到，且该`Bean`在创建过程中，则从`earlySingletonObjects`获取
-
-
-#### `singletonsCurrentlyInCreation`Set集合(创建中Bean集合)
-
-`isSingletonCurrentlyInCreation()`方法判断当前单例Bean是否正在创建中（在创建中的Bean是没有初始化完全的）
-
-```java
-/**
- * Return whether the specified singleton bean is currently in creation
- * (within the entire factory).
- * @param beanName the name of the bean
- */
-public boolean isSingletonCurrentlyInCreation(String beanName) {
-    return this.singletonsCurrentlyInCreation.contains(beanName);
-}
-```
-
-将创建中的bean加入到`singletonsCurrentlyInCreation`集合中
-
-#### `singletonFactories`map结构(三级缓存)
-
-```java
-/** Cache of singleton factories: bean name to ObjectFactory. */
-private final Map<String, ObjectFactory<?>> singletonFactories = new HashMap<>(16);
-```
-
-从`earlySingletonObjects`取不到则从`singletonFactories`取，存储的是`<bean, lambda(bean)>`
-
+1. 从一级缓存中取，有则返回
+2. a. bean是在创建中，b. 早期暴露对象有(即二级缓存有)，有则返回
+3. a. 允许循环依赖，三级缓存有，则获取并加入到二级缓存，且从三级缓存移除掉
 
 ### `AbstractBeanFactory`类的`doGetBean`方法
 
@@ -128,7 +124,7 @@ if (mbd.isSingleton()) {
 
 也是`getSingleton`方法，有个lambda表达式的`createBean`方法
 
-#### `DefaultSingletonBeanRegistry`类的`getSingleton`方法逻辑
+#### 获取单例bean：`DefaultSingletonBeanRegistry`类的`getSingleton`方法主体逻辑
 
 ```java
 /**
@@ -142,7 +138,7 @@ if (mbd.isSingleton()) {
 public Object getSingleton(String beanName, ObjectFactory<?> singletonFactory) {
     Assert.notNull(beanName, "Bean name must not be null");
     synchronized (this.singletonObjects) {
-        // 1. 仍然是先判断是否在一级缓存中
+        // 1. 先判断是否在一级缓存中
         Object singletonObject = this.singletonObjects.get(beanName);
         if (singletonObject == null) {
             if (this.singletonsCurrentlyInDestruction) {
@@ -153,7 +149,8 @@ public Object getSingleton(String beanName, ObjectFactory<?> singletonFactory) {
             if (logger.isDebugEnabled()) {
                 logger.debug("Creating shared instance of singleton bean '" + beanName + "'");
             }
-            // 2. 创建前加入到`singletonsCurrentlyInCreation`集合中, 表示正在创建
+            // 2. 创建前加入到`singletonsCurrentlyInCreation`集合中, 表示正在创建中（
+            // 因为单例池没有，则必须要去创建的
             beforeSingletonCreation(beanName);
             boolean newSingleton = false;
             boolean recordSuppressedExceptions = (this.suppressedExceptions == null);
@@ -185,7 +182,8 @@ public Object getSingleton(String beanName, ObjectFactory<?> singletonFactory) {
                 if (recordSuppressedExceptions) {
                     this.suppressedExceptions = null;
                 }
-                // 4. 创建完成后从`singletonsCurrentlyInCreation`集合中移除, 非创建状态
+                // 4. 创建完成后从`singletonsCurrentlyInCreation`集合中移除
+                // 即遇到创建异常 或者 创建完成，都是非创建中状态
                 afterSingletonCreation(beanName);
             }
             if (newSingleton) {
@@ -198,7 +196,6 @@ public Object getSingleton(String beanName, ObjectFactory<?> singletonFactory) {
     }
 }
 ```
-
 
 #### `AbstractAutowireCapableBeanFactory`类的`doCreateBean`方法
 
@@ -249,7 +246,7 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
         }
     }
 
-    // 加入到三级缓存:即添加<bean，lambda(bean)>,此为提前暴露早期对象
+    // 加入到三级缓存: 即添加<bean，lambda(bean)>
     // Eagerly cache singletons to be able to resolve circular references
     // even when triggered by lifecycle interfaces like BeanFactoryAware.
     boolean earlySingletonExposure = (mbd.isSingleton() && this.allowCircularReferences &&
@@ -267,7 +264,7 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
     try {
         // 2. 填充bean的属性:即这里要完成bean依赖处理
         populateBean(beanName, mbd, instanceWrapper);
-        // 3. bean的initialize,beanPostProcessor等
+        // 3. bean的initialize, beanPostProcessor等
         exposedObject = initializeBean(beanName, exposedObject, mbd);
     }
     catch (Throwable ex) {
@@ -324,27 +321,69 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
 }
 ```
 
+* org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference
+
+```java
+/**
+ * Resolve a reference to another bean in the factory.
+ */
+@Nullable
+private Object resolveReference(Object argName, RuntimeBeanReference ref) {
+    try {
+        Object bean;
+        String refName = ref.getBeanName();
+        refName = String.valueOf(doEvaluate(refName));
+        if (ref.isToParent()) {
+            if (this.beanFactory.getParentBeanFactory() == null) {
+                throw new BeanCreationException(
+                        this.beanDefinition.getResourceDescription(), this.beanName,
+                        "Can't resolve reference to bean '" + refName +
+                        "' in parent factory: no parent factory available");
+            }
+            bean = this.beanFactory.getParentBeanFactory().getBean(refName);
+        }
+        else {
+            bean = this.beanFactory.getBean(refName);
+            this.beanFactory.registerDependentBean(refName, this.beanName);
+        }
+        if (bean instanceof NullBean) {
+            bean = null;
+        }
+        return bean;
+    }
+    catch (BeansException ex) {
+        throw new BeanCreationException(
+                this.beanDefinition.getResourceDescription(), this.beanName,
+                "Cannot resolve reference to bean '" + ref.getBeanName() + "' while setting " + argName, ex);
+    }
+}
+```
+
 #### Debug过程中的要点与截图
 
-* populateBean("b", mbd, instanceWrapper)的时候，发现依赖了A，要去getBean("a"),执行到`getSingleton`方法，此时从三级缓存中取到
+a依赖b，执行到a的`populateBean("b", mbd, instanceWrapper)`的时候，发现依赖B，要走getBean("b")的逻辑
+
+* populateBean("b", mbd, instanceWrapper)的时候，发现依赖了A，又要去getBean("a")，这样执行到`getSingleton`方法，此时从三级缓存中能取到A
 
 ![](../../imgs/bean_three_cache.png)
 
-* 从三级缓存取到A之后,执行了`lambda(bean A)`的逻辑，并将`bean A`加入二级缓存，并返回
+* 从三级缓存取到A之后,执行了`lambda(bean A)`的逻辑，删除三级缓存，并将`bean A`加入二级缓存（根据工厂就能对A进行各种操作，得到最后的A，这里称为早期的曝光对象），然后B的populateBean方法能正常返回
 
 ![](../../imgs/bean_three_cache_2.png)
 
-* 由于从三级缓存拿到了提交曝光的A，B就正常的完成A依赖的设置，顺利完成`populateBean`方法
+* 由于B拿到了提交曝光的A，这样B就正常的完成A依赖的设置，顺利完成自己的`populateBean`方法，进入自己的初始化方法
 
-![](../../imgs/bean_three_cache_3.png)
+![](../../imgs/bean_three_cache_30.png)
 
-* B实例化全部完成后，加入到单例缓存池(一级缓存)中
+* 最后B实例化全部完成后，加入到单例缓存池(一级缓存)中
+
+![](../../imgs/bean_three_cache_31.png)
 
 ![](../../imgs/bean_three_cache_4.png)
 
-* 由于B实例化的完成，A的实例化也就能正常完成，并在最后也加入到单例缓存池(一级缓存)中
+* 由于B实例化的完成；A的`populateBean`方法也就能正常完成，并继续自己的初始化，最后完成生命周期；在最后也加入到单例缓存池(一级缓存)中
 
-![](../../imgs/bean_three_cache_5.png)
+![](../../imgs/bean_three_cache_40.png)
 
 ### 为什么是三级缓存？
 
@@ -364,22 +403,21 @@ protected Object doCreateBean(final String beanName, final RootBeanDefinition mb
         * BeanPostProcessor
     5. 完成并添加到单例池中
 
-
-按照如上，如果只有 一级缓存 和 三级缓存，能够解决A,B依赖问题，接着又来了个C(且依赖A)；如果按照上面B的逻辑，那么可以发现`lambda(A)`会再次被执行，这可能导致B，C执行后获取的代理A**不一致**,如下(C也执行工厂方法得到代理A)
+按照如上，如果只有 一级缓存(单例池) 和 三级缓存（工厂lambda生产），能够解决A,B依赖问题，接着又来了个C(且依赖A)；如果按照上面B的逻辑，那么可以发现`lambda(A)`会再次被执行，这可能导致B，C执行后获取的代理A**不一致**,如下(C也执行工厂方法得到代理A)
 
 * Bean生命周期 C
     1. class --- BeanDefinition
     2. new C(); // 原始对象
     3. populateBean（依赖注入）--> 单例池中找A --> 找不到 --> 三级缓存中能找到 --> lambda(A) --> 提前得到代理A
     4. initializeBean
-        *  BeanPostProcessor
+        * BeanPostProcessor
     5. 完成并添加到单例池中
 
 所以再来一个缓存, 将工厂产生的代理对象A也缓存起来，所以最后是三个缓存(且备注了其用途)
 
 1. singletonObjects: `单例池`：单例对象实例化一次，缓存最后的代理bean成品
-2. earlySingletonObjects: `map<beanName, 代理bean>`：解决性能问题？B,C,D都依赖A,工厂产生是开销的,且是重复的工厂创建，显然可以缓存好
-3. singletonFactories: `map<beanName, lambda(原始对象)>`：bean工厂能够任意操作bean，解决循环依赖(提前暴露工厂，产生代理bean，属性注入)
+2. earlySingletonObjects: `map<beanName, 代理bean>`：解决性能问题？B,C,D都依赖A,工厂产生是开销的,且是重复的工厂创建，显然可以缓存好，提高性能
+3. singletonFactories: `map<beanName, lambda(原始对象)>`：beanFactory能够任意操作bean，解决循环依赖(提前暴露工厂，产生代理bean，属性注入)
 
 完成populateBean之前，产生工厂，工厂能够产生bean。为什么是工厂？
 * 答: 因为populateBean拿到的依赖bean是原始的，显然依赖注入要是最后的代理品，而工厂能够让bean升华这个bean，变成最后的代理类（因为populateBean之后会有代理行为）

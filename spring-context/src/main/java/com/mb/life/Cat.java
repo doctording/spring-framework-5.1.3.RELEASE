@@ -16,16 +16,13 @@ public class Cat implements InitializingBean, DisposableBean {
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
+		// do some initialization work
 		System.out.println("Cat ...afterPropertiesSet");
 	}
 
 	@Override
 	public void destroy() throws Exception {
 		System.out.println("Cat ...destroy");
-	}
-
-	public void init() {
-		System.out.println("car ...init");
 	}
 
 }

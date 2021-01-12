@@ -9,7 +9,12 @@ import javax.servlet.ServletRegistration;
 
 public class MyWebApplicationInitializer implements WebApplicationInitializer {
 
-	// tomcat启动的时候会调用 onStartup 方法
+	/**
+	 * tomcat 启动后会加载 javax.servlet.ServletContainerInitializer
+	 * 		进入 org.springframework.web.SpringServletContainerInitializer#onStartup
+	 * 	而ServletContainerInitializer加上了@HandlesTypes(WebApplicationInitializer.class)	会加载所有的WebApplicationInitializer
+	 * 然后调用 WebApplicationInitializer 的 onStartup 方法
+ 	 */
 	// ServletContext 即 web 容器的上下文
 	@Override
 	public void onStartup(ServletContext servletCxt) {

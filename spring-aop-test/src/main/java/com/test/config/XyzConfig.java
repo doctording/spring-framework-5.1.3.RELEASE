@@ -18,9 +18,13 @@ public class XyzConfig {
 
 	@Bean
 	public X x(){
+		System.out.println("X new");
 		return new X();
 	}
 
+	/**
+	 * 加上@Configuration 有了代理, y()方法已经不是y()方法了, XyzConfig被CGLIB代理了
+	 */
 	@Bean
 	public Y y(){
 		x();

@@ -138,6 +138,42 @@ Not_supports | 以非事务方式执行操作，如果当前存在事务，就�
 Supports | 支持当前事务，如果当前没有事务，就以非事务方式执行。
 Nested | 支持当前事务，新增Savepoint点，与当前事务同步提交或回滚。嵌套事务一个非常重要的概念就是内层事务依赖于外层事务。外层事务失败时，会回滚内层事务所做的动作。而内层事务操作失败并不会引起外层事务的回滚。
 
+### PROPAGATION_REQUIRED
+
+```java
+@Transactional(propagation = Propagation.REQUIRED)
+public void methodA() {
+	methodB();
+	// do something
+}
+ 
+@Transactional(propagation = Propagation.REQUIRED)
+public void methodB() {
+	// do something
+}
+```
+
+* 单独调用methodB方法时，因为当前上下文不存在事务，所以会开启一个新的事务。 
+* 调用methodA方法时，因为当前上下文不存在事务，所以会开启一个新的事务。当执行到methodB时，methodB发现当前上下文有事务，因此就加入到当前事务中来。
+
+### PROPAGATION_SUPPORTS
+
+```java
+@Transactional(propagation = Propagation.REQUIRED)
+public void methodA() {
+	methodB();
+	// do something
+}
+ 
+// 事务属性为SUPPORTS
+@Transactional(propagation = Propagation.SUPPORTS)
+public void methodB() {
+	// do something
+}
+```
+
+* 单纯的调用methodB时，methodB方法是非事务的执行的。
+* 当调用methodA时,methodB则加入了methodA的事务中,事务地执行。
 
 ## Spring的5种事务隔离级别
 
@@ -154,7 +190,7 @@ Nested | 支持当前事务，新增Savepoint点，与当前事务同步提交�
 public enum Isolation {
 
 	/**
-	 * 这是一个PlatfromTransactionManager默认的隔离级别，使用数据库默认的事务隔离级别
+	 * 这是一个PlatformTransactionManager默认的隔离级别，使用数据库默认的事务隔离级别
 	 *
 	 * Use the default isolation level of the underlying datastore.
 	 * All other levels correspond to the JDBC isolation levels.
@@ -240,6 +276,8 @@ Class<? extends Throwable>[] rollbackFor() default {};
 ```
 
 * `roll back`默认是`Error`和`RuntimeException`
+
+![](../../imgs/Java-Throwable.png)
 
 
 eg1: 不加rollbackFor属性，抛出RuntimeException，正常回滚

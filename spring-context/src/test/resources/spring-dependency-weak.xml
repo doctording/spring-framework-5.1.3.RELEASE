@@ -3,11 +3,11 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="weakA" class="com.mb.WeakA" scope="singleton" depends-on="weakB">
+	<bean id="weakA" class="com.mb.dependency.WeakA" scope="singleton" depends-on="weakB">
 	</bean>
-	<bean id="weakB" class="com.mb.WeakB" scope="singleton">
+	<bean id="weakB" class="com.mb.dependency.WeakB" scope="singleton">
 	</bean>
-	<bean id="d" class="com.mb.D" scope="singleton">
+	<bean id="d" class="com.mb.dependency.D" scope="singleton">
 	</bean>
 
 </beans>

@@ -16,7 +16,6 @@ public class TestRequiresNew {
 		requiresNewService.transactionExceptionRequiresNew();
 	}
 
-
 	@Test
 	public void testRequiresNewExceptionInner(){
 		AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(TxConfig.class);

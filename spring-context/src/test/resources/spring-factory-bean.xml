@@ -3,7 +3,7 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="go" class="com.mb.factory.MyGoFactoryBean">
+	<bean id="go" class="com.mb.factorybean.MyGoFactoryBean">
 		<property name="type" value="car"></property>
 	</bean>
 

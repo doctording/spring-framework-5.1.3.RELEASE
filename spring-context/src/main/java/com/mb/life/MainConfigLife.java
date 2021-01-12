@@ -13,7 +13,11 @@ import org.springframework.context.annotation.Scope;
 @Configuration
 public class MainConfigLife {
 
-//	@Scope("prototype")
+	/**
+	 * 给bean指定 initMethod，destroyMethod
+	 * 实例化并设置好所有属性后，默认的初始化工作的方法
+	 * @return
+	 */
 	@Bean(initMethod = "init", destroyMethod = "destroy")
 	public Car car(){
 		return new Car();

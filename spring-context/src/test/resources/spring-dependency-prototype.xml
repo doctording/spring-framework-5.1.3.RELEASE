@@ -3,10 +3,10 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="a" class="com.mb.A" scope="prototype">
+	<bean id="a" class="com.mb.dependency.A" scope="prototype">
 		<property name="b" ref="b"/>
 	</bean>
-	<bean id="b" class="com.mb.B" scope="prototype">
+	<bean id="b" class="com.mb.dependency.B" scope="prototype">
 		<property name="a" ref="a"/>
 	</bean>
 

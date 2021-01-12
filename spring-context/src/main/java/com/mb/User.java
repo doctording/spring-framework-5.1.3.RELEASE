@@ -11,6 +11,7 @@ public class User {
 	private String name;
 
 	public User() {
+		System.out.println("User create");
 	}
 
 	public User(Integer id, String name) {

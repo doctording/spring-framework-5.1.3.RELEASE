@@ -3,18 +3,21 @@
 	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
-	<bean id="fullBean" class="com.mb.fulllife.FullBean" init-method="selfInit" destroy-method="selfDestroy">
+	<bean id="fullBean" class="com.mb.lifexml.FullBean" init-method="selfInit" destroy-method="selfDestroy">
 		<property name="name" value="tom"></property>
 		<property name="fullBeanB" ref="fullBeanB"/>
 	</bean>
 
-	<bean id="fullBeanB" class="com.mb.fulllife.FullBeanB" init-method="selfInit" destroy-method="selfDestroy">
+	<bean id="fullBeanB" class="com.mb.lifexml.FullBeanB" init-method="selfInit" destroy-method="selfDestroy">
 	</bean>
 
-	<bean id="fullLifeInstantiationAwareBeanPostProcessor" class="com.mb.fulllife.FullLifeInstantiationAwareBeanPostProcessor">
+	<bean id="fullLifeInstantiationAwareBeanPostProcessor" class="com.mb.lifexml.FullLifeInstantiationAwareBeanPostProcessor">
 	</bean>
 
-	<bean id="fullLifeBeanPostProcessor" class="com.mb.fulllife.FullLifeBeanPostProcessor">
+	<bean id="fullLifeBeanPostProcessor" class="com.mb.lifexml.FullLifeBeanPostProcessor">
+	</bean>
+
+	<bean id="fullLifeMergedBeanDefinitionPostProcessor" class="com.mb.lifexml.FullLifeMergedBeanDefinitionPostProcessor">
 	</bean>
 
 </beans>

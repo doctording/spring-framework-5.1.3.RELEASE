@@ -9,8 +9,6 @@
 3. I, Isolation 事务的执行不受其他事务的干扰，事务执行的中间结果对其他事务必须是透明的
 4. D, Durability 对于任意已提交事务，系统必须保证该事务对数据库的改变不被丢失，即使数据库出现故障。
 
-<a href="https://blog.csdn.net/qq_26437925/article/details/80270741" target="_blank">MySQL 四种隔离级别及测试</a>
-
 ### 事务的一些问题
 
 1. 脏读：读取到了未提交事务的数据，比如未提交读就可能会产生这种数据
@@ -21,43 +19,42 @@
 
 ### 4种隔离级别
 
+<a href="https://blog.csdn.net/qq_26437925/article/details/80270741" target="_blank">MySQL 四种隔离级别及测试</a>
+
 * Read uncommitted (读未提交)：最低级别，任何情况都无法保证。
 
-在该隔离级别，所有事务都可以看到其他未提交事务的执行结果。
+在该隔离级别，所有事务都可以看到其它未提交事务的执行结果。
 
-* Read committed (读取已提交的)：可避免脏读的发生。
+* Read committed (读已提交)：可避免脏读的发生。
 
 这是大多数数据库系统的默认隔离级别（但不是MySQL默认的）。它满足了隔离的简单定义：**一个事务只能看见已经提交事务所做的改变**。
 
-* Repeatable read (可重复读)：可避免脏读、不可重复读的发生。
+* Repeatable read (可重复读，MySQL默认)：可避免脏读、不可重复读的发生。
 
 这是MySQL的默认事务隔离级别，它确保同一事务的多个实例在并发读取数据时，会看到同样的数据行。
 
 * Serializable (串行化)：可避免脏读、不可重复读、幻读的发生。
 
-这是最高的隔离级别，它通过强制事务排序，使之不可能相互冲突，从而解决幻读问题。简言之，它是在每个读的数据行上加上共享锁。在这个级别，可能导致大量的超时现象和锁竞争。 
-
+这是最高的隔离级别，它通过强制事务排序，使之不可能相互冲突，从而解决幻读问题。简言之，它是在每个读的数据行上加上共享锁。在这个级别，可能导致大量的超时现象和锁竞争。
 
 隔离级别 | 脏读 | 不可重复读 | 幻读
 --- | --- | --- | ---
-Read uncommitted|√	| √	| √
-Read committed	|×	| √ | √
-Repeatable read(MySQL默认)	|×	| × | √
-Serializable	|×	| × | ×
+Read uncommitted|√ | √ | √
+Read committed | × | √ | √
+Repeatable read(MySQL默认) | × | × | √
+Serializable | × | × | ×
 
 * √: 可能出现    ×: 不会出现
-
 
 ## Spring Transaction Management
 
 <a href="https://docs.spring.io/spring/docs/5.1.3.RELEASE/spring-framework-reference/data-access.html#transaction" target="_blank">Transaction Management Doc</a>
 
-
 The most important concepts to grasp with regard to the Spring Framework’s declarative transaction support are that this support is enabled via AOP proxies and that the transactional advice is driven by metadata (currently XML- or annotation-based). The combination of AOP with transactional metadata yields an AOP proxy that uses a TransactionInterceptor in conjunction with an appropriate PlatformTransactionManager implementation to drive transactions around method invocations.
 
 （Spring的声明式事务的支持依靠：`AOP`代理和`transactional`增强器(通过xml或者annotation配置的增强器)）
 
-### jdbc事务配置和使用
+### 回顾Jdbc事务配置和使用
 
 ```java
 @EnableTransactionManagement
@@ -104,11 +101,25 @@ public Boolean insertAUser(TbUser tbUser){
 }
 ```
 
-#### Spring事务抽象接口 
+#### Spring事务抽象
+
+Spring并不直接管理事务，而是提供了多种事务管理器，他们将事务管理的职责委托给Hibernate或者JTA等持久化机制所提供的相关平台框架的事务来实现。
+
+* PlatformTransactionManager : 事务管理器(用来管理事务，包含事务的提交，回滚)
+
+* TransactionDefinition : 事务定义信息(隔离，传播，超时，只读)
+
+* TransactionStatus : 事务具体运行状态
+
+Spring事务管理器的接口是`org.springframework.transaction.PlatformTransactionManager`，通过这个接口，Spring为各个平台如JDBC、Hibernate等都提供了对应的事务管理器，各自实现具体细节。
 
 ##### `PlatformTransactionManager`(事务管理器接口)
 
-三个抽象方法：1. 获取事务状态，2. 提交事务，3. 回滚事务
+三个抽象方法：
+
+1. 获取事务状态
+2. 提交事务
+3. 回滚事务
 
 ```java
 public interface PlatformTransactionManager {
@@ -188,7 +199,7 @@ public interface PlatformTransactionManager {
 }
 ```
 
-###### DataSourceTransactionManager
+###### DataSourceTransactionManager 实现 PlatformTransactionManager
 
 DataSourceTransactionManager 针对 JdbcTemplate,Mybatis 事务，使用Connection进行事务控制
 
@@ -225,10 +236,24 @@ DataSourceTransactionManager 针对 JdbcTemplate,Mybatis 事务，使用Connecti
  * @see org.springframework.transaction.interceptor.TransactionAttribute
  */
 public interface TransactionDefinition {
+	int getPropagationBehavior(); // 返回事务的传播行为
+    int getIsolationLevel(); // 返回事务的隔离级别，事务管理器根据它来控制另外一个事务可以看到本事务内的哪些数据
+    int getTimeout();  // 返回事务必须在多少秒内完成
+    boolean isReadOnly(); // 事务是否只读，事务管理器能够根据这个返回值进行优化，确保事务是只读的
+}
 ```
 
 ##### `TransactionStatus`(事务运行状态接口)
 
+```java
+public interface TransactionStatus{
+    boolean isNewTransaction(); // 是否是新的事物
+    boolean hasSavepoint(); // 是否有恢复点
+    void setRollbackOnly();  // 设置为只回滚
+    boolean isRollbackOnly(); // 是否为只回滚
+    boolean isCompleted; // 是否已完成
+}
+```
 
 ### @EnableTransactionManagement
 
@@ -241,7 +266,6 @@ public @interface EnableTransactionManagement {
 ```
 
 利用`TransactionManagementConfigurationSelector导入组件，默认增强器模式是`PROXY`，导入了`AutoProxyRegistrar` 和 `ProxyTransactionManagementConfiguration` 两个组件
-
 
 ```java
 public class TransactionManagementConfigurationSelector extends AdviceModeImportSelector<EnableTransactionManagement> {

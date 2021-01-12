@@ -16,6 +16,7 @@ public class BeanTest {
 	public void testClassPathXmlApplicationContextBean() {
 		ApplicationContext applicationContext =
 				new ClassPathXmlApplicationContext("spring.xml");
+		System.out.println("=====");
 		User user = (User) applicationContext.getBean("user");
 		Assert.assertTrue(user != null);
 		Assert.assertTrue(user.getTestStr().equals("testStr"));

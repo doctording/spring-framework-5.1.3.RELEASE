@@ -15,6 +15,9 @@ public class Dog {
 		System.out.println("Dog ...constructor");
 	}
 
+	/**
+	 * @PostConstruct 让该方法成为bean的初始化方法
+	 */
 	@PostConstruct
 	public void init(){
 		System.out.println("Dog ...init");

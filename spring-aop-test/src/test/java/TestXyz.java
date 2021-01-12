@@ -15,6 +15,7 @@ public class TestXyz {
 	public void testXyzConfig(){
 		AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(XyzConfig.class);
 		XyzConfig config = ac.getBean(XyzConfig.class);
+		System.out.println(config.getClass());
 		X x = (X)ac.getBean("x");
 		Y y = (Y)ac.getBean("y");
 		Assert.assertTrue(x != null);

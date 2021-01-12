@@ -27,7 +27,6 @@ public class UserRepo {
 	private JdbcTemplate jdbcTemplate;
 
 	public User getById(Integer id){
-		logger.info("getById:" + id);
 		return new User(id, "abc" + id);
 	}
 

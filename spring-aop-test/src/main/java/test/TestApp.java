@@ -49,8 +49,8 @@ public class TestApp {
 	}
 
 	public static void main(String[] args) throws Exception{
-//		testAnnotationMybatis();
-		testSelfMybatis();
+		testAnnotationMybatis();
+//		testSelfMybatis();
 	}
 
 	static void testSelfMybatis(){

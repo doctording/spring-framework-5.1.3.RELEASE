@@ -77,7 +77,7 @@ public void testXyzConfig(){
 
 * 所以`@Configuration`是扫描出来并加载的吗？
 
-* 显然Spring提供扫描Bean功能，这需要一个至少一个`@Configuration`类，所以`@Configuration`肯定不是扫描方式的；事实上其实手动`register`的
+* 显然Spring提供扫描Bean功能，这需要一个、至少一个`@Configuration`类，所以`@Configuration`肯定不是扫描方式的；事实上其是手动`register`的
 
 * 带着问题看源码，同时还有问题是：bean x,y 是什么时候生成`BeanDefinition`并写入到`BeanDefinitionMap`中的
 
@@ -87,9 +87,31 @@ public void testXyzConfig(){
 
 ```java
 AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(XyzConfig.class);
+
+public AnnotationConfigApplicationContext(Class<?>... annotatedClasses) {
+    this();
+    register(annotatedClasses);
+    refresh();
+}
 ```
 
 ### `register(annotatedClasses);`
+
+```java
+/**
+ * Register one or more annotated classes to be processed.
+ * <p>Note that {@link #refresh()} must be called in order for the context
+ * to fully process the new classes.
+ * @param annotatedClasses one or more annotated classes,
+ * e.g. {@link Configuration @Configuration} classes
+ * @see #scan(String...)
+ * @see #refresh()
+ */
+public void register(Class<?>... annotatedClasses) {
+    Assert.notEmpty(annotatedClasses, "At least one annotated class must be specified");
+    this.reader.register(annotatedClasses);
+}
+```
 
 会执行`doRegisterBean`方法注册`BeanDefinition`；
 
@@ -98,7 +120,8 @@ AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(X
 ```java
 <T> void doRegisterBean(Class<T> annotatedClass, @Nullable Supplier<T> instanceSupplier, @Nullable String name,
         @Nullable Class<? extends Annotation>[] qualifiers, BeanDefinitionCustomizer... definitionCustomizers) {
-
+	// annotatedClass 直接 new 成 AnnotatedGenericBeanDefinition
+	// 然后加入到beanDefinitionMap中
     AnnotatedGenericBeanDefinition abd = new AnnotatedGenericBeanDefinition(annotatedClass);
     if (this.conditionEvaluator.shouldSkip(abd.getMetadata())) {
         return;

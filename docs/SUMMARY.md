@@ -1,27 +1,39 @@
 # Summary
 
-* [1 前言](doc/target.md)
-* [2 ClassPathXmlApplicationContext Demo 引入]
+* [前言](doc/target.md)
+* [ClassPathXmlApplicationContext Demo 引入]
     * [2.1 ApplicationContext执行流程](doc/test/flow_path.md)
-    * [2.2 执行流程源码走读](doc/test/code_review.md))
+        * [2.2 执行流程:refresh的12个方法](doc/test/code_review.md))
     * [2.3 bean & constructor-arg测试](doc/test/bean_constructor.md)
-* [3 Ioc & Aop]
-    * [3.1 Ioc & Bean概念](doc/bean/ioc_bean.md)
-        * [3.1.1 BeanFactory接口](doc/bean/BeanFactory.md)
-    * [3.2 Spring循环依赖具体执行流程](doc/bean/dependency.md)
-    * [3.3 Bean生命周期](doc/bean/bean_life.md)
-        * [3.3.1 Bean的作用域](doc/bean/bean_scope.md)
-    * [3.4 FactoryBean接口](doc/bean/fatory_bean.md)
-    * [3.5 AOP](doc/bean/aop.md)
-        * [3.5.1 AOP 和 AspectJ AOP](doc/bean/aspectj.md)
-    * [3.6 BeanDefinition](doc/bean/bean_definition.md)
-    * [3.7 @Configuration](doc/bean/configuration.md)
-    * [3.8 ApplicationContext](doc/bean/context.md)
-* [4 Spring 事务](doc/bean/transaction.md)  
-    * [4.1 @Transactional](doc/bean/transaction_annotation.md)  
-* [5 MyBatis](doc/mybatis.md)
-* [6 SpringBoot](doc/springboot.md)
-* [7 其它问题总结]
-    * [7.1 Spring中的设计模式](doc/bean/design.md)        
-* [8 其它]
+* [Ioc & Aop]
+    * [Ioc & Bean]
+        * [Ioc & BeanDefinition](doc/bean/ioc_bean.md)
+            * [BeanFactory接口](doc/bean/BeanFactory.md)
+            * [ApplicationContext & BeanFactory](doc/bean/context.md)
+            * [事件发布和监听机制](doc/bean/context_event.md)
+        * [Bean]
+            * [Bean生命周期&回调](doc/bean/bean_life.md)
+                * [Bean的作用域](doc/bean/bean_scope.md)
+                * [FactoryBean接口](doc/bean/fatory_bean.md)
+                * [懒加载bean](doc/bean/lazy.md)
+            * [Bean 依赖](doc/bean/ioc_bean_dependency.md)
+                * [Spring循环依赖具体执行流程](doc/bean/dependency.md)
+            * [BeanFactoryPostProcessor & BeanDefinitionRegistryPostProcessor](doc/bean/post_processor.md)
+                * [@Configuration](doc/bean/configuration.md)
+                * [@MapperScan 原理](doc/bean/mapper_scan.md)
+            * [BeanPostProcessor](doc/bean/bean_post_processor.md)
+                * [推断构造方法](doc/bean/bean_constructor.md)
+            * [自动装配 & @Autowired](doc/bean/ioc_bean_auto.md)
+    * [AOP]
+        * [Spring AOP](doc/bean/aop.md)
+        * [CGLIB & AOP代理](doc/bean/aspectj.md)
+* [Spring 事务](doc/bean/transaction.md)
+    * [@Transactional](doc/bean/transaction_annotation.md)  
+* [MyBatis手写](doc/mybatis.md)
+    * [MyBatis源码分析](doc/mybatis_source.md)
+* [SpringMvc & SpringBoot](doc/springboot.md)
+    * [SpringBoot启动原理](doc/springboot_starter.md)
+* [其它问题总结]
+    * [7.1 Spring中的设计模式](doc/bean/design.md)
+* [其它]
     * [8.1 单词](./doc/other/words.md)

@@ -39,7 +39,9 @@ public void refresh() throws BeansException, IllegalStateException {
 		// Prepare this context for refreshing.
 		prepareRefresh();
 
-		// 内部的 BeanFactory
+        // 从配置文件就会解析成一个个 Bean 定义，注册到 BeanFactory 中，
+        // 当然，这里说的 Bean 还没有初始化，只是配置信息都提取出来了，
+        // 注册也只是将这些信息都保存到了注册中心(说到底核心是一个 beanName-> beanDefinition 的 map)
 		// Tell the subclass to refresh the internal bean factory.
 		ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
@@ -51,6 +53,9 @@ public void refresh() throws BeansException, IllegalStateException {
 			// Allows post-processing of the bean factory in context subclasses.
 			postProcessBeanFactory(beanFactory);
 
+			// 执行程序员提供的BeanFactoryPostProcessor
+			// 扫描类（当然@Configuration全注解类是直接先注册的，再根据这个@Configuration类完成扫描）
+			// 此方法执行完成后，beanDefinitionMap就有了
 			// Invoke factory processors registered as beans in the context.
 			invokeBeanFactoryPostProcessors(beanFactory);
 
@@ -70,6 +75,7 @@ public void refresh() throws BeansException, IllegalStateException {
 			registerListeners();
 
 			// Instantiate all remaining (non-lazy-init) singletons.
+			// 单例bean的实例化（走单例bean的生命周期）
 			finishBeanFactoryInitialization(beanFactory);
 
 			// Last step: publish corresponding event.
@@ -107,7 +113,7 @@ public void refresh() throws BeansException, IllegalStateException {
 
 构造生成`ConfigurableListableBeanFactory`类型的`BeanFactory`
 
-refresh方法中构造beanFactory具体是`DefaultListableBeanFactory`，调用了抽象类`AbstractRefreshableApplicationContext`的`refreshBeanFactory`方法
+refresh方法中构造beanFactory具体是`DefaultListableBeanFactory`(即注解方式所谓的BeanFactory就是`DefaultListableBeanFactory`)，调用了抽象类`AbstractRefreshableApplicationContext`的`refreshBeanFactory`方法
 
 ```java
 @Override
@@ -271,6 +277,35 @@ protected void registerBeanPostProcessors(ConfigurableListableBeanFactory beanFa
 }
 ```
 
+注册前的`BeanPostProcessor`:
+* ApplicationContextAwareProcessor
+* ApplicationListenerDetector
+
+且之前已经将所有BeanDefinition加入到BeanDefinitionMap中了(之前已经应用了`BeanDefinitionRegistryPostProcessor`和`BeanFactoryPostProcessor`了)
+
+BeanPostProcessor是可以有优先级顺序的，注册的时候也是按照顺序；没有顺序，就是常规的`BeanPostProcessor`
+
+```java
+// Now, register all regular BeanPostProcessors.
+List<BeanPostProcessor> nonOrderedPostProcessors = new ArrayList<>();
+for (String ppName : nonOrderedPostProcessorNames) {
+    BeanPostProcessor pp = beanFactory.getBean(ppName, BeanPostProcessor.class);
+    nonOrderedPostProcessors.add(pp);
+    if (pp instanceof MergedBeanDefinitionPostProcessor) {
+        internalPostProcessors.add(pp);
+    }
+}
+registerBeanPostProcessors(beanFactory, nonOrderedPostProcessors);
+```
+
+可以看到是直接`beanFactory.getBean`将这些BeanPostProcessor给实例化出来，注册后
+
+```java
+FullLifeInstantiationAwareBeanPostProcessor implements InstantiationAwareBeanPostProcessor
+FullLifeBeanPostProcessor implements BeanPostProcessor
+FullLifeMergedBeanDefinitionPostProcessor implements MergedBeanDefinitionPostProcessor 
+```
+
 #### initMessageSource & initApplicationEventMulticaster(消息和广播初始化)
 
 ```java
@@ -336,6 +371,7 @@ protected void registerListeners() {
 
 创建所有非懒加载的单例类（并invoke BeanPostProcessors）
 
+Bean循环依赖，AOP，生命周期回调等
 
 ##### 抽象类`AbstractAutowireCapableBeanFactory`的`doCreateBean`方法
 
@@ -491,3 +527,47 @@ protected <T> T doGetBean(final String name, @Nullable final Class<T> requiredTy
 ```
 
 ![](../../imgs/applicationContext.png)
+
+
+doGetBean走到`org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#doCreateBean`
+
+第一步是创建`BeanWrapper`： 推断构造方法，然后反射实例化出来
+* 这里要应用`SmartInstantiationAwareBeanPostProcessor`，比如`AutowiredAnnotationBeanPostProcessor`就是一个具体实现类
+
+接着会对BeanWrapper执行`applyMergedBeanDefinitionPostProcessors`
+* 显然，这里要应用`MergedBeanDefinitionPostProcessor`
+
+然后是判断是否能循环依赖，有循环依赖需要暴露工厂
+
+```java
+// Eagerly cache singletons to be able to resolve circular references
+// even when triggered by lifecycle interfaces like BeanFactoryAware.
+// 判断是否允许循环依赖
+boolean earlySingletonExposure = (mbd.isSingleton() && this.allowCircularReferences &&
+        isSingletonCurrentlyInCreation(beanName));
+if (earlySingletonExposure) {
+    if (logger.isTraceEnabled()) {
+        logger.trace("Eagerly caching bean '" + beanName +
+                "' to allow for resolving potential circular references");
+    }
+    // 即添加缓存<bean，lambda(bean)>
+    // BeanPostProcessor判断是否AOP（第4次调用BeanPostProcessor）
+    // 提前暴露一个bean工厂
+    addSingletonFactory(beanName, () -> getEarlyBeanReference(beanName, mbd, bean));
+}
+```
+
+* 这里getEarlyBeanReference要应用`SmartInstantiationAwareBeanPostProcessor`，比如抽象类`AbstractAutoProxyCreator`（其实现类：`AnnotationAwareAspectJAutoProxyCreator`,`AspectJAwareAdvisorAutoProxyCreator`等）
+
+接着是`populateBean(beanName, mbd, instanceWrapper);`
+* 这里会应用`InstantiationAwareBeanPostProcessor`(先调用`postProcessAfterInstantiation`，然后`postProcessProperties`), 字段自动注入也在这里实现
+
+最后是`initializeBean(beanName, exposedObject, mbd);`
+* initializeBean首先是`invokeAwareMethods`（BeanNameAware，BeanClassLoaderAware，BeanFactoryAware）
+* 然后`applyBeanPostProcessorsBeforeInitialization`,应用所有BeanPostProcessor的`postProcessBeforeInitialization`方法
+* 接着`invokeInitMethods(beanName, wrappedBean, mbd);`（生命周期初始化方法）
+* 最后`applyBeanPostProcessorsAfterInitialization(wrappedBean, beanName);`,即应用所有BeanPostProcessor的`postProcessAfterInitialization`,支持完成AOP，得到最后的"成品"bean
+
+至此完成doCreate方法，将"成品"bean加入单例池
+
+![](../../imgs/beanlife2.png)

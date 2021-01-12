@@ -122,12 +122,20 @@ final class PostProcessorRegistrationDelegate {
 				}
 				sortPostProcessors(currentRegistryProcessors, beanFactory);
 				registryProcessors.addAll(currentRegistryProcessors);
+				// 这里会执行 com.test.config.TxConfig#MapperScannerRegistrar
+				// 执行 postProcessBeanDefinitionRegistry 这个子类方法 ------- 完成扫描注册BeanDefinition
 				invokeBeanDefinitionRegistryPostProcessors(currentRegistryProcessors, registry);
 				currentRegistryProcessors.clear();
 			}
-
+			// 至此完成
+			// 1. api - new
+			// 2. Spring 内置的 BeanDefinitionRegistryPostProcessors
+			// 3. 程序员提供的，如 Mybatis 的 BeanDefinitionRegistryPostProcessors(
 			// Now, invoke the postProcessBeanFactory callback of all processors handled so far.
+			// 执行 postProcessBeanFactory 这个父类方法 ------- 可以对 beanFactory 进行操作
+			// BeanDefinitionRegistryPostProcessor
 			invokeBeanFactoryPostProcessors(registryProcessors, beanFactory);
+			// BeanFactoryPostProcessor
 			invokeBeanFactoryPostProcessors(regularPostProcessors, beanFactory);
 		}
 
