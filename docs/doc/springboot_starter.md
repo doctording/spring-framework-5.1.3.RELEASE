@@ -324,11 +324,11 @@ Spring应用启动过程中会执行`ConfigurationClassPostProcessor`,在使用`
 
 ![](../imgs/spring_factory_loader.png)
 
-Spring的SpringFactoriesLoader工厂的加载机制类似java提供的SPI机制一样，是Spring提供的一种加载方式。只需要在classpath路径下新建一个文件META-INF/spring.factories，并在里面按照Properties格式填写好借口和实现类即可通过SpringFactoriesLoader来实例化相应的Bean。其中key可以是接口、注解、或者抽象类的全名。value为相应的实现类，当存在多个实现类时，用","进行分割。
+Spring的SpringFactoriesLoader工厂的加载机制类似java提供的SPI机制一样，是Spring提供的一种加载方式。只需要在classpath路径下新建一个文件META-INF/spring.factories，并在里面按照properties格式填写好接口和实现类即可通过SpringFactoriesLoader来实例化相应的Bean。其中key可以是接口、注解、或者抽象类的全名。value为相应的实现类，当存在多个实现类时，用","进行分割。
 
 ## starter
 
-SpringBoot将所有的常见开发功能，分成了一个个场景启动器（starter），这样我们需要开发什么功能，就导入什么场景启动器依赖即可，eg
+SpringBoot将所有的常见开发功能，分成了一个个场景启动器（starter），这样我们需要开发什么功能，就导入什么场景启动器依赖即可，eg：
 
 * 需要开发web的功能，那么引入spring-boot-starter-web
 * 需要开发模板页的功能，那么引入spring-boot-starter-thymeleaf
