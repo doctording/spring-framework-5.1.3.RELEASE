@@ -35,5 +35,6 @@
     * [SpringBoot启动原理](doc/springboot_starter.md)
 * [其它问题总结]
     * [7.1 Spring中的设计模式](doc/bean/design.md)
+    * [7.2 Spring中常见问题](doc/pro.md)
 * [其它]
     * [8.1 单词](./doc/other/words.md)
