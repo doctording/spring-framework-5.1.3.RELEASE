@@ -32,7 +32,7 @@
 * [MyBatis手写](doc/mybatis.md)
     * [MyBatis源码分析](doc/mybatis_source.md)
 * [SpringMvc & SpringBoot](doc/springboot.md)
-    * [SpringBoot启动原理](doc/springboot_starter.md)
+    * [SpringBoot启动&starter](doc/springboot_starter.md)
 * [其它问题总结]
     * [7.1 Spring中的设计模式](doc/bean/design.md)
     * [7.2 Spring中常见问题](doc/pro.md)

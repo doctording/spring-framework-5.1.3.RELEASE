@@ -28,10 +28,6 @@ public void testClassPathXmlApplicationContextBeanCosr() {
 </bean>
 ```
 
-## 运行流程图
+## 运行大致流程图
 
 ![](../../imgs/spring_frame2.png)
-
-## 整个代码执行的流程图
-
-![](http://assets.processon.com/chart_image/5b6bcdcce4b0f8477daa4c49.png)

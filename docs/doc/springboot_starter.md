@@ -335,6 +335,10 @@ SpringBoot将所有的常见开发功能，分成了一个个场景启动器（s
 * 需要整合redis，那么引入spring-boot-starter-data-redis
 * 需要整合amqp，实现异步消息通信机制，那么引入spring-boot-starter-amqp
 
+### SpringBoot starter机制
+
+SpringBoot中的starter能够抛弃以前繁杂的配置，将其统一集成进starter，应用者只需要在maven中引入starter依赖，SpringBoot就能自动扫描到要加载的信息并启动相应的默认配置。starter让我们摆脱了各种依赖库的处理，需要配置各种信息的困扰。SpringBoot会自动通过classpath路径下的类发现需要的Bean，并注册进IOC容器。SpringBoot提供了针对日常企业应用研发各种场景的spring-boot-starter依赖模块。所有这些依赖模块都遵循着约定成俗的默认配置，并允许我们调整这些配置，即遵循"约定大于配置"的理念。
+
 ### 自定义starter
 
 ![](../imgs/starter1.png)
@@ -345,6 +349,56 @@ SpringBoot将所有的常见开发功能，分成了一个个场景启动器（s
 #-------starter自动装配---------
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.demo.starter.config.DemoConfig
 ```
+
+* DemoConfig
+
+```java
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
+package com.demo.starter.config;
+
+import com.demo.starter.properties.DemoProperties;
+import com.demo.starter.service.DemoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+@EnableConfigurationProperties({DemoProperties.class})
+@ConditionalOnProperty(
+    prefix = "demo",
+    name = {"isopen"},
+    havingValue = "true"
+)
+public class DemoConfig {
+    @Autowired
+    private DemoProperties demoProperties;
+
+    public DemoConfig() {
+    }
+
+    @Bean(
+        name = {"demo"}
+    )
+    public DemoService demoService() {
+        return new DemoService(this.demoProperties.getSayWhat(), this.demoProperties.getToWho());
+    }
+}
+```
+
+* 引用并测试
+
+```java
+	// 引入自定义的starter
+	compile files('src/libs/demo-spring-boot-starter-0.0.1-RELEASE.jar')
+```
+
+使用&测试
 
 ```java
 @RestController

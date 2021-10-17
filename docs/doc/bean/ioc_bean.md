@@ -20,7 +20,7 @@ Spring通过DI(dependency injection依赖注入)来实现Ioc，把对象的实�
     1. new
     2. 工厂
     3. 反射
-* 随便什么对象都是容器创建的吗？定义bean？
+* 那么是随便什么对象都是由容器创建的吗？显然不是，必须是定义成bean的？
     1. BeanDefinition
 
 #### 为什么要有Ioc?
