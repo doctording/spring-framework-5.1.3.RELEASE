@@ -23,6 +23,7 @@ public class AutowiredTest {
 				new ClassPathXmlApplicationContext("spring-autowired-by-type.xml");
 		Ca ca = (Ca) applicationContext.getBean("ca");
 		Assert.assertTrue(ca != null);
+		ca.cbOut();
 	}
 
 	@Test
@@ -31,6 +32,7 @@ public class AutowiredTest {
 				new ClassPathXmlApplicationContext("spring-autowired-by-name.xml");
 		Ca ca = (Ca) applicationContext.getBean("ca");
 		Assert.assertTrue(ca != null);
+		ca.cbOut();
 	}
 
 	@Test

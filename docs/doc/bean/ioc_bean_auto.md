@@ -1,10 +1,10 @@
-# 自动装配
+# 自动装配 & @Autowired
 
 <a href="https://docs.spring.io/spring-framework/docs/5.1.3.RELEASE/spring-framework-reference/core.html#beans-factory-autowire">Autowiring Collaborators</a>
 
-Ioc的注入需要提供依赖关系：一是类中定义，二是spring的配置中定义好描述关系，而自动装配把第二种方式取消了，这样只需要在类中提供依赖关系，使用自动转配就能交给容易完成依赖关系
+IOC注入需要提供依赖关系：一是类中定义，二是spring的配置中定义好描述关系，而自动装配把第二种方式取消了，这样只需要在类中提供依赖关系，使用自动转配就能交给容易完成依赖关系
 
-blog好文：<a herf='https://blog.csdn.net/java_lyvee/article/details/102499560'>子路：spring自动注入</a>
+推荐博客文章：<a herf='https://blog.csdn.net/java_lyvee/article/details/102499560'>子路：spring自动注入</a>
 
 ## 手动装配例子
 
@@ -62,9 +62,9 @@ Consider the limitations and disadvantages of autowiring:
 3. Spring容器生成文档的工具可能会不能使用装配的信息。
 4. 容器中多个bean的定义可能要对setter和构造器参数做类型匹配才能做依赖注入，虽然对于array，collection和map来说不是啥问题，但是对于只有单一值的依赖来讲，这就有点讲不清楚了，所以如果没有唯一的bean定义，那只能抛出异常。
 
-## 扩展：自动装配及其方式
+## 自动装配方式(默认：非自动装配)
 
-1. no：默认方式（即默认是手动装配方式，需要通过ref设定bean的依赖关系，而不是自动装配的）
+1. no：默认方式（即默认是手动装配方式，需要通过ref设定bean的依赖关系，不是自动装配的）
 2. byName：根据bean的名字进行装配，当一个bean的名称和其它bean的属性一致，则自动装配
 3. byType：根据bean的类型进行装配，当一个bean的属性类型与其它bean的属性的数据类型一致，则自动装配
 4. constructor：根据构造器进行装配，与 byType 类似，如果bean的构造器有与其它bean类型相同的属性，则进行自动装配
@@ -88,6 +88,72 @@ AUTOWIRE_CONSTRUCTOR = 3;
 int AUTOWIRE_AUTODETECT = 4;
 ```
 
+### 非自动装配例子
+
+```java
+public class Ca {
+
+	/**
+	 * Autowired 是手动注入
+	 */
+	@Autowired
+	Cb cb;
+
+	/**
+	 * 代码能运行起来，A能注入B
+	 * 但是在xml配置文件中并没有去手动维护、描述他们之间的依赖关系，
+	 * 而是在xml的根标签上面写了一行default-autowire="byType"
+	 * 且set方法名子也无所谓，只要里面的type是个bean: cb
+	 */
+	public void setXxx(Cb cb) {
+		System.out.println("这个set方法如果配置了自动装配且是byType方式是可以的,byName不行:" + cb);
+	}
+
+	public void setCc(Cc cc) {
+		System.out.println("cc byName, byType都可以:" + cc);
+	}
+
+	public void cbOut(){
+		System.out.println("Cb:" + cb);
+	}
+}
+```
+
+如上，非自动装配的情况下，`setXxx(Cb cb)`方法不会被执行，且`setCc(Cc cc)`方法也不会执行
+
+### byName自动注入,但是set方法name不匹配,也无法注入
+
+```java
+public class Ca {
+
+	/**
+	 * Autowired 是手动注入
+	 */
+	@Autowired
+	Cb cb;
+
+	/**
+	 * 代码能运行起来，A能注入B
+	 * 但是在xml配置文件中并没有去手动维护、描述他们之间的依赖关系，
+	 * 而是在xml的根标签上面写了一行default-autowire="byType"
+	 * 且set方法名子也无所谓，只要里面的type是个bean: cb
+	 */
+	public void setXxx(Cb cb) {
+		System.out.println("这个set方法如果配置了自动装配且是byType方式是可以的,byName不行:" + cb);
+	}
+
+	public void setCc(Cc cc) {
+		System.out.println("cc byName, byType都可以:" + cc);
+	}
+
+	public void cbOut(){
+		System.out.println("Cb:" + cb);
+	}
+}
+```
+
+如上是byName的自动装配方式，但是`setXxx(Cb cb)`方法不是`setCb(Cb cb)`方法，所以该方法不会被执行到
+
 ## 自动装配常见的` No qualifying bean of type`错误
 
 ![](../../imgs/spring_auto_error.png)
@@ -104,9 +170,36 @@ eg如下，自定义beanName
 
 bean将自己的全路径类名作为自己的bean名字，如果没有类名，那就看是否有父bean，如果有，假设父bean名字为hehe，那么就用hehe$child作为此子bean的名字，如果没有父bean，那就看bean的工厂bean的名字，如果有，假设工厂bean名字为haha，那么bean的名字就是haha$created，如果没有工厂，那就报错“既没有自己的类名、也没有父bean类名、也没有工厂bean类名”。不管最终用的是哪一个的名字，对这个名字进行唯一性检查，如果名字重复了（已经有这个名字存在了），那就在名字后面+#+数字，这样，每个bean的名字就是唯一的了。
 
-## @Autowired是通过`byType`来完成注入的？否
+## 自动装配在populateBean阶段完成注入
 
-<font color='red'>错误</font>
+* org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#populateBean 如下代码
+
+在两种自动注入方式下会去解析依赖的属性
+
+```java
+PropertyValues pvs = (mbd.hasPropertyValues() ? mbd.getPropertyValues() : null);
+
+if (mbd.getResolvedAutowireMode() == AUTOWIRE_BY_NAME || mbd.getResolvedAutowireMode() == AUTOWIRE_BY_TYPE) {
+    MutablePropertyValues newPvs = new MutablePropertyValues(pvs);
+    // Add property values based on autowire by name if applicable.
+    if (mbd.getResolvedAutowireMode() == AUTOWIRE_BY_NAME) {
+        autowireByName(beanName, mbd, bw, newPvs);
+    }
+    // Add property values based on autowire by type if applicable.
+    if (mbd.getResolvedAutowireMode() == AUTOWIRE_BY_TYPE) {
+        autowireByType(beanName, mbd, bw, newPvs);
+    }
+    pvs = newPvs;
+}
+```
+
+找到了属性接着执行`org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#applyPropertyValues`,里面有循环依赖的解决,最后设置属性即可
+
+![](../../imgs/autowired_by_type.png)
+
+## @Autowired是通过`byType`来完成注入的？
+
+<font color='red'>错误</font>，解释如下
 
 * byType仅仅是一种自动注入模型而已(no、byType、byName、constructor)
 
@@ -114,14 +207,17 @@ bean将自己的全路径类名作为自己的bean名字，如果没有类名，
 
 理论依据
 
-在不配置BeanFactoryPostProcessor和修改beanDefinition的情况下注解的类是不支持自动装配的
+在不配置BeanFactoryPostProcessor和修改beanDefinition的情况下注解的类是不支持自动装配的；且即使是自动装配，有`@Autowired`注解，属性也不一定注入进去
 
 ![](../../imgs/auto_ca.png)
 
 结论1：在一个注解类里面提供了一个构造方法之所以能达到和自动注入的效果一样并不是因为这种方式就是自动装配，而是因为spring源码当中做了判断；使这种情况下调用的代码和自动装配调用的逻辑一样
+
 结论2：`@Autowried`是个手动装配,当然也是可以设置成自动装配的
 
 ### AutowiredAnnotationBeanPostProcessor解析@AutoWired和@Value的属性或方法，把其封装成`InjectionMetadata`类
+
+在`org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#doCreateBean`方法中的`populateBean`方法之前会应用所有的bpp去修改bean definition
 
 ![](../../imgs/autowiredannotation.png)
 
@@ -214,7 +310,7 @@ private InjectionMetadata buildAutowiringMetadata(final Class<?> clazz) {
 
 ### `populateBean`阶段赋值标注@AutoWired和@Value的属性或方法
 
-populateBean阶段会应用所有的`InstantiationAwareBeanPostProcessor`,而`AutowiredAnnotationBeanPostProcessor`继承了`InstantiationAwareBeanPostProcessorAdapter`
+populateBean阶段会应用所有的`InstantiationAwareBeanPostProcessor`,而`AutowiredAnnotationBeanPostProcessor`继承了`InstantiationAwareBeanPostProcessorAdapter`，见`org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory#populateBean`方法
 
 ![](../../imgs/autowiredannotation2.png)
 

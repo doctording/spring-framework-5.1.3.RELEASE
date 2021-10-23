@@ -10,7 +10,7 @@ import org.springframework.context.annotation.ImportResource;
  */
 @ComponentScan("com.mb.autowired")
 @Configuration
-//@ImportResource("spring-autowired-test-constructor.xml")
+@ImportResource("spring-autowired-test-constructor.xml")
 public class IndexConfig {
 
 }

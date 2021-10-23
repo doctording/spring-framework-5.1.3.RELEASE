@@ -1,26 +1,32 @@
-package com.mb;
+package com.bfpp;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
 /**
  * @Author mubi
  * @Date 2020/6/10 22:19
  */
-public class User {
+@Component
+public class UserConstruct {
 	private String testStr = "testStr";
 
 	private Integer id;
 	private String name;
 
-	public User() {
-		System.out.println("User()");
+
+	public UserConstruct() {
+		System.out.println("UserConstruct()");
 	}
 
-	public User(Integer id) {
-		System.out.println("User(id)");
+
+	public UserConstruct(@Qualifier Integer id) {
+		System.out.println("UserConstruct(id)");
 		this.id = id;
 	}
 
-	public User(Integer id, String name) {
-		System.out.println("User(id, name)");
+	public UserConstruct(Integer id, String name) {
+		System.out.println("UserConstruct(id, name)");
 		this.id = id;
 		this.name = name;
 	}
@@ -47,11 +53,10 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User{" +
+		return "UserConstruct{" +
 				"testStr='" + testStr + '\'' +
 				", id=" + id +
 				", name='" + name + '\'' +
 				'}';
 	}
-
 }

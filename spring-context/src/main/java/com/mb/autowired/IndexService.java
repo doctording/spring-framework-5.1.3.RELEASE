@@ -7,14 +7,11 @@ package com.mb.autowired;
 public class IndexService {
 
 	/**
-	 * 这里能注入进来,why?
+	 * 构造函数这里能注入进来,why?
 	 * @param beanService
 	 */
-//	public IndexService(BeanService beanService) {
-//		System.out.println("beanService:" + beanService);
-//	}
-
-	String query() {
-		return "success";
+	public IndexService(BeanService beanService) {
+		System.out.println("beanService:" + beanService);
 	}
+
 }
