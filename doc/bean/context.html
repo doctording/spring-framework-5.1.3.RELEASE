@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>ApplicationContext & BeanFactory · spring-note</title>
+        <title>BeanFactory & ApplicationContext · spring-note</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -258,7 +258,7 @@
                 <a href="BeanFactory.html">
             
                     
-                    BeanFactory接口
+                    BeanFactory
             
                 </a>
             
@@ -271,7 +271,7 @@
                 <a href="context.html">
             
                     
-                    ApplicationContext & BeanFactory
+                    BeanFactory & ApplicationContext
             
                 </a>
             
@@ -754,7 +754,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >ApplicationContext & BeanFactory</a>
+        <a href="../.." >BeanFactory & ApplicationContext</a>
     </h1>
 </div>
 
@@ -770,28 +770,35 @@
                                 <section class="normal markdown-section">
                                 
                                 <div class="treeview__container"><div class="treeview__container-title"><span class="treeview__main-title">Treeview</span><span class="treeview__copyright">Copyright @doctording all right reserved, powered by <a href="https://github.com/aleen42" target="_blank">aleen42</a></span></div><ul>
-<li><div><a href="#applicationcontext">ApplicationContext</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<li><div><a href="#beanfactory--applicationcontext">BeanFactory &amp; ApplicationContext</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
 <ul>
+<li><div><a href="#beanfactory">BeanFactory</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
+<ul>
+<li><div><a href="#beanfactorypostprocessor&#x7684;&#x7406;&#x89E3;">BeanFactoryPostProcessor&#x7684;&#x7406;&#x89E3;?</a><i></i></div></li>
+</ul></li>
 <li><div><a href="#applicationcontext--beanfactory-&#x7684;&#x533A;&#x522B;&#x548C;&#x8054;&#x7CFB;">ApplicationContext &amp; BeanFactory &#x7684;&#x533A;&#x522B;&#x548C;&#x8054;&#x7CFB;</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
 <ul>
 <li><div><a href="#&#x9644;&#xFF1A;&#x56FD;&#x9645;&#x5316;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;">&#x9644;&#xFF1A;&#x56FD;&#x9645;&#x5316;&#x662F;&#x4EC0;&#x4E48;&#xFF1F;</a><i></i></div></li>
 </ul></li>
 <li><div><a href="#classpathxmlapplicationcontext&#x4E3E;&#x4F8B;">ClassPathXmlApplicationContext&#x4E3E;&#x4F8B;</a><i></i></div></li>
-<li><div><a href="#beanfactory">BeanFactory</a><i class="level__parent level__item level__parent--opened" state="opened" onclick="var curState = this.getAttribute(&apos;state&apos;);var nextState = curState === &apos;opened&apos; ? &apos;hidden&apos; : &apos;opened&apos;;this.setAttribute(&apos;state&apos;, nextState);this.className = this.className.split(curState).join(nextState);var list = this.parentNode.nextElementSibling;if (nextState === &apos;hidden&apos;) {    list.style.display = &apos;none&apos;;} else {    list.style.display = &apos;block&apos;;}"></i></div>
-<ul>
-<li><div><a href="#&#x5982;&#x4F55;&#x56DE;&#x7B54;-beanfactorypostprocessor-">&#x5982;&#x4F55;&#x56DE;&#x7B54; BeanFactoryPostProcessor ?</a><i></i></div></li>
-</ul></li>
 </ul></li>
 </ul>
 </div>
 
-<h1 id="applicationcontext">ApplicationContext</h1>
+<h1 id="beanfactory--applicationcontext">BeanFactory &amp; ApplicationContext</h1>
+<h2 id="beanfactory">BeanFactory</h2>
+<p>&#x8D1F;&#x8D23;&#x914D;&#x7F6E;&#x3001;&#x521B;&#x5EFA;&#x3001;&#x7BA1;&#x7406;Bean&#xFF1B;IOC&#x529F;&#x80FD;&#x7684;&#x5B9E;&#x73B0;&#x4E3B;&#x8981;&#x5C31;&#x4F9D;&#x8D56;&#x4E8E;&#x8BE5;&#x63A5;&#x53E3;&#x5B50;&#x7C7B;&#x5B9E;&#x73B0;&#xFF1B;&#x8BE6;&#x89C1;&#x5BF9;beanFactory&#x7684;&#x4ECB;&#x7ECD;</p>
+<h3 id="beanfactorypostprocessor&#x7684;&#x7406;&#x89E3;">BeanFactoryPostProcessor&#x7684;&#x7406;&#x89E3;?</h3>
+<p><code>BeanFactoryPostProcessor</code>&#x662F;Spring&#x4E2D;&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x4E2A;&#x6269;&#x5C55;&#x70B9;</p>
+<p>Spring&#x6E90;&#x7801;&#x4E2D;<code>ConfigurationClassPostProcessor</code>&#xFF0C;&#x5B83;&#x5C31;&#x662F;&#x4E00;&#x4E2A;BeanFactory&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x5B83;&#x8D1F;&#x8D23;&#x89E3;&#x6790;&#x914D;&#x7F6E;&#x7C7B;&#xFF0C;&#x5B8C;&#x6210;&#x626B;&#x63CF;&#xFF0C;&#x628A;&#x626B;&#x63CF;&#x5F97;&#x5230;&#x7684;BeanDefinition&#x6CE8;&#x518C;&#x5230;BeanFactory&#x4E2D;</p>
 <h2 id="applicationcontext--beanfactory-&#x7684;&#x533A;&#x522B;&#x548C;&#x8054;&#x7CFB;">ApplicationContext &amp; BeanFactory &#x7684;&#x533A;&#x522B;&#x548C;&#x8054;&#x7CFB;</h2>
 <p><img src="../../imgs/ApplicationContextInterface.png" alt=""></p>
 <ul>
-<li>ApplicationContext&#x548C;BeanFactory&#x4E00;&#x6837;&#x90FD;&#x662F;bean&#x7684;&#x5BB9;&#x5668;</li>
-<li>BeanFactory&#x662F;&#x4E00;&#x5207;Bean&#x5BB9;&#x5668;&#x7684;&#x7236;&#x7C7B;</li>
-<li>ApplicationContext&#x7EE7;&#x627F;&#x4E8E;BeanFactory&#xFF08;&#x7EE7;&#x627F;&#x4E86;BeanFactory&#xFF09;&#xFF0C;ApplicationContext&#x5305;&#x542B;&#x4E86;BeanFactory&#x7684;&#x6240;&#x6709;&#x529F;&#x80FD;&#xFF0C;&#x5E76;&#x4E14;&#x6269;&#x5C55;&#x4E86;&#x5176;&#x5B83;&#x529F;&#x80FD;<ol>
+<li>ApplicationContext&#x548C;BeanFactory&#x4E00;&#x6837;&#x90FD;&#x662F;bean&#x5BB9;&#x5668;</li>
+<li><p>BeanFactory&#x662F;&#x4E00;&#x5207;Bean&#x5BB9;&#x5668;&#x7684;&#x7236;&#x7C7B;&#xFF0C;&#x662F;&#x6700;&#x9876;&#x5C42;interface</p>
+</li>
+<li><p>ApplicationContext&#x7EE7;&#x627F;&#x4E86;BeanFactory&#xFF0C;ApplicationContext&#x5305;&#x542B;&#x4E86;BeanFactory&#x7684;&#x6240;&#x6709;&#x529F;&#x80FD;&#xFF0C;&#x5E76;&#x4E14;&#x6269;&#x5C55;&#x4E86;&#x5176;&#x5B83;&#x529F;&#x80FD;</p>
+<ol>
 <li>&#x56FD;&#x9645;&#x5316;&#xFF08;MessageSource&#xFF09;</li>
 <li>&#x8BBF;&#x95EE;&#x8D44;&#x6E90;&#xFF0C;&#x5982;URL&#x548C;&#x6587;&#x4EF6;&#xFF08;ResourceLoader&#xFF09;</li>
 <li>&#x8F7D;&#x5165;&#x591A;&#x4E2A;&#xFF08;&#x6709;&#x7EE7;&#x627F;&#x5173;&#x7CFB;&#xFF09;&#x4E0A;&#x4E0B;&#x6587; &#xFF0C;&#x4F7F;&#x5F97;&#x6BCF;&#x4E00;&#x4E2A;&#x4E0A;&#x4E0B;&#x6587;&#x90FD;&#x4E13;&#x6CE8;&#x4E8E;&#x4E00;&#x4E2A;&#x7279;&#x5B9A;&#x7684;&#x5C42;&#x6B21;&#xFF0C;&#x6BD4;&#x5982;&#x5E94;&#x7528;&#x7684;web&#x5C42;  </li>
@@ -903,13 +910,8 @@
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
 </code></pre>
-<h2 id="beanfactory">BeanFactory</h2>
-<p>&#x8D1F;&#x8D23;&#x914D;&#x7F6E;&#x3001;&#x521B;&#x5EFA;&#x3001;&#x7BA1;&#x7406;Bean&#xFF1B;IOC&#x529F;&#x80FD;&#x7684;&#x5B9E;&#x73B0;&#x4E3B;&#x8981;&#x5C31;&#x4F9D;&#x8D56;&#x4E8E;&#x8BE5;&#x63A5;&#x53E3;&#x5B50;&#x7C7B;&#x5B9E;&#x73B0;</p>
-<h3 id="&#x5982;&#x4F55;&#x56DE;&#x7B54;-beanfactorypostprocessor-">&#x5982;&#x4F55;&#x56DE;&#x7B54; BeanFactoryPostProcessor ?</h3>
-<p><code>BeanFactoryPostProcessor</code>&#x662F;Spring&#x4E2D;&#x63D0;&#x4F9B;&#x7684;&#x4E00;&#x4E2A;&#x6269;&#x5C55;&#x70B9;</p>
-<p>Spring&#x6E90;&#x7801;&#x4E2D;<code>ConfigurationClassPostProcessor</code>&#xFF0C;&#x5B83;&#x5C31;&#x662F;&#x4E00;&#x4E2A;BeanFactory&#x7684;&#x540E;&#x7F6E;&#x5904;&#x7406;&#x5668;&#xFF0C;&#x5B83;&#x8D1F;&#x8D23;&#x89E3;&#x6790;&#x914D;&#x7F6E;&#x7C7B;&#xFF0C;&#x5B8C;&#x6210;&#x626B;&#x63CF;&#xFF0C;&#x628A;&#x626B;&#x63CF;&#x5F97;&#x5230;&#x7684;BeanDefinition&#x6CE8;&#x518C;&#x5230;BeanFactory&#x4E2D;</p>
 <footer class="page-footer"><span class="copyright">Copyright @doctording all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x8BE5;&#x6587;&#x4EF6;&#x4FEE;&#x6539;&#x65F6;&#x95F4;&#xFF1A;
-2020-12-30 09:19:48
+2021-10-24 13:05:27
 </span></footer>
                                 
                                 </section>
@@ -937,7 +939,7 @@
 
             
                 
-                <a href="BeanFactory.html" class="navigation navigation-prev " aria-label="Previous page: BeanFactory接口">
+                <a href="BeanFactory.html" class="navigation navigation-prev " aria-label="Previous page: BeanFactory">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -953,7 +955,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"ApplicationContext & BeanFactory","level":"1.4.1.1.2","depth":4,"next":{"title":"事件发布和监听机制","level":"1.4.1.1.3","depth":4,"path":"doc/bean/context_event.md","ref":"doc/bean/context_event.md","articles":[]},"previous":{"title":"BeanFactory接口","level":"1.4.1.1.1","depth":4,"path":"doc/bean/BeanFactory.md","ref":"doc/bean/BeanFactory.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/context.md","mtime":"2020-12-30T01:19:48.945Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-23T11:06:21.252Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"BeanFactory & ApplicationContext","level":"1.4.1.1.2","depth":4,"next":{"title":"事件发布和监听机制","level":"1.4.1.1.3","depth":4,"path":"doc/bean/context_event.md","ref":"doc/bean/context_event.md","articles":[]},"previous":{"title":"BeanFactory","level":"1.4.1.1.1","depth":4,"path":"doc/bean/BeanFactory.md","ref":"doc/bean/BeanFactory.md","articles":[]},"dir":"ltr"},"config":{"plugins":["prism","-highlight","-lunr","-search","-sharing","ace","codeblock-filename","search-plus","sectionx","splitter","tbfed-pagefooter","expandable-chapters","back-to-top-button","code","uml","page-treeview"],"styles":{"website":"styles/website.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright @doctording","modify_label":"该文件修改时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"page-treeview":{"copyright":"Copyright @doctording","minHeaderCount":"2","minHeaderDeep":"2"},"prism":{},"ace":{},"splitter":{},"code":{"copyButtons":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sectionx":{},"uml":{"format":"svg"},"codeblock-filename":{},"back-to-top-button":{},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"expandable-chapters":{},"search-plus":{}},"theme":"default","author":"doctording","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"spring-note","language":"zh-hans","gitbook":"*","description":"Spring源码学习笔记"},"file":{"path":"doc/bean/context.md","mtime":"2021-10-24T05:05:27.263Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-24T05:07:39.779Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
