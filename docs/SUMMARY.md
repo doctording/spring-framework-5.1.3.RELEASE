@@ -8,8 +8,8 @@
 * [Ioc & Aop]
     * [Ioc & Bean]
         * [Ioc & BeanDefinition](doc/bean/ioc_bean.md)
-            * [BeanFactory接口](doc/bean/BeanFactory.md)
-            * [ApplicationContext & BeanFactory](doc/bean/context.md)
+            * [BeanFactory](doc/bean/BeanFactory.md)
+            * [BeanFactory & ApplicationContext](doc/bean/context.md)
             * [事件发布和监听机制](doc/bean/context_event.md)
         * [Bean]
             * [Bean生命周期&回调](doc/bean/bean_life.md)

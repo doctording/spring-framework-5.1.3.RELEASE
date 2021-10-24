@@ -1,4 +1,4 @@
-# Ioc 容器 & Bean
+# IoC 容器 & Bean
 
 ## Spring处理流程简图
 
@@ -6,7 +6,7 @@
 
 附：<a href="https://docs.spring.io/spring/docs/5.1.3.RELEASE/spring-framework-reference/core.html#spring-core" target="_blank">spring docs</a>
 
-## Ioc(Inversion of Control) Container
+## IoC(Inversion of Control) Container
 
 The org.springframework.context.ApplicationContext interface represents the Spring IoC container and is responsible for instantiating, configuring, and assembling the beans. The container gets its instructions on what objects to instantiate, configure, and assemble by reading configuration metadata. The configuration metadata is represented in XML, Java annotations, or Java code. It lets you express the objects that compose your application and the rich interdependencies between those objects.
 
@@ -27,10 +27,105 @@ Spring通过DI(dependency injection依赖注入)来实现Ioc，把对象的实�
 
 传统开发中，类与类之间是有依赖关系的，耦合性强；要**面向抽象**编程，借助"第三方"实现具有依赖关系的对象之间的解耦
 
-#### 容器的理解？
+#### Ioc容器的理解？
 
 * 代码级别理解：容器可以理解为`ApplicationContext`对象，一切`ApplicationContext`的实现类都能成为容器
 * 理论角度：容器是由很多Spring组件一起构成的，比如beanDefinitionMap, 单例池，beanFactory，各种PostProcessor
+
+#### Ioc容器的实现机制？
+
+关键技术点：简单工厂 + 反射
+
+```java
+import org.apache.hadoop.util.hash.Hash;
+
+import java.util.HashMap;
+import java.util.Map;
+
+interface BaseOutService{
+    void drive();
+}
+
+class CarServiceImpl implements BaseOutService{
+
+    @Override
+    public void drive() {
+        System.out.println("car drive");
+    }
+}
+
+class PlaneServiceImpl implements BaseOutService{
+
+    @Override
+    public void drive() {
+        System.out.println("plane drive");
+    }
+}
+
+class TrainServiceImpl implements BaseOutService{
+
+    @Override
+    public void drive() {
+        System.out.println("train drive");
+    }
+}
+
+class Factory {
+
+    Map<String, String> beanMap;
+
+    public Factory(){
+        beanMap = new HashMap();
+    }
+
+    public void addBeanDefinition(String beanName, String className){
+        beanMap.put(beanName, className);
+    }
+
+    public BaseOutService getBean(String beanName) {
+        BaseOutService baseService = null;
+        String className = beanMap.get(beanName);
+        try {
+            Class clz = Class.forName(className);
+            Object o = clz.newInstance();
+            baseService = (BaseOutService) o;
+        } catch (Exception e) {
+
+        }
+        return baseService;
+    }
+}
+
+
+public class Solution {
+
+
+    public static void main(String[] args) throws InterruptedException {
+        Factory factory = new Factory();
+        factory.addBeanDefinition("car", "com.CarServiceImpl");
+        factory.addBeanDefinition("plane", "com.PlaneServiceImpl");
+
+        BaseOutService carService = factory.getBean("car");
+        carService.drive();
+
+        BaseOutService planeService = factory.getBean("plane");
+        planeService.drive();
+
+        factory.addBeanDefinition("train", "com.TrainServiceImpl");
+        BaseOutService trainService = factory.getBean("train");
+        trainService.drive();
+    }
+
+}
+```
+
+如上，使用简单工厂加上反射：要实现一个BaseOutService，则只需要添加一个BeanDefinition到工厂中，然后就能从工厂获取这个bean了
+
+### IoC和DI的区别是什么？
+
+IoC：控制反转，控制对象创建的产生方式：不是自己new，而是交给容器，让容器维护对象间的对象关系（一种设计思想，解决耦合问题）
+
+DI: 依赖注入，实现了IoC；是IoC实现的重要一环
 
 ## Bean
 
@@ -72,7 +167,7 @@ Destruction methods | 销毁方法
 
 * 普通Java对象的产生
 
-假设磁盘上有N个.java文件，首先我们把这些java文件编译成class文件，继而java虚拟机启动会把这些class文件load到内存，当遇到new关键字的时候会根据类的模板信息实例化这个对象也就是在堆上面分配内存
+假设磁盘上有N个.java文件，首先我们把这些java文件编译成class文件，继而java虚拟机启动会把这些class文件load到内存，当遇到new关键字的时候会根据类的模板信息实例化这个对象，即在堆上分配内存生成对象
 
 * spring的bean实例化过程
 

@@ -1,12 +1,23 @@
-# ApplicationContext
+# BeanFactory & ApplicationContext
+
+## BeanFactory
+
+负责配置、创建、管理Bean；IOC功能的实现主要就依赖于该接口子类实现；详见对beanFactory的介绍
+
+### BeanFactoryPostProcessor的理解?
+
+`BeanFactoryPostProcessor`是Spring中提供的一个扩展点
+
+Spring源码中`ConfigurationClassPostProcessor`，它就是一个BeanFactory的后置处理器，它负责解析配置类，完成扫描，把扫描得到的BeanDefinition注册到BeanFactory中
 
 ## ApplicationContext & BeanFactory 的区别和联系
 
 ![](../../imgs/ApplicationContextInterface.png)
 
-* ApplicationContext和BeanFactory一样都是bean的容器
-* BeanFactory是一切Bean容器的父类
-* ApplicationContext继承于BeanFactory（继承了BeanFactory），ApplicationContext包含了BeanFactory的所有功能，并且扩展了其它功能
+* ApplicationContext和BeanFactory一样都是bean容器
+* BeanFactory是一切Bean容器的父类，是最顶层interface
+
+* ApplicationContext继承了BeanFactory，ApplicationContext包含了BeanFactory的所有功能，并且扩展了其它功能
     1. 国际化（MessageSource）
     2. 访问资源，如URL和文件（ResourceLoader）
     3. 载入多个（有继承关系）上下文 ，使得每一个上下文都专注于一个特定的层次，比如应用的web层  
@@ -122,13 +133,3 @@ public void refresh() throws BeansException, IllegalStateException {
     }
 }
 ```
-
-## BeanFactory
-
-负责配置、创建、管理Bean；IOC功能的实现主要就依赖于该接口子类实现
-
-### 如何回答 BeanFactoryPostProcessor ?
-
-`BeanFactoryPostProcessor`是Spring中提供的一个扩展点
-
-Spring源码中`ConfigurationClassPostProcessor`，它就是一个BeanFactory的后置处理器，它负责解析配置类，完成扫描，把扫描得到的BeanDefinition注册到BeanFactory中
