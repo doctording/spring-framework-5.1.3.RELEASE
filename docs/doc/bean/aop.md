@@ -8,7 +8,7 @@
 
 * aop（aspect-oriented programming）面向切面编程
 * aop是oop的补充和完善，是相互配合关系
-* aop把软件系统分为两个部分：核型关注点和横切关注点
+* aop把软件系统分为两个部分：核心关注点和横切关注点
 
 ### 为什么需要aop？
 
@@ -33,6 +33,10 @@ AOP用来封装**横切**关注点，具体可以在下面的场景中使用
 * Resource pooling 资源池
 * Synchronization 同步
 * Transactions 事务
+
+### aop代码例子
+
+<a href='https://github.com/doctording/spring_aop_demo'>aop demo</a>
 
 ## Spring aop
 
@@ -202,3 +206,7 @@ public class DefaultAopProxyFactory implements AopProxyFactory, Serializable {
 
 * 如果目标对象有实现接口，则使用 JDK 代理，反之使用 CGLIB (JDK 代理是基于接口的)
 * 如果目标类没有实现接口，且 class 为 final 修饰的，则不能进行 Spring AOP
+
+### JDK动态代理为什么必须基于接口？
+
+参考：<a href='https://doctording.github.io/sword_at_offer/content/design_pattern/proxy.html#jdk动态代理和cglib动态代理的区别？'>jdk动态代理和cglib动态代理的区别？</a>

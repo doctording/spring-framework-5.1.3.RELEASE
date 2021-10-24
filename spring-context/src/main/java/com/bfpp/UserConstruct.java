@@ -3,6 +3,8 @@ package com.bfpp;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
+import java.lang.reflect.Proxy;
+
 /**
  * @Author mubi
  * @Date 2020/6/10 22:19
