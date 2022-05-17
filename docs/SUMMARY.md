@@ -19,6 +19,7 @@
             * [Bean 依赖](doc/bean/ioc_bean_dependency.md)
                 * [Spring循环依赖具体执行流程](doc/bean/dependency.md)
             * [BeanFactoryPostProcessor & BeanDefinitionRegistryPostProcessor](doc/bean/post_processor.md)
+                * [PropertyPlaceholderConfigurer](doc/bean/property.md)
                 * [@Configuration](doc/bean/configuration.md)
                 * [@Configuration & @Bean作用同一个类](doc/bean/configuration_bean.md)
                 * [@MapperScan 原理](doc/bean/mapper_scan.md)
