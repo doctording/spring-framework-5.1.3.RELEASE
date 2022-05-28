@@ -45,7 +45,6 @@ public class UserPropertyPlaceholderConfigurer extends PropertyPlaceholderConfig
 }
 ```
 
-
 测试代码
 
 ```java
@@ -68,4 +67,3 @@ public static void main(String[] args) {
 
 * 第一次：ConfigurationClassPostProcessor内部的@ComponentScan扫描bean完成注册
 * 第二次：ConfigurationClassPostProcessor全注解类内部的@Bean方法解析去注册bean,而这会对第一次的注册进行覆盖
-
