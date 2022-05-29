@@ -25,6 +25,7 @@
                 * [@Configuration & @Bean作用同一个类](doc/bean/configuration_bean.md)
                 * [@MapperScan 原理](doc/bean/mapper_scan.md)
             * [BeanPostProcessor](doc/bean/bean_post_processor.md)
+                * [SmartInstantiationAwareBeanPostProcessor](doc/bean/bean_smart.md)
                 * [推断构造方法](doc/bean/bean_constructor.md)
             * [自动装配 & @Autowired](doc/bean/ioc_bean_auto.md)
     * [AOP]

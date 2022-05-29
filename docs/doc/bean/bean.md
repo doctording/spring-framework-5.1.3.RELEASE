@@ -54,6 +54,14 @@ UserManager userManager = (UserManager) ac.getBean("userManager");
 System.out.println(userManager);
 ```
 
+输出:
+
+```java
+constructor UserManager(String):wangwu
+start init UserManager:zhangsan
+UserManager{userName='zhangsan'}
+```
+
 ## 源码流程
 
 * 1 new AnnotationConfigApplicationContext的时候会初始化添加一个`ConfigurationClassPostProcessor`
